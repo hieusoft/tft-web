@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from app.core.database import Base, engine
-from app.routers import traits
+from app.routers import traits, augments
 
 # Tạo bảng tự động
 Base.metadata.create_all(bind=engine)
@@ -30,8 +30,9 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"statusCode": 500, "message": str(exc), "path": str(request.url)},
     )
 
-app.include_router(traits.router, prefix="/api/v1/traits", tags=["Traits"])
-
+app.include_router(traits.router, prefix="/api/v1/traits", tags=["Tộc hệ"])
+app.include_router(augments.router, prefix="/api/v1/augemnts", tags=["Lõi công nghệ"])
+app.include_router(augments.router, prefix="/api/v1/items", tags=["Trang Bị (Items)"])
 # Custom OpenAPI schema — thêm API Key security vào Swagger UI
 def custom_openapi():
     if app.openapi_schema:

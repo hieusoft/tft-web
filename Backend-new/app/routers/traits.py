@@ -42,7 +42,7 @@ def create(
     db.add(trait)
     db.commit()
     db.refresh(trait)
-    r.delete(TRAITS_CACHE_KEY)  # invalidate cache
+    r.delete(TRAITS_CACHE_KEY)
     return trait
 
 
@@ -61,7 +61,7 @@ def update_meta(
         setattr(trait, field, value)
     db.commit()
     db.refresh(trait)
-    r.delete(TRAITS_CACHE_KEY)  # invalidate cache
+    r.delete(TRAITS_CACHE_KEY) 
     return trait
 
 
