@@ -1,0 +1,23 @@
+{
+  "name": "MetaTFT",
+  "short_name": "MetaTFT",
+  "description": "Discover the TFT Meta with stats and data",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0e11",
+  "theme_color": "#004ba0",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["games", "entertainment", "utilities"]
+}
