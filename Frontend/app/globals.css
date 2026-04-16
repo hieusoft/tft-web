@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* ================================================
+   CSS Custom Properties — Design Tokens
+   ================================================ */
+:root {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #222222;
+  --bg-card: #1e1e1e;
+  --border-color: #2a2a2a;
+  --text-primary: #e8e8e8;
+  --text-secondary: #9a9a9a;
+  --accent-yellow: #f0b90b;
+  --accent-red: #dc2626;
+
+  /* Typography scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ================================================
+   Performance: reduce layout thrashing
+   ================================================ */
+
+/* Hint browser về stacking context để tránh reflow */
+html {
+  /* Tắt overscroll để tránh layout shift trên mobile */
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  /* Cho phép browser tối ưu text rendering */
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--font-size-sm);
+
+  /* contain:style giúp browser biết body không ảnh hưởng layout bên ngoài */
+  contain: style;
+}
+
+/* ================================================
+   Scrollbar — MetaTFT style
+   ================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* ================================================
+   Selection
+   ================================================ */
+::selection {
+  background: rgba(240, 185, 11, 0.25);
+  color: #fff;
+}
+
+/* ================================================
+   Focus Visible — Accessibility
+   ================================================ */
+*:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ================================================
+   Performance: will-change hint cho animated elements
+   Chỉ dùng sẽ-change cho những element thực sự animate
+   ================================================ */
+.animate-pulse {
+  will-change: opacity;
+}
+
+/* ================================================
+   Contain cho card/row components để tránh reflow
+   ================================================ */
+[data-comp-row] {
+  contain: layout style;
+}
+
+/* ================================================
+   Critical above-the-fold styles
+   Những style này phải load trước để không bị FOUC
+   ================================================ */
+
+/* Navbar placeholder height để tránh CLS */
+header {
+  min-height: 86px; /* 56px top bar + 30px nav row */
+  contain: layout;
+}
