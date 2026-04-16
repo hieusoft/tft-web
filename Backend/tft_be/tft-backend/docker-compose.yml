@@ -1,8 +1,0 @@
-version: '3.8'
-services:
-  redis-local:
-    image: redis:alpine
-    container_name: tft-redis
-    restart: always
-    ports:
-      - "6379:6379"
