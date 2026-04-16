@@ -1,12 +1,17 @@
+import logging
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from app.core.database import Base, engine
+from app.core.lifespan import lifespan
 from app.routers import traits, augments
 
-# Tạo bảng tự động
-Base.metadata.create_all(bind=engine)
+# Cấu hình logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)-8s | %(name)s — %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 app = FastAPI(
     title="TFT API",
@@ -14,6 +19,7 @@ app = FastAPI(
     description="API quản lý dữ liệu Teamfight Tactics",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
