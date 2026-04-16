@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // =====================================================
+  // Docker: standalone output giúp giảm kích thước image
+  // =====================================================
+  output: "standalone",
+
+  // =====================================================
   // Performance: loại bỏ X-Powered-By, bật compression
   // =====================================================
   poweredByHeader: false,
