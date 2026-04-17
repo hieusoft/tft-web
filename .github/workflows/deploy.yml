@@ -9,50 +9,68 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ─────────────────────────────────────────────
+      # 1. Checkout code
+      # ─────────────────────────────────────────────
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # login docker hub
-      - name: Login Docker
+      # ─────────────────────────────────────────────
+      # 2. Login Docker Hub
+      # ─────────────────────────────────────────────
+      - name: Login Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      # build frontend
-      - name: Build frontend
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/tft-frontend ./Frontend   # ✅ Viết hoa
-
-      # build backend
-      - name: Build backend
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/tft-backend ./Backend-new  # ✅ Đúng tên thư mục
-
-      # push image
-      - name: Push Docker
+      # ─────────────────────────────────────────────
+      # 3. Build & Push images
+      # ─────────────────────────────────────────────
+      - name: Build & Push Frontend
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/tft-frontend
-          docker push ${{ secrets.DOCKER_USERNAME }}/tft-backend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/tft-frontend:latest ./Frontend
+          docker push ${{ secrets.DOCKER_USERNAME }}/tft-frontend:latest
 
-      # SSH deploy
-      - name: Deploy server
+      - name: Build & Push Backend
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/tft-backend:latest ./Backend-new
+          docker push ${{ secrets.DOCKER_USERNAME }}/tft-backend:latest
+
+      # ─────────────────────────────────────────────
+      # 4. SSH vào VPS → deploy
+      # ─────────────────────────────────────────────
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # Đảm bảo code mới nhất trên VPS
+            # Đảm bảo repo tồn tại trên VPS
+            if [ ! -d ~/tft-web ]; then
+              git clone https://github.com/hieusoft/tft-web.git ~/tft-web
+            fi
+
             cd ~/tft-web
             git pull origin main
 
+            # Tạo/ghi đè .env từ GitHub Secrets (không cần setup thủ công trên VPS)
+            cat > .env << 'ENVEOF'
+            POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+            POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+            REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
+            API_KEY=${{ secrets.API_KEY }}
+            DATABASE_URL=postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@postgres:5432/${{ secrets.POSTGRES_DB }}
+            REDIS_URL=redis://:${{ secrets.REDIS_PASSWORD }}@redis:6379/0
+            BACKEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-backend:latest
+            FRONTEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-frontend:latest
+            ENVEOF
+
             # Pull image mới nhất từ Docker Hub
-            docker pull ${{ secrets.DOCKER_USERNAME }}/tft-frontend
-            docker pull ${{ secrets.DOCKER_USERNAME }}/tft-backend
+            docker pull ${{ secrets.DOCKER_USERNAME }}/tft-backend:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/tft-frontend:latest
 
-            # Override image trong docker-compose bằng image đã build sẵn
-            export FRONTEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-frontend
-            export BACKEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-backend
+            # Restart toàn bộ stack bằng image vừa pull (không build lại)
+            docker compose up -d --no-build
 
-            # Restart toàn bộ stack (postgres + redis + backend + frontend)
-            docker compose down
-            docker compose up -d
-
-            # Dọn image cũ
+            # Dọn image cũ không dùng nữa
             docker image prune -f
