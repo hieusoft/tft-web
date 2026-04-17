@@ -8,7 +8,7 @@ from app.core.database import get_db
 from app.core.redis import get_redis
 from app.dependencies import verify_api_key
 from app.models.augment import Augment
-from app.schemas.augment import AugmentCreate, AugmentResponse, AugmentUpdateMeta
+from app.schemas.augment import AugmentCreate, AugmentResponse, AugmentUpdateMeta, AugmentUpdate
 
 router = APIRouter()
 
@@ -38,18 +38,60 @@ def create(
     r: redis.Redis = Depends(get_redis),
     _=Depends(verify_api_key),
 ):
-    db_augment = db.query(Augment).filter(Augment.id == body.id).first()
+    db_augment = db.query(Augment).filter(Augment.name == body.name).first()
     if db_augment:
-        raise HTTPException(status_code=400, detail="Lõi công nghệ với ID này đã tồn tại!")
+        raise HTTPException(status_code=400, detail="Lõi công nghệ với tên này đã tồn tại!")
         
     augment = Augment(**body.model_dump())
     db.add(augment)
     db.commit()
     db.refresh(augment)
+    
     r.delete(AUGMENTS_CACHE_KEY)
     return augment
 
+@router.patch("/{id}", response_model=AugmentResponse)
+def update_augment(
+    id: int,
+    body: AugmentUpdate,
+    db: Session = Depends(get_db),
+    r: redis.Redis = Depends(get_redis),
+    _=Depends(verify_api_key),
+):
+    augment = db.query(Augment).filter(Augment.id == id).first()
+    if not augment:
+        raise HTTPException(status_code=404, detail="Lõi công nghệ không tồn tại")
+        
+    for field, value in body.model_dump(exclude_none=True).items():
+        setattr(augment, field, value)
+        
+    db.commit()
+    db.refresh(augment)
+    
+    r.delete(AUGMENTS_CACHE_KEY) 
+    return augment
 
+@router.patch("/{id}/meta", response_model=AugmentResponse)
+def update_meta(
+    id: int,
+    body: AugmentUpdateMeta,
+    db: Session = Depends(get_db),
+    r: redis.Redis = Depends(get_redis),
+    _=Depends(verify_api_key),
+):
+    augment = db.query(Augment).filter(Augment.id == id).first()
+    if not augment:
+        raise HTTPException(status_code=404, detail="Lõi công nghệ không tồn tại")
+        
+    for field, value in body.model_dump(exclude_none=True).items():
+        setattr(augment, field, value)
+        
+    db.commit()
+    db.refresh(augment)
+    
+    r.delete(AUGMENTS_CACHE_KEY) 
+    return augment
+    
 @router.delete("/{id}")
 def delete(
     id: int,
@@ -67,24 +109,3 @@ def delete(
     r.delete(AUGMENTS_CACHE_KEY)
     return {"message": f"Delete success augment with {id}"}
 
-@router.patch("/{id}/meta", response_model=AugmentResponse)
-def update_meta(
-    id: int,
-    body: AugmentUpdateMeta,
-    db: Session = Depends(get_db),
-    r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
-):
-    augment = db.query(Augment).filter(Augment.id == id).first()
-    if not augment:
-        raise HTTPException(status_code=404, detail="Lõi công nghệ không tồn tại")
-        
-    # Cập nhật các trường được gửi lên
-    for field, value in body.model_dump(exclude_none=True).items():
-        setattr(augment, field, value)
-        
-    db.commit()
-    db.refresh(augment)
-    
-    r.delete(AUGMENTS_CACHE_KEY) 
-    return augment

@@ -24,7 +24,7 @@ class ItemBase(BaseModel):
     games_played: Optional[int] = 0
 
 class ItemCreate(ItemBase):
-    id: int
+    pass
 
 class ItemResponse(ItemBase):
     id: int

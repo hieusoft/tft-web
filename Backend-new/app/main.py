@@ -1,17 +1,11 @@
-import logging
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from app.core.lifespan import lifespan
-from app.routers import traits, augments
-
-# Cấu hình logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)-8s | %(name)s — %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
+from app.core.database import Base, engine
+from app.routers import traits, augments, items, skills, champions
+# Tạo bảng tự động
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="TFT API",
@@ -19,7 +13,6 @@ app = FastAPI(
     description="API quản lý dữ liệu Teamfight Tactics",
     docs_url="/docs",
     redoc_url="/redoc",
-    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -29,10 +22,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/health", tags=["Health"], include_in_schema=False)
-async def health_check():
-    return {"status": "ok"}
-
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     return JSONResponse(
@@ -40,9 +29,11 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"statusCode": 500, "message": str(exc), "path": str(request.url)},
     )
 
-app.include_router(traits.router, prefix="/api/v1/traits", tags=["Tộc hệ"])
-app.include_router(augments.router, prefix="/api/v1/augemnts", tags=["Lõi công nghệ"])
-app.include_router(augments.router, prefix="/api/v1/items", tags=["Trang Bị (Items)"])
+app.include_router(traits.router, prefix="/api/v1/traits", tags=["Tộc hệ (Traits)"])
+app.include_router(augments.router, prefix="/api/v1/augemnts", tags=["Lõi công nghệ (Augments)"])
+app.include_router(items.router, prefix="/api/v1/items", tags=["Trang Bị (Items)"])
+app.include_router(skills.router, prefix="/api/v1/skills", tags=["Kỹ Năng (Skills)"])
+app.include_router(champions.router, prefix="/api/v1/champions", tags=["Tướng (Champions)"])
 # Custom OpenAPI schema — thêm API Key security vào Swagger UI
 def custom_openapi():
     if app.openapi_schema:
