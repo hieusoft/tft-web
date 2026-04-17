@@ -4,11 +4,11 @@ from typing import Optional
 
 class Settings(BaseSettings):
     # Kết nối DB theo từng biến (dùng khi chạy local)
-    DB_HOST: str = "localhost"
-    DB_PORT: int = 5432
-    DB_USER: str = "postgres"
-    DB_PASSWORD: str = "postgres"
-    DB_NAME: str = "tft"
+    POSTGRES_HOST: str = "localhost"
+    POSTGRES_PORT: int = 5432
+    POSTGRES_USER: str = "postgres"
+    POSTGRES_PASSWORD: str = "postgres"
+    POSTGRES_DB: str = "tft"
 
     # Override toàn bộ (dùng khi chạy Docker — docker-compose truyền thẳng URL)
     DATABASE_URL: Optional[str] = None
@@ -26,10 +26,10 @@ class Settings(BaseSettings):
 
     @property
     def db_url(self) -> str:
-        """Ưu tiên DATABASE_URL từ env (Docker), fallback về build từ DB_* vars."""
+        """Ưu tiên DATABASE_URL từ env (Docker), fallback về build từ POSTGRES_* vars."""
         if self.DATABASE_URL:
             return self.DATABASE_URL
-        return f"postgresql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
 
     @property
     def redis_url(self) -> str:
