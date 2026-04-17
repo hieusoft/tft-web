@@ -4,12 +4,11 @@ from sqlalchemy.orm import Session
 from typing import List
 import redis
 
-# Đảm bảo bạn đã có đủ các schema này trong app/schemas/item.py
 from app.core.database import get_db
 from app.core.redis import get_redis
 from app.dependencies import verify_api_key
 from app.models.item import Item
-from app.schemas.item import ItemCreate, ItemResponse, ItemUpdate, ItemUpdateMeta
+from app.schemas.item import ItemCreate, ItemResponse, ItemUpdateMeta
 
 router = APIRouter()
 
@@ -39,9 +38,9 @@ def create(
     r: redis.Redis = Depends(get_redis),
     _=Depends(verify_api_key),
 ):
-    db_item = db.query(Item).filter(Item.id == body.id).first()
+    db_item = db.query(Item).filter(Item.name == body.name).first()
     if db_item:
-        raise HTTPException(status_code=400, detail="Trang bị này đã tồn tại!")
+        raise HTTPException(status_code=400, detail="Trang bị với tên này đã tồn tại!")
         
     item = Item(**body.model_dump())
     db.add(item)
@@ -54,7 +53,7 @@ def create(
 @router.patch("/{id}", response_model=ItemResponse)
 def update_item(
     id: int,
-    body: ItemUpdate,
+    body: ItemUpdateMeta,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
     _=Depends(verify_api_key),

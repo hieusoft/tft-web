@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-from enum import IntEnum, Enum # Thêm Enum
+from enum import IntEnum, Enum 
 
 class AugmentTier(IntEnum):
     SILVER = 1
@@ -19,16 +19,21 @@ class AugmentBase(BaseModel):
     description: Optional[str] = None
     tier: AugmentTier
     icon_path: Optional[str] = None
-    ranking: Optional[RankingTier] = None # THÊM TRƯỜNG NÀY VÀO BASE
+    ranking: Optional[RankingTier] = None 
 
 class AugmentCreate(AugmentBase):
-    id: int
+    pass
 
 class AugmentResponse(AugmentBase):
     id: int
     class Config:
         from_attributes = True
 
-# THÊM SCHEMA DÀNH CHO API UPDATE META
+class AugmentUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    tier: Optional[AugmentTier] = None
+    icon_path: Optional[str] = None
+
 class AugmentUpdateMeta(BaseModel):
     ranking: Optional[RankingTier] = None
