@@ -32,20 +32,27 @@ jobs:
 
       # SSH deploy
       - name: Deploy server
-        uses: appleboy/ssh-action@v1.0.3   # ✅ Version mới hơn
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            # Đảm bảo code mới nhất trên VPS
+            cd ~/tft-web
+            git pull origin main
+
+            # Pull image mới nhất từ Docker Hub
             docker pull ${{ secrets.DOCKER_USERNAME }}/tft-frontend
             docker pull ${{ secrets.DOCKER_USERNAME }}/tft-backend
 
-            docker stop tft_frontend || true
-            docker rm tft_frontend || true
+            # Override image trong docker-compose bằng image đã build sẵn
+            export FRONTEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-frontend
+            export BACKEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-backend
 
-            docker stop tft_backend || true
-            docker rm tft_backend || true
+            # Restart toàn bộ stack (postgres + redis + backend + frontend)
+            docker compose down
+            docker compose up -d
 
-            docker run -d -p 3000:3000 --name tft_frontend ${{ secrets.DOCKER_USERNAME }}/tft-frontend
-            docker run -d -p 8000:8000 --name tft_backend ${{ secrets.DOCKER_USERNAME }}/tft-backend
+            # Dọn image cũ
+            docker image prune -f

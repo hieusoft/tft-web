@@ -44,6 +44,7 @@ services:
   # Backend (FastAPI)
   # ─────────────────────────────────────────────
   backend:
+    image: ${BACKEND_IMAGE:-tft-backend-local}
     build:
       context: ./Backend-new
       dockerfile: Dockerfile
@@ -72,6 +73,7 @@ services:
   # Frontend (Next.js)
   # ─────────────────────────────────────────────
   frontend:
+    image: ${FRONTEND_IMAGE:-tft-frontend-local}
     build:
       context: ./Frontend
       dockerfile: Dockerfile
