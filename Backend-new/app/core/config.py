@@ -6,9 +6,9 @@ class Settings(BaseSettings):
     # Kết nối DB theo từng biến (dùng khi chạy local)
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: int = 5432
-    POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "postgres"
-    POSTGRES_DB: str = "tft"
+    POSTGRES_USER: str = "hieusoft"
+    POSTGRES_PASSWORD: str = "123456"
+    POSTGRES_DB: str = "hieusoft"
 
     # Override toàn bộ (dùng khi chạy Docker — docker-compose truyền thẳng URL)
     DATABASE_URL: Optional[str] = None

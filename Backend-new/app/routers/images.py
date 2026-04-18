@@ -45,8 +45,9 @@ def get_image(filename: str):
     return FileResponse(
         path=str(file_path),
         media_type=_get_media_type(file_path.suffix.lower()),
-        filename=safe_name,
-        content_disposition_type="inline",
+        headers={
+            "Content-Disposition": f'inline; filename="{safe_name}"'
+        }
     )
 
 
