@@ -35,7 +35,9 @@ COPY --from=builder /install /usr/local
 COPY . .
 
 # Tạo user không phải root để tăng bảo mật
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+RUN addgroup --system appgroup \
+    && adduser --system --ingroup appgroup appuser \
+    && chown -R appuser:appgroup /app
 USER appuser
 
 EXPOSE 8000
