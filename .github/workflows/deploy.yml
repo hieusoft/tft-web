@@ -68,7 +68,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/tft-frontend:latest
 
             # Restart toàn bộ stack bằng image vừa pull (không build lại)
-            docker compose up -d --no-build
+            docker compose up -d --no-build --force-recreate
 
             # Dọn image cũ không dùng nữa
             docker image prune -f
