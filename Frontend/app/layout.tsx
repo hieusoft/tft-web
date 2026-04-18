@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageBanner from "@/components/layout/PageBanner";
 import JsonLd from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -208,6 +209,7 @@ export default function RootLayout({
         className={`${geist.variable} font-sans antialiased bg-[#1a1a1a] text-gray-200 min-h-screen flex flex-col`}
       >
         <Navbar />
+        <PageBanner />
         <main id="main-content" className="flex-1">
           {children}
         </main>

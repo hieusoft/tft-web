@@ -18,8 +18,10 @@ export const NAV_LINKS = [
     href: "/comps",
     description: "Đội hình TFT tốt nhất theo tỷ lệ thắng",
     sub: [
-      { label: "Đội Hình", href: "/comps" },
-      { label: "Đội Hình Sớm", href: "/comps/early" },
+      { label: "Đội Hình", href: "/comps", icon: "🔥" },
+      { label: "Đội Hình Sớm", href: "/early", icon: "⚡" },
+      { label: "Đội Hình PBE", href: "/pbe", icon: "🧪" },
+      { label: "Đội Hình Pro", href: "/pro", icon: "🏆", badge: "Mới" },
     ],
   },
   {
@@ -27,23 +29,31 @@ export const NAV_LINKS = [
     href: "/tierlist",
     description: "Bảng xếp hạng tướng",
     sub: [
-      { label: "Bảng Xếp Hạng", href: "/tierlist" },
-      { label: "Tướng", href: "/champions" },
-      { label: "Trang Bị", href: "/items" },
-      { label: "Tăng Cường", href: "/augments" },
+      { label: "Tăng Cường", href: "/augments", icon: "✨" },
+      { label: "Tướng", href: "/champions", icon: "⚔️" },
+      { label: "Trang Bị", href: "/items", icon: "🛡️" },
+      { label: "Tộc & Hệ", href: "/traits", icon: "🌀" },
+      { label: "Bảng Xếp Hạng", href: "/tierlist", icon: "📊" },
     ],
   },
   {
     label: "Người Chơi",
     href: "/players",
     description: "Xếp hạng người chơi",
-    sub: [],
+    sub: [
+      { label: "Lịch Sử Trận", href: "/match-history", icon: "📜" },
+      { label: "Bảng Xếp Hạng", href: "/leaderboard", icon: "🥇" },
+      { label: "Đang Lên", href: "/rising", icon: "📈" },
+    ],
   },
   {
     label: "Công Cụ",
     href: "/tools",
     description: "Công cụ hỗ trợ",
-    sub: [],
+    sub: [
+      { label: "Team Builder", href: "/team-builder", icon: "🔧" },
+      { label: "Tính Tỷ Lệ", href: "/calculator", icon: "🧮" },
+    ],
   },
 ];
 

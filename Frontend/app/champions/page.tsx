@@ -79,20 +79,6 @@ export default function ChampionsPage() {
 
       <div className="bg-[#1a1a1a] min-h-screen">
         <div className="mx-auto max-w-[1400px] px-4 py-6">
-          {/* Header */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 text-xs text-gray-600 mb-3">
-              <Link href="/" className="hover:text-gray-400">Trang Chủ</Link>
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-              <span className="text-gray-400">Tướng</span>
-            </div>
-            <h1 className="text-2xl font-bold text-white">Tướng TFT</h1>
-            <p className="mt-1 text-sm text-gray-500 max-w-2xl">
-              Tất cả {MOCK_CHAMPIONS.length} tướng trong TFT Patch {SITE_CONFIG.patch} — với tộc, số liệu hiệu suất và xếp hạng tier.
-            </p>
-          </div>
 
           {/* Champions grouped by cost */}
           <div className="flex flex-col gap-8">

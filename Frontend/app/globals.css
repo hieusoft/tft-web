@@ -107,6 +107,6 @@ body {
 
 /* Navbar placeholder height để tránh CLS */
 header {
-  min-height: 86px; /* 56px top bar + 30px nav row */
+  min-height: 108px; /* 48px top bar + 44px main nav + 40px sub-nav */
   contain: layout;
 }

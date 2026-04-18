@@ -59,23 +59,8 @@ export default function AugmentsPage() {
   return (
     <>
       <JsonLd data={augmentsJsonLd} />
-
       <div className="bg-[#1a1a1a] min-h-screen">
         <div className="mx-auto max-w-[1400px] px-4 py-6">
-          {/* Header */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 text-xs text-gray-600 mb-3">
-              <Link href="/" className="hover:text-gray-400">Trang Chủ</Link>
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-              <span className="text-gray-400">Tăng Cường</span>
-            </div>
-            <h1 className="text-2xl font-bold text-white">Tier List Tăng Cường TFT</h1>
-            <p className="mt-1 text-sm text-gray-500 max-w-2xl">
-              Tất cả tăng cường TFT xếp hạng theo hiệu suất. Tăng cường Huyền Thoại mang lại sức mạnh lớn nhất — hãy chọn khôn ngoan.
-            </p>
-          </div>
 
           {/* Augments grouped by rarity */}
           <div className="flex flex-col gap-8">
