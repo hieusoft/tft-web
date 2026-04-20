@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 
@@ -11,12 +12,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-3">
             <Link href="/" className="flex items-center gap-2 w-fit">
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-yellow-500">
-                <svg className="h-4 w-4 text-black" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-              </div>
-              <span className="text-base font-bold text-white">MetaTFT VN</span>
+              <Image
+                src="/logo.svg"
+                alt="MetaTFT VN"
+                width={180}
+                height={45}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="text-xs text-gray-600 leading-relaxed max-w-xs">
               {SITE_CONFIG.description}

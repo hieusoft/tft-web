@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -37,15 +38,15 @@ export default function Navbar() {
       <div className="w-full bg-[#111111] border-b border-[#1e1e1e]">
         <div className="mx-auto max-w-[1400px] px-4 flex h-12 items-center gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0 mr-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded bg-yellow-500 shadow-lg shadow-yellow-500/25">
-              <svg className="h-4 w-4 text-black" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
-            </div>
-            <span className="text-base font-bold text-white tracking-tight hidden sm:block">
-              MetaTFT VN
-            </span>
+          <Link href="/" className="flex items-center shrink-0 mr-2">
+            <Image
+              src="/logo.svg"
+              alt="MetaTFT VN"
+              width={200}
+              height={50}
+              priority
+              className="h-14 w-auto"
+            />
           </Link>
 
           {/* Search bar */}

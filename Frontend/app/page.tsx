@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import { MOCK_COMPS } from "@/lib/mock-data";
@@ -22,22 +23,27 @@ const breadcrumbJsonLd = {
   ],
 };
 
+const PATCH_VER = "15.8.1";
+
 const FEATURES = [
   {
-    icon: "🐧",
-    color: "from-purple-600 to-purple-800",
+    imgUrl: `https://ddragon.leagueoflegends.com/cdn/${PATCH_VER}/img/champion/Lux.png`,
+    imgAlt: "Lux",
+    accentColor: "#a855f7",
     title: "Chính Xác & Khách Quan",
     desc: "Chúng tôi dùng machine learning để khám phá đội hình TFT tốt nhất, phân tích hơn 2 triệu ván mỗi ngày.",
   },
   {
-    icon: "⚡",
-    color: "from-yellow-500 to-orange-600",
+    imgUrl: `https://ddragon.leagueoflegends.com/cdn/${PATCH_VER}/img/champion/Jinx.png`,
+    imgAlt: "Jinx",
+    accentColor: "#f97316",
     title: "Luôn Cập Nhật",
     desc: "Dữ liệu được làm mới mỗi vài phút và cập nhật cho mọi bản vá nhỏ.",
   },
   {
-    icon: "🏆",
-    color: "from-green-600 to-teal-700",
+    imgUrl: `https://ddragon.leagueoflegends.com/cdn/${PATCH_VER}/img/champion/Ahri.png`,
+    imgAlt: "Ahri",
+    accentColor: "#14b8a6",
     title: "Có Lợi Thế",
     desc: "Hàng nghìn người chơi dùng MetaTFT VN để thích nghi với meta, học chiến thuật mới và leo hạng.",
   },
@@ -80,47 +86,74 @@ export default function HomePage() {
       <JsonLd data={breadcrumbJsonLd} />
 
       {/* === HERO BANNER === */}
-      <section className="relative overflow-hidden bg-[#1a1a1a]">
+      <section className="relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-4 py-2">
-          <div
-            className="relative rounded-lg overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #0d1b2a 0%, #1a0a2e 40%, #2a1a0a 70%, #1a2a0a 100%)",
-              minHeight: "300px",
-            }}
-          >
-            {/* Light overlay using CSS gradient — không dùng blur vì tốn GPU paint */}
+          <div className="relative rounded-xl overflow-hidden" style={{ minHeight: "320px" }}>
+
+            {/* Background image — Riot official splash art */}
+            <Image
+              src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg"
+              alt="TFT Banner"
+              fill
+              priority
+              quality={90}
+              sizes="(max-width: 1400px) 100vw, 1400px"
+              className="object-cover object-top"
+            />
+
+            {/* Overlay tối bên trái, trong suốt bên phải */}
             <div
-              className="absolute inset-0 pointer-events-none"
+              className="absolute inset-0"
               style={{
-                background: "radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.1) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.08) 0%, transparent 50%)",
+                background:
+                  "linear-gradient(100deg, rgba(8,8,12,0.95) 0%, rgba(8,8,12,0.85) 30%, rgba(8,8,12,0.50) 55%, rgba(8,8,12,0.08) 80%, transparent 100%)",
               }}
             />
 
-            {/* Decorative character silhouettes */}
-            <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-40">
-              <div className="absolute right-10 top-5 text-8xl select-none">🐉</div>
-              <div className="absolute right-40 bottom-10 text-6xl select-none">⚔️</div>
-              <div className="absolute right-60 top-10 text-5xl select-none">🌟</div>
-            </div>
+            {/* Bottom fade vào nền trang */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-20"
+              style={{ background: "linear-gradient(to top, #1a1a1a 0%, transparent 100%)" }}
+            />
 
-            <div className="relative z-10 px-10 py-14 max-w-lg">
-              <h1 className="text-3xl lg:text-4xl font-bold text-white leading-tight mb-3">
-                Nơi tốt nhất cho thống kê và dữ liệu TFT
+            {/* Content */}
+            <div className="relative z-10 px-10 py-14 max-w-xl">
+              {/* Live badge */}
+              <div className="mb-4 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-xs font-semibold text-green-400 uppercase tracking-widest">
+                  Live · Patch {SITE_CONFIG.patch}
+                </span>
+              </div>
+
+              <h1 className="text-3xl lg:text-[2.6rem] font-extrabold text-white leading-tight mb-3 tracking-tight">
+                Nơi tốt nhất cho{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{ backgroundImage: "linear-gradient(90deg, #eab308, #f97316)" }}
+                >
+                  thống kê & dữ liệu
+                </span>{" "}
+                TFT
               </h1>
-              <p className="text-gray-400 text-sm mb-6">
-                Cập nhật cho Patch {SITE_CONFIG.patch}
+              <p className="text-gray-400 text-sm mb-8 max-w-sm leading-relaxed">
+                Phân tích hơn 2 triệu ván đấu mỗi ngày. Đội hình, tướng, trang bị và tăng cường — tất cả trong một nơi.
               </p>
-              <div className="flex gap-3">
+
+              <div className="flex flex-wrap gap-3">
                 <Link
                   href="/comps"
-                  className="rounded bg-[#3a3a3a] hover:bg-[#4a4a4a] px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+                  className="rounded-lg px-6 py-2.5 text-sm font-bold text-black transition-all hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, #eab308, #ca8a04)",
+                    boxShadow: "0 0 24px rgba(234,179,8,0.40)",
+                  }}
                 >
                   Xem Đội Hình
                 </Link>
                 <Link
                   href="/tierlist"
-                  className="rounded bg-red-600 hover:bg-red-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+                  className="rounded-lg border border-white/25 bg-white/10 px-6 py-2.5 text-sm font-bold text-white backdrop-blur-sm hover:bg-white/20 transition-all"
                 >
                   Bảng Xếp Hạng
                 </Link>
@@ -135,12 +168,41 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px] px-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {FEATURES.map((f) => (
-              <div key={f.title} className="flex items-start gap-4 rounded-lg bg-[#222] border border-[#2a2a2a] p-5">
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${f.color} text-2xl shadow-lg`}>
-                  {f.icon}
+              <div
+                key={f.title}
+                className="flex items-start gap-4 rounded-xl bg-[#1e1e1e] border border-[#2a2a2a] p-5 hover:border-[#3a3a3a] transition-colors"
+              >
+                {/* Champion portrait */}
+                <div
+                  className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"
+                  style={{
+                    border: `2px solid ${f.accentColor}55`,
+                    boxShadow: `0 0 18px ${f.accentColor}30`,
+                  }}
+                >
+                  <Image
+                    src={f.imgUrl}
+                    alt={f.imgAlt}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                  {/* Accent tint overlay */}
+                  <div
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background: `linear-gradient(135deg, ${f.accentColor}18 0%, transparent 60%)`,
+                    }}
+                  />
                 </div>
+
                 <div>
-                  <h3 className="text-sm font-semibold text-white mb-1">{f.title}</h3>
+                  <h3
+                    className="text-sm font-bold text-white mb-1"
+                    style={{ color: f.accentColor }}
+                  >
+                    {f.title}
+                  </h3>
                   <p className="text-xs text-gray-500 leading-relaxed">{f.desc}</p>
                 </div>
               </div>

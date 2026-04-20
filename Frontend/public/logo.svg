@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
+  <defs>
+    <!-- Gold gradient for TFT text -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fde68a"/>
+      <stop offset="40%" style="stop-color:#eab308"/>
+      <stop offset="100%" style="stop-color:#ca8a04"/>
+    </linearGradient>
+    <!-- Glow filter for hexagon -->
+    <filter id="hexGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Purple glow behind hex -->
+    <filter id="purpleGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feColorMatrix type="matrix"
+        values="0.4 0 0.8 0 0
+                0   0 0.6 0 0
+                0.8 0 1   0 0
+                0   0 0   1 0" in="blur" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Clip for rounded rect -->
+    <clipPath id="hexClip">
+      <polygon points="30,8 42,15 42,29 30,36 18,29 18,15"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background rectangle (transparent — works on dark bg) -->
+  <!-- Purple ambient glow behind hex -->
+  <polygon points="30,8 42,15 42,29 30,36 18,29 18,15"
+    fill="#7c3aed" opacity="0.25" filter="url(#purpleGlow)"/>
+
+  <!-- Hexagon border (gold) -->
+  <polygon points="30,8 42,15 42,29 30,36 18,29 18,15"
+    fill="none"
+    stroke="url(#goldGrad)"
+    stroke-width="1.8"
+    filter="url(#hexGlow)"/>
+
+  <!-- Inner subtle fill -->
+  <polygon points="30,8 42,15 42,29 30,36 18,29 18,15"
+    fill="#1a1200" opacity="0.85"/>
+
+  <!-- Crown icon inside hex (golden) -->
+  <!-- Base line -->
+  <line x1="22" y1="28" x2="38" y2="28" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Crown points -->
+  <polyline points="22,28 22,20 26,24 30,17 34,24 38,20 38,28"
+    fill="none" stroke="url(#goldGrad)" stroke-width="1.5"
+    stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Crown dots -->
+  <circle cx="22" cy="20" r="1.2" fill="#eab308"/>
+  <circle cx="30" cy="17" r="1.2" fill="#eab308"/>
+  <circle cx="38" cy="20" r="1.2" fill="#eab308"/>
+
+  <!-- "Meta" text — white -->
+  <text x="52" y="27"
+    font-family="'Segoe UI', system-ui, -apple-system, sans-serif"
+    font-size="18" font-weight="800"
+    fill="white"
+    letter-spacing="-0.5">Meta</text>
+
+  <!-- "TFT" text — gold gradient -->
+  <text x="103" y="27"
+    font-family="'Segoe UI', system-ui, -apple-system, sans-serif"
+    font-size="18" font-weight="900"
+    fill="url(#goldGrad)"
+    letter-spacing="-0.5">TFT</text>
+
+  <!-- Thin separator line between icon and text -->
+  <line x1="48" y1="12" x2="48" y2="40" stroke="#ffffff18" stroke-width="1"/>
+
+  <!-- "VN" badge -->
+  <rect x="143" y="10" width="22" height="13" rx="3"
+    fill="#eab30820" stroke="#eab30870" stroke-width="1"/>
+  <text x="154" y="21"
+    font-family="'Segoe UI', system-ui, sans-serif"
+    font-size="8.5" font-weight="700"
+    fill="#eab308"
+    text-anchor="middle"
+    letter-spacing="0.5">VN</text>
+
+  <!-- Tagline -->
+  <text x="52" y="43"
+    font-family="'Segoe UI', system-ui, sans-serif"
+    font-size="7.5" font-weight="400"
+    fill="#6b7280"
+    letter-spacing="1.5">TFT STATISTICS &amp; META</text>
+</svg>
