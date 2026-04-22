@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // X-Robots-Tag cho toàn bộ trang
+        // X-Robots-Tag cho toàn bộ tran
         source: "/(.*)",
         headers: [
           {
