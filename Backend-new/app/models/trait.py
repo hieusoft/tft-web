@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, JSON
+from sqlalchemy import Column, Integer, String, Float, JSON, Text # Thêm Text nếu muốn mô tả dài
 from sqlalchemy.sql import func
 from sqlalchemy import DateTime
 from app.core.database import Base
@@ -8,6 +8,7 @@ class Trait(Base):
 
     id            = Column(Integer, primary_key=True, index=True)
     name          = Column(String(100), unique=True, nullable=False)
+    description   = Column(Text, nullable=True)
     type          = Column(String(50), nullable=False)
     rank          = Column(String, nullable=True)
     avg_placement = Column("avg_placement", Float, nullable=True)

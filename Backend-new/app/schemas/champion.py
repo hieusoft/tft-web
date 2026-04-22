@@ -18,10 +18,36 @@ class ChampionBase(BaseModel):
 class ChampionCreate(ChampionBase):
     pass
     
-class ChampionResponse(ChampionBase):
+class ChampionResponse(BaseModel):
     id: int
-    skill: Optional[SkillResponse] = None 
-    
+    name: str
+    cost: int
+    accent_color: Optional[str] = None
+    icon_path: Optional[str] = None
+    splash_path: Optional[str] = None
+    skill: Optional[SkillResponse] = None
+    # stats meta
+    avg_placement: Optional[float] = None
+    top_4_rate: Optional[str] = None
+    win_rate: Optional[str] = None
+    match_count: int = 0
+
+    @classmethod
+    def from_orm_champion(cls, champ) -> "ChampionResponse":
+        return cls(
+            id=champ.id,
+            name=champ.name,
+            cost=champ.cost,
+            accent_color=champ.accent_color,
+            icon_path=champ.icon_path,
+            splash_path=champ.splash_path,
+            skill=SkillResponse.from_orm_skill(champ.skill) if champ.skill else None,
+            avg_placement=champ.avg_placement,
+            top_4_rate=champ.top_4_rate,
+            win_rate=champ.win_rate,
+            match_count=champ.match_count or 0,
+        )
+
     class Config:
         from_attributes = True
 
