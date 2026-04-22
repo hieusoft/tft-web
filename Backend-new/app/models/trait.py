@@ -14,7 +14,7 @@ class Trait(Base):
     top_rate      = Column("top_rate", String, nullable=True)
     win_rate      = Column("win_rate", String, nullable=True)
     games_played  = Column("games_played", Integer, default=0)
-    icon_path     = Column("iconPath", String, nullable=True)
+    icon_path     = Column("icon_path", String, nullable=True)
     milestones    = Column(JSON, default=list)
     created_at    = Column("created_at", DateTime(timezone=True), server_default=func.now())
     updated_at    = Column("updated_at", DateTime(timezone=True), onupdate=func.now())
