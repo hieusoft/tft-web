@@ -21,6 +21,29 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 86400, // Cache ảnh 24h
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    qualities: [75, 85, 90],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ddragon.leagueoflegends.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "raw.communitydragon.org",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.communitydragon.org",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "magazine.artstation.com",
+        pathname: "/**",
+      },
+    ],
   },
 
   // =====================================================
