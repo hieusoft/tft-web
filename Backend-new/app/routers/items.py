@@ -26,11 +26,14 @@ def get_all(
         return json.loads(cached)
 
     items = db.query(Item).all()
-    result = [ItemResponse.model_validate(i).model_dump() for i in items]
-    
-    r.setex(ITEMS_CACHE_KEY, CACHE_TTL, json.dumps(result, default=str))
+    result = []
+    for i in items:
+        try:
+            result.append(ItemResponse.from_orm_item(i).model_dump())
+        except Exception as e:
+            print(f"Item ID {i.id} - {i.name}: {e}") 
+            raise
     return result
-
 @router.post("/", response_model=ItemResponse)
 def create(
     body: ItemCreate,
@@ -48,7 +51,7 @@ def create(
     db.refresh(item)
 
     r.delete(ITEMS_CACHE_KEY)
-    return item
+    return ItemResponse.from_orm_item(item) 
 
 @router.patch("/{id}", response_model=ItemResponse)
 def update_item(
@@ -69,7 +72,7 @@ def update_item(
     db.refresh(item)
     
     r.delete(ITEMS_CACHE_KEY) 
-    return item
+    return ItemResponse.from_orm_item(item) 
 
 @router.patch("/{id}/meta", response_model=ItemResponse)
 def update_item_meta(
@@ -90,7 +93,7 @@ def update_item_meta(
     db.refresh(item)
     
     r.delete(ITEMS_CACHE_KEY) 
-    return item
+    return ItemResponse.from_orm_item(item) 
 
 @router.delete("/{id}")
 def delete(
@@ -108,3 +111,4 @@ def delete(
     
     r.delete(ITEMS_CACHE_KEY) 
     return {"message": f"Đã xóa thành công trang bị ID {id}"}
+

@@ -14,7 +14,6 @@ router = APIRouter()
 TRAITS_CACHE_KEY = "traits:all"
 CACHE_TTL = 60 * 5  
 
-
 @router.get("/", response_model=List[TraitResponse])
 def get_all(
     db: Session = Depends(get_db),
@@ -26,9 +25,11 @@ def get_all(
         return json.loads(cached)
 
     traits = db.query(Trait).all()
-    result = [TraitResponse.model_validate(t).model_dump() for t in traits]
+    result = [TraitResponse.from_orm_trait(t).model_dump() for t in traits]
+
     r.setex(TRAITS_CACHE_KEY, CACHE_TTL, json.dumps(result, default=str))
     return result
+
 
 @router.post("/", response_model=TraitResponse)
 def create(
@@ -40,13 +41,13 @@ def create(
     db_trait = db.query(Trait).filter(Trait.name == body.name).first()
     if db_trait:
         raise HTTPException(status_code=400, detail="Tộc/Hệ với tên này đã tồn tại!")
-    
+
     trait = Trait(**body.model_dump())
     db.add(trait)
     db.commit()
     db.refresh(trait)
     r.delete(TRAITS_CACHE_KEY)
-    return trait
+    return TraitResponse.from_orm_trait(trait) 
 
 @router.patch("/{id}/meta", response_model=TraitResponse)
 def update_meta(
@@ -59,14 +60,14 @@ def update_meta(
     trait = db.query(Trait).filter(Trait.id == id).first()
     if not trait:
         raise HTTPException(status_code=404, detail="Tộc/Hệ với ID này không tồn tại")
-        
+
     for field, value in body.model_dump(exclude_none=True).items():
         setattr(trait, field, value)
-        
+
     db.commit()
     db.refresh(trait)
-    r.delete(TRAITS_CACHE_KEY) 
-    return trait
+    r.delete(TRAITS_CACHE_KEY)
+    return TraitResponse.from_orm_trait(trait) 
 
 @router.patch("/{id}", response_model=TraitResponse)
 def update_trait(
@@ -79,15 +80,14 @@ def update_trait(
     trait = db.query(Trait).filter(Trait.id == id).first()
     if not trait:
         raise HTTPException(status_code=404, detail="Tộc/Hệ không tồn tại")
-        
+
     for field, value in body.model_dump(exclude_none=True).items():
         setattr(trait, field, value)
-        
+
     db.commit()
     db.refresh(trait)
-    
-    r.delete(TRAITS_CACHE_KEY) 
-    return trait
+    r.delete(TRAITS_CACHE_KEY)
+    return TraitResponse.from_orm_trait(trait) 
 
 @router.delete("/{id}")
 def delete(
@@ -99,7 +99,7 @@ def delete(
     trait = db.query(Trait).filter(Trait.id == id).first()
     if not trait:
         raise HTTPException(status_code=404, detail="Tộc/Hệ với ID này không tồn tại")
-        
+
     db.delete(trait)
     db.commit()
     r.delete(TRAITS_CACHE_KEY)
