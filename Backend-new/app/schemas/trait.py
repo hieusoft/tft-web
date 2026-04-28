@@ -1,139 +1,40 @@
-from pydantic import BaseModel, computed_field
-from typing import Optional, List, Dict, Any
-import re
-
-LABEL_MAP = {
-    "PercentDamageIncrease": "Sát thương",
-    "PerHexIncrease": "Sát thương/ô",
-    "AttackSpeed": "Tốc độ đánh",
-    "Armor": "Giáp",
-    "MagicResist": "Kháng phép",
-    "Health": "Máu",
-    "AbilityPower": "SMPT"
-}
-
-TYPE_MAP = {
-    "synergy": "Tộc",
-    "class": "Hệ",
-}
-
-class VariableMatch(BaseModel):
-    hash: Optional[str] = None
-    type: Optional[str] = None
-    match: str
-    value: Any
-    full_match: str
-
-
-class Milestone(BaseModel):
-    style: int
-    minUnits: int = 0
-    maxUnits: int = 0
-    variables: Optional[Dict[str, Any]] = {}
-    variable_matches: Optional[List[VariableMatch]] = []
+from pydantic import BaseModel, ConfigDict, Field
+from typing import List, Optional, Dict, Any
+from datetime import datetime
 
 class TraitBase(BaseModel):
-    name: str
-    type: str
-    description: str
-    icon_path: Optional[str] = None
-    milestones: Optional[List[Milestone]] = []
-
+    name: str = Field(..., min_length=1, max_length=100, description="Tên Tộc/Hệ (ví dụ: Học Giả)")
+    description: Optional[str] = Field(None, description="Mô tả chi tiết kỹ năng")
+    type: str = Field("synergy", description="Loại: synergy (Hệ) hoặc origin (Tộc)")
+    tier: Optional[str] = Field(None, description="Xếp hạng Meta: S, A, B, C...")
+    placement: Optional[float] = Field(None, description="Thứ hạng trung bình (ví dụ: 4.25)")
+    top4: Optional[str] = Field(None, description="Tỷ lệ lọt vào Top 4 (ví dụ: 52.1%)")
+    pick_count: Optional[str] = Field(None, description="Số lượt chọn (ví dụ: 1.2M)")
+    pick_percent: Optional[str] = Field(None, description="Tỷ lệ chọn (ví dụ: 12.5%)")
+    milestones: List[Dict[str, Any]] = Field(default_factory=list, description="Danh sách các mốc kích hoạt")
 
 class TraitCreate(TraitBase):
     pass
-
+    
 class TraitUpdate(BaseModel):
-    name: Optional[str] = None
-    type: Optional[str] = None
+    name: Optional[str] = Field(None, min_length=1, max_length=100)
     description: Optional[str] = None
-    icon_path: Optional[str] = None
-    milestones: Optional[List[Milestone]] = None
+    type: Optional[str] = None
+    tier: Optional[str] = None
+    placement: Optional[float] = None
+    top4: Optional[str] = None
+    pick_count: Optional[str] = None
+    pick_percent: Optional[str] = None
+    image: Optional[str] = None 
+    milestones: Optional[List[Dict[str, Any]]] = None
 
-
-class TraitUpdateMeta(BaseModel):
-    rank: Optional[str] = None
-    avg_placement: Optional[float] = None
-    top_rate: Optional[str] = None
-    win_rate: Optional[str] = None
-    games_played: Optional[int] = None
-
-def _clean_html(text: str) -> str:
-    return re.sub(r"<[^>]+>", "", text).strip()
-
-
-def _resolve_description(description: str, milestones: List[Milestone]) -> str:
-    intro = description.split("(@MinUnits@)")[0]
-    return _clean_html(intro).strip()
-
-def _build_tier_text(index: int, m: Milestone, description: str) -> str:
-    meaningful_vars = {
-        k: v for k, v in (m.variables or {}).items() if k != "MinUnits"
-    }
-    if meaningful_vars:
-        parts = []
-        for key, val in meaningful_vars.items():
-            clean_val = int(val) if isinstance(val, float) and val.is_integer() else val
-            label = LABEL_MAP.get(key, key)
-            parts.append(f"{clean_val}% {label}")
-        return ", ".join(parts)
-    segments = re.split(r"\(@MinUnits@\)", description)
-    target_index = index + 1
-    if target_index < len(segments):
-        return _clean_html(segments[target_index]).strip()
-
-    return ""
-
-class TierDisplay(BaseModel):
-    units: int         
-    style: int      
-    text: str       
-
-
-class TraitResponse(BaseModel):
+class TraitResponse(TraitBase):
     id: int
-    name: str
-    type: str 
-    icon_path: Optional[str] = None
-    description: str
-    rank: Optional[str] = None
-    avg_placement: Optional[float] = None
-    top_rate: Optional[str] = None
-    win_rate: Optional[str] = None
-    games_played: int = 0
-    tiers: List[TierDisplay] = []
-        
-    @classmethod
-    def from_orm_trait(cls, trait) -> "TraitResponse":
-        milestones: List[Milestone] = [
-            Milestone(**m) if isinstance(m, dict) else m
-            for m in (trait.milestones or [])
-        ]
+    image: Optional[str] = Field(None, description="Link ảnh từ Cloudflare R2")
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    model_config = ConfigDict(from_attributes=True)
 
-        clean_description = _resolve_description(trait.description or "", milestones)
-
-        tiers = [
-            TierDisplay(
-                units=m.minUnits,
-                style=m.style,
-                text=_build_tier_text(i, m, trait.description or ""), 
-            )
-            for i, m in enumerate(milestones)
-        ]
-
-        return cls(
-            id=trait.id,
-            name=trait.name,
-            type=TYPE_MAP.get(trait.type, trait.type), 
-            icon_path=trait.icon_path,
-            description=clean_description,
-            rank=trait.rank,
-            avg_placement=trait.avg_placement,
-            top_rate=trait.top_rate,
-            win_rate=trait.win_rate,
-            games_played=trait.games_played or 0,
-            tiers=tiers,
-        )
-
-    class Config:
-        from_attributes = True
+class TraitDeleteResponse(BaseModel):
+    message: str
+    status: str = "success"

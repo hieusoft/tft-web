@@ -1,21 +1,20 @@
-from sqlalchemy import Column, Integer, String, Float, JSON, Text # Thêm Text nếu muốn mô tả dài
+from sqlalchemy import Column, Integer, String, Float, JSON, Text, DateTime
 from sqlalchemy.sql import func
-from sqlalchemy import DateTime
 from app.core.database import Base
 
 class Trait(Base):
     __tablename__ = "traits"
 
-    id            = Column(Integer, primary_key=True, index=True)
-    name          = Column(String(100), unique=True, nullable=False)
-    description   = Column(Text, nullable=True)
-    type          = Column(String(50), nullable=False)
-    rank          = Column(String, nullable=True)
-    avg_placement = Column("avg_placement", Float, nullable=True)
-    top_rate      = Column("top_rate", String, nullable=True)
-    win_rate      = Column("win_rate", String, nullable=True)
-    games_played  = Column("games_played", Integer, default=0)
-    icon_path     = Column("icon_path", String, nullable=True)
-    milestones    = Column(JSON, default=list)
-    created_at    = Column("created_at", DateTime(timezone=True), server_default=func.now())
-    updated_at    = Column("updated_at", DateTime(timezone=True), onupdate=func.now())
+    id           = Column(Integer, primary_key=True, index=True)
+    name         = Column(String(100), unique=True, nullable=False, index=True)
+    description  = Column(Text, nullable=True)
+    type         = Column(String(50), nullable=True, default="synergy")
+    tier         = Column(String(10), nullable=True)     
+    placement    = Column(Float, nullable=True)          
+    top4         = Column(String(20), nullable=True)     
+    pick_count   = Column(String(50), nullable=True)     
+    pick_percent = Column(String(20), nullable=True)     
+    image        = Column(String(512), nullable=True) 
+    milestones   = Column(JSON, nullable=False, server_default='[]') 
+    created_at   = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at   = Column(DateTime(timezone=True), onupdate=func.now(), server_default=func.now())
