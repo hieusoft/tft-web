@@ -41,26 +41,26 @@ const COST_LABELS: Record<number, string> = {
 };
 
 const COST_COLORS: Record<number, string> = {
-  1: "text-gray-400 ring-gray-400",
-  2: "text-green-400 ring-green-400",
-  3: "text-blue-400 ring-blue-400",
-  4: "text-purple-400 ring-purple-400",
-  5: "text-yellow-400 ring-yellow-400",
+  1: "text-gray-400 ring-[#3a3a3a]",
+  2: "text-gray-400 ring-[#3a3a3a]",
+  3: "text-gray-400 ring-[#3a3a3a]",
+  4: "text-gray-400 ring-[#3a3a3a]",
+  5: "text-[#f0b90b] ring-[#f0b90b]/50",
 };
 
 const COST_BG: Record<number, string> = {
-  1: "bg-gray-800",
-  2: "bg-green-900",
-  3: "bg-blue-900",
-  4: "bg-purple-900",
-  5: "bg-yellow-900",
+  1: "bg-[#252525]",
+  2: "bg-[#252525]",
+  3: "bg-[#252525]",
+  4: "bg-[#252525]",
+  5: "bg-[#2a2520]",
 };
 
 const TIER_BG: Record<string, string> = {
-  S: "bg-red-500",
-  A: "bg-yellow-500",
-  B: "bg-blue-500",
-  C: "bg-purple-500",
+  S: "bg-[#3a3a3a]",
+  A: "bg-[#333333]",
+  B: "bg-[#2e2e2e]",
+  C: "bg-[#2a2a2a]",
 };
 
 export default function ChampionsPage() {
@@ -124,11 +124,11 @@ export default function ChampionsPage() {
                           </div>
                           <div className="flex gap-3 mt-1.5">
                             <div>
-                              <span className="text-xs font-semibold text-green-400">{champ.top4Rate}%</span>
+                              <span className="text-xs font-semibold text-gray-300">{champ.top4Rate}%</span>
                               <span className="text-[10px] text-gray-600 ml-0.5">Top4</span>
                             </div>
                             <div>
-                              <span className="text-xs font-semibold text-yellow-400">{champ.winRate}%</span>
+                              <span className="text-xs font-semibold text-[#f0b90b]">{champ.winRate}%</span>
                               <span className="text-[10px] text-gray-600 ml-0.5">Thắng</span>
                             </div>
                           </div>

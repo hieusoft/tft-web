@@ -7,22 +7,18 @@ import { MOCK_TRAITS, MockTrait, TraitType } from "@/lib/mock-data";
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 const TIER_CONFIG: Record<string, { bg: string; text: string; border: string }> = {
-  S: { bg: "bg-red-500",    text: "text-red-400",    border: "border-red-500/30" },
-  A: { bg: "bg-yellow-500", text: "text-yellow-400", border: "border-yellow-500/30" },
-  B: { bg: "bg-blue-500",   text: "text-blue-400",   border: "border-blue-500/30" },
-  C: { bg: "bg-gray-500",   text: "text-gray-400",   border: "border-gray-500/30" },
+  S: { bg: "bg-[#3a3a3a]",  text: "text-gray-300",  border: "border-[#3a3a3a]" },
+  A: { bg: "bg-[#333333]",  text: "text-gray-400",  border: "border-[#333333]" },
+  B: { bg: "bg-[#2e2e2e]",  text: "text-gray-400",  border: "border-[#2e2e2e]" },
+  C: { bg: "bg-[#2a2a2a]",  text: "text-gray-500",  border: "border-[#2a2a2a]" },
 };
 
 function placementColor(avg: number) {
-  if (avg <= 3.7) return "text-green-400";
-  if (avg <= 4.2) return "text-yellow-400";
-  return "text-red-400";
+  return "text-gray-300";
 }
 
 function top4Color(rate: number) {
-  if (rate >= 60) return "text-green-400";
-  if (rate >= 50) return "text-yellow-400";
-  return "text-red-400";
+  return "text-gray-300";
 }
 
 function MiniBar({ value, max = 70, color = "#f0b90b" }: { value: number; max?: number; color?: string }) {
@@ -223,11 +219,11 @@ function DesktopRow({ trait, idx }: { trait: MockTrait; idx: number }) {
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-white group-hover:text-yellow-400 transition-colors">{trait.name}</span>
+            <span className="text-sm font-semibold text-white group-hover:text-[#f0b90b] transition-colors">{trait.name}</span>
             <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase ${
               trait.type === "Origin"
-                ? "bg-blue-500/15 text-blue-400 border border-blue-500/25"
-                : "bg-purple-500/15 text-purple-400 border border-purple-500/25"
+                ? "bg-white/5 text-gray-400 border border-white/10"
+                : "bg-white/5 text-gray-400 border border-white/10"
             }`}>
               {trait.type === "Origin" ? "Tộc" : "Hệ"}
             </span>
@@ -248,20 +244,20 @@ function DesktopRow({ trait, idx }: { trait: MockTrait; idx: number }) {
 
       {/* Top 4 */}
       <div className="flex flex-col gap-1">
-        <span className={`text-sm font-bold ${top4Color(trait.top4Rate)}`}>{trait.top4Rate.toFixed(1)}%</span>
-        <MiniBar value={trait.top4Rate} max={70} color={trait.top4Rate >= 60 ? "#4ade80" : trait.top4Rate >= 50 ? "#facc15" : "#f87171"} />
+        <span className={`text-sm font-bold text-gray-300`}>{trait.top4Rate.toFixed(1)}%</span>
+        <MiniBar value={trait.top4Rate} max={70} color="#6b6b6b" />
       </div>
 
       {/* Win rate */}
       <div className="flex flex-col gap-1">
         <span className="text-sm font-bold text-gray-300">{trait.winRate.toFixed(1)}%</span>
-        <MiniBar value={trait.winRate} max={20} color="#a78bfa" />
+        <MiniBar value={trait.winRate} max={20} color="#f0b90b" />
       </div>
 
       {/* Pick rate */}
       <div className="flex flex-col gap-1">
         <span className="text-sm font-bold text-gray-400">{trait.pickRate.toFixed(1)}%</span>
-        <MiniBar value={trait.pickRate} max={50} color="#60a5fa" />
+        <MiniBar value={trait.pickRate} max={50} color="#4a4a4a" />
       </div>
     </Link>
   );
@@ -288,11 +284,11 @@ function MobileCard({ trait }: { trait: MockTrait }) {
       {/* Name + desc */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-sm font-semibold text-white group-hover:text-yellow-400 transition-colors">{trait.name}</span>
+          <span className="text-sm font-semibold text-white group-hover:text-[#f0b90b] transition-colors">{trait.name}</span>
           <span className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase ${
             trait.type === "Origin"
-              ? "bg-blue-500/15 text-blue-400 border border-blue-500/25"
-              : "bg-purple-500/15 text-purple-400 border border-purple-500/25"
+              ? "bg-white/5 text-gray-400 border border-white/10"
+              : "bg-white/5 text-gray-400 border border-white/10"
           }`}>
             {trait.type === "Origin" ? "Tộc" : "Hệ"}
           </span>
@@ -300,8 +296,8 @@ function MobileCard({ trait }: { trait: MockTrait }) {
 
         {/* Stats row */}
         <div className="mt-1.5 flex items-center gap-3 text-[11px]">
-          <span className={`font-bold ${top4Color(trait.top4Rate)}`}>Top4 {trait.top4Rate.toFixed(1)}%</span>
-          <span className={`font-bold ${placementColor(trait.avgPlacement)}`}>#{trait.avgPlacement.toFixed(2)}</span>
+          <span className="font-bold text-gray-300">Top4 {trait.top4Rate.toFixed(1)}%</span>
+          <span className="font-bold text-gray-400">#{trait.avgPlacement.toFixed(2)}</span>
           <span className="text-gray-500">Win {trait.winRate.toFixed(1)}%</span>
         </div>
 
@@ -310,7 +306,7 @@ function MobileCard({ trait }: { trait: MockTrait }) {
           <MiniBar
             value={trait.top4Rate}
             max={70}
-            color={trait.top4Rate >= 60 ? "#4ade80" : trait.top4Rate >= 50 ? "#facc15" : "#f87171"}
+            color="#6b6b6b"
           />
         </div>
       </div>

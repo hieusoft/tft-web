@@ -50,32 +50,32 @@ const FEATURES = [
 ];
 
 const DIFFICULTY_COLOR: Record<string, string> = {
-  "Dễ": "text-green-400 bg-green-400/10",
-  "Trung Bình": "text-yellow-400 bg-yellow-400/10",
-  "Khó": "text-red-400 bg-red-400/10",
+  "Dễ": "text-gray-300 bg-white/5",
+  "Trung Bình": "text-gray-400 bg-white/5",
+  "Khó": "text-gray-400 bg-white/5",
 };
 
 const TIER_BG: Record<string, string> = {
-  S: "bg-red-500",
-  A: "bg-yellow-500",
-  B: "bg-blue-500",
-  C: "bg-purple-500",
+  S: "bg-[#3a3a3a]",
+  A: "bg-[#333333]",
+  B: "bg-[#2e2e2e]",
+  C: "bg-[#2a2a2a]",
 };
 
 const COST_COLORS: Record<number, string> = {
-  1: "ring-gray-400",
-  2: "ring-green-400",
-  3: "ring-blue-400",
-  4: "ring-purple-400",
-  5: "ring-yellow-400",
+  1: "ring-[#3a3a3a]",
+  2: "ring-[#3a3a3a]",
+  3: "ring-[#3a3a3a]",
+  4: "ring-[#3a3a3a]",
+  5: "ring-[#f0b90b]/60",
 };
 
 const COST_BG: Record<number, string> = {
-  1: "bg-gray-700",
-  2: "bg-green-900",
-  3: "bg-blue-900",
-  4: "bg-purple-900",
-  5: "bg-yellow-900",
+  1: "bg-[#252525]",
+  2: "bg-[#252525]",
+  3: "bg-[#252525]",
+  4: "bg-[#252525]",
+  5: "bg-[#2a2520]",
 };
 
 export default function HomePage() {
@@ -257,7 +257,7 @@ export default function HomePage() {
                 {/* Name + traits + difficulty */}
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-sm font-semibold text-white group-hover:text-yellow-400 transition-colors truncate">
+                    <span className="text-sm font-semibold text-white group-hover:text-[#f0b90b] transition-colors truncate">
                       {comp.name}
                     </span>
                     <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${DIFFICULTY_COLOR[comp.difficulty] || "text-gray-400 bg-gray-400/10"}`}>
@@ -292,10 +292,10 @@ export default function HomePage() {
                   <span className="text-sm text-gray-400">{comp.pickRate.toFixed(2)}</span>
                 </div>
                 <div className="hidden sm:block text-right">
-                  <span className="text-sm font-semibold text-yellow-400">{comp.winRate.toFixed(1)}%</span>
+                  <span className="text-sm font-semibold text-[#f0b90b]">{comp.winRate.toFixed(1)}%</span>
                 </div>
                 <div className="hidden sm:block text-right">
-                  <span className="text-sm font-semibold text-green-400">{comp.top4Rate.toFixed(1)}%</span>
+                  <span className="text-sm font-semibold text-gray-300">{comp.top4Rate.toFixed(1)}%</span>
                 </div>
               </Link>
             ))}

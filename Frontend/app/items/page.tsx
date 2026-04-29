@@ -39,9 +39,9 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 const TIER_BG: Record<string, string> = {
-  S: "bg-red-500",
-  A: "bg-yellow-500",
-  B: "bg-blue-500",
+  S: "bg-[#3a3a3a]",
+  A: "bg-[#333333]",
+  B: "bg-[#2e2e2e]",
 };
 
 export default function ItemsPage() {
@@ -99,11 +99,11 @@ export default function ItemsPage() {
                         <p className="text-xs text-gray-600 mt-0.5 truncate">{item.description}</p>
                         <div className="flex gap-4 mt-2">
                           <div>
-                            <span className="text-xs font-semibold text-green-400">{item.top4Rate}%</span>
+                            <span className="text-xs font-semibold text-gray-300">{item.top4Rate}%</span>
                             <span className="text-[10px] text-gray-600 ml-1">Top 4</span>
                           </div>
                           <div>
-                            <span className="text-xs font-semibold text-white">{item.avgPlacement.toFixed(2)}</span>
+                            <span className="text-xs font-semibold text-[#f0b90b]">{item.avgPlacement.toFixed(2)}</span>
                             <span className="text-[10px] text-gray-600 ml-1">T.Bình</span>
                           </div>
                         </div>

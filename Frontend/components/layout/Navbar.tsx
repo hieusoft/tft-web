@@ -172,9 +172,6 @@ export default function Navbar() {
                       }
                     `}
                   >
-                    {subItem.icon && (
-                      <span className="text-sm leading-none">{subItem.icon}</span>
-                    )}
                     <span>{subItem.label}</span>
                     {subItem.badge && (
                       <span className="ml-1 rounded bg-red-600 px-1.5 py-0.5 text-[9px] font-bold text-white uppercase leading-none">
@@ -278,11 +275,6 @@ export default function Navbar() {
                               }
                             `}
                           >
-                            {subItem.icon && (
-                              <span className="text-base w-5 text-center leading-none">
-                                {subItem.icon}
-                              </span>
-                            )}
                             <span>{subItem.label}</span>
                             {subItem.badge && (
                               <span className="ml-1 rounded bg-red-600 px-1.5 py-0.5 text-[9px] font-bold text-white uppercase leading-none">
