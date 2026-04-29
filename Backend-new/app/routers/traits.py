@@ -69,6 +69,14 @@ def bulk_sync_traits(body: List[TraitCreate], db: Session = Depends(get_db), r: 
     r.delete(TRAITS_CACHE_KEY)
     return {"status": "success"}
 
+@router.get("/{id}", response_model=TraitResponse)
+def get_trait_details(id: int, db: Session = Depends(get_db), _=Depends(verify_api_key)):
+    trait = db.query(Trait).filter(Trait.id == id).first()
+    if not trait:
+        raise HTTPException(status_code=404, detail="Không tìm thấy Tộc/Hệ này")
+    
+    return TraitResponse.from_orm_trait(trait)
+
 @router.delete("/{id}")
 def delete_trait(id: int, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis), _=Depends(verify_api_key)):
     trait = db.query(Trait).filter(Trait.id == id).first()
