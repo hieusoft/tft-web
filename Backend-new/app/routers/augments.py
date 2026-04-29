@@ -1,22 +1,27 @@
 import json
-from fastapi import APIRouter, Depends, HTTPException
+import redis
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
-import redis
-
+from sqlalchemy import text
 from app.core.database import get_db
-from app.core.redis import get_redis
-from app.dependencies import verify_api_key
 from app.models.augment import Augment
-from app.schemas.augment import AugmentCreate, AugmentResponse, AugmentUpdateMeta, AugmentUpdate
+from app.schemas.augment import (
+    AugmentCreate, 
+    AugmentUpdate, 
+    AugmentResponse, 
+    AugmentBulkResponse
+)
+from app.dependencies import verify_api_key
+from app.core.redis import get_redis
 
 router = APIRouter()
 
 AUGMENTS_CACHE_KEY = "augments:all"
-CACHE_TTL = 60 * 5 
+CACHE_TTL = 3600 
 
 @router.get("/", response_model=List[AugmentResponse])
-def get_all(
+def get_all_augments(
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
     _=Depends(verify_api_key),
@@ -24,88 +29,104 @@ def get_all(
     cached = r.get(AUGMENTS_CACHE_KEY)
     if cached:
         return json.loads(cached)
-
     augments = db.query(Augment).all()
     result = [AugmentResponse.model_validate(a).model_dump() for a in augments]
-    r.setex(AUGMENTS_CACHE_KEY, CACHE_TTL, json.dumps(result, default=str))
-    return result
+    r.setex(AUGMENTS_CACHE_KEY, CACHE_TTL, json.dumps(result))
+    
+    return augments
 
+@router.get("/{id}", response_model=AugmentResponse)
+def get_augment(
+    id: int, 
+    db: Session = Depends(get_db), 
+    _=Depends(verify_api_key)
+):
+    augment = db.query(Augment).filter(Augment.id == id).first()
+    if not augment:
+        raise HTTPException(status_code=404, detail="Không tìm thấy Lõi Công Nghệ")
+    return augment
 
 @router.post("/", response_model=AugmentResponse)
-def create(
+def create_augment(
     body: AugmentCreate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
+    _=Depends(verify_api_key)
 ):
-    db_augment = db.query(Augment).filter(Augment.name == body.name).first()
-    if db_augment:
-        raise HTTPException(status_code=400, detail="Lõi công nghệ với tên này đã tồn tại!")
-        
-    augment = Augment(**body.model_dump())
-    db.add(augment)
-    db.commit()
-    db.refresh(augment)
+    if db.query(Augment).filter(Augment.name == body.name).first():
+        raise HTTPException(status_code=400, detail="Tên lõi đã tồn tại")
     
+    new_augment = Augment(**body.model_dump())
+    db.add(new_augment)
+    db.commit()
+    db.refresh(new_augment)
     r.delete(AUGMENTS_CACHE_KEY)
-    return augment
+    return new_augment
 
+@router.post("/bulk", response_model=AugmentBulkResponse, status_code=status.HTTP_201_CREATED)
+def bulk_sync_augments(
+    body: List[AugmentCreate],
+    db: Session = Depends(get_db),
+    r: redis.Redis = Depends(get_redis),
+    _=Depends(verify_api_key)
+):
+    try:
+        db.execute(text("TRUNCATE TABLE augments RESTART IDENTITY CASCADE;"))
+        
+        for item in body:
+            new_augment = Augment(**item.model_dump())
+            db.add(new_augment)
+        
+        db.commit()
+        r.delete(AUGMENTS_CACHE_KEY)
+        
+        return {
+            "status": "success", 
+            "message": f"Đã xóa toàn bộ cũ và nạp mới {len(body)} Lõi thành công."
+        }
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Lỗi khi xóa/nạp dữ liệu: {str(e)}")
+
+@router.get("/{id}", response_model=AugmentResponse)
+def get_augment_details(id: int, db: Session = Depends(get_db), _=Depends(verify_api_key)):
+    augment = db.query(Augment).filter(Augment.id == id).first()
+    if not augment:
+        raise HTTPException(status_code=404, detail="Không tìm thấy Lõi này")
+    return augment
+    
 @router.patch("/{id}", response_model=AugmentResponse)
 def update_augment(
     id: int,
     body: AugmentUpdate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
+    _=Depends(verify_api_key)
 ):
     augment = db.query(Augment).filter(Augment.id == id).first()
     if not augment:
-        raise HTTPException(status_code=404, detail="Lõi công nghệ không tồn tại")
-        
-    for field, value in body.model_dump(exclude_none=True).items():
-        setattr(augment, field, value)
-        
+        raise HTTPException(status_code=404, detail="Không tìm thấy Lõi")
+    update_data = body.model_dump(exclude_none=True)
+    for key, value in update_data.items():
+        setattr(augment, key, value)
+
     db.commit()
     db.refresh(augment)
-    
-    r.delete(AUGMENTS_CACHE_KEY) 
+    r.delete(AUGMENTS_CACHE_KEY)
     return augment
 
-@router.patch("/{id}/meta", response_model=AugmentResponse)
-def update_meta(
-    id: int,
-    body: AugmentUpdateMeta,
-    db: Session = Depends(get_db),
-    r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
-):
-    augment = db.query(Augment).filter(Augment.id == id).first()
-    if not augment:
-        raise HTTPException(status_code=404, detail="Lõi công nghệ không tồn tại")
-        
-    for field, value in body.model_dump(exclude_none=True).items():
-        setattr(augment, field, value)
-        
-    db.commit()
-    db.refresh(augment)
-    
-    r.delete(AUGMENTS_CACHE_KEY) 
-    return augment
-    
 @router.delete("/{id}")
-def delete(
-    id: int,
+def delete_augment(
+    id: int, 
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
+    _=Depends(verify_api_key)
 ):
     augment = db.query(Augment).filter(Augment.id == id).first()
     if not augment:
-        raise HTTPException(status_code=404, detail="Lõi công nghệ không tồn tại")
-        
+        raise HTTPException(status_code=404, detail="Không tìm thấy Lõi")
+    
     db.delete(augment)
     db.commit()
-
     r.delete(AUGMENTS_CACHE_KEY)
-    return {"message": f"Delete success augment with {id}"}
-
+    return {"message": "Đã xóa Lõi Công Nghệ thành công"}

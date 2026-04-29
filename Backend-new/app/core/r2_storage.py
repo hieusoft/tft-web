@@ -5,7 +5,7 @@ import mimetypes
 
 load_dotenv()
 
-def upload_images_to_r2(folder_path="Images/trait_images"):
+def upload_images_to_r2(folder_path="Images/augment_images"):
     s3_client = boto3.client(
         's3',
         endpoint_url=os.getenv('R2_ENDPOINT'),
@@ -26,7 +26,7 @@ def upload_images_to_r2(folder_path="Images/trait_images"):
     for filename in os.listdir(folder_path):
         if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.svg', '.webp')):
             file_path = os.path.join(folder_path, filename)
-            object_key = f"traits/{filename}"
+            object_key = f"augments/{filename}"
             content_type, _ = mimetypes.guess_type(file_path)
             
             try:

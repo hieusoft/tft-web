@@ -38,6 +38,30 @@ class TraitDeleteResponse(BaseModel):
     message: str
     status: str = "success"
 
+class TraitResponse(TraitBase):
+    id: int
+    model_config = ConfigDict(from_attributes=True)
+
+    @classmethod
+    def from_orm_trait(cls, trait) -> "TraitResponse":
+        ms = [
+            Milestone(**m) if isinstance(m, dict) else m 
+            for m in (trait.milestones or [])
+        ]
+        
+        return cls(
+            id=trait.id,
+            name=trait.name,
+            description=trait.description or "",
+            tier=trait.tier,
+            placement=trait.placement,
+            top4=trait.top4,
+            pick_count=trait.pick_count,
+            pick_percent=trait.pick_percent,
+            image=trait.image,
+            milestones=ms
+        )
+
 class TraitBulkResponse(BaseModel):
     status: str
     message: str
