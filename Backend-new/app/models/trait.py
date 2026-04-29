@@ -8,7 +8,6 @@ class Trait(Base):
     id           = Column(Integer, primary_key=True, index=True)
     name         = Column(String(100), unique=True, nullable=False, index=True)
     description  = Column(Text, nullable=True)
-    type         = Column(String(50), nullable=True, default="synergy")
     tier         = Column(String(10), nullable=True)     
     placement    = Column(Float, nullable=True)          
     top4         = Column(String(20), nullable=True)     

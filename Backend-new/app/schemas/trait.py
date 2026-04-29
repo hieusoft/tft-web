@@ -5,7 +5,6 @@ from datetime import datetime
 class TraitBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=100, description="Tên Tộc/Hệ (ví dụ: Học Giả)")
     description: Optional[str] = Field(None, description="Mô tả chi tiết kỹ năng")
-    type: str = Field("synergy", description="Loại: synergy (Hệ) hoặc origin (Tộc)")
     tier: Optional[str] = Field(None, description="Xếp hạng Meta: S, A, B, C...")
     placement: Optional[float] = Field(None, description="Thứ hạng trung bình (ví dụ: 4.25)")
     top4: Optional[str] = Field(None, description="Tỷ lệ lọt vào Top 4 (ví dụ: 52.1%)")
@@ -38,3 +37,7 @@ class TraitResponse(TraitBase):
 class TraitDeleteResponse(BaseModel):
     message: str
     status: str = "success"
+
+class TraitBulkResponse(BaseModel):
+    status: str
+    message: str

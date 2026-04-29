@@ -1,13 +1,14 @@
 import json
 import redis
 import uuid
+from sqlalchemy import text
 from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, Form
 from sqlalchemy.orm import Session
 from typing import List, Optional
 
 from app.core.database import get_db
 from app.models.trait import Trait
-from app.schemas.trait import TraitResponse, TraitCreate
+from app.schemas.trait import TraitResponse, TraitCreate, TraitBulkResponse
 from app.dependencies import verify_api_key
 from app.core.redis import get_redis
 from app.core.r2_storage import upload_images_to_r2
@@ -76,3 +77,23 @@ def delete_trait(id: int, db: Session = Depends(get_db), r: redis.Redis = Depend
     db.commit()
     r.delete(TRAITS_CACHE_KEY)
     return {"message": "Đã xóa thành công"}
+
+@router.post("/bulk", response_model=TraitBulkResponse)
+def bulk_insert_traits(
+    traits: List[TraitCreate], 
+    db: Session = Depends(get_db), 
+    r: redis.Redis = Depends(get_redis), 
+    _=Depends(verify_api_key)
+):
+    try:
+        db.execute(text("TRUNCATE TABLE traits RESTART IDENTITY CASCADE"))
+        db.commit()
+        db.add_all([Trait(**t.model_dump()) for t in traits])
+        db.commit()
+        r.delete(TRAITS_CACHE_KEY)
+
+        return {"message": f"Đã insert {len(traits)} traits", "count": len(traits)}
+
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
