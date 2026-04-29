@@ -2,57 +2,64 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import type { ApiTrait } from "@/lib/api-client";
+import { toSlug } from "@/lib/slug";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-/** Parse "52.1%" → 52.1, or return 0 */
 function parsePct(val: string | null): number {
   if (!val) return 0;
-  return parseFloat(val.replace("%", "")) || 0;
+  return parseFloat(val.replace(/[^0-9.]/g, "")) || 0;
 }
 
-const TIER_CONFIG: Record<string, { bg: string; text: string }> = {
-  S: { bg: "bg-[#3a3a3a]", text: "text-gray-300" },
-  A: { bg: "bg-[#333333]", text: "text-gray-400" },
-  B: { bg: "bg-[#2e2e2e]", text: "text-gray-400" },
-  C: { bg: "bg-[#2a2a2a]", text: "text-gray-500" },
+function parseNum(val: string | null): number {
+  if (!val) return 0;
+  // Backend dùng dấu chấm làm thousand sep (EU): "1.304.549"
+  // Strip cả chấm lẫn phẩy trước khi parse
+  const cleaned = val.replace(/[.,]/g, "").trim();
+  return parseInt(cleaned, 10) || 0;
+}
+
+/** Avg placement color: green < 4.0, yellow 4.0–4.4, red > 4.4 */
+function placementColor(v: number | null): string {
+  if (v === null) return "#9ca3af";
+  if (v < 4.0)   return "#4ade80";
+  if (v < 4.5)   return "#facc15";
+  return "#f87171";
+}
+
+// ── Tier config (using inline style, never dynamic classname) ─────────────────
+
+const TIER_COLOR: Record<string, string> = {
+  S: "rgb(255, 126, 131)",
+  A: "rgb(255, 191, 127)",
+  B: "rgb(255, 223, 128)",
+  C: "rgb(254, 255, 127)",
 };
 
-function MiniBar({
-  value,
-  max = 70,
-  color = "#f0b90b",
-}: {
-  value: number;
-  max?: number;
-  color?: string;
-}) {
-  const pct = Math.min((value / max) * 100, 100);
-  return (
-    <div className="h-1.5 w-full rounded-full bg-[#2a2a2a] overflow-hidden">
-      <div
-        className="h-full rounded-full transition-all"
-        style={{ width: `${pct}%`, background: color }}
-      />
-    </div>
-  );
-}
+// ── Grid column template ──────────────────────────────────────────────────────
+
+const COLS = "1fr 72px 120px 120px 160px";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type SortKey = "tier" | "top4" | "placement" | "pick_percent";
+type SortKey = "tier" | "placement" | "win_rate" | "frequency";
 type SortDir = "asc" | "desc";
 const TIER_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3 };
 
-// ── Main Client Component ─────────────────────────────────────────────────────
+// ── Main Component ────────────────────────────────────────────────────────────
 
 export default function TraitsClient({ traits }: { traits: ApiTrait[] }) {
+  const [search, setSearch]         = useState("");
+  const [sortKey, setSortKey]       = useState<SortKey>("placement");
+  const [sortDir, setSortDir]       = useState<SortDir>("asc");
   const [tierFilter, setTierFilter] = useState<"All" | "S" | "A" | "B" | "C">("All");
-  const [search, setSearch] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("tier");
-  const [sortDir, setSortDir] = useState<SortDir>("asc");
+
+  const totalGames = useMemo(
+    () => traits.reduce((sum, t) => sum + parseNum(t.pick_count), 0),
+    [traits]
+  );
 
   const sorted = useMemo(() => {
     let list = [...traits];
@@ -64,15 +71,13 @@ export default function TraitsClient({ traits }: { traits: ApiTrait[] }) {
     list.sort((a, b) => {
       let diff = 0;
       if (sortKey === "tier") {
-        diff =
-          (TIER_ORDER[a.tier ?? "C"] ?? 3) -
-          (TIER_ORDER[b.tier ?? "C"] ?? 3);
+        diff = (TIER_ORDER[a.tier ?? "C"] ?? 3) - (TIER_ORDER[b.tier ?? "C"] ?? 3);
       } else if (sortKey === "placement") {
         diff = (a.placement ?? 9) - (b.placement ?? 9);
-      } else if (sortKey === "top4") {
+      } else if (sortKey === "win_rate") {
         diff = parsePct(b.top4) - parsePct(a.top4);
-      } else if (sortKey === "pick_percent") {
-        diff = parsePct(b.pick_percent) - parsePct(a.pick_percent);
+      } else if (sortKey === "frequency") {
+        diff = parseNum(b.pick_count) - parseNum(a.pick_count);
       }
       return sortDir === "asc" ? diff : -diff;
     });
@@ -81,319 +86,373 @@ export default function TraitsClient({ traits }: { traits: ApiTrait[] }) {
 
   function toggleSort(key: SortKey) {
     if (sortKey === key) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-    else {
-      setSortKey(key);
-      setSortDir(key === "placement" ? "asc" : "desc");
-    }
+    else { setSortKey(key); setSortDir(key === "placement" ? "asc" : "desc"); }
   }
 
-  function SortIcon({ k }: { k: SortKey }) {
-    if (sortKey !== k) return <span className="text-gray-700 text-xs">↕</span>;
+  function SortArrow({ k }: { k: SortKey }) {
+    const active = sortKey === k;
     return (
-      <span className="text-yellow-400 text-xs">
-        {sortDir === "asc" ? "↑" : "↓"}
+      <span style={{ color: active ? "#facc15" : "#4b5563", marginLeft: 4, fontSize: 10 }}>
+        {active ? (sortDir === "asc" ? "▲" : "▼") : "▼"}
       </span>
     );
   }
 
-  return (
-    <div className="bg-[#1a1a1a] min-h-screen">
-      <div className="mx-auto max-w-[1400px] px-3 sm:px-4 py-4 sm:py-6">
+  // Column header button style
+  const thStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    fontSize: 11,
+    fontWeight: 600,
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
+    color: "#6b7280",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    padding: 0,
+  };
 
-        {/* ── Filters ── */}
-        <div className="mb-4 flex flex-wrap items-center gap-2">
-          {/* Tier pills */}
-          <div className="flex gap-1.5">
-            {(["All", "S", "A", "B", "C"] as const).map((tier) => (
+  return (
+    <div style={{ background: "#111111", minHeight: "100vh" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "24px 16px" }}>
+
+
+        {/* ── Filter bar ── */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
+          {(["All", "S", "A", "B", "C"] as const).map((t) => {
+            const active = tierFilter === t;
+            const color  = t === "All" ? "#6b7280" : TIER_COLOR[t];
+            return (
               <button
-                key={tier}
-                onClick={() => setTierFilter(tier)}
-                className={`h-7 w-7 rounded text-xs font-bold transition-all ${
-                  tier === "All"
-                    ? tierFilter === "All"
-                      ? "bg-gray-500 text-white"
-                      : "bg-[#2a2a2a] text-gray-500 hover:text-white"
-                    : tierFilter === tier
-                    ? `${TIER_CONFIG[tier]?.bg ?? "bg-[#2a2a2a]"} text-white`
-                    : `bg-[#2a2a2a] ${TIER_CONFIG[tier]?.text ?? "text-gray-400"} hover:opacity-80`
-                }`}
+                key={t}
+                suppressHydrationWarning
+                onClick={() => setTierFilter(t)}
+                style={{
+                  height: 28,
+                  padding: "0 12px",
+                  borderRadius: 6,
+                  fontSize: 12,
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  transition: "all 0.15s",
+                  background: active ? color : "#1e1e1e",
+                  color: active ? "#ffffff" : "#9ca3af",
+                  border: `1px solid ${active ? color : "#2a2a2a"}`,
+                }}
               >
-                {tier === "All" ? "★" : tier}
+                {t === "All" ? "All" : `${t}-Tier`}
               </button>
-            ))}
-          </div>
+            );
+          })}
+
+          <div style={{ flex: 1 }} />
 
           {/* Search */}
-          <div className="w-full sm:w-auto sm:ml-auto relative">
-            <svg
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+          <div style={{ position: "relative" }}>
             <input
               value={search}
+              suppressHydrationWarning
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Tìm tộc / hệ..."
-              className="w-full rounded border border-[#2a2a2a] bg-[#1e1e1e] pl-8 pr-3 py-2 text-xs text-gray-300 placeholder-gray-600 focus:outline-none focus:border-yellow-500/50 sm:w-44"
+              placeholder="Search trait..."
+              style={{
+                height: 32,
+                width: 180,
+                borderRadius: 6,
+                background: "#1e1e1e",
+                border: "1px solid #2a2a2a",
+                paddingLeft: 12,
+                paddingRight: 32,
+                fontSize: 12,
+                color: "#d1d5db",
+                outline: "none",
+              }}
             />
+            <svg
+              style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", width: 14, height: 14, color: "#6b7280", pointerEvents: "none" }}
+              fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
           </div>
         </div>
 
-        {/* ── Desktop Table (md+) ── */}
-        <div className="hidden md:block rounded-xl border border-[#2a2a2a] overflow-hidden">
+        {/* ── Table ── */}
+        <div style={{ borderRadius: 12, overflow: "hidden", border: "1px solid #222222" }}>
+
           {/* Header */}
-          <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] bg-[#151515] border-b border-[#2a2a2a] px-4 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-gray-600">
-            <div>Tộc / Hệ</div>
-            <button
-              className="flex items-center gap-1 hover:text-gray-400 transition-colors"
-              onClick={() => toggleSort("tier")}
-            >
-              Tier <SortIcon k="tier" />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: COLS,
+              background: "#161616",
+              borderBottom: "1px solid #222222",
+              padding: "12px 16px",
+              gap: 8,
+            }}
+          >
+            <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#6b7280" }}>
+              Trait
+            </div>
+            <button style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#6b7280", background: "none", border: "none", cursor: "pointer", borderLeft: "1px solid #222", paddingLeft: 12 }} suppressHydrationWarning onClick={() => toggleSort("tier")}>
+              Tier<SortArrow k="tier" />
             </button>
-            <button
-              className="flex items-center gap-1 hover:text-gray-400 transition-colors"
-              onClick={() => toggleSort("placement")}
-            >
-              Trung Bình <SortIcon k="placement" />
+            <button style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#6b7280", background: "none", border: "none", cursor: "pointer", borderLeft: "1px solid #222", paddingLeft: 12 }} suppressHydrationWarning onClick={() => toggleSort("placement")}>
+              Avg Place<SortArrow k="placement" />
             </button>
-            <button
-              className="flex items-center gap-1 hover:text-gray-400 transition-colors"
-              onClick={() => toggleSort("top4")}
-            >
-              Top 4 <SortIcon k="top4" />
+            <button style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#6b7280", background: "none", border: "none", cursor: "pointer", borderLeft: "1px solid #222", paddingLeft: 12 }} suppressHydrationWarning onClick={() => toggleSort("win_rate")}>
+              Top 4 Rate<SortArrow k="win_rate" />
             </button>
-            <button
-              className="flex items-center gap-1 hover:text-gray-400 transition-colors"
-              onClick={() => toggleSort("pick_percent")}
-            >
-              Pick Rate <SortIcon k="pick_percent" />
+            <button style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#6b7280", background: "none", border: "none", cursor: "pointer", justifyContent: "flex-end", borderLeft: "1px solid #222", paddingLeft: 12 }} suppressHydrationWarning onClick={() => toggleSort("frequency")}>
+              Frequency<SortArrow k="frequency" />
             </button>
           </div>
 
           {/* Rows */}
           {sorted.length === 0 ? (
-            <div className="py-16 text-center text-gray-600 text-sm">
-              Không tìm thấy tộc / hệ nào
+            <div style={{ padding: "64px 0", textAlign: "center", color: "#4b5563", fontSize: 14, background: "#111111" }}>
+              Không tìm thấy trait nào
             </div>
           ) : (
             sorted.map((trait, idx) => (
-              <DesktopRow key={trait.id} trait={trait} idx={idx} />
+              <TraitRow
+                key={trait.id}
+                trait={trait}
+                idx={idx}
+              />
             ))
           )}
         </div>
-
-        {/* ── Mobile Cards (< md) ── */}
-        <div className="md:hidden flex flex-col gap-2">
-          {/* Mobile sort bar */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
-            {(["tier", "top4", "placement", "pick_percent"] as SortKey[]).map(
-              (k) => (
-                <button
-                  key={k}
-                  onClick={() => toggleSort(k)}
-                  className={`shrink-0 flex items-center gap-1 rounded-full border px-3 py-1 text-[10px] font-medium transition-colors ${
-                    sortKey === k
-                      ? "border-yellow-500/50 bg-yellow-500/10 text-yellow-400"
-                      : "border-[#2a2a2a] bg-[#1e1e1e] text-gray-500"
-                  }`}
-                >
-                  {
-                    {
-                      tier: "Tier",
-                      top4: "Top 4",
-                      placement: "T.Bình",
-                      pick_percent: "Pick",
-                    }[k]
-                  }
-                  {sortKey === k && (
-                    <span className="text-yellow-400">
-                      {sortDir === "asc" ? "↑" : "↓"}
-                    </span>
-                  )}
-                </button>
-              )
-            )}
-          </div>
-
-          {sorted.length === 0 ? (
-            <div className="py-12 text-center text-gray-600 text-sm">
-              Không tìm thấy tộc / hệ nào
-            </div>
-          ) : (
-            sorted.map((trait) => <MobileCard key={trait.id} trait={trait} />)
-          )}
-        </div>
-
-        <p className="mt-4 text-xs text-gray-700 text-center">
-          Dữ liệu được cập nhật liên tục · Cập nhật mỗi 30 phút
-        </p>
       </div>
     </div>
   );
 }
 
-// ── Desktop Row ───────────────────────────────────────────────────────────────
+// ── Hex Icon with Tooltip ────────────────────────────────────────────────────
 
-function TraitIcon({ trait }: { trait: ApiTrait }) {
-  if (trait.image) {
-    return (
-      <div className="relative h-10 w-10 shrink-0 rounded-lg overflow-hidden border border-white/10">
+function TraitHex({ trait }: { trait: ApiTrait }) {
+  const hex = "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)"
+  const [hovered, setHovered] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Milestone: try common keys from the backend JSON
+  const milestones = (trait.milestones ?? []) as Record<string, unknown>[];
+
+  return (
+    <div
+      ref={wrapRef}
+      style={{ position: "relative", width: 40, height: 40, flexShrink: 0, zIndex: hovered ? 50 : "auto" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Hexagon */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "#2a2a2a",
+        clipPath: hex,
+        cursor: "pointer",
+        transition: "filter 0.15s",
+        filter: hovered ? "brightness(1.3)" : "brightness(1)",
+      }} />
+      {trait.image ? (
         <Image
           src={trait.image}
           alt={trait.name}
           fill
           sizes="40px"
-          className="object-cover"
+          className="object-contain p-1"
+          style={{ clipPath: hex }}
         />
-      </div>
-    );
-  }
-  // Fallback: initials
-  return (
-    <div className="flex h-10 w-10 items-center justify-center rounded-lg text-sm font-bold text-white shrink-0 border border-white/10 bg-[#2a2a2a]">
-      {trait.name.substring(0, 2).toUpperCase()}
+      ) : (
+        <div style={{
+          position: "absolute", inset: 0,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          clipPath: hex,
+          fontSize: 11, fontWeight: 700, color: "#9ca3af",
+        }}>
+          {trait.name.substring(0, 2).toUpperCase()}
+        </div>
+      )}
+
+      {/* Tooltip */}
+      {hovered && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "calc(100% + 10px)",
+            transform: "translateY(-50%)",
+            zIndex: 9999,
+            minWidth: 240,
+            maxWidth: 300,
+            background: "#1a1c22",
+            border: "1px solid #2d3040",
+            borderRadius: 10,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+            padding: "12px 14px",
+            pointerEvents: "none",
+          }}
+        >
+          {/* Trait name */}
+          <div style={{
+            fontSize: 13,
+            fontWeight: 700,
+            color: "#ffffff",
+            marginBottom: trait.description ? 6 : 0,
+          }}>
+            {trait.name}
+          </div>
+
+          {/* Description */}
+          {trait.description && (
+            <div style={{
+              fontSize: 12,
+              color: "#9ca3af",
+              lineHeight: 1.5,
+              marginBottom: milestones.length > 0 ? 10 : 0,
+            }}>
+              {trait.description}
+            </div>
+          )}
+
+          {/* Milestones */}
+          {milestones.length > 0 && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 2 }}>
+                Breakpoints
+              </div>
+              {milestones.map((m, i) => {
+                const count = m.count ?? m.num ?? m.units ?? m.n ?? m.level;
+                const desc  = m.desc ?? m.description ?? m.effect ?? m.bonus ?? m.text;
+                return (
+                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+                    {count !== undefined && (
+                      <span style={{
+                        flexShrink: 0,
+                        minWidth: 22,
+                        height: 22,
+                        borderRadius: 4,
+                        background: "#c8972a",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 11,
+                        fontWeight: 700,
+                        color: "#ffffff",
+                      }}>
+                        {String(count)}
+                      </span>
+                    )}
+                    {desc !== undefined && (
+                      <span style={{ fontSize: 11, color: "#d1d5db", lineHeight: 1.5 }}>
+                        {String(desc)}
+                      </span>
+                    )}
+                    {count === undefined && desc === undefined && (
+                      <span style={{ fontSize: 11, color: "#6b7280" }}>
+                        {Object.entries(m).map(([k, v]) => `${k}: ${v}`).join(" · ")}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
-function DesktopRow({ trait, idx }: { trait: ApiTrait; idx: number }) {
-  const tierCfg = TIER_CONFIG[trait.tier ?? ""] ?? TIER_CONFIG["C"];
-  const isOdd = idx % 2 === 1;
-  const top4Num = parsePct(trait.top4);
-  const pickNum = parsePct(trait.pick_percent);
+// ── Table Row ─────────────────────────────────────────────────────────────────
+
+function TraitRow({
+  trait,
+  idx,
+}: {
+  trait: ApiTrait;
+  idx: number;
+}) {
+  const isOdd    = idx % 2 === 1;
+  const tierColor = TIER_COLOR[trait.tier ?? ""] ?? "#6b7280";
+  const count    = parseNum(trait.pick_count);
+  const freqPct  = trait.pick_percent ?? null;
 
   return (
     <Link
-      href={`/traits/${trait.id}`}
-      className={`grid grid-cols-[2fr_1fr_1fr_1fr_1fr] items-center px-4 py-3.5 border-b border-[#1e1e1e] transition-colors hover:bg-[#252525] group ${
-        isOdd ? "bg-[#171717]" : "bg-[#1a1a1a]"
-      }`}
+      href={`/traits/${toSlug(trait.name)}`}
+      style={{
+        display: "grid",
+        gridTemplateColumns: COLS,
+        alignItems: "center",
+        padding: "12px 16px",
+        gap: 8,
+        borderBottom: "1px solid #1a1a1a",
+        background: isOdd ? "#131313" : "#111111",
+        textDecoration: "none",
+        transition: "background 0.12s",
+      }}
+      className="group hover:bg-[#1c1c1c]"
     >
-      {/* Name */}
-      <div className="flex items-center gap-3">
-        <TraitIcon trait={trait} />
-        <div>
-          <span className="text-sm font-semibold text-white group-hover:text-[#f0b90b] transition-colors">
+      {/* Trait name + icon */}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
+        <TraitHex trait={trait} />
+        <div style={{ minWidth: 0 }}>
+          <div style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: "#e5e7eb",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}>
             {trait.name}
-          </span>
-          {trait.description && (
-            <p className="text-[11px] text-gray-600 mt-0.5 line-clamp-1 max-w-xs">
-              {trait.description}
-            </p>
-          )}
+          </div>
         </div>
       </div>
 
-      {/* Tier */}
-      <div>
-        <span
-          className={`inline-flex h-7 w-7 items-center justify-center rounded text-xs font-bold text-white ${
-            tierCfg.bg
-          }`}
-        >
+      {/* Tier badge */}
+      <div style={{ borderLeft: "1px solid #1e1e1e", paddingLeft: 12 }}>
+        <span style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 28,
+          height: 28,
+          borderRadius: 6,
+          fontSize: 12,
+          fontWeight: 800,
+          background: tierColor,
+          color: "#000000",
+        }}>
           {trait.tier ?? "—"}
         </span>
       </div>
 
       {/* Avg placement */}
-      <div className="text-sm font-bold text-gray-300">
+      <div style={{ fontSize: 14, fontWeight: 700, color: placementColor(trait.placement), borderLeft: "1px solid #1e1e1e", paddingLeft: 12 }}>
         {trait.placement != null ? trait.placement.toFixed(2) : "—"}
       </div>
 
-      {/* Top 4 */}
-      <div className="flex flex-col gap-1">
-        <span className="text-sm font-bold text-gray-300">
-          {trait.top4 ?? "—"}
-        </span>
-        {top4Num > 0 && <MiniBar value={top4Num} max={70} color="#6b6b6b" />}
+      {/* Top 4 rate */}
+      <div style={{ fontSize: 14, fontWeight: 600, color: "#e5e7eb", borderLeft: "1px solid #1e1e1e", paddingLeft: 12 }}>
+        {trait.top4 ?? "—"}
       </div>
 
-      {/* Pick rate */}
-      <div className="flex flex-col gap-1">
-        <span className="text-sm font-bold text-gray-400">
-          {trait.pick_percent ?? "—"}
-        </span>
-        {pickNum > 0 && (
-          <MiniBar value={pickNum} max={50} color="#4a4a4a" />
-        )}
-      </div>
-    </Link>
-  );
-}
-
-// ── Mobile Card ───────────────────────────────────────────────────────────────
-
-function MobileCard({ trait }: { trait: ApiTrait }) {
-  const tierCfg = TIER_CONFIG[trait.tier ?? ""] ?? TIER_CONFIG["C"];
-  const top4Num = parsePct(trait.top4);
-
-  return (
-    <Link
-      href={`/traits/${trait.id}`}
-      className="flex items-center gap-3 rounded-xl border border-[#2a2a2a] bg-[#1e1e1e] px-3 py-3 hover:border-yellow-500/30 hover:bg-[#252525] transition-all group"
-    >
-      {/* Icon */}
-      {trait.image ? (
-        <div className="relative h-11 w-11 shrink-0 rounded-lg overflow-hidden border border-white/10">
-          <Image
-            src={trait.image}
-            alt={trait.name}
-            fill
-            sizes="44px"
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-sm font-bold text-white border border-white/10 bg-[#2a2a2a]">
-          {trait.name.substring(0, 2).toUpperCase()}
-        </div>
-      )}
-
-      {/* Name + desc */}
-      <div className="flex-1 min-w-0">
-        <span className="text-sm font-semibold text-white group-hover:text-[#f0b90b] transition-colors">
-          {trait.name}
-        </span>
-
-        {/* Stats row */}
-        <div className="mt-1.5 flex items-center gap-3 text-[11px]">
-          {trait.top4 && (
-            <span className="font-bold text-gray-300">Top4 {trait.top4}</span>
-          )}
-          {trait.placement != null && (
-            <span className="font-bold text-gray-400">
-              #{trait.placement.toFixed(2)}
+      {/* Frequency */}
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "flex-end", gap: 6, borderLeft: "1px solid #1e1e1e", paddingLeft: 12 }}>
+        {count > 0 ? (
+          <>
+            <span style={{ fontSize: 14, fontWeight: 600, color: "#e5e7eb" }}>
+              {count.toLocaleString()}
             </span>
-          )}
-          {trait.pick_percent && (
-            <span className="text-gray-500">Pick {trait.pick_percent}</span>
-          )}
-        </div>
-
-        {top4Num > 0 && (
-          <div className="mt-1.5">
-            <MiniBar value={top4Num} max={70} color="#6b6b6b" />
-          </div>
-        )}
-      </div>
-
-      {/* Tier badge */}
-      <div className="shrink-0 flex flex-col items-center gap-1">
-        <span
-          className={`inline-flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold text-white ${tierCfg.bg}`}
-        >
-          {trait.tier ?? "—"}
-        </span>
-        {trait.pick_count && (
-          <span className="text-[9px] text-gray-600">{trait.pick_count}</span>
+            {freqPct && (
+              <span style={{ fontSize: 11, color: "#6b7280" }}>{freqPct}</span>
+            )}
+          </>
+        ) : (
+          <span style={{ fontSize: 14, color: "#4b5563" }}>—</span>
         )}
       </div>
     </Link>

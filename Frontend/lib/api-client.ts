@@ -14,6 +14,8 @@ export type { ApiAugment } from "./types/augment";
 interface FetchOptions {
   /** Next.js ISR revalidate in seconds. Default: 1800 (30 min) */
   revalidate?: number;
+  /** Force no caching: 'no-store' */
+  cache?: RequestCache;
   /** Extra request headers */
   headers?: Record<string, string>;
 }
@@ -26,9 +28,13 @@ class TftApiClient {
   private readonly defaultRevalidate: number;
 
   constructor() {
-    this.baseUrl =
-      process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
-      "http://localhost:8000";
+    // Khi chạy trên Server Component (Node.js), nó sẽ dùng API_URL (ví dụ: http://backend:8000)
+    // Khi chạy trên Client Component (Browser), typeof window !== "undefined" nên nó sẽ dùng NEXT_PUBLIC_API_URL (ví dụ: http://localhost:8000 hoặc IP public)
+    const apiUrl = typeof window === "undefined" 
+      ? (process.env.API_URL || process.env.NEXT_PUBLIC_API_URL)
+      : process.env.NEXT_PUBLIC_API_URL;
+
+    this.baseUrl = apiUrl?.replace(/\/$/, "") || "http://localhost:8000";
     this.apiKey = process.env.API_KEY ?? "";
     this.defaultRevalidate = 1800; // 30 minutes
   }
@@ -46,7 +52,8 @@ class TftApiClient {
           "X-API-Key": this.apiKey,
           ...opts.headers,
         },
-        next: { revalidate: opts.revalidate ?? this.defaultRevalidate },
+        cache: opts.cache,
+        next: opts.cache ? undefined : { revalidate: opts.revalidate ?? this.defaultRevalidate },
       });
 
       if (!res.ok) {

@@ -43,6 +43,11 @@ const nextConfig: NextConfig = {
         hostname: "magazine.artstation.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.tftmeta.gg",
+        pathname: "/**",
+      },
     ],
   },
 
