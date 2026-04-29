@@ -28,15 +28,14 @@ class TftApiClient {
   private readonly defaultRevalidate: number;
 
   constructor() {
-    // Khi chạy trên Server Component (Node.js), nó sẽ dùng API_URL (ví dụ: http://backend:8000)
-    // Khi chạy trên Client Component (Browser), typeof window !== "undefined" nên nó sẽ dùng NEXT_PUBLIC_API_URL (ví dụ: http://localhost:8000 hoặc IP public)
-    const apiUrl = typeof window === "undefined" 
+    const apiUrl = typeof window === "undefined"
       ? (process.env.API_URL || process.env.NEXT_PUBLIC_API_URL)
       : process.env.NEXT_PUBLIC_API_URL;
-
+    console.log("apiUrl", apiUrl);
     this.baseUrl = apiUrl?.replace(/\/$/, "") || "http://localhost:8000";
+    console.log("this.baseUrl", this.baseUrl);
     this.apiKey = process.env.API_KEY ?? "";
-    this.defaultRevalidate = 1800; // 30 minutes
+    this.defaultRevalidate = 1800;
   }
 
   // ── Internal fetch helper ──────────────────────────────────────────────────
