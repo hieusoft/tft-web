@@ -26,7 +26,9 @@ jobs:
       # ─────────────────────────────────────────────
       - name: Build & Push Frontend
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/tft-frontend:${{ github.sha }} ./Frontend
+          docker build \
+            --build-arg NEXT_PUBLIC_API_URL=http://${{ secrets.HOST }}:8000 \
+            -t ${{ secrets.DOCKER_USERNAME }}/tft-frontend:${{ github.sha }} ./Frontend
           docker push ${{ secrets.DOCKER_USERNAME }}/tft-frontend:${{ github.sha }}
 
       - name: Build & Push Backend
