@@ -13,7 +13,8 @@ from app.dependencies import verify_api_key
 from app.core.redis import get_redis
 from app.core.r2_storage import upload_images_to_r2
 
-router = APIRouter(prefix="/traits", tags=["Traits"])
+router = APIRouter()
+
 
 TRAITS_CACHE_KEY = "traits:all"
 CACHE_TTL = 3600
