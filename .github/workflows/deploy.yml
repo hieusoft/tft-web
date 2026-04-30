@@ -27,7 +27,7 @@ jobs:
       - name: Build & Push Frontend
         run: |
           docker build \
-            --build-arg NEXT_PUBLIC_API_URL=http://${{ secrets.HOST }}:8000 \
+            --build-arg NEXT_PUBLIC_API_URL=https://api.tftmeta.gg \
             -t ${{ secrets.DOCKER_USERNAME }}/tft-frontend:${{ github.sha }} ./Frontend
           docker push ${{ secrets.DOCKER_USERNAME }}/tft-frontend:${{ github.sha }}
 
@@ -64,7 +64,7 @@ jobs:
             echo "REDIS_URL=redis://:${{ secrets.REDIS_PASSWORD }}@redis:6379/0"                                                     >> .env
             echo "BACKEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-backend:${{ github.sha }}"  >> .env
             echo "FRONTEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-frontend:${{ github.sha }}" >> .env
-            echo "API_URL=https://api.tftmeta.gg"                                                                                   >> .env
+            echo "API_URL=http://tft_backend:8000"                                                                                   >> .env
 
             # Pull & restart với image đúng commit SHA
             docker compose up -d --no-build --pull always
