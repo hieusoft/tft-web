@@ -82,10 +82,8 @@ services:
     env_file:
       - .env
     environment:
-      # API_URL dùng cho SSR (server-side, trong Docker network)
-      API_URL: http://tft_backend:8000
-      # NEXT_PUBLIC_API_URL dùng cho browser (phải là public URL)
-      # Giá trị này đã được bake vào bundle lúc build, override ở đây KHÔNG có tác dụng
+      API_URL: https://api.tftmeta.gg
+      NEXT_PUBLIC_API_URL: https://api.tftmeta.gg
     ports:
       - "3000:3000"
     depends_on:
