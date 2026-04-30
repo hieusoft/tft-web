@@ -6,6 +6,7 @@ class Trait(Base):
     __tablename__ = "traits"
 
     id           = Column(Integer, primary_key=True, index=True)
+    slug         = Column(String(100), unique=True, index=True)
     name         = Column(String(100), unique=True, nullable=False, index=True)
     description  = Column(Text, nullable=True)
     tier         = Column(String(10), nullable=True)     

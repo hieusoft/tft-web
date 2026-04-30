@@ -70,12 +70,11 @@ def bulk_sync_traits(body: List[TraitCreate], db: Session = Depends(get_db), r: 
     r.delete(TRAITS_CACHE_KEY)
     return {"status": "success"}
 
-@router.get("/{id}", response_model=TraitResponse)
-def get_trait_details(id: int, db: Session = Depends(get_db), _=Depends(verify_api_key)):
-    trait = db.query(Trait).filter(Trait.id == id).first()
+@router.get("/slug/{slug}", response_model=TraitResponse)
+def get_trait_by_slug(slug: str, db: Session = Depends(get_db), _=Depends(verify_api_key)):
+    trait = db.query(Trait).filter(Trait.slug == slug).first()
     if not trait:
-        raise HTTPException(status_code=404, detail="Không tìm thấy Tộc/Hệ này")
-    
+        raise HTTPException(status_code=404, detail="Slug không tồn tại")
     return TraitResponse.from_orm_trait(trait)
 
 @router.delete("/{id}")
