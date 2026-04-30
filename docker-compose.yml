@@ -82,8 +82,8 @@ services:
     env_file:
       - .env
     environment:
-      API_URL: https://api.tftmeta.gg
-      NEXT_PUBLIC_API_URL: https://api.tftmeta.gg
+      API_URL: http://tft_backend:8000       # SSR dùng internal Docker hostname
+      NEXT_PUBLIC_API_URL: https://api.tftmeta.gg  # Client-side dùng public URL
     ports:
       - "3000:3000"
     depends_on:
