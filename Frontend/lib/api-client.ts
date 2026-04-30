@@ -35,6 +35,7 @@ class TftApiClient {
     this.baseUrl = apiUrl?.replace(/\/$/, "") || "http://localhost:8000";
     console.log("this.baseUrl", this.baseUrl);
     this.apiKey = process.env.API_KEY ?? "";
+    console.log("this.apiKey", this.apiKey);
     this.defaultRevalidate = 1800;
   }
 
