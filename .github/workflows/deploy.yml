@@ -64,7 +64,7 @@ jobs:
             echo "REDIS_URL=redis://:${{ secrets.REDIS_PASSWORD }}@redis:6379/0"                                                     >> .env
             echo "BACKEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-backend:${{ github.sha }}"  >> .env
             echo "FRONTEND_IMAGE=${{ secrets.DOCKER_USERNAME }}/tft-frontend:${{ github.sha }}" >> .env
-            echo "API_URL=http://tft_backend:8000"                                                                                   >> .env
+            echo "API_URL=https://api.tftmeta.gg"                                                                                   >> .env
 
             # Pull & restart với image đúng commit SHA
             docker compose up -d --no-build --pull always
