@@ -48,6 +48,11 @@ const nextConfig: NextConfig = {
         hostname: "cdn.tftmeta.gg",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.metatft.com",
+        pathname: "/**",
+      },
     ],
   },
 

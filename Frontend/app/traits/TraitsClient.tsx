@@ -40,7 +40,8 @@ const TIER_COLOR: Record<string, string> = {
 
 // ── Grid column template ──────────────────────────────────────────────────────
 
-const COLS = "1fr 72px 120px 120px 160px";
+const COLS = "minmax(0,1fr) 72px minmax(100px,120px) minmax(100px,120px) minmax(120px,160px)";
+const MIN_WIDTH = 650;
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -179,7 +180,7 @@ export default function TraitsClient({ traits }: { traits: ApiTrait[] }) {
         </div>
 
         {/* ── Table ── */}
-        <div style={{ borderRadius: 12, overflow: "hidden", border: "1px solid #222222" }}>
+        <div style={{ borderRadius: 12, overflowX: "auto", WebkitOverflowScrolling: "touch", border: "1px solid #222222" }}>
 
           {/* Header */}
           <div
@@ -187,6 +188,7 @@ export default function TraitsClient({ traits }: { traits: ApiTrait[] }) {
               display: "grid",
               gridTemplateColumns: COLS,
               background: "#161616",
+              minWidth: MIN_WIDTH,
               borderBottom: "1px solid #222222",
               padding: "12px 16px",
               gap: 8,
@@ -385,6 +387,7 @@ function TraitRow({
       style={{
         display: "grid",
         gridTemplateColumns: COLS,
+        minWidth: MIN_WIDTH, 
         alignItems: "center",
         padding: "12px 16px",
         gap: 8,

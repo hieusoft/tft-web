@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import type { ApiAugment } from "@/lib/api-client";
-
-// ── Constants ─────────────────────────────────────────────────────────────────
 
 const RANK_COLOR: Record<string, string> = {
   S: "rgb(255, 126, 131)",
@@ -15,13 +13,11 @@ const RANK_COLOR: Record<string, string> = {
 
 const RANK_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3 };
 
-const TIER_META: Record<number, { label: string; color: string; icon: string }> = {
-  1: { label: "Bạc",         color: "#9ca3af", icon: "🥈" },
-  2: { label: "Vàng",        color: "#eab308", icon: "🥇" },
-  3: { label: "Huyền Thoại", color: "#a855f7", icon: "💎" },
+const TIER_META: Record<number, { label: string; color: string }> = {
+  1: { label: "Bạc",         color: "#9ca3af" },
+  2: { label: "Vàng",        color: "#eab308" },
+  3: { label: "Huyền Thoại", color: "#a855f7" },
 };
-
-// ── Main Component ────────────────────────────────────────────────────────────
 
 export default function AugmentsClient({ augments }: { augments: ApiAugment[] }) {
   const [search, setSearch]         = useState("");
@@ -49,11 +45,8 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
     <div style={{ background: "#111111", minHeight: "100vh" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 16px" }}>
 
-        {/* ── Controls ── */}
+        {/* Controls */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
-
-
-          {/* Rank filter */}
           <div style={{ display: "flex", gap: 3, background: "#181818", border: "1px solid #222", borderRadius: 7, padding: 3 }}>
             {(["All", "S", "A", "B", "C"] as const).map((r) => {
               const active = rankFilter === r;
@@ -74,7 +67,6 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
             })}
           </div>
 
-          {/* Search */}
           <div style={{ position: "relative", marginLeft: "auto" }}>
             <input type="text" value={search} suppressHydrationWarning
               onChange={(e) => setSearch(e.target.value)}
@@ -92,11 +84,10 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
             </svg>
           </div>
 
-          {/* Count */}
           <span style={{ fontSize: 11, color: "#4b5563" }}>{filtered.length} augments</span>
         </div>
 
-        {/* ── Rank Groups ── */}
+        {/* Rank Groups */}
         {groups.length === 0 ? (
           <div style={{ textAlign: "center", padding: "64px 0", color: "#4b5563", fontSize: 14 }}>
             Không tìm thấy tăng cường nào
@@ -113,34 +104,22 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
   );
 }
 
-// ── Rank Row ─────────────────────────────────────────────────────────────────
-
 function RankRow({ rank, color, items }: { rank: string; color: string; items: ApiAugment[] }) {
   return (
     <div style={{
       display: "flex", alignItems: "stretch",
-      background: "#181818",
-      border: "1px solid #1e1e1e",
-      borderRadius: 10,
-      overflow: "hidden",
-      marginBottom: 6,
+      background: "#181818", border: "1px solid #1e1e1e",
+      borderRadius: 10, overflow: "hidden", marginBottom: 6,
     }}>
-      {/* Rank label sidebar */}
       <div style={{
         width: 48, flexShrink: 0,
         display: "flex", alignItems: "center", justifyContent: "center",
-        background: color,
-        borderRight: `2px solid ${color}`,
+        background: color, borderRight: `2px solid ${color}`,
       }}>
-        <span style={{
-          fontSize: 20, fontWeight: 900, color: "#000",
-          letterSpacing: "-0.02em",
-        }}>
+        <span style={{ fontSize: 20, fontWeight: 900, color: "#000", letterSpacing: "-0.02em" }}>
           {rank}
         </span>
       </div>
-
-      {/* Icons grid */}
       <div style={{ flex: 1, padding: "10px 12px", display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
         {items.map((aug) => (
           <AugmentIcon key={aug.id} aug={aug} rankColor={color} />
@@ -150,13 +129,32 @@ function RankRow({ rank, color, items }: { rank: string; color: string; items: A
   );
 }
 
-// ── Augment Icon Card ─────────────────────────────────────────────────────────
-
 function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string }) {
-  const [imgErr, setImgErr] = useState(false);
+  const [imgErr, setImgErr]   = useState(false);
   const [showTip, setShowTip] = useState(false);
+  const [tipPos, setTipPos]   = useState({ top: 0, left: 0 });
   const ref = useRef<HTMLDivElement>(null);
   const tierMeta = TIER_META[aug.tier ?? 0];
+
+  // Tính vị trí tooltip dựa trên getBoundingClientRect để tránh bị cắt
+  useEffect(() => {
+    if (!showTip || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const TIP_W = 240;
+    const TIP_H = 160; // ước tính
+
+    let left = rect.left + rect.width / 2 - TIP_W / 2;
+    let top  = rect.top - TIP_H - 8 + window.scrollY;
+
+    // Không vượt cạnh phải màn hình
+    if (left + TIP_W > window.innerWidth - 8) left = window.innerWidth - TIP_W - 8;
+    if (left < 8) left = 8;
+
+    // Nếu không đủ chỗ phía trên thì hiện xuống dưới
+    if (rect.top - TIP_H - 8 < 0) top = rect.bottom + 8 + window.scrollY;
+
+    setTipPos({ top, left });
+  }, [showTip]);
 
   return (
     <div
@@ -183,19 +181,16 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
         ) : (
           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>✨</div>
         )}
-
-        {/* Tier color corner dot */}
         {tierMeta && (
           <div style={{
             position: "absolute", bottom: 2, right: 2,
             width: 8, height: 8, borderRadius: "50%",
-            background: tierMeta.color,
-            boxShadow: `0 0 4px ${tierMeta.color}`,
+            background: tierMeta.color, boxShadow: `0 0 4px ${tierMeta.color}`,
           }} />
         )}
       </div>
 
-      {/* Name below icon */}
+      {/* Name */}
       <span style={{
         fontSize: 9, color: "#6b7280", textAlign: "center",
         width: "100%", lineHeight: 1.3,
@@ -205,25 +200,18 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
         {aug.name}
       </span>
 
-      {/* Tooltip */}
+      {/* Tooltip — dùng fixed để không bị overflow: hidden cắt mất */}
       {showTip && (
         <div style={{
-          position: "absolute", bottom: "calc(100% + 8px)", left: "50%",
-          transform: "translateX(-50%)",
-          width: 240, zIndex: 100,
+          position: "fixed",
+          top: tipPos.top,
+          left: tipPos.left,
+          width: 240, zIndex: 9999,
           background: "#1a1a1a", border: "1px solid #333",
           borderRadius: 10, padding: "12px 14px",
           boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
           pointerEvents: "none",
         }}>
-          {/* Arrow */}
-          <div style={{
-            position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)",
-            width: 0, height: 0,
-            borderLeft: "6px solid transparent", borderRight: "6px solid transparent",
-            borderTop: "6px solid #333",
-          }} />
-
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
             <div style={{ width: 32, height: 32, borderRadius: 6, overflow: "hidden", position: "relative", flexShrink: 0, background: "#111" }}>
               {aug.image && !imgErr ? (
@@ -244,7 +232,6 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
               </div>
             </div>
           </div>
-
           {aug.description && (
             <p style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.55, margin: 0 }}>
               {aug.description.replace(/TFT_Augment_Template_Blank/g, "").trim()}
