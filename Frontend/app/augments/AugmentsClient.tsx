@@ -9,9 +9,10 @@ const RANK_COLOR: Record<string, string> = {
   A: "rgb(255, 191, 127)",
   B: "rgb(255, 223, 128)",
   C: "rgb(254, 255, 127)",
+  D: "rgb(200, 200, 200)",
 };
 
-const RANK_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3 };
+const RANK_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3, D: 4 };
 
 const TIER_META: Record<number, { label: string; color: string }> = {
   1: { label: "Bạc",         color: "#9ca3af" },
@@ -21,7 +22,7 @@ const TIER_META: Record<number, { label: string; color: string }> = {
 
 export default function AugmentsClient({ augments }: { augments: ApiAugment[] }) {
   const [search, setSearch]         = useState("");
-  const [rankFilter, setRankFilter] = useState<"All" | "S" | "A" | "B" | "C">("All");
+  const [rankFilter, setRankFilter] = useState<"All" | "S" | "A" | "B" | "C" | "D">("All");
 
   const filtered = useMemo(() => {
     let list = [...augments];
@@ -36,7 +37,7 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
   }, [augments, rankFilter, search]);
 
   const groups = useMemo(() => {
-    return (["S", "A", "B", "C"] as const)
+    return (["S", "A", "B", "C", "D"] as const)
       .map((rank) => ({ rank, color: RANK_COLOR[rank], items: filtered.filter((a) => a.rank === rank) }))
       .filter((g) => g.items.length > 0);
   }, [filtered]);
@@ -48,7 +49,7 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
         {/* Controls */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
           <div style={{ display: "flex", gap: 3, background: "#181818", border: "1px solid #222", borderRadius: 7, padding: 3 }}>
-            {(["All", "S", "A", "B", "C"] as const).map((r) => {
+            {(["All", "S", "A", "B", "C", "D"] as const).map((r) => {
               const active = rankFilter === r;
               const color  = r === "All" ? "#6b7280" : RANK_COLOR[r];
               return (
