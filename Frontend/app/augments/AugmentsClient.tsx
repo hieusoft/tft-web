@@ -15,13 +15,13 @@ const RANK_COLOR: Record<string, string> = {
 const RANK_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3, D: 4 };
 
 const TIER_META: Record<number, { label: string; color: string }> = {
-  1: { label: "Bạc",         color: "#9ca3af" },
-  2: { label: "Vàng",        color: "#eab308" },
+  1: { label: "Bạc", color: "#9ca3af" },
+  2: { label: "Vàng", color: "#eab308" },
   3: { label: "Huyền Thoại", color: "#a855f7" },
 };
 
 export default function AugmentsClient({ augments }: { augments: ApiAugment[] }) {
-  const [search, setSearch]         = useState("");
+  const [search, setSearch] = useState("");
   const [rankFilter, setRankFilter] = useState<"All" | "S" | "A" | "B" | "C" | "D">("All");
 
   const filtered = useMemo(() => {
@@ -51,7 +51,7 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
           <div style={{ display: "flex", gap: 3, background: "#181818", border: "1px solid #222", borderRadius: 7, padding: 3 }}>
             {(["All", "S", "A", "B", "C", "D"] as const).map((r) => {
               const active = rankFilter === r;
-              const color  = r === "All" ? "#6b7280" : RANK_COLOR[r];
+              const color = r === "All" ? "#6b7280" : RANK_COLOR[r];
               return (
                 <button key={r} suppressHydrationWarning onClick={() => setRankFilter(r)}
                   style={{
@@ -71,7 +71,7 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
           <div style={{ position: "relative", marginLeft: "auto" }}>
             <input type="text" value={search} suppressHydrationWarning
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Tìm tăng cường..."
+              placeholder="Tìmlõi..."
               style={{
                 height: 32, width: 200, borderRadius: 6,
                 background: "#1e1e1e", border: "1px solid #2a2a2a",
@@ -91,7 +91,7 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
         {/* Rank Groups */}
         {groups.length === 0 ? (
           <div style={{ textAlign: "center", padding: "64px 0", color: "#4b5563", fontSize: 14 }}>
-            Không tìm thấy tăng cường nào
+            Không tìm thấylõi nào
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -131,22 +131,22 @@ function RankRow({ rank, color, items }: { rank: string; color: string; items: A
 }
 
 function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string }) {
-  const [imgErr, setImgErr]   = useState(false);
+  const [imgErr, setImgErr] = useState(false);
   const [showTip, setShowTip] = useState(false);
-  const [tipPos, setTipPos]   = useState({ top: 0, left: 0, above: true });
-  const ref    = useRef<HTMLDivElement>(null);
+  const [tipPos, setTipPos] = useState({ top: 0, left: 0, above: true });
+  const ref = useRef<HTMLDivElement>(null);
   const tipRef = useRef<HTMLDivElement>(null);
   const tierMeta = TIER_META[aug.tier ?? 0];
 
   useEffect(() => {
     if (!showTip || !ref.current || !tipRef.current) return;
-    const rect   = ref.current.getBoundingClientRect();
-    const TIP_W  = 240;
-    const TIP_H  = tipRef.current.offsetHeight;
-    const above  = rect.top - TIP_H - 8 >= 0;
+    const rect = ref.current.getBoundingClientRect();
+    const TIP_W = 240;
+    const TIP_H = tipRef.current.offsetHeight;
+    const above = rect.top - TIP_H - 8 >= 0;
 
     let left = rect.left + rect.width / 2 - TIP_W / 2;
-    let top  = above ? rect.top - TIP_H - 8 : rect.bottom + 8;
+    let top = above ? rect.top - TIP_H - 8 : rect.bottom + 8;
 
     if (left + TIP_W > window.innerWidth - 8) left = window.innerWidth - TIP_W - 8;
     if (left < 8) left = 8;

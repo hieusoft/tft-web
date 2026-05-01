@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: "MetaTFT VN",
   tagline: "Khám phá Meta TFT với thống kê và dữ liệu",
   description:
-    "Khám phá dữ liệu về đội hình, trang bị, tăng cường TFT và nhiều hơn nữa. Nhận đầy đủ thông tin & công cụ Teamfight Tactics với MetaTFT VN.",
+    "Khám phá dữ liệu về đội hình, trang bị,lõi TFT và nhiều hơn nữa. Nhận đầy đủ thông tin & công cụ Teamfight Tactics với MetaTFT VN.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://metatft.gg",
   ogImage: "/og-image.png",
   twitterHandle: "@metatftvn",
@@ -29,7 +29,7 @@ export const NAV_LINKS = [
     href: "/tierlist",
     description: "Bảng xếp hạng tướng",
     sub: [
-      { label: "Tăng Cường", href: "/augments", icon: "✨" },
+      { label: "Lõi", href: "/augments", icon: "✨" },
       { label: "Tướng", href: "/champions", icon: "⚔️" },
       { label: "Trang Bị", href: "/items", icon: "🛡️" },
       { label: "Tộc & Hệ", href: "/traits", icon: "🌀" },

@@ -137,7 +137,7 @@ export default function HomePage() {
                 TFT
               </h1>
               <p className="text-gray-400 text-sm mb-8 max-w-sm leading-relaxed">
-                Phân tích hơn 2 triệu ván đấu mỗi ngày. Đội hình, tướng, trang bị và tăng cường — tất cả trong một nơi.
+                Phân tích hơn 2 triệu ván đấu mỗi ngày. Đội hình, tướng, trang bị vàlõi — tất cả trong một nơi.
               </p>
 
               <div className="flex flex-wrap gap-3">

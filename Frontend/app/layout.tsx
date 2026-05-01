@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     "đội hình TFT",
     "trang bị TFT",
     "tướng TFT",
-    "tăng cường TFT",
+    "Lõi TFT",
     "đội hình tốt nhất TFT",
     "thống kê TFT",
     "MetaTFT VN",

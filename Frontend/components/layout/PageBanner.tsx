@@ -44,15 +44,15 @@ const BANNER_MAP: Record<string, BannerConfig> = {
   },
 
   "/augments": {
-    title: "Tier List Tăng Cường TFT",
+    title: "Tier Listlõi TFT",
     subtitle:
-      "Tất cả tăng cường Bạc, Vàng và Huyền Thoại xếp hạng theo hiệu suất thực tế.",
+      "Tất cảlõi Bạc, Vàng và Huyền Thoại xếp hạng theo hiệu suất thực tế.",
     accentHex: "#a855f7",
     splashUrl: "/augments-banner.png",
     iconUrl: `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/champion/Lux.png`,
     iconAlt: "Lux",
     stats: [
-      { label: "Tăng Cường", value: "87" },
+      { label: "Lõi", value: "87" },
       { label: "Tốt Nhất", value: "Đoàn Kết", highlight: true },
       { label: "Vị Trí T.Bình Tốt Nhất", value: "3.10" },
       { label: "Patch", value: SITE_CONFIG.patch },
@@ -60,7 +60,7 @@ const BANNER_MAP: Record<string, BannerConfig> = {
     breadcrumb: [
       { label: "Trang Chủ", href: "/" },
       { label: "Thống Kê", href: "/tierlist" },
-      { label: "Tăng Cường" },
+      { label: "Lõi" },
     ],
   },
 

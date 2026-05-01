@@ -1,19 +1,27 @@
-export interface ApiItemStat {
-  key: string;
-  label: string;
-  value: string;
-}
-
 export interface ApiItem {
   id: number;
   name: string;
+  slug?: string;
   category: string;
-  icon_path: string | null;
-  description: string;
-  recipe: number[];
-  stats: ApiItemStat[];
-  avg_placement: number | null;
-  top_4_rate: string | null;
-  win_rate: string | null;
-  games_played: number;
+  /** Rank tier S/A/B/C/D from backend */
+  rank?: string;
+  /** Icon URL – may come as `image` or `icon_path` from API */
+  icon_path?: string | null;
+  image?: string | null;
+  description?: string;
+  /** Stats object (key→value record) or array */
+  stats?: Record<string, string> | { key: string; label: string; value: string }[];
+  recipe?: number[];
+  /** Component item IDs */
+  component_1?: number | null;
+  component_2?: number | null;
+  avg_placement?: number | null;
+  /** e.g. "82.0%" – already a percentage string */
+  win_rate?: string | null;
+  /** e.g. "0.8%" – already a percentage string */
+  pick_rate?: string | null;
+  /** e.g. "66.2%" */
+  top_4_rate?: string | null;
+  /** May be a number or a string from the API */
+  games_played?: number | string;
 }

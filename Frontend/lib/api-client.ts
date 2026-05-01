@@ -6,7 +6,7 @@ import type { ApiAugment } from "./types/augment";
 // Re-export types để code dùng api-client vẫn import được từ đây
 export type { ApiTrait } from "./types/trait";
 export type { ApiSkill, ApiChampion } from "./types/champion";
-export type { ApiItemStat, ApiItem } from "./types/item";
+export type { ApiItem } from "./types/item";
 export type { ApiAugment } from "./types/augment";
 
 // ── Fetch options ─────────────────────────────────────────────────────────────
