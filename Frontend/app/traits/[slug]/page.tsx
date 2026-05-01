@@ -5,6 +5,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+// Force dynamic rendering — tránh static-generate lúc build khi backend chưa chạy
+export const dynamic = "force-dynamic";
+
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function parsePct(val: string | null): number {
@@ -37,12 +41,6 @@ export async function generateMetadata({
   };
 }
 
-// ── Static params (optional ISR prerender) ────────────────────────────────────
-
-export async function generateStaticParams() {
-  const traits = await apiClient.getTraits();
-  return traits.map((t) => ({ slug: toSlug(t.name) }));
-}
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 

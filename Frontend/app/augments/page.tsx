@@ -24,6 +24,9 @@ const jsonLd = [
   },
 ];
 
+// Force dynamic rendering — tránh static-generate lúc build khi backend chưa chạy
+export const dynamic = "force-dynamic";
+
 export default async function AugmentsPage() {
   const augments = await apiClient.getAugments();
 
