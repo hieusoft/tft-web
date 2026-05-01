@@ -132,29 +132,26 @@ function RankRow({ rank, color, items }: { rank: string; color: string; items: A
 function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string }) {
   const [imgErr, setImgErr]   = useState(false);
   const [showTip, setShowTip] = useState(false);
-  const [tipPos, setTipPos]   = useState({ top: 0, left: 0 });
-  const ref = useRef<HTMLDivElement>(null);
+  const [tipPos, setTipPos]   = useState({ top: 0, left: 0, above: true });
+  const ref    = useRef<HTMLDivElement>(null);
+  const tipRef = useRef<HTMLDivElement>(null);
   const tierMeta = TIER_META[aug.tier ?? 0];
 
-  // Tính vị trí tooltip dựa trên getBoundingClientRect để tránh bị cắt
   useEffect(() => {
-    if (!showTip || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const TIP_W = 240;
-    const TIP_H = 160; // ước tính
+    if (!showTip || !ref.current || !tipRef.current) return;
+    const rect   = ref.current.getBoundingClientRect();
+    const TIP_W  = 240;
+    const TIP_H  = tipRef.current.offsetHeight;
+    const above  = rect.top - TIP_H - 8 >= 0;
 
     let left = rect.left + rect.width / 2 - TIP_W / 2;
-    let top  = rect.top - TIP_H - 8 + window.scrollY;
+    let top  = above ? rect.top - TIP_H - 8 : rect.bottom + 8;
 
-    // Không vượt cạnh phải màn hình
     if (left + TIP_W > window.innerWidth - 8) left = window.innerWidth - TIP_W - 8;
     if (left < 8) left = 8;
 
-    // Nếu không đủ chỗ phía trên thì hiện xuống dưới
-    if (rect.top - TIP_H - 8 < 0) top = rect.bottom + 8 + window.scrollY;
-
-    setTipPos({ top, left });
-  }, [showTip]);
+    setTipPos({ top, left, above });
+  });
 
   return (
     <div
@@ -202,7 +199,7 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
 
       {/* Tooltip — dùng fixed để không bị overflow: hidden cắt mất */}
       {showTip && (
-        <div style={{
+        <div ref={tipRef} style={{
           position: "fixed",
           top: tipPos.top,
           left: tipPos.left,
@@ -211,6 +208,7 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
           borderRadius: 10, padding: "12px 14px",
           boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
           pointerEvents: "none",
+          opacity: tipPos.top === 0 ? 0 : 1,
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
             <div style={{ width: 32, height: 32, borderRadius: 6, overflow: "hidden", position: "relative", flexShrink: 0, background: "#111" }}>
