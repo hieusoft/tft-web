@@ -1,7 +1,7 @@
 import json
 import redis
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List
 
 from app.core.database import get_db
@@ -17,18 +17,20 @@ def clear_cache(r: redis.Redis):
     r.delete(CACHE_KEY)
 
 @router.get("/", response_model=List[ItemResponse])
-def get_all(db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis)):
-    cached = r.get(CACHE_KEY)
-    if cached: return json.loads(cached)
-    items = db.query(Item).all()
-    result = [ItemResponse.model_validate(i).model_dump(mode='json') for i in items]
-    
-    r.setex(CACHE_KEY, 300, json.dumps(result))
+def get_items(db: Session = Depends(get_db)):
+    items = db.query(Item).options(
+        joinedload(Item.component_1),
+        joinedload(Item.component_2)
+    ).all()
     return items
 
 @router.get("/{slug}", response_model=ItemResponse)
 def get_detail(slug: str, db: Session = Depends(get_db)):
-    item = db.query(Item).filter(Item.slug == slug).first()
+    item = db.query(Item).options(
+        joinedload(Item.component_1),
+        joinedload(Item.component_2)
+    ).filter(Item.slug == slug).first()
+
     if not item:
         raise HTTPException(status_code=404, detail="Không tìm thấy trang bị")
     return item
