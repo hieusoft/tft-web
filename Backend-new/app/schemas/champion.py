@@ -1,68 +1,65 @@
-from pydantic import BaseModel
-from typing import Optional, Dict, Any
-from app.schemas.skill import SkillResponse
+from pydantic import BaseModel, ConfigDict
+from typing import List, Optional, Dict, Any
 
-class ChampionBase(BaseModel):
-    name: str
-    cost: int
-    accent_color: Optional[str] = None
-    skill_id: Optional[int] = None
-    base_stats: Optional[Dict[str, Any]] = None
-    icon_path: Optional[str] = None
-    splash_path: Optional[str] = None
-    avg_placement: Optional[float] = None
-    top_4_rate: Optional[str] = None
-    win_rate: Optional[str] = None
-    match_count: Optional[int] = 0
-
-class ChampionCreate(ChampionBase):
-    pass
-    
-class ChampionResponse(BaseModel):
+class ItemSimple(BaseModel):
     id: int
     name: str
+    image: str
+    model_config = ConfigDict(from_attributes=True)
+
+class BuildResponse(BaseModel):
+    item_1: Optional[ItemSimple]
+    item_2: Optional[ItemSimple]
+    item_3: Optional[ItemSimple]
+    avg_placement: float
+    win_rate: str
+    model_config = ConfigDict(from_attributes=True)
+
+class ItemStatResponse(BaseModel):
+    item: Optional[ItemSimple]
+    avg_placement: float
+    win_rate: str
+    pick_percent: str
+    model_config = ConfigDict(from_attributes=True)
+
+class TraitSimple(BaseModel):
+    name: str
+    slug: str
+    model_config = ConfigDict(from_attributes=True)
+
+class SkillResponse(BaseModel):
+    name: str
+    mana_start: int
+    mana_max: int
+    description: str
+    ability_stats: Optional[Dict[str, Any]]
+    icon_path: str
+    model_config = ConfigDict(from_attributes=True)
+
+class ChampionBase(BaseModel):
+    id: int
+    name: str
+    slug: str
     cost: int
-    accent_color: Optional[str] = None
-    icon_path: Optional[str] = None
-    splash_path: Optional[str] = None
+    rank: str
+    avg_placement: float
+    win_rate: str
+    games_played: str
+    pick_rate: str
+    icon_path: str
+    splash_path: str
+
+class ChampionListResponse(ChampionBase):
+    id: int
     skill: Optional[SkillResponse] = None
-    # stats meta
-    avg_placement: Optional[float] = None
-    top_4_rate: Optional[str] = None
-    win_rate: Optional[str] = None
-    match_count: int = 0
+    traits: List[TraitSimple] = []
+    best_items: List[ItemStatResponse] = []
+    model_config = ConfigDict(from_attributes=True)
 
-    @classmethod
-    def from_orm_champion(cls, champ) -> "ChampionResponse":
-        return cls(
-            id=champ.id,
-            name=champ.name,
-            cost=champ.cost,
-            accent_color=champ.accent_color,
-            icon_path=champ.icon_path,
-            splash_path=champ.splash_path,
-            skill=SkillResponse.from_orm_skill(champ.skill) if champ.skill else None,
-            avg_placement=champ.avg_placement,
-            top_4_rate=champ.top_4_rate,
-            win_rate=champ.win_rate,
-            match_count=champ.match_count or 0,
-        )
-
-    class Config:
-        from_attributes = True
-
-class ChampionUpdate(BaseModel):
-    name: Optional[str] = None
-    cost: Optional[int] = None
-    accent_color: Optional[str] = None
-    skill_id: Optional[int] = None
-    base_stats: Optional[Dict[str, Any]] = None
-    icon_path: Optional[str] = None
-    splash_path: Optional[str] = None
-    
-class ChampionUpdateMeta(BaseModel):
-    avg_placement: Optional[float] = None
-    top_4_rate: Optional[str] = None
-    win_rate: Optional[str] = None
-    match_count: Optional[int] = None
-
+class ChampionDetailResponse(ChampionBase):
+    base_stats: Optional[Dict[str, Any]]
+    skill: Optional[SkillResponse]
+    traits: List[TraitSimple] = []
+    best_builds: List[BuildResponse] = []
+    best_items: List[ItemStatResponse] = []
+    model_config = ConfigDict(from_attributes=True)
