@@ -17,6 +17,13 @@ class ItemBase(BaseModel):
     component_2: Optional[int] = None
     image: Optional[str] = None
 
+class ItemSimpleResponse(BaseModel):
+    id: int
+    name: str
+    slug: str
+    image: Optional[str] = None
+    model_config = ConfigDict(from_attributes=True)
+
 class ItemCreate(ItemBase):
     pass
 
@@ -26,4 +33,6 @@ class ItemUpdate(ItemBase):
 
 class ItemResponse(ItemBase):
     id: int
+    component_1: Optional[ItemSimpleResponse] = None
+    component_2: Optional[ItemSimpleResponse] = None
     model_config = ConfigDict(from_attributes=True)
