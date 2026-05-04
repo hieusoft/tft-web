@@ -17,7 +17,7 @@ const TIER_COLOR: Record<string, string> = {
   D: "rgb(140,140,140)",
 };
 const TIER_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3, D: 4 };
-const TIP_W = 300;
+const TIP_W = 340;
 const MOBILE_BP = 640;
 const TABLET_BP = 860;
 
@@ -37,35 +37,93 @@ const STAT_COLORS: Record<string, string> = {
   default: "#d1d5db",
 };
 
-const STAT_ICONS: Record<string, string> = {
-  AD: "⚔️",
-  AP: "🔮",
-  AS: "⚡",
-  HP: "❤️",
-  Armor: "🛡️",
-  MR: "✨",
-  Mana: "💧",
-  Crit: "💥",
-  DA: "⚔️",
-  scaleDA: "⚔️",
-};
+function StatIcon({ type, color }: { type: string; color: string }) {
+  const svgProps = { width: 15, height: 15, fill: color, viewBox: "0 0 24 24", style: { flexShrink: 0 } };
 
-function parseStatKey(key: string): { label: string; color: string; icon: string } {
+  switch (type) {
+    case "AD":
+      return <svg {...svgProps}><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-1.25 0-2.68.38-4.32 2.06L12 6.4l5.6 5.6 1.34-1.34C20.62 9.02 21 7.59 21 6.34 21 4.35 19.65 3 17.66 3M5.16 11l-2 2 4.84 4.84L3 22h3l4.16-4.16L15 22.68l2-2-11.84-11.84z" /></svg>;
+    case "AP":
+      return <svg {...svgProps}><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" /></svg>;
+    case "AS":
+      return <svg {...svgProps}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>;
+    case "HP":
+      return <svg {...svgProps}><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>;
+    case "Armor":
+      return <svg {...svgProps}><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" /></svg>;
+    case "MR":
+      return <svg {...svgProps}><path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.31l7 3.89v7.6l-7 3.89-7-3.89V8.2l7-3.89z" /></svg>;
+    case "Mana":
+      return <svg {...svgProps}><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z" /></svg>;
+    case "Crit":
+      return <svg {...svgProps}><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z" /></svg>;
+    default:
+      return <svg {...svgProps}><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" /></svg>;
+  }
+}
+
+// ── Category Badge ─────────────────────────────────────────────────────────────
+function CategoryBadge({ category, size = "sm" }: { category: string; size?: "sm" | "md" }) {
+  let bg = "#1f2937", text = "#9ca3af", border = "#374151";
+
+  if (category.includes("Ánh Sáng")) { 
+    bg = "rgba(250, 204, 21, 0.15)"; text = "#fde047"; border = "rgba(250, 204, 21, 0.3)"; 
+  } else if (category.includes("Tạo Tác")) { 
+    bg = "rgba(248, 113, 113, 0.15)"; text = "#f87171"; border = "rgba(248, 113, 113, 0.3)"; 
+  } else if (category.includes("Tộc/Hệ") || category.includes("Ấn")) { 
+    bg = "rgba(45, 212, 191, 0.15)"; text = "#2dd4bf"; border = "rgba(45, 212, 191, 0.3)"; 
+  } else if (category.includes("Hỗ Trợ")) { 
+    bg = "rgba(192, 132, 252, 0.15)"; text = "#c084fc"; border = "rgba(192, 132, 252, 0.3)"; 
+  } else if (category.includes("Thường")) { 
+    bg = "#1f2937"; text = "#d1d5db"; border = "#374151"; 
+  }
+
+  const isMd = size === "md";
+
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center", justifyContent: "center",
+      padding: isMd ? "3px 8px" : "2px 6px",
+      borderRadius: 6,
+      fontSize: isMd ? 11 : 9,
+      fontWeight: 700,
+      background: bg,
+      color: text,
+      border: `1px solid ${border}`,
+      whiteSpace: "nowrap",
+      textTransform: "uppercase",
+      letterSpacing: "0.05em"
+    }}>
+      {category}
+    </span>
+  );
+}
+
+function parseStatKey(key: string): { label: string; color: string; type: string } {
   // Remove "scale" prefix
-  const cleaned = key.replace(/^scale/i, "");
+  let cleanedKey = key.replace(/^scale/i, "").trim();
+
+  let statType = "default";
+  if (/AD|DA|Damage|Vật lý/i.test(cleanedKey)) statType = "AD";
+  else if (/AP|Ability/i.test(cleanedKey)) statType = "AP";
+  else if (/AS|Speed|Tốc/i.test(cleanedKey)) statType = "AS";
+  else if (/HP|Health|Máu/i.test(cleanedKey)) statType = "HP";
+  else if (/Armor|Giáp/i.test(cleanedKey)) statType = "Armor";
+  else if (/MR|Resist|Kháng/i.test(cleanedKey)) statType = "MR";
+  else if (/Mana|Năng lượng/i.test(cleanedKey)) statType = "Mana";
+  else if (/Crit|Chí mạng/i.test(cleanedKey)) statType = "Crit";
   // Extract stat type from beginning (e.g., "AD Bonus: +15%" -> "AD")
-  const match = cleaned.match(/^([A-Za-z]+)/);
-  const statType = match?.[1] ?? "";
-  // Clean label: remove the value part after colon if present
-  const label = key
-    .replace(/^scale/i, "")
-    .replace(/:\s*[+-]?\d+%?$/, "")
+  let label = cleanedKey
+    .replace(/:\s*[+-]?\d+%?$/, "") // Xóa value ở cuối nếu bị dính
+    .replace(/Bonus/i, "") // Xóa chữ Bonus vô nghĩa
+    .replace(/manaregen/i, "Hồi Mana") // Sửa tên manaregen
+    .replace(/Armor/i, "Giáp")
     .trim();
 
   return {
     label,
     color: STAT_COLORS[statType] ?? STAT_COLORS.default,
-    icon: STAT_ICONS[statType] ?? "📊",
+    type: statType,
   };
 }
 
@@ -124,29 +182,37 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
   const imgSrc = item.icon_path ?? item.image ?? null;
 
   // Parse stats
-  const statEntries: { label: string; value: string; color: string }[] = [];
+  const statEntries: { label: string; value: string; color: string; type: string }[] = [];
   if (item.stats) {
     if (Array.isArray(item.stats)) {
       (item.stats as { key: string; label: string; value: string }[]).forEach(s => {
         const parsed = parseStatKey(s.label ?? s.key);
-        statEntries.push({ label: parsed.label, value: s.value, color: parsed.color });
+        statEntries.push({ label: parsed.label, value: s.value, color: parsed.color, type: parsed.type });
       });
     } else {
       Object.entries(item.stats as Record<string, string>).forEach(([k, v]) => {
         const parsed = parseStatKey(k);
-        statEntries.push({ label: parsed.label, value: String(v), color: parsed.color });
+        statEntries.push({ label: parsed.label, value: String(v), color: parsed.color, type: parsed.type });
       });
     }
   }
 
   // Clean description
-  const desc = item.description
-    ? String(item.description)
-        .replace(/\[.*?\]/g, "")
-        .replace(/^[^a-zA-ZÀ-ỹ]*/, "")
-        .replace(/\s+/g, " ")
-        .trim()
-    : null;
+  let desc = item.description ? String(item.description).replace(/\[.*?\]/g, "") : null;
+  let isUncraftable = false;
+
+  if (desc) {
+    const escapedName = item.name.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const nameRegex = new RegExp('^' + escapedName, 'i');
+    desc = desc.replace(nameRegex, "").trim();
+    desc = desc.replace(/^\+?\s*\d+%?\s*/, "").trim();
+    const uncraftableRegex = /không thể ghép\.?/i;
+    if (uncraftableRegex.test(desc)) {
+      isUncraftable = true;
+      desc = desc.replace(uncraftableRegex, "").trim();
+    }
+    desc = desc.replace(/^[^a-zA-ZÀ-ỹ0-9]*/, "").replace(/\s+/g, " ").trim();
+  }
 
   // Components
   const comp1 = isComponentObj(item.component_1) ? item.component_1 : null;
@@ -161,85 +227,122 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
       width: TIP_W,
       visibility: pos ? "visible" : "hidden",
       zIndex: 9999,
-      background: "#1a1c20",
-      border: "1px solid #2a2d35",
-      borderRadius: 10,
-      padding: "14px",
-      boxShadow: "0 12px 40px rgba(0,0,0,0.8)",
+      background: "linear-gradient(180deg, #1e2128 0%, #111317 100%)",
+      border: `1px solid ${tc}40`,
+      borderRadius: 12,
+      padding: "18px",
+      boxShadow: `0 20px 40px rgba(0,0,0,0.8), 0 0 20px ${tc}15`,
       pointerEvents: "none",
     }}>
       {/* ── Header: icon + name + rank + category ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
         <div style={{
-          width: 44, height: 44, borderRadius: 8, overflow: "hidden", flexShrink: 0,
-          background: "#111", position: "relative",
-          border: `1px solid ${tc}55`,
+          width: 54, height: 54, borderRadius: 10, overflow: "hidden", flexShrink: 0,
+          background: "#000", position: "relative",
+          border: `2px solid ${tc}80`, // Đậm hơn để nổi bật ảnh
+          boxShadow: `0 4px 10px rgba(0,0,0,0.5)`
         }}>
           {imgSrc && !imgErr ? (
-            <Image src={imgSrc} alt={item.name} fill sizes="44px" style={{ objectFit: "contain", padding: 2 }} />
+            <Image src={imgSrc} alt={item.name} fill sizes="54px" style={{ objectFit: "contain", padding: 2 }} />
           ) : (
-            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: "#6b7280" }}>⚔</div>
+            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, color: "#6b7280" }}>⚔</div>
           )}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 14, fontWeight: 700, color: "#f3f4f6", lineHeight: 1.2 }}>{item.name}</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
+          <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", lineHeight: 1.2, textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}>{item.name}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6 }}>
             <span style={{
               display: "inline-flex", alignItems: "center", justifyContent: "center",
-              width: 20, height: 20, borderRadius: 4, fontSize: 10, fontWeight: 800,
+              width: 22, height: 22, borderRadius: 4, fontSize: 12, fontWeight: 900,
               background: tc, color: "#000",
             }}>{rank}</span>
-            {item.category && <span style={{ fontSize: 10, color: "#6b7280" }}>{item.category}</span>}
+            {item.category && <CategoryBadge category={item.category} size="sm" />}
           </div>
         </div>
       </div>
 
       {/* ── Stats inline ── */}
       {statEntries.length > 0 && (
-        <div style={{ display: "flex", gap: 12, marginBottom: 8, paddingBottom: 8, borderBottom: "1px solid #242730" }}>
-          {statEntries.map(({ label, value, color }, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", gap: 3 }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color }}>{value}</span>
-              <span style={{ fontSize: 9, color: "#555" }}>{label}</span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 16px", marginBottom: 12, paddingBottom: 12, borderBottom: "1px solid #2a2d35" }}>
+          {statEntries.map(({ label, value, color, type }, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <StatIcon type={type} color={color} />
+              <span style={{ fontSize: 14, fontWeight: 700, color }}>{value}</span>
+              <span style={{ fontSize: 11, color: "#8b8f99", fontWeight: 500 }}>{label}</span>
             </div>
           ))}
         </div>
       )}
 
+      {hasRecipe ? (
+        <div style={{
+          display: "flex", alignItems: "center", gap: 8,
+          marginBottom: 12, padding: "8px 12px",
+          background: "rgba(0, 0, 0, 0.25)",
+          borderRadius: 8,
+          border: "1px solid #242730",
+          boxShadow: "inset 0 2px 10px rgba(0,0,0,0.2)"
+        }}>
+          <span style={{ fontSize: 10, color: "#facc15", textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 800, marginRight: 2 }}>Ghép:</span>
+          {comp1 && <RecipePiece name={comp1.name} image={comp1.image} />}
+          {comp1 && comp2 && <span style={{ fontSize: 16, color: "#facc15", fontWeight: 800 }}>+</span>}
+          {comp2 && <RecipePiece name={comp2.name} image={comp2.image} />}
+        </div>
+      ) : isUncraftable ? (
+        <div style={{
+          fontSize: 13, color: "#f87171", fontStyle: "italic", fontWeight: 600,
+          marginBottom: 12, paddingBottom: 12,
+          borderBottom: desc ? "1px solid #2a2d35" : "none",
+          display: "flex", alignItems: "center", gap: 6
+        }}>
+          🚫 Không Thể Ghép
+        </div>
+      ) : null}
+
       {/* ── Description ── */}
       {desc && (
-        <div style={{ fontSize: 11, color: "#8b8f99", lineHeight: 1.55, marginBottom: 10 }}>
-          {desc}
-        </div>
-      )}
-
-      {/* ── Recipe ── */}
-      {hasRecipe && (
-        <div style={{
-          display: "flex", alignItems: "center", gap: 6,
-          marginBottom: 10, padding: "8px 0",
-          borderTop: "1px solid #242730",
+        <div style={{ 
+          fontSize: 13, 
+          color: "#d1d5db", // Đổi màu sáng hơn giúp dễ đọc
+          lineHeight: 1.55, 
+          marginBottom: 14,
+          letterSpacing: "0.01em"
         }}>
-          <span style={{ fontSize: 9, color: "#555", marginRight: 2 }}>Ghép:</span>
-          {comp1 && <RecipePiece name={comp1.name} image={comp1.image} />}
-          {comp1 && comp2 && <span style={{ fontSize: 12, color: "#3a3d45", fontWeight: 600 }}>+</span>}
-          {comp2 && <RecipePiece name={comp2.name} image={comp2.image} />}
+          {desc
+            .replace(/\.\s+/g, ".\n")
+            .split("\n")
+            .map((sentence) => sentence.trim())
+            .filter((sentence) => sentence.length > 0)
+            .map((sentence, i) => {
+              const finalSentence = /[.!?…"']$/.test(sentence) ? sentence : sentence + ".";
+              const formattedHTML = finalSentence
+                .replace(/^([^:]{2,30}):/g, '<strong style="color: #60a5fa; text-transform: capitalize;">$1:</strong>')
+                .replace(/(\d+(?:\.\d+)?%)/g, '<strong style="color: #fbbf24;">$1</strong>')
+                .replace(/(\d+\s*giây)/gi, '<strong style="color: #fbbf24;">$1</strong>');
+              return (
+                <span 
+                  key={i} 
+                  style={{ display: "block", marginBottom: 6 }} 
+                  dangerouslySetInnerHTML={{ __html: formattedHTML }} 
+                />
+              );
+            })}
         </div>
       )}
 
       {/* ── Bottom stats ── */}
       <div style={{
         display: "flex", justifyContent: "space-between",
-        paddingTop: 8, borderTop: "1px solid #242730",
+        paddingTop: 4,
       }}>
         {[
           { label: "Hạng TB", value: fPlace(item.avg_placement), color: placeColor(item.avg_placement) },
-          { label: "Tỷ Lệ Thắng", value: f(item.win_rate), color: "#d1d5db" },
+          { label: "Tỷ Lệ Thắng", value: f(item.win_rate), color: "#f3f4f6" },
           { label: "Tần Suất", value: f(item.pick_rate ?? item.top_4_rate), color: "#9ca3af" },
         ].map(({ label, value, color }) => (
-          <div key={label} style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color }}>{value}</div>
-            <div style={{ fontSize: 8, color: "#4b5563", marginTop: 1, textTransform: "uppercase", letterSpacing: "0.04em" }}>{label}</div>
+          <div key={label} style={{ textAlign: "center", flex: 1 }}>
+            <div style={{ fontSize: 15, fontWeight: 800, color }}>{value}</div>
+            <div style={{ fontSize: 10, color: "#6b7280", marginTop: 2, textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 600 }}>{label}</div>
           </div>
         ))}
       </div>
@@ -254,19 +357,19 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
 function RecipePiece({ name, image }: { name: string; image: string }) {
   const [err, setErr] = useState(false);
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
       <div style={{
-        width: 24, height: 24, borderRadius: 4, overflow: "hidden",
+        width: 28, height: 28, borderRadius: 6, overflow: "hidden", // Tăng size
         background: "#111", position: "relative", flexShrink: 0,
-        border: "1px solid #333",
+        border: "1px solid #3a3d45",
       }}>
         {!err ? (
-          <Image src={image} alt={name} fill sizes="24px" style={{ objectFit: "contain", padding: 1 }} onError={() => setErr(true)} />
+          <Image src={image} alt={name} fill sizes="28px" style={{ objectFit: "contain", padding: 1 }} onError={() => setErr(true)} />
         ) : (
-          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: "#6b7280" }}>?</div>
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, color: "#6b7280" }}>?</div>
         )}
       </div>
-      <span style={{ fontSize: 10, color: "#8b8f99" }}>{name}</span>
+      <span style={{ fontSize: 11, color: "#d1d5db", fontWeight: 500 }}>{name}</span>
     </div>
   );
 }
@@ -501,7 +604,7 @@ function DesktopRow({ item, idx, isTablet }: { item: ApiItem; idx: number; isTab
 
         <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: "#e5e7eb", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.name}</div>
-          {item.category && <div style={{ fontSize: 10, color: "#4b5563", marginTop: 1 }}>{item.category}</div>}
+          {item.category && <CategoryBadge category={item.category} size="sm" />}
         </div>
       </div>
 
