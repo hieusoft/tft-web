@@ -55,6 +55,9 @@ function normaliseItem(raw: any) {
     games_played: raw.games_played ?? 0,
     stats: raw.stats ?? {},
     recipe: raw.recipe ?? [],
+    // Pass component objects for recipe display in tooltip
+    component_1: raw.component_1 ?? null,
+    component_2: raw.component_2 ?? null,
   };
 }
 

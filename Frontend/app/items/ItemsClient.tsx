@@ -1,9 +1,10 @@
-// v9 - JS-based responsive: no CSS media queries
+// v10 - Enhanced tooltip with recipe & color-coded stats
 "use client";
 
 import Image from "next/image";
 import { useState, useMemo, useRef, useEffect } from "react";
 import type { ApiItem } from "@/lib/api-client";
+import type { ItemComponent } from "@/lib/types/item";
 import ReactDOM from "react-dom";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -16,9 +17,61 @@ const TIER_COLOR: Record<string, string> = {
   D: "rgb(140,140,140)",
 };
 const TIER_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3, D: 4 };
-const TIP_W = 268;
+const TIP_W = 300;
 const MOBILE_BP = 640;
 const TABLET_BP = 860;
+
+// ── Stat color mapping ────────────────────────────────────────────────────────
+
+const STAT_COLORS: Record<string, string> = {
+  AD: "#ff6b6b",
+  AP: "#a855f7",
+  AS: "#facc15",
+  HP: "#4ade80",
+  Armor: "#f97316",
+  MR: "#60a5fa",
+  Mana: "#3b82f6",
+  Crit: "#ef4444",
+  DA: "#ff6b6b",
+  scaleDA: "#ff6b6b",
+  default: "#d1d5db",
+};
+
+const STAT_ICONS: Record<string, string> = {
+  AD: "⚔️",
+  AP: "🔮",
+  AS: "⚡",
+  HP: "❤️",
+  Armor: "🛡️",
+  MR: "✨",
+  Mana: "💧",
+  Crit: "💥",
+  DA: "⚔️",
+  scaleDA: "⚔️",
+};
+
+function parseStatKey(key: string): { label: string; color: string; icon: string } {
+  // Remove "scale" prefix
+  const cleaned = key.replace(/^scale/i, "");
+  // Extract stat type from beginning (e.g., "AD Bonus: +15%" -> "AD")
+  const match = cleaned.match(/^([A-Za-z]+)/);
+  const statType = match?.[1] ?? "";
+  // Clean label: remove the value part after colon if present
+  const label = key
+    .replace(/^scale/i, "")
+    .replace(/:\s*[+-]?\d+%?$/, "")
+    .trim();
+
+  return {
+    label,
+    color: STAT_COLORS[statType] ?? STAT_COLORS.default,
+    icon: STAT_ICONS[statType] ?? "📊",
+  };
+}
+
+function isComponentObj(v: unknown): v is ItemComponent {
+  return typeof v === "object" && v !== null && "image" in v && "name" in v;
+}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -68,21 +121,37 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
 
   const rank = item.rank ?? "D";
   const tc = TIER_COLOR[rank] ?? "#9ca3af";
+  const imgSrc = item.icon_path ?? item.image ?? null;
 
-  const statEntries: { label: string; value: string }[] = [];
+  // Parse stats
+  const statEntries: { label: string; value: string; color: string }[] = [];
   if (item.stats) {
     if (Array.isArray(item.stats)) {
-      (item.stats as { key: string; label: string; value: string }[]).forEach(s =>
-        statEntries.push({ label: s.label ?? s.key, value: s.value }));
+      (item.stats as { key: string; label: string; value: string }[]).forEach(s => {
+        const parsed = parseStatKey(s.label ?? s.key);
+        statEntries.push({ label: parsed.label, value: s.value, color: parsed.color });
+      });
     } else {
-      Object.entries(item.stats as Record<string, string>).forEach(([k, v]) =>
-        statEntries.push({ label: k, value: String(v) }));
+      Object.entries(item.stats as Record<string, string>).forEach(([k, v]) => {
+        const parsed = parseStatKey(k);
+        statEntries.push({ label: parsed.label, value: String(v), color: parsed.color });
+      });
     }
   }
 
+  // Clean description
   const desc = item.description
-    ? String(item.description).replace(/\[.*?\]/g, "").replace(/\s+/g, " ").trim()
+    ? String(item.description)
+        .replace(/\[.*?\]/g, "")
+        .replace(/^[^a-zA-ZÀ-ỹ]*/, "")
+        .replace(/\s+/g, " ")
+        .trim()
     : null;
+
+  // Components
+  const comp1 = isComponentObj(item.component_1) ? item.component_1 : null;
+  const comp2 = isComponentObj(item.component_2) ? item.component_2 : null;
+  const hasRecipe = comp1 !== null || comp2 !== null;
 
   const node = (
     <div ref={tipRef} style={{
@@ -92,31 +161,32 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
       width: TIP_W,
       visibility: pos ? "visible" : "hidden",
       zIndex: 9999,
-      background: "#1a1a1a",
-      border: `1px solid ${tc}50`,
-      borderRadius: 12,
-      padding: "14px 16px",
-      boxShadow: "0 20px 60px rgba(0,0,0,0.85)",
+      background: "#1a1c20",
+      border: "1px solid #2a2d35",
+      borderRadius: 10,
+      padding: "14px",
+      boxShadow: "0 12px 40px rgba(0,0,0,0.8)",
       pointerEvents: "none",
     }}>
+      {/* ── Header: icon + name + rank + category ── */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
         <div style={{
-          width: 48, height: 48, borderRadius: 9, overflow: "hidden", flexShrink: 0,
+          width: 44, height: 44, borderRadius: 8, overflow: "hidden", flexShrink: 0,
           background: "#111", position: "relative",
-          border: `1px solid ${tc}55`, boxShadow: `0 0 14px ${tc}40`,
+          border: `1px solid ${tc}55`,
         }}>
-          {item.icon_path && !imgErr ? (
-            <Image src={item.icon_path} alt={item.name} fill sizes="48px" style={{ objectFit: "contain", padding: 2 }} />
+          {imgSrc && !imgErr ? (
+            <Image src={imgSrc} alt={item.name} fill sizes="44px" style={{ objectFit: "contain", padding: 2 }} />
           ) : (
-            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>⚔️</div>
+            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: "#6b7280" }}>⚔</div>
           )}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: "#f3f4f6", lineHeight: 1.3, wordBreak: "break-word" }}>{item.name}</div>
+          <div style={{ fontSize: 14, fontWeight: 700, color: "#f3f4f6", lineHeight: 1.2 }}>{item.name}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
             <span style={{
               display: "inline-flex", alignItems: "center", justifyContent: "center",
-              width: 22, height: 22, borderRadius: 5, fontSize: 10, fontWeight: 800,
+              width: 20, height: 20, borderRadius: 4, fontSize: 10, fontWeight: 800,
               background: tc, color: "#000",
             }}>{rank}</span>
             {item.category && <span style={{ fontSize: 10, color: "#6b7280" }}>{item.category}</span>}
@@ -124,32 +194,52 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
         </div>
       </div>
 
+      {/* ── Stats inline ── */}
       {statEntries.length > 0 && (
-        <div style={{
-          display: "flex", flexDirection: "column", gap: 4,
-          padding: "8px 10px", background: "#141414",
-          borderRadius: 8, marginBottom: 10, border: "1px solid #242424",
-        }}>
-          {statEntries.map(({ label, value }, i) => (
-            <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-              <span style={{ fontSize: 10, color: "#6b7280" }}>{label}</span>
-              <span style={{ fontSize: 10, fontWeight: 700, color: "#f0b90b" }}>{value}</span>
+        <div style={{ display: "flex", gap: 12, marginBottom: 8, paddingBottom: 8, borderBottom: "1px solid #242730" }}>
+          {statEntries.map(({ label, value, color }, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 3 }}>
+              <span style={{ fontSize: 12, fontWeight: 700, color }}>{value}</span>
+              <span style={{ fontSize: 9, color: "#555" }}>{label}</span>
             </div>
           ))}
         </div>
       )}
 
-      {desc && <p style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.6, margin: "0 0 10px" }}>{desc}</p>}
+      {/* ── Description ── */}
+      {desc && (
+        <div style={{ fontSize: 11, color: "#8b8f99", lineHeight: 1.55, marginBottom: 10 }}>
+          {desc}
+        </div>
+      )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, paddingTop: 8, borderTop: "1px solid #222" }}>
+      {/* ── Recipe ── */}
+      {hasRecipe && (
+        <div style={{
+          display: "flex", alignItems: "center", gap: 6,
+          marginBottom: 10, padding: "8px 0",
+          borderTop: "1px solid #242730",
+        }}>
+          <span style={{ fontSize: 9, color: "#555", marginRight: 2 }}>Ghép:</span>
+          {comp1 && <RecipePiece name={comp1.name} image={comp1.image} />}
+          {comp1 && comp2 && <span style={{ fontSize: 12, color: "#3a3d45", fontWeight: 600 }}>+</span>}
+          {comp2 && <RecipePiece name={comp2.name} image={comp2.image} />}
+        </div>
+      )}
+
+      {/* ── Bottom stats ── */}
+      <div style={{
+        display: "flex", justifyContent: "space-between",
+        paddingTop: 8, borderTop: "1px solid #242730",
+      }}>
         {[
           { label: "Hạng TB", value: fPlace(item.avg_placement), color: placeColor(item.avg_placement) },
           { label: "Tỷ Lệ Thắng", value: f(item.win_rate), color: "#d1d5db" },
-          { label: "Tần Suất", value: f(item.top_4_rate), color: "#9ca3af" },
+          { label: "Tần Suất", value: f(item.pick_rate ?? item.top_4_rate), color: "#9ca3af" },
         ].map(({ label, value, color }) => (
           <div key={label} style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color }}>{value}</div>
-            <div style={{ fontSize: 9, color: "#4b5563", marginTop: 2 }}>{label}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color }}>{value}</div>
+            <div style={{ fontSize: 8, color: "#4b5563", marginTop: 1, textTransform: "uppercase", letterSpacing: "0.04em" }}>{label}</div>
           </div>
         ))}
       </div>
@@ -157,6 +247,28 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
   );
 
   return ReactDOM.createPortal(node, document.body);
+}
+
+// ── Recipe Piece ──────────────────────────────────────────────────────────────
+
+function RecipePiece({ name, image }: { name: string; image: string }) {
+  const [err, setErr] = useState(false);
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+      <div style={{
+        width: 24, height: 24, borderRadius: 4, overflow: "hidden",
+        background: "#111", position: "relative", flexShrink: 0,
+        border: "1px solid #333",
+      }}>
+        {!err ? (
+          <Image src={image} alt={name} fill sizes="24px" style={{ objectFit: "contain", padding: 1 }} onError={() => setErr(true)} />
+        ) : (
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: "#6b7280" }}>?</div>
+        )}
+      </div>
+      <span style={{ fontSize: 10, color: "#8b8f99" }}>{name}</span>
+    </div>
+  );
 }
 
 // ── Main Component ─────────────────────────────────────────────────────────────

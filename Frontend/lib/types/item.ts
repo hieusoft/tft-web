@@ -1,3 +1,10 @@
+export interface ItemComponent {
+  id: number;
+  name: string;
+  slug: string;
+  image: string;
+}
+
 export interface ApiItem {
   id: number;
   name: string;
@@ -12,9 +19,9 @@ export interface ApiItem {
   /** Stats object (key→value record) or array */
   stats?: Record<string, string> | { key: string; label: string; value: string }[];
   recipe?: number[];
-  /** Component item IDs */
-  component_1?: number | null;
-  component_2?: number | null;
+  /** Component items – can be ID (legacy) or full object */
+  component_1?: ItemComponent | number | null;
+  component_2?: ItemComponent | number | null;
   avg_placement?: number | null;
   /** e.g. "82.0%" – already a percentage string */
   win_rate?: string | null;
