@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { ApiItem } from "@/lib/api-client";
 
+// ── 1. Constants & Helpers ───────────────────────────────────────────────────
 const TIER_COLOR: Record<string, string> = {
   S: "#f87171", A: "#fb923c", B: "#facc15", C: "#4ade80", D: "#9ca3af",
 };
@@ -36,6 +37,11 @@ function parseStatKey(key: string): { label: string; color: string; type: string
     .trim();
 
   return { label, color: STAT_COLORS[statType] ?? STAT_COLORS.default, type: statType };
+}
+
+// Hàm kiểm tra an toàn xem Component có đúng format không (giống ItemsClient)
+function isComponentObj(v: unknown): v is { name: string; image: string } {
+  return typeof v === "object" && v !== null && "image" in v && "name" in v;
 }
 
 // ── 2. SVG Icons & Badges ────────────────────────────────────────────────────
@@ -70,7 +76,65 @@ function CategoryBadge({ category }: { category: string }) {
   );
 }
 
-// ── 3. MAIN COMPONENT ────────────────────────────────────────────────────────
+// ── 3. COMPONENTS MỚI (Xử lý ảnh chuẩn như ItemsClient) ───────────────
+
+function RecipePiece({ name, image }: { name: string; image: string }) {
+  const [err, setErr] = useState(false);
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+      <div style={{
+        width: 30, height: 30, borderRadius: 6, overflow: "hidden",
+        background: "#111", position: "relative", flexShrink: 0,
+        border: "1px solid #3a3d45",
+      }}>
+        {!err ? (
+          <Image src={image} alt={name} fill sizes="30px" style={{ objectFit: "contain", padding: 1, imageRendering: "pixelated" }} unoptimized onError={() => setErr(true)} />
+        ) : (
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, color: "#6b7280" }}>?</div>
+        )}
+      </div>
+      {/* Hiện luôn tên đồ ghép cho trực quan */}
+      <span style={{ fontSize: 13, color: "#d1d5db", fontWeight: 600 }}>{name}</span>
+    </div>
+  );
+}
+
+function ChampionRow({ user, idx }: { user: any, idx: number }) {
+  const [err, setErr] = useState(false);
+
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", gap: 16, padding: "16px 24px",
+      borderBottom: "1px solid #222", background: idx % 2 === 0 ? "transparent" : "#131418",
+      transition: "background 0.2s", cursor: "pointer"
+    }}
+      onMouseEnter={(e) => (e.currentTarget.style.background = "#1f222b")}
+      onMouseLeave={(e) => (e.currentTarget.style.background = idx % 2 === 0 ? "transparent" : "#131418")}
+    >
+      <div style={{ width: 44, height: 44, borderRadius: "50%", overflow: "hidden", border: "2px solid #374151", position: "relative", flexShrink: 0, background: "#111" }}>
+        {!err ? (
+          <Image src={user.champion.icon_path} alt={user.champion.name} fill sizes="44px" style={{ objectFit: "cover", imageRendering: "pixelated" }} unoptimized onError={() => setErr(true)} />
+        ) : (
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, color: "#6b7280", fontWeight: 800 }}>?</div>
+        )}
+      </div>
+
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 15, fontWeight: 800, color: "#e5e7eb", marginBottom: 4 }}>{user.champion.name}</div>
+        <div style={{ fontSize: 12, color: "#9ca3af" }}>
+          Hạng TB: <strong style={{ color: user.avg_placement <= 4 ? "#4ade80" : "#facc15" }}>{user.avg_placement.toFixed(2)}</strong>
+        </div>
+      </div>
+
+      <div style={{ textAlign: "right" }}>
+        <div style={{ fontSize: 16, fontWeight: 800, color: "#60a5fa" }}>{user.pick_percent}</div>
+        <div style={{ fontSize: 10, color: "#6b7280", textTransform: "uppercase", fontWeight: 700 }}>Tỷ lệ chọn</div>
+      </div>
+    </div>
+  );
+}
+
+// ── 4. MAIN COMPONENT ────────────────────────────────────────────────────────
 export default function ItemDetailClient({ item }: { item: ApiItem }) {
   const [imgErr, setImgErr] = useState(false);
 
@@ -88,7 +152,7 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
   if (isRadiant) { glowColor = "rgba(250, 204, 21, 0.3)"; borderHighlight = "1px solid rgba(250, 204, 21, 0.4)"; }
   else if (isArtifact) { glowColor = "rgba(248, 113, 113, 0.3)"; borderHighlight = "1px solid rgba(248, 113, 113, 0.4)"; }
 
-  // Xử lý Stats
+  // Stats
   const statEntries: { label: string; value: string; color: string; type: string }[] = [];
   if (item.stats) {
     if (Array.isArray(item.stats)) {
@@ -104,7 +168,7 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
     }
   }
 
-  // Xử lý Mô tả & Cờ Không thể ghép
+  // Des
   let desc = item.description ? String(item.description).replace(/\[.*?\]/g, "") : null;
   let isUncraftable = isRadiant || isArtifact || isSupport;
 
@@ -120,9 +184,9 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
     desc = desc.replace(/^[^a-zA-ZÀ-ỹ0-9]*/, "").replace(/\s+/g, " ").trim();
   }
 
-  // Xử lý Công thức
-  const comp1 = typeof item.component_1 === 'object' && item.component_1 !== null ? item.component_1 : null;
-  const comp2 = typeof item.component_2 === 'object' && item.component_2 !== null ? item.component_2 : null;
+  // Parse components chuẩn chỉ theo ItemsClient
+  const comp1 = isComponentObj(item.component_1) ? item.component_1 : null;
+  const comp2 = isComponentObj(item.component_2) ? item.component_2 : null;
   const hasRecipe = comp1 || comp2;
   const isBaseComponent = !hasRecipe && !isUncraftable && category.includes("Thường");
 
@@ -130,7 +194,7 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
     <div style={{ background: "#0a0a0c", minHeight: "100vh", color: "#e5e7eb", padding: "30px 20px" }}>
       <div style={{ maxWidth: 960, margin: "0 auto", display: "flex", flexDirection: "column", gap: 24 }}>
 
-        {/* ── BREADCRUMBS & NÚT QUAY LẠI ── */}
+        {/* ── BREADCRUMBS */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: -4 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#6b7280", fontWeight: 600 }}>
             <Link href="/" style={{ color: "#6b7280", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#d1d5db"} onMouseLeave={(e) => e.currentTarget.style.color = "#6b7280"}>Trang Chủ</Link>
@@ -161,10 +225,10 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
         <div style={{
           background: "linear-gradient(145deg, #181a20 0%, #111216 100%)",
           border: borderHighlight, borderRadius: 20, padding: "28px 32px",
-          display: "flex", gap: 32, flexWrap: "wrap", alignItems: "center",
+          display: "flex", gap: 32, flexWrap: "wrap", alignItems: "flex-start",
           boxShadow: `0 20px 50px rgba(0,0,0,0.5), inset 0 0 60px ${glowColor.replace('0.3', '0.05')}`
         }}>
-          {/* Avatar */}
+          {/* Main Avatar (Đã chuẩn hoá) */}
           <div style={{
             width: 100, height: 100, borderRadius: 20, overflow: "hidden", flexShrink: 0,
             background: "#000", position: "relative",
@@ -179,7 +243,7 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
             ) : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 32 }}>⚔️</div>}
           </div>
 
-          <div style={{ flex: 1, minWidth: 280, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ flex: 1, minWidth: 280, display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
               <span style={{
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
@@ -193,7 +257,7 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
 
             {/* Stats Row */}
             {statEntries.length > 0 && (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "16px 28px", marginBottom: 20, paddingBottom: 20, borderBottom: "1px solid #2a2d35" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "16px 28px", marginBottom: 16 }}>
                 {statEntries.map(({ label, value, color, type }, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <StatIcon type={type} color={color} />
@@ -204,14 +268,31 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
               </div>
             )}
 
-            {/* Recipe or Uncraftable Warning */}
+            {/* Description ở Header */}
+            {desc && (
+              <div style={{
+                fontSize: 15, color: "#d1d5db", lineHeight: 1.6,
+                marginBottom: 20, paddingBottom: 20, borderBottom: "1px solid #2a2d35"
+              }}>
+                {desc.replace(/\.\s+/g, ".\n").split("\n").map((sentence) => sentence.trim()).filter(s => s.length > 0).map((sentence, i) => {
+                  const finalSentence = /[.!?…"']$/.test(sentence) ? sentence : sentence + ".";
+                  const formattedHTML = finalSentence
+                    .replace(/^([^:]{2,30}):/g, '<strong style="color: #60a5fa; text-transform: capitalize;">$1:</strong>')
+                    .replace(/(\d+(?:\.\d+)?%)/g, '<strong style="color: #fbbf24;">$1</strong>')
+                    .replace(/(\d+\s*giây)/gi, '<strong style="color: #fbbf24;">$1</strong>');
+                  return <span key={i} style={{ display: "block", marginBottom: 4 }} dangerouslySetInnerHTML={{ __html: formattedHTML }} />;
+                })}
+              </div>
+            )}
+
+            {/* Recipe Rendering (Dùng Component RecipePiece mới) */}
             <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
               {hasRecipe && (
                 <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "8px 16px", background: "#1a1d24", borderRadius: 10, border: "1px solid #333740" }}>
                   <span style={{ fontSize: 12, color: "#a1a1aa", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>Ghép Từ:</span>
-                  {comp1 && comp1.image && <Image src={comp1.image} alt={comp1.name} width={30} height={30} style={{ borderRadius: 6, border: "1px solid #4b5563", imageRendering: "pixelated" }} unoptimized />}
+                  {comp1 && <RecipePiece name={comp1.name} image={comp1.image} />}
                   {comp1 && comp2 && <span style={{ fontSize: 18, color: "#6b7280", fontWeight: 800 }}>+</span>}
-                  {comp2 && comp2.image && <Image src={comp2.image} alt={comp2.name} width={30} height={30} style={{ borderRadius: 6, border: "1px solid #4b5563", imageRendering: "pixelated" }} unoptimized />}
+                  {comp2 && <RecipePiece name={comp2.name} image={comp2.image} />}
                 </div>
               )}
               {isUncraftable && (
@@ -225,26 +306,19 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24, alignItems: "start" }}>
 
-          {/* CỘT TRÁI */}
+          {/* Left*/}
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            {/* Mô tả hiệu ứng */}
-            {desc && (
+            {/* Base item builds into... */}
+            {isBaseComponent && (
               <div style={{ background: "#181a20", border: "1px solid #2a2d35", borderRadius: 16, padding: "24px" }}>
-                <h3 style={{ fontSize: 14, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 700, margin: "0 0 16px 0" }}>Hiệu ứng trang bị</h3>
-                <div style={{ fontSize: 15, color: "#d1d5db", lineHeight: 1.7 }}>
-                  {desc.replace(/\.\s+/g, ".\n").split("\n").map((sentence) => sentence.trim()).filter(s => s.length > 0).map((sentence, i) => {
-                    const finalSentence = /[.!?…"']$/.test(sentence) ? sentence : sentence + ".";
-                    const formattedHTML = finalSentence
-                      .replace(/^([^:]{2,30}):/g, '<strong style="color: #60a5fa; text-transform: capitalize;">$1:</strong>')
-                      .replace(/(\d+(?:\.\d+)?%)/g, '<strong style="color: #fbbf24;">$1</strong>')
-                      .replace(/(\d+\s*giây)/gi, '<strong style="color: #fbbf24;">$1</strong>');
-                    return <span key={i} style={{ display: "block", marginBottom: 10 }} dangerouslySetInnerHTML={{ __html: formattedHTML }} />;
-                  })}
+                <h3 style={{ fontSize: 14, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 700, margin: "0 0 16px 0" }}>Có thể ghép thành</h3>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <div style={{ color: "#6b7280", fontSize: 13 }}>Đang cập nhật...</div>
                 </div>
               </div>
             )}
 
-            {/* Thống kê Tổng Quan */}
+            {/* Stats */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               {[
                 { label: "Hạng Trung Bình", value: item.avg_placement?.toFixed(2) || "—", color: item.avg_placement && item.avg_placement <= 4 ? "#4ade80" : "#facc15" },
@@ -260,7 +334,7 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
             </div>
           </div>
 
-          {/* CỘT PHẢI: TƯỚNG KHUYÊN DÙNG TỪ API */}
+          {/* Champ commend */}
           <div style={{ background: "#181a20", border: "1px solid #2a2d35", borderRadius: 16, overflow: "hidden", position: "sticky", top: 24 }}>
             <div style={{ padding: "20px 24px", borderBottom: "1px solid #2a2d35", background: "linear-gradient(to right, #181a20, #1a1d24)" }}>
               <h3 style={{ fontSize: 16, color: "#fff", fontWeight: 800, margin: "0 0 4px 0" }}>Tướng Khuyên Dùng</h3>
@@ -269,32 +343,8 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
 
             <div style={{ display: "flex", flexDirection: "column" }}>
               {item.best_users && item.best_users.length > 0 ? (
-                // Chỉ lấy 10 tướng tốt nhất hiển thị cho đỡ dài
                 item.best_users.slice(0, 10).map((user, idx) => (
-                  <div key={idx} style={{
-                    display: "flex", alignItems: "center", gap: 16, padding: "16px 24px",
-                    borderBottom: "1px solid #222", background: idx % 2 === 0 ? "transparent" : "#131418",
-                    transition: "background 0.2s", cursor: "pointer"
-                  }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "#1f222b")}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = idx % 2 === 0 ? "transparent" : "#131418")}
-                  >
-                    <div style={{ width: 44, height: 44, borderRadius: "50%", overflow: "hidden", border: "2px solid #374151", position: "relative", flexShrink: 0 }}>
-                      <Image src={user.champion.icon_path} alt={user.champion.name} fill sizes="44px" style={{ objectFit: "cover", imageRendering: "pixelated" }} unoptimized />
-                    </div>
-
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 15, fontWeight: 800, color: "#e5e7eb", marginBottom: 4 }}>{user.champion.name}</div>
-                      <div style={{ fontSize: 12, color: "#9ca3af" }}>
-                        Hạng TB: <strong style={{ color: user.avg_placement <= 4 ? "#4ade80" : "#facc15" }}>{user.avg_placement.toFixed(2)}</strong>
-                      </div>
-                    </div>
-
-                    <div style={{ textAlign: "right" }}>
-                      <div style={{ fontSize: 16, fontWeight: 800, color: "#60a5fa" }}>{user.pick_percent}</div>
-                      <div style={{ fontSize: 10, color: "#6b7280", textTransform: "uppercase", fontWeight: 700 }}>Tỷ lệ chọn</div>
-                    </div>
-                  </div>
+                  <ChampionRow key={idx} user={user} idx={idx} />
                 ))
               ) : (
                 <div style={{ padding: "32px", textAlign: "center", color: "#6b7280", fontSize: 14 }}>Chưa có dữ liệu tướng</div>

@@ -8,8 +8,8 @@ from app.models.item import Item
 class ChampionTrait(Base):
     __tablename__ = "champion_traits"
     id = Column(Integer, primary_key=True)
-    champion_id = Column(Integer, ForeignKey("champions.id"))
-    trait_id = Column(Integer, ForeignKey("traits.id"))
+    champion_id = Column(Integer, ForeignKey("champions.id", ondelete="CASCADE"))
+    trait_id = Column(Integer, ForeignKey("traits.id", ondelete="CASCADE"))
 
 class Champion(Base):
     __tablename__ = "champions"

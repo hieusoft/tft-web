@@ -2,6 +2,15 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
+class ChampionSimpleTrait(BaseModel):
+    id: int
+    name: str
+    slug: str
+    cost: int
+    icon_path: Optional[str] = None
+    
+    model_config = ConfigDict(from_attributes=True)
+
 class TraitBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=100, description="Tên Tộc/Hệ (ví dụ: Học Giả)")
     slug: Optional[str] = Field(None, description="Slug tiếng Anh (SEO-friendly)")
@@ -35,6 +44,7 @@ class TraitDeleteResponse(BaseModel):
 
 class TraitResponse(TraitBase):
     id: int
+    champions: List[ChampionSimpleTrait] = []
     created_at: datetime
     updated_at: Optional[datetime] = None
     
@@ -54,6 +64,7 @@ class TraitResponse(TraitBase):
             pick_percent=trait.pick_percent,
             image=trait.image,
             milestones=trait.milestones or [],
+            champions=[ChampionSimpleTrait.model_validate(c) for c in trait.champions] if hasattr(trait, 'champions') else [],
             created_at=trait.created_at,
             updated_at=trait.updated_at
         )

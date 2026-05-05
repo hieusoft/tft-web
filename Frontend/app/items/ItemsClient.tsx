@@ -646,55 +646,60 @@ function MobileCard({ item, idx }: { item: ApiItem; idx: number }) {
   const imgSrc = item.icon_path ?? null;
 
   return (
-    <div style={{
-      display: "flex", alignItems: "center", gap: 12,
-      padding: "12px 14px",
-      background: idx % 2 === 0 ? "#161616" : "#131313",
-      borderBottom: "1px solid #1a1a1a",
-    }}>
-      {/* Icon */}
+    <Link 
+      href={`/items/${item.slug || item.id}`} 
+      style={{ textDecoration: "none", display: "block" }}
+    >
       <div style={{
-        width: 46, height: 46, borderRadius: 9, overflow: "hidden",
-        background: "#111", position: "relative", flexShrink: 0,
-        border: `1px solid ${tc}50`,
+        display: "flex", alignItems: "center", gap: 12,
+        padding: "12px 14px",
+        background: idx % 2 === 0 ? "#161616" : "#131313",
+        borderBottom: "1px solid #1a1a1a",
       }}>
-        {imgSrc && !imgErr ? (
-          <Image src={imgSrc} alt={item.name} fill sizes="46px"
-            style={{ objectFit: "contain", padding: 2 }}
-            onError={() => setImgErr(true)} />
-        ) : (
-          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>⚔️</div>
-        )}
-      </div>
+        {/* Icon */}
+        <div style={{
+          width: 46, height: 46, borderRadius: 9, overflow: "hidden",
+          background: "#111", position: "relative", flexShrink: 0,
+          border: `1px solid ${tc}50`,
+        }}>
+          {imgSrc && !imgErr ? (
+            <Image src={imgSrc} alt={item.name} fill sizes="46px"
+              style={{ objectFit: "contain", padding: 2 }}
+              onError={() => setImgErr(true)} />
+          ) : (
+            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>⚔️</div>
+          )}
+        </div>
 
-      {/* Main info */}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
-          <span style={{
-            display: "inline-flex", alignItems: "center", justifyContent: "center",
-            width: 22, height: 22, borderRadius: 5, fontSize: 10, fontWeight: 800,
-            background: tc, color: "#000", flexShrink: 0,
-          }}>{rank}</span>
-          <span style={{ fontSize: 14, fontWeight: 600, color: "#e5e7eb", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            {item.name}
-          </span>
+        {/* Main info */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
+            <span style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: 22, height: 22, borderRadius: 5, fontSize: 10, fontWeight: 800,
+              background: tc, color: "#000", flexShrink: 0,
+            }}>{rank}</span>
+            <span style={{ fontSize: 14, fontWeight: 600, color: "#e5e7eb", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {item.name}
+            </span>
+          </div>
+          {item.category && <div style={{ fontSize: 10, color: "#4b5563", marginBottom: 5 }}>{item.category}</div>}
+          <div style={{ display: "flex", gap: 16 }}>
+            <MiniStat label="Hạng TB" value={fPlace(item.avg_placement)} color={placeColor(item.avg_placement)} />
+            <MiniStat label="Tỷ Lệ Thắng" value={f(item.win_rate)} color="#d1d5db" />
+            <MiniStat label="Tần Suất" value={f(item.pick_rate)} color="#9ca3af" />
+          </div>
         </div>
-        {item.category && <div style={{ fontSize: 10, color: "#4b5563", marginBottom: 5 }}>{item.category}</div>}
-        <div style={{ display: "flex", gap: 16 }}>
-          <MiniStat label="Hạng TB" value={fPlace(item.avg_placement)} color={placeColor(item.avg_placement)} />
-          <MiniStat label="Tỷ Lệ Thắng" value={f(item.win_rate)} color="#d1d5db" />
-          <MiniStat label="Tần Suất" value={f(item.pick_rate)} color="#9ca3af" />
-        </div>
-      </div>
 
-      {/* Games */}
-      {item.games_played ? (
-        <div style={{ textAlign: "right", flexShrink: 0 }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#6b7280" }}>{fGames(item.games_played)}</div>
-          <div style={{ fontSize: 9, color: "#374151", marginTop: 2 }}>ván</div>
-        </div>
-      ) : null}
-    </div>
+        {/* Games */}
+        {item.games_played ? (
+          <div style={{ textAlign: "right", flexShrink: 0 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: "#6b7280" }}>{fGames(item.games_played)}</div>
+            <div style={{ fontSize: 9, color: "#374151", marginTop: 2 }}>ván</div>
+          </div>
+        ) : null}
+      </div>
+    </Link>
   );
 }
 

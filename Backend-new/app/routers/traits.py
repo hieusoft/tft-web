@@ -3,7 +3,7 @@ import redis
 import uuid
 from sqlalchemy import text
 from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, Form
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List, Optional
 
 from app.core.database import get_db
@@ -70,12 +70,16 @@ def bulk_sync_traits(body: List[TraitCreate], db: Session = Depends(get_db), r: 
     r.delete(TRAITS_CACHE_KEY)
     return {"status": "success"}
 
-@router.get("/slug/{slug}", response_model=TraitResponse)
-def get_trait_by_slug(slug: str, db: Session = Depends(get_db), _=Depends(verify_api_key)):
-    trait = db.query(Trait).filter(Trait.slug == slug).first()
+@router.get("/{slug}", response_model=TraitResponse)
+def get_trait_detail(slug: str, db: Session = Depends(get_db)):
+    trait = db.query(Trait).options(
+        joinedload(Trait.champions)
+    ).filter(Trait.slug == slug).first()
+
     if not trait:
-        raise HTTPException(status_code=404, detail="Slug không tồn tại")
-    return TraitResponse.from_orm_trait(trait)
+        raise HTTPException(status_code=404, detail="Không tìm thấy Tộc/Hệ này")
+    
+    return trait
 
 @router.delete("/{id}")
 def delete_trait(id: int, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis), _=Depends(verify_api_key)):
