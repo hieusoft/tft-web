@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 from datetime import datetime
 
 class ItemBase(BaseModel):
@@ -31,8 +31,22 @@ class ItemUpdate(ItemBase):
     name: Optional[str] = None
     slug: Optional[str] = None
 
+class ChampionSimple(BaseModel):
+    name: str
+    icon_path: str
+    model_config = ConfigDict(from_attributes=True)
+
+class ChampionUsageResponse(BaseModel):
+    avg_placement: float
+    pick_percent: str
+    champion: Optional[ChampionSimple] = None 
+    model_config = ConfigDict(from_attributes=True)
+
 class ItemResponse(ItemBase):
     id: int
     component_1: Optional[ItemSimpleResponse] = None
     component_2: Optional[ItemSimpleResponse] = None
     model_config = ConfigDict(from_attributes=True)
+    best_users: List[ChampionUsageResponse] = []
+    model_config = ConfigDict(from_attributes=True)
+

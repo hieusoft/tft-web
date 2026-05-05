@@ -9,6 +9,7 @@ from app.core.redis import get_redis
 from app.dependencies import verify_api_key
 from app.models.item import Item
 from app.schemas.item import ItemCreate, ItemResponse, ItemUpdate
+from app.models.champion import ChampionItemStats
 
 router = APIRouter()
 CACHE_KEY = "items:all"
@@ -24,15 +25,15 @@ def get_items(db: Session = Depends(get_db)):
     ).all()
     return items
 
-@router.get("/{slug}", response_model=ItemResponse)
-def get_detail(slug: str, db: Session = Depends(get_db)):
-    item = db.query(Item).options(
-        joinedload(Item.component_1),
-        joinedload(Item.component_2)
-    ).filter(Item.slug == slug).first()
+from sqlalchemy.orm import joinedload
 
-    if not item:
-        raise HTTPException(status_code=404, detail="Không tìm thấy trang bị")
+@router.get("/{slug}", response_model=ItemResponse)
+def get_item_detail(slug: str, db: Session = Depends(get_db)):
+    item = db.query(Item).options(
+        joinedload(Item.best_users)             
+        .joinedload(ChampionItemStats.champion)
+    ).filter(Item.slug == slug).first()
+    
     return item
 
 @router.post("/", response_model=ItemResponse)
