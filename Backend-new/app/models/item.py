@@ -21,3 +21,4 @@ class Item(Base):
     component_2_id = Column("component_2", Integer, ForeignKey("items.id"), nullable=True)
     component_1 = relationship("Item", foreign_keys=[component_1_id], remote_side=[id])
     component_2 = relationship("Item", foreign_keys=[component_2_id], remote_side=[id])
+    best_users = relationship("ChampionItemStats", back_populates="item")
