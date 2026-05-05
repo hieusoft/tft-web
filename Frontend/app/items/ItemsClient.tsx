@@ -6,6 +6,7 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import type { ApiItem } from "@/lib/api-client";
 import type { ItemComponent } from "@/lib/types/item";
 import ReactDOM from "react-dom";
+import Link from "next/link";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -576,6 +577,7 @@ function DesktopRow({ item, idx, isTablet }: { item: ApiItem; idx: number; isTab
       onMouseLeave={(e) => (e.currentTarget.style.background = idx % 2 === 0 ? evenBg : oddBg)}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <Link href={`/items/${item.slug || item.id}`} style={{ display: "block" }}>
         <div style={{ position: "relative", flexShrink: 0 }}>
           <div
             ref={iconRef}
@@ -601,6 +603,7 @@ function DesktopRow({ item, idx, isTablet }: { item: ApiItem; idx: number; isTab
           </div>
           {hovered && hoveredEl && <ItemTooltip item={item} anchorEl={hoveredEl} imgErr={imgErr} />}
         </div>
+        </Link>
 
         <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: "#e5e7eb", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.name}</div>
@@ -623,7 +626,7 @@ function DesktopRow({ item, idx, isTablet }: { item: ApiItem; idx: number; isTab
         {f(item.win_rate)}
       </div>
       <div style={{ textAlign: "center", fontSize: 13, color: "#9ca3af" }}>
-        {f(item.top_4_rate)}
+        {f(item.pick_rate)}
       </div>
       {!isTablet && (
         <div style={{ textAlign: "center", fontSize: 12, color: "#6b7280" }}>
@@ -680,7 +683,7 @@ function MobileCard({ item, idx }: { item: ApiItem; idx: number }) {
         <div style={{ display: "flex", gap: 16 }}>
           <MiniStat label="Hạng TB" value={fPlace(item.avg_placement)} color={placeColor(item.avg_placement)} />
           <MiniStat label="Tỷ Lệ Thắng" value={f(item.win_rate)} color="#d1d5db" />
-          <MiniStat label="Tần Suất" value={f(item.top_4_rate)} color="#9ca3af" />
+          <MiniStat label="Tần Suất" value={f(item.pick_rate)} color="#9ca3af" />
         </div>
       </div>
 

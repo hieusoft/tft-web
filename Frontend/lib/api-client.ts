@@ -97,6 +97,10 @@ class TftApiClient {
     return this.get<ApiItem>(`/api/v1/items/${id}`, opts);
   }
 
+  async getItemBySlug(slug: string, opts?: FetchOptions): Promise<ApiItem | null> {
+    return this.get<ApiItem>(`/api/v1/items/${slug}`, opts);
+  }
+
   async getAugments(opts?: FetchOptions): Promise<ApiAugment[]> {
     return (await this.get<ApiAugment[]>("/api/v1/augemnts/", opts)) ?? [];
   }

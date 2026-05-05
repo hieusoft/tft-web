@@ -31,4 +31,12 @@ export interface ApiItem {
   top_4_rate?: string | null;
   /** May be a number or a string from the API */
   games_played?: number | string;
+  best_users?: {
+    avg_placement: number;
+    pick_percent: string;
+    champion: {
+      name: string;
+      icon_path: string;
+    };
+  }[] | null;
 }
