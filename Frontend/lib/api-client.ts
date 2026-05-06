@@ -88,6 +88,13 @@ class TftApiClient {
   ): Promise<ApiChampion | null> {
     return this.get<ApiChampion>(`/api/v1/champions/${id}`, opts);
   }
+  
+  async getChampionBySlug(
+    slug: string,
+    opts?: FetchOptions
+  ): Promise<ApiChampion | null> {
+    return this.get<ApiChampion>(`/api/v1/champions/${slug}`, opts);
+  }
 
   async getItems(opts?: FetchOptions): Promise<ApiItem[]> {
     return (await this.get<ApiItem[]>("/api/v1/items/", opts)) ?? [];
