@@ -135,7 +135,6 @@ export default function ChampionsClient({ champions }: { champions: ApiChampionO
             boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
           }}
         >
-          {/* Tăng minWidth lên 1000 để các cột rộng rãi, không bị dính vào nhau */}
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 1000 }}>
             <thead style={{ backgroundColor: "#181818", borderBottom: "2px solid #2a2a2a" }}>
               <tr>

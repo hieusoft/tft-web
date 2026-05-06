@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from app.core.database import Base, engine
-from app.routers import traits, augments, items, skills, champions, images
+from app.routers import traits, augments, items, skills, champions, images, gods
 # Tạo bảng tự động
 Base.metadata.create_all(bind=engine)
 
@@ -39,6 +39,7 @@ app.include_router(items.router, prefix="/api/v1/items", tags=["Trang Bị (Item
 app.include_router(skills.router, prefix="/api/v1/skills", tags=["Kỹ Năng (Skills)"])
 app.include_router(champions.router, prefix="/api/v1/champions", tags=["Tướng (Champions)"])
 app.include_router(images.router, prefix="/api/v1/images", tags=["Ảnh (Images)"])
+app.include_router(gods.router, prefix ="/api/v1/gods",tags=["Thần (Gods)"])
 # Custom OpenAPI schema — thêm API Key security vào Swagger UI
 def custom_openapi():
     if app.openapi_schema:
