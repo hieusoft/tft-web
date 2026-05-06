@@ -2,12 +2,14 @@ import type { ApiTrait } from "./types/trait";
 import type { ApiChampion } from "./types/champion";
 import type { ApiItem } from "./types/item";
 import type { ApiAugment } from "./types/augment";
+import { ApiGodDetail, ApiGodListItem } from "./types/god";
 
 // Re-export types để code dùng api-client vẫn import được từ đây
 export type { ApiTrait } from "./types/trait";
 export type { ApiSkill, ApiChampion } from "./types/champion";
 export type { ApiItem } from "./types/item";
 export type { ApiAugment } from "./types/augment";
+export type { ApiGodListItem, ApiGodDetail } from "./types/god";
 
 // ── Fetch options ─────────────────────────────────────────────────────────────
 
@@ -118,6 +120,16 @@ class TftApiClient {
   ): Promise<ApiAugment | null> {
     return this.get<ApiAugment>(`/api/v1/augemnts/${id}`, opts);
   }
+
+  async getGods(opts?: FetchOptions): Promise<ApiGodListItem[]> {
+    return (await this.get<ApiGodListItem[]>("/api/v1/gods/", opts)) ?? [];
+  }
+
+  async getGod(id: number, opts?: FetchOptions): Promise<ApiGodDetail | null> {
+    return this.get<ApiGodDetail>(`/api/v1/gods/${id}`, opts);
+  }
+
+
 }
 
 // ── Singleton export ──────────────────────────────────────────────────────────
