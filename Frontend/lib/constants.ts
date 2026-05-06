@@ -34,6 +34,7 @@ export const NAV_LINKS = [
       { label: "Trang Bị", href: "/items", icon: "🛡️" },
       { label: "Tộc & Hệ", href: "/traits", icon: "🌀" },
       { label: "Bảng Xếp Hạng", href: "/tierlist", icon: "📊" },
+      { label: "Thần Thoại", href: "/gods", icon: "📊" },
     ],
   },
   {
