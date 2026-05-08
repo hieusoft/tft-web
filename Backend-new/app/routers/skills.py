@@ -6,7 +6,6 @@ import redis
 
 from app.core.database import get_db
 from app.core.redis import get_redis
-from app.dependencies import verify_api_key
 from app.models.skill import Skill
 from app.schemas.skill import SkillCreate, SkillResponse, SkillUpdate
 
@@ -20,7 +19,6 @@ CACHE_TTL = 60 * 5
 def get_all(
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     cached = r.get(SKILLS_CACHE_KEY)
     if cached:
@@ -37,7 +35,6 @@ def create(
     body: SkillCreate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     db_skill = db.query(Skill).filter(Skill.name == body.name).first()
     if db_skill:
@@ -57,7 +54,6 @@ def update_skill(
     body: SkillUpdate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     skill = db.query(Skill).filter(Skill.id == id).first()
     if not skill:
@@ -77,7 +73,6 @@ def delete(
     id: int,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     skill = db.query(Skill).filter(Skill.id == id).first()
     if not skill:

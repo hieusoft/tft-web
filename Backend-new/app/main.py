@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.openapi.utils import get_openapi
 from app.core.database import Base, engine
 from app.routers import traits, augments, items, skills, champions, images, gods, comps
 # Tạo bảng tự động
@@ -41,27 +40,3 @@ app.include_router(champions.router, prefix="/api/v1/champions", tags=["Tướng
 app.include_router(images.router, prefix="/api/v1/images", tags=["Ảnh (Images)"])
 app.include_router(gods.router, prefix="/api/v1/gods", tags=["Thần (Gods)"])
 app.include_router(comps.router, prefix="/api/v1/comps", tags=["Đội Hình (Comps)"])
-# Custom OpenAPI schema — thêm API Key security vào Swagger UI
-def custom_openapi():
-    if app.openapi_schema:
-        return app.openapi_schema
-    schema = get_openapi(
-        title=app.title,
-        version=app.version,
-        description=app.description,
-        routes=app.routes,
-    )
-    schema["components"]["securitySchemes"] = {
-        "ApiKeyAuth": {
-            "type": "apiKey",
-            "in": "header",
-            "name": "X-API-Key",
-        }
-    }
-    for path in schema["paths"].values():
-        for operation in path.values():
-            operation["security"] = [{"ApiKeyAuth": []}]
-    app.openapi_schema = schema
-    return schema
-
-app.openapi = custom_openapi

@@ -6,7 +6,6 @@ from typing import List
 
 from app.core.database import get_db
 from app.core.redis import get_redis
-from app.dependencies import verify_api_key
 from app.models.item import Item
 from app.schemas.item import ItemCreate, ItemResponse, ItemUpdate
 from app.models.champion import ChampionItemStats
@@ -37,7 +36,7 @@ def get_item_detail(slug: str, db: Session = Depends(get_db)):
     return item
 
 @router.post("/", response_model=ItemResponse)
-def create(body: ItemCreate, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis), _=Depends(verify_api_key)):
+def create(body: ItemCreate, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis)):
     if db.query(Item).filter(Item.slug == body.slug).first():
         raise HTTPException(status_code=400, detail="Slug đã tồn tại")
         
@@ -49,7 +48,7 @@ def create(body: ItemCreate, db: Session = Depends(get_db), r: redis.Redis = Dep
     return new_item
 
 @router.patch("/{slug}", response_model=ItemResponse)
-def update(slug: str, body: ItemUpdate, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis), _=Depends(verify_api_key)):
+def update(slug: str, body: ItemUpdate, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis)):
     item = db.query(Item).filter(Item.slug == slug).first()
     if not item: raise HTTPException(status_code=404)
     
@@ -62,7 +61,7 @@ def update(slug: str, body: ItemUpdate, db: Session = Depends(get_db), r: redis.
     return item
 
 @router.delete("/{slug}")
-def delete(slug: str, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis), _=Depends(verify_api_key)):
+def delete(slug: str, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis)):
     item = db.query(Item).filter(Item.slug == slug).first()
     if not item: raise HTTPException(status_code=404)
     

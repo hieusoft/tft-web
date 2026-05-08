@@ -13,7 +13,6 @@ from app.schemas.gods import (
     GodResponse, 
     GodDetailResponse
 )
-from app.dependencies import verify_api_key
 from app.core.redis import get_redis
 
 class GodBulkResponse(BaseModel):
@@ -29,7 +28,6 @@ CACHE_TTL = 3600
 def get_all_gods(
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     cached = r.get(GODS_CACHE_KEY)
     if cached:
@@ -43,8 +41,7 @@ def get_all_gods(
 @router.get("/{id}", response_model=GodDetailResponse)
 def get_god_details(
     id: int, 
-    db: Session = Depends(get_db), 
-    _=Depends(verify_api_key)
+    db: Session = Depends(get_db),
 ):
     god = db.query(God).options(joinedload(God.augment)).filter(God.id == id).first()
     if not god:
@@ -56,7 +53,6 @@ def create_god(
     body: GodBase, 
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     if db.query(God).filter(God.name == body.name).first():
         raise HTTPException(status_code=400, detail="Tên Thần đã tồn tại")
@@ -74,7 +70,6 @@ def bulk_sync_gods(
     body: List[GodBase], 
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     try:
         db.execute(text("TRUNCATE TABLE gods RESTART IDENTITY CASCADE;"))
@@ -100,7 +95,6 @@ def update_god(
     body: GodBase,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     god = db.query(God).filter(God.id == id).first()
     if not god:
@@ -120,7 +114,6 @@ def delete_god(
     id: int, 
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     god = db.query(God).filter(God.id == id).first()
     if not god:
