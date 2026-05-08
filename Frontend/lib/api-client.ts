@@ -2,6 +2,7 @@ import type { ApiTrait } from "./types/trait";
 import type { ApiChampion } from "./types/champion";
 import type { ApiItem } from "./types/item";
 import type { ApiAugment } from "./types/augment";
+import type { ApiComp } from "./types/comp";
 import { ApiGodDetail, ApiGodListItem } from "./types/god";
 
 // Re-export types để code dùng api-client vẫn import được từ đây
@@ -9,6 +10,7 @@ export type { ApiTrait } from "./types/trait";
 export type { ApiSkill, ApiChampion } from "./types/champion";
 export type { ApiItem } from "./types/item";
 export type { ApiAugment } from "./types/augment";
+export type { ApiComp } from "./types/comp";
 export type { ApiGodListItem, ApiGodDetail } from "./types/god";
 
 // ── Fetch options ─────────────────────────────────────────────────────────────
@@ -127,6 +129,16 @@ class TftApiClient {
 
   async getGod(id: number, opts?: FetchOptions): Promise<ApiGodDetail | null> {
     return this.get<ApiGodDetail>(`/api/v1/gods/${id}`, opts);
+  }
+
+  // ── Comps ─────────────────────────────────────────────────────────────────
+
+  async getComps(opts?: FetchOptions): Promise<ApiComp[]> {
+    return (await this.get<ApiComp[]>("/api/v1/comps/", opts)) ?? [];
+  }
+
+  async getComp(id: number, opts?: FetchOptions): Promise<ApiComp | null> {
+    return this.get<ApiComp>(`/api/v1/comps/${id}`, opts);
   }
 
 
