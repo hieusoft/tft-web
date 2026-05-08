@@ -69,7 +69,7 @@ def _build_lookup_maps(db: Session) -> dict:
 
     all_champions = (
         db.query(Champion)
-        .options(load_only(Champion.id, Champion.name, Champion.slug, Champion.cost, Champion.icon_path))
+        .options(load_only(Champion.id, Champion.name, Champion.slug, Champion.cost, Champion.icon_path, Champion.splash_path))
         .all()
     )
     all_items = (
@@ -130,6 +130,7 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
                         "slug": champ.slug,
                         "cost": champ.cost,
                         "icon_path": champ.icon_path,
+                        "splash_path": champ.splash_path,
                     }
 
             slot_items = []
