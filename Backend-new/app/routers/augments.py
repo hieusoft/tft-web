@@ -12,7 +12,6 @@ from app.schemas.augment import (
     AugmentResponse, 
     AugmentBulkResponse
 )
-from app.dependencies import verify_api_key
 from app.core.redis import get_redis
 
 router = APIRouter()
@@ -24,7 +23,6 @@ CACHE_TTL = 3600
 def get_all_augments(
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     cached = r.get(AUGMENTS_CACHE_KEY)
     if cached:
@@ -38,8 +36,7 @@ def get_all_augments(
 @router.get("/{id}", response_model=AugmentResponse)
 def get_augment(
     id: int, 
-    db: Session = Depends(get_db), 
-    _=Depends(verify_api_key)
+    db: Session = Depends(get_db),
 ):
     augment = db.query(Augment).filter(Augment.id == id).first()
     if not augment:
@@ -51,7 +48,6 @@ def create_augment(
     body: AugmentCreate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     if db.query(Augment).filter(Augment.name == body.name).first():
         raise HTTPException(status_code=400, detail="Tên lõi đã tồn tại")
@@ -68,7 +64,6 @@ def bulk_sync_augments(
     body: List[AugmentCreate],
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     try:
         db.execute(text("TRUNCATE TABLE augments RESTART IDENTITY CASCADE;"))
@@ -89,7 +84,7 @@ def bulk_sync_augments(
         raise HTTPException(status_code=500, detail=f"Lỗi khi xóa/nạp dữ liệu: {str(e)}")
 
 @router.get("/{id}", response_model=AugmentResponse)
-def get_augment_details(id: int, db: Session = Depends(get_db), _=Depends(verify_api_key)):
+def get_augment_details(id: int, db: Session = Depends(get_db)):
     augment = db.query(Augment).filter(Augment.id == id).first()
     if not augment:
         raise HTTPException(status_code=404, detail="Không tìm thấy Lõi này")
@@ -101,7 +96,6 @@ def update_augment(
     body: AugmentUpdate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     augment = db.query(Augment).filter(Augment.id == id).first()
     if not augment:
@@ -120,7 +114,6 @@ def delete_augment(
     id: int, 
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key)
 ):
     augment = db.query(Augment).filter(Augment.id == id).first()
     if not augment:

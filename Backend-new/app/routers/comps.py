@@ -10,7 +10,6 @@ from sqlalchemy.orm import Session, load_only
 
 from app.core.database import get_db
 from app.core.redis import get_redis
-from app.dependencies import verify_api_key
 from app.models.comp import Comp
 from app.models.champion import Champion, ChampionTrait
 from app.models.item import Item
@@ -234,7 +233,7 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
 
 
 @router.delete("/cache", summary="Xóa cache")
-def clear_comps_cache(r: redis.Redis = Depends(get_redis), _=Depends(verify_api_key)):
+def clear_comps_cache(r: redis.Redis = Depends(get_redis)):
     try:
         for key in r.scan_iter("comps:*"):
             r.delete(key)
@@ -250,7 +249,6 @@ def clear_comps_cache(r: redis.Redis = Depends(get_redis), _=Depends(verify_api_
 def get_all_comps(
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     t0 = time.perf_counter()
 
@@ -290,7 +288,6 @@ def get_comp(
     comp_id: int,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     cache_key = f"{COMP_CACHE_KEY_PREFIX}{comp_id}"
 
@@ -318,7 +315,6 @@ def create_comp(
     body: CompCreate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     if db.query(Comp).filter(Comp.name == body.name).first():
         raise HTTPException(status_code=400, detail=f"Đội hình '{body.name}' đã tồn tại")
@@ -342,7 +338,6 @@ def bulk_sync_comps(
     body: List[CompCreate],
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     if not body:
         raise HTTPException(status_code=422, detail="Danh sách đội hình không được rỗng")
@@ -370,7 +365,6 @@ def update_comp(
     body: CompUpdate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     comp = _get_comp_or_404(comp_id, db)
     update_data = body.model_dump(exclude_none=True)
@@ -399,7 +393,6 @@ def delete_comp(
     comp_id: int,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
-    _=Depends(verify_api_key),
 ):
     comp = _get_comp_or_404(comp_id, db)
 
