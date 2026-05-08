@@ -64,6 +64,8 @@ class BoardSlotEnriched(BaseModel):
     champion: Optional[ChampionSimpleInComp] = None
     items: List[ItemSimpleInComp] = []
     is_three_star: bool = False
+    hex: Optional[int] = None    # vị trí hex (0-27) trên bàn cờ
+    row: Optional[int] = None    # hàng (0-3) trên bàn cờ
 
 
 # ---------------------------------------------------------------------------
