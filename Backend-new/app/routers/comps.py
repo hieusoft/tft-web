@@ -145,10 +145,13 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
                         "image": item.image,
                     })
 
+            position = slot.get("position") or {}
             enriched_board.append({
                 "champion": champ_dict,
                 "items": slot_items,
                 "is_three_star": slot.get("is_three_star", False),
+                "hex": position.get("hex"),
+                "row": position.get("row"),
             })
 
     enriched_carousel = []
