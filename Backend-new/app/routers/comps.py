@@ -6,7 +6,7 @@ from typing import List, Dict, Optional
 import redis
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import text
-from sqlalchemy.orm import Session, load_only
+from sqlalchemy.orm import Session, load_only, selectinload
 
 from app.core.database import get_db
 from app.core.redis import get_redis
@@ -68,7 +68,10 @@ def _build_lookup_maps(db: Session) -> dict:
 
     all_champions = (
         db.query(Champion)
-        .options(load_only(Champion.id, Champion.name, Champion.slug, Champion.cost, Champion.icon_path, Champion.splash_path))
+        .options(
+            load_only(Champion.id, Champion.name, Champion.slug, Champion.cost, Champion.icon_path, Champion.splash_path),
+            selectinload(Champion.skill)
+        )
         .all()
     )
     all_items = (
@@ -83,23 +86,35 @@ def _build_lookup_maps(db: Session) -> dict:
     )
     all_traits = (
         db.query(Trait)
-        .options(load_only(Trait.id, Trait.name, Trait.slug, Trait.image, Trait.milestones))
+        .options(load_only(Trait.id, Trait.name, Trait.slug, Trait.description, Trait.image, Trait.milestones))
         .all()
     )
     all_champ_traits = db.query(ChampionTrait).all()
 
+    champ_by_id = {c.id: c for c in all_champions}
     champ_trait_map: Dict[int, List[int]] = {}
+    trait_champ_map: Dict[int, List[dict]] = {}
+    
     for ct in all_champ_traits:
         champ_trait_map.setdefault(ct.champion_id, []).append(ct.trait_id)
+        c = champ_by_id.get(ct.champion_id)
+        if c:
+            trait_champ_map.setdefault(ct.trait_id, []).append({
+                "id": c.id, "name": c.name, "cost": c.cost, "icon_path": c.icon_path
+            })
+            
+    for t_id in trait_champ_map:
+        trait_champ_map[t_id].sort(key=lambda x: (x["cost"], x["name"]))
 
     _MAPS_CACHE = {
-        "champ_by_id": {c.id: c for c in all_champions},
+        "champ_by_id": champ_by_id,
         "champ_by_name": {c.name.strip(): c for c in all_champions},
         "item_by_id": {i.id: i for i in all_items},
         "item_by_name": {i.name.strip(): i for i in all_items},
         "aug_by_id": {a.id: a for a in all_augments},
         "aug_by_name": {a.name.strip(): a for a in all_augments},
         "champ_trait_map": champ_trait_map,
+        "trait_champ_map": trait_champ_map,
         "trait_by_id": {t.id: t for t in all_traits},
     }
     _MAPS_CACHE_TIME = time.time()
@@ -123,6 +138,12 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
             if champ_val is not None:
                 champ = _find(champ_val, cbi, cbn)
                 if champ:
+                    c_traits = []
+                    for t_id in maps["champ_trait_map"].get(champ.id, []):
+                        t = maps["trait_by_id"].get(t_id)
+                        if t:
+                            c_traits.append({"name": t.name, "image": t.image})
+                    
                     champ_dict = {
                         "id": champ.id,
                         "name": champ.name,
@@ -130,6 +151,15 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
                         "cost": champ.cost,
                         "icon_path": champ.icon_path,
                         "splash_path": champ.splash_path,
+                        "skill": {
+                            "name": champ.skill.name,
+                            "mana_start": champ.skill.mana_start,
+                            "mana_max": champ.skill.mana_max,
+                            "description": champ.skill.description,
+                            "icon_path": champ.skill.icon_path,
+                            "ability_stats": champ.skill.ability_stats
+                        } if getattr(champ, "skill", None) else None,
+                        "traits": c_traits,
                     }
 
             slot_items = []
@@ -210,10 +240,12 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
 
             active_traits.append({
                 "id": trait.id, "name": trait.name,
-                "slug": trait.slug, "image": trait.image,
+                "slug": trait.slug, "description": trait.description, "image": trait.image,
                 "count": count,
                 "current_style": current_style,
                 "total_styles": total_styles,
+                "milestones": milestones,
+                "champions": maps.get("trait_champ_map", {}).get(trait.id, [])
             })
 
     return {

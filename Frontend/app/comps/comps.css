@@ -1053,17 +1053,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.comp-trait-card__dots {
-  display: flex !important;
-  gap: 2px;
-  align-items: center;
-}
 
-.comp-trait-card__dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-}
 
 /* ── Empty State ── */
 .comp-empty {

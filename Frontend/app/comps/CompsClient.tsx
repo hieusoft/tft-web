@@ -727,6 +727,70 @@ const COST_GLOW: Record<number, string> = {
   5: 'rgba(245,158,11,0.6)',
 };
 
+// ── Champion Tooltip ─────────────────────────────────────────────────────────
+
+function ChampTooltip({ champ }: { champ: any }) {
+  const borderColor = COST_BORDER[champ.cost] ?? '#6b7280';
+  
+  return (
+    <div style={{
+      position: 'absolute', bottom: '100%', left: '50%', transform: 'translate(-50%, -10px)',
+      background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+      padding: '10px 12px', minWidth: 260, zIndex: 100,
+      boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
+      pointerEvents: 'none',
+      display: 'flex', flexDirection: 'column', gap: 6,
+    }}>
+      {/* Header: Icon, Name, Cost */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ width: 32, height: 32, borderRadius: 4, border: `2px solid ${borderColor}`, overflow: 'hidden' }}>
+          {champ.icon_path ? (
+            <img src={champ.icon_path} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          ) : (
+            <div style={{ width: '100%', height: '100%', background: '#222' }} />
+          )}
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{champ.name}</div>
+          <div style={{ fontSize: '0.6rem', color: borderColor, fontWeight: 600 }}>{champ.cost} Vàng</div>
+        </div>
+      </div>
+      
+      {/* Traits */}
+      {champ.traits && champ.traits.length > 0 && (
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 2 }}>
+          {champ.traits.map((t: any, i: number) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              {t.image && <img src={t.image} alt="" style={{ width: 14, height: 14 }} />}
+              <span style={{ fontSize: '0.6rem', color: '#ccc' }}>{t.name}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      
+      {/* Skill */}
+      {champ.skill && (
+        <div style={{ marginTop: 4, paddingTop: 6, borderTop: '1px solid #333' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+            {champ.skill.icon_path && (
+              <img src={champ.skill.icon_path} alt="" style={{ width: 24, height: 24, borderRadius: 4, border: '1px solid #444' }} />
+            )}
+            <div>
+              <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#f0b90b' }}>{champ.skill.name}</div>
+              <div style={{ fontSize: '0.55rem', color: '#66abff' }}>
+                Năng lượng: {champ.skill.mana_start} / {champ.skill.mana_max}
+              </div>
+            </div>
+          </div>
+          {champ.skill.description && (
+            <div style={{ fontSize: '0.6rem', color: '#aaa', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: champ.skill.description }} />
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: number; hexH: number }) {
   const BORDER_PX = 4;
   const innerW = hexW - BORDER_PX * 2;
@@ -759,8 +823,27 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
   const bgColor = COST_BG[champ.cost] ?? '#374151';
   const glowColor = COST_GLOW[champ.cost] ?? 'rgba(107,114,128,0.4)';
 
+  const [showTip, setShowTip] = useState(false);
+  const tipRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showTip) return;
+    const handler = (e: MouseEvent) => {
+      if (tipRef.current && !tipRef.current.contains(e.target as Node)) setShowTip(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showTip]);
+
   return (
-    <div style={{ width: hexW, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+    <div 
+      ref={tipRef}
+      onMouseEnter={() => setShowTip(true)}
+      onMouseLeave={() => setShowTip(false)}
+      onClick={() => setShowTip(!showTip)}
+      style={{ width: hexW, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', cursor: 'pointer' }}
+    >
+      {showTip && <ChampTooltip champ={champ} />}
 
       {/* Hex wrapper — glow + border + art + items overlay */}
       <div style={{
@@ -884,16 +967,32 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
 // ── Champion Slot (compact, row view) ────────────────────────────────────────
 
 function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot, size?: number, itemSize?: number }) {
+  const [showTip, setShowTip] = useState(false);
+  const tipRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showTip) return;
+    const handler = (e: MouseEvent) => {
+      if (tipRef.current && !tipRef.current.contains(e.target as Node)) setShowTip(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showTip]);
+
   if (!slot.champion) return null;
   const champ = slot.champion;
   const borderColor = COST_BORDER[champ.cost] ?? "#6b7280";
 
   return (
     <div
+      ref={tipRef}
+      onMouseEnter={() => setShowTip(true)}
+      onMouseLeave={() => setShowTip(false)}
+      onClick={() => setShowTip(!showTip)}
       className={`comp-champ-slot ${slot.is_three_star ? "comp-champ-slot--3star" : ""}`}
-      title={`${champ.name}${slot.is_three_star ? " (3 star)" : ""}`}
-      style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}
+      style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, position: 'relative', cursor: 'pointer' }}
     >
+      {showTip && <ChampTooltip champ={champ} />}
       {/* Champion icon — square, items overlaid at bottom */}
       <div style={{ position: 'relative', width: size, height: size, flexShrink: 0 }}>
         {/* Image clip box */}
@@ -965,23 +1064,104 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
 function TraitIcon({ trait }: { trait: CompActiveTrait }) {
   const styleColor = TRAIT_STYLE_COLORS[trait.current_style] ?? TRAIT_STYLE_COLORS[0];
   const isActive = trait.current_style > 0;
+  const [showTip, setShowTip] = useState(false);
+  const tipRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showTip) return;
+    const handler = (e: MouseEvent) => {
+      if (tipRef.current && !tipRef.current.contains(e.target as Node)) setShowTip(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showTip]);
 
   return (
-    <div
-      className={`comp-trait-icon ${isActive ? "comp-trait-icon--active" : ""}`}
-      style={{ borderColor: styleColor }}
-      title={`${trait.name} (${trait.count})`}
-    >
-      {trait.image ? (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src={trait.image}
-          alt={trait.name}
-          className="comp-trait-icon__img"
-          style={{ width: 22, height: 22, objectFit: "contain", ...(isActive ? {} : { filter: "grayscale(0.6) opacity(0.5)" }) }}
-        />
-      ) : (
-        <span className="comp-trait-icon__text">{trait.name[0]}</span>
+    <div ref={tipRef} style={{ position: 'relative' }}>
+      <div
+        className={`comp-trait-icon ${isActive ? "comp-trait-icon--active" : ""}`}
+        style={{ borderColor: styleColor, cursor: 'pointer' }}
+        onMouseEnter={() => setShowTip(true)}
+        onMouseLeave={() => setShowTip(false)}
+        onClick={() => setShowTip(!showTip)}
+      >
+        {trait.image ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={trait.image}
+            alt={trait.name}
+            className="comp-trait-icon__img"
+            style={{ width: 22, height: 22, objectFit: "contain", ...(isActive ? {} : { filter: "grayscale(0.6) opacity(0.5)" }) }}
+          />
+        ) : (
+          <span className="comp-trait-icon__text">{trait.name[0]}</span>
+        )}
+      </div>
+
+      {showTip && (
+        <div style={{
+          position: 'absolute', bottom: '110%', left: '50%', transform: 'translateX(-50%)',
+          background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+          padding: '10px 12px', minWidth: 240, zIndex: 100,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
+          pointerEvents: 'none',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+            {trait.image && <img src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8' }}>{trait.name}</span>
+            <span style={{ fontSize: '0.65rem', color: styleColor, marginLeft: 'auto', fontWeight: 600 }}>
+              Bậc {trait.current_style} ({trait.count})
+            </span>
+          </div>
+          
+          {trait.description && (
+            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: trait.description }} />
+          )}
+
+          {trait.milestones && trait.milestones.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
+              {trait.milestones.map((ms: any, i: number) => {
+                const reqUnit = typeof ms === 'number' ? ms : (ms.min_units || ms.unit || 0);
+                const effect = ms.effect || "";
+                const isActive = trait.count >= reqUnit;
+                return (
+                  <div key={i} style={{ display: 'flex', gap: 6, opacity: isActive ? 1 : 0.4 }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
+                      ({reqUnit})
+                    </span>
+                    {effect && (
+                      <span style={{ fontSize: '0.65rem', color: isActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {trait.champions && trait.champions.length > 0 && (
+            <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid #333' }}>
+              <div style={{ fontSize: '0.55rem', color: '#888', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 0.5 }}>Tướng</div>
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                {trait.champions.map((c: any) => {
+                  const borderColor = COST_BORDER[c.cost] || '#666';
+                  return (
+                    <div key={c.id} style={{ 
+                      width: 24, height: 24, borderRadius: 3, border: `1px solid ${borderColor}`, overflow: 'hidden'
+                    }}>
+                      {c.icon_path ? (
+                        <img src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ) : (
+                        <div style={{ width: '100%', height: '100%', background: '#222', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {c.name.substring(0, 2)}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
@@ -992,44 +1172,120 @@ function TraitIcon({ trait }: { trait: CompActiveTrait }) {
 function TraitCard({ trait }: { trait: CompActiveTrait }) {
   const styleColor = TRAIT_STYLE_COLORS[trait.current_style] ?? TRAIT_STYLE_COLORS[0];
   const isActive = trait.current_style > 0;
+  const [showTip, setShowTip] = useState(false);
+  const tipRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showTip) return;
+    const handler = (e: MouseEvent) => {
+      if (tipRef.current && !tipRef.current.contains(e.target as Node)) setShowTip(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showTip]);
 
   return (
-    <div className={`comp-trait-card ${isActive ? "comp-trait-card--active" : ""}`}>
-      <div
-        className="comp-trait-card__icon"
-        style={{ borderColor: styleColor, background: isActive ? `${styleColor}15` : "transparent" }}
+    <div ref={tipRef} style={{ position: 'relative' }}>
+      <div 
+        className={`comp-trait-card ${isActive ? "comp-trait-card--active" : ""}`}
+        onMouseEnter={() => setShowTip(true)}
+        onMouseLeave={() => setShowTip(false)}
+        onClick={() => setShowTip(!showTip)}
+        style={{ cursor: 'pointer' }}
       >
-        {trait.image ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={trait.image}
-            alt={trait.name}
-            className="comp-trait-card__img"
-            style={{ width: 24, height: 24, objectFit: "contain", ...(isActive ? {} : { filter: "grayscale(0.6) opacity(0.5)" }) }}
-          />
-        ) : (
-          <span>{trait.name[0]}</span>
-        )}
-      </div>
-      <div className="comp-trait-card__info">
-        <span className="comp-trait-card__name" style={isActive ? { color: "#e8e8e8" } : undefined}>
-          {trait.name}
-        </span>
-        <div className="comp-trait-card__meta">
-          <span className="comp-trait-card__count" style={{ color: styleColor }}>
-            {trait.count}
+        <div
+          className="comp-trait-card__icon"
+          style={{ borderColor: styleColor, background: isActive ? `${styleColor}15` : "transparent" }}
+        >
+          {trait.image ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={trait.image}
+              alt={trait.name}
+              className="comp-trait-card__img"
+              style={{ width: 24, height: 24, objectFit: "contain", ...(isActive ? {} : { filter: "grayscale(0.6) opacity(0.5)" }) }}
+            />
+          ) : (
+            <span>{trait.name[0]}</span>
+          )}
+        </div>
+        <div className="comp-trait-card__info">
+          <span className="comp-trait-card__name" style={isActive ? { color: "#e8e8e8" } : undefined}>
+            {trait.name}
           </span>
-          <div className="comp-trait-card__dots">
-            {Array.from({ length: trait.total_styles }).map((_, i) => (
-              <div
-                key={i}
-                className="comp-trait-card__dot"
-                style={{ background: i < trait.current_style ? styleColor : "#3a3a3a" }}
-              />
-            ))}
+          <div className="comp-trait-card__meta">
+            <span className="comp-trait-card__count" style={{ color: styleColor }}>
+              {trait.count}
+            </span>
           </div>
         </div>
       </div>
+
+      {showTip && (
+        <div style={{
+          position: 'absolute', bottom: '110%', left: '0',
+          background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+          padding: '10px 12px', minWidth: 240, zIndex: 100,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
+          pointerEvents: 'none',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+            {trait.image && <img src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8' }}>{trait.name}</span>
+            <span style={{ fontSize: '0.65rem', color: styleColor, marginLeft: 'auto', fontWeight: 600 }}>
+              Bậc {trait.current_style} ({trait.count})
+            </span>
+          </div>
+
+          {trait.description && (
+            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: trait.description }} />
+          )}
+
+          {trait.milestones && trait.milestones.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
+              {trait.milestones.map((ms: any, i: number) => {
+                const reqUnit = typeof ms === 'number' ? ms : (ms.min_units || ms.unit || 0);
+                const effect = ms.effect || "";
+                const isActive = trait.count >= reqUnit;
+                return (
+                  <div key={i} style={{ display: 'flex', gap: 6, opacity: isActive ? 1 : 0.4 }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
+                      ({reqUnit})
+                    </span>
+                    {effect && (
+                      <span style={{ fontSize: '0.65rem', color: isActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {trait.champions && trait.champions.length > 0 && (
+            <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid #333' }}>
+              <div style={{ fontSize: '0.55rem', color: '#888', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 0.5 }}>Tướng</div>
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                {trait.champions.map((c: any) => {
+                  const borderColor = COST_BORDER[c.cost] || '#666';
+                  return (
+                    <div key={c.id} style={{ 
+                      width: 24, height: 24, borderRadius: 3, border: `1px solid ${borderColor}`, overflow: 'hidden'
+                    }}>
+                      {c.icon_path ? (
+                        <img src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ) : (
+                        <div style={{ width: '100%', height: '100%', background: '#222', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {c.name.substring(0, 2)}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,2146 +1,2146 @@
 [
   {
     "name": "Cuộc Viễn Chinh",
-    "slug": "cuoc-vien-chinh",
+    "slug": "expeditioni",
     "tier": 1,
     "rank": "S",
     "description": "Khi bắt đầu giao tranh, mất đi vị tướng ở ô ngoài cùng bên phải hàng dự bị. Sau khi tổng giá tướng mất đi theo cách này là 33 vàng, nhận một phần thưởng mạnh mẽ. Nhận ngay 1 tướng 3 vàng. TFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cuoc-vien-chinh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/expeditioni.png"
   },
   {
     "name": "Ngọn Gió Thứ Hai",
-    "slug": "ngon-gio-thu-hai",
+    "slug": "second--wind-i",
     "tier": 1,
     "rank": "S",
     "description": "Sau 10 giây giao tranh, đội của bạn hồi lại 40% Máu đã mất.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ngon-gio-thu-hai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/second--wind-i.png"
   },
   {
     "name": "Phân Nhánh",
-    "slug": "phan-nhanh",
+    "slug": "branching-out-i",
     "tier": 1,
     "rank": "S",
     "description": "Nhận 1 Ấn ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/phan-nhanh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/branching-out-i.png"
   },
   {
     "name": "Phân Nhánh+",
-    "slug": "phan-nhanh",
+    "slug": "branching-out-i",
     "tier": 1,
     "rank": "S",
     "description": "Nhận 1 Ấn ngẫu nhiên và 1 Búa Rèn.\n\nBúa Rèn cho phép bạn tái tạo bất kỳ trang bị nào.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/phan-nhanh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/branching-out-i.png"
   },
   {
     "name": "Quay Trúng Thưởng",
-    "slug": "quay-trung-thuong",
+    "slug": "slightlymagicrolli",
     "tier": 1,
     "rank": "S",
     "description": "Đổ 1 con xúc xắc. Nhận thưởng dựa trên số xúc xắc đổ ra.\n\nPhần Thưởng: ???",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/quay-trung-thuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/slightlymagicrolli.png"
   },
   {
     "name": "Tái Khởi Động Nhiệm Vụ",
-    "slug": "tai-khoi-dong-nhiem-vu",
+    "slug": "restartmissioni",
     "tier": 1,
     "rank": "S",
     "description": "Loại bỏ tất cả tướng trên bàn đấu và trên hàng dự bị của bạn. Nhận 2 tướng 3 vàng 2 sao, 3 tướng 2 vàng 2 sao và 1 tướng 1 vàng 2 sao ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tai-khoi-dong-nhiem-vu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/restartmissioni.png"
   },
   {
     "name": "Xúc Xắc Vô Tận I",
-    "slug": "xuc-xac-vo-tan-i",
+    "slug": "rolling-for-days-i",
     "tier": 1,
     "rank": "S",
     "description": "Nhận 10 lượt đổi Cửa Hàng miễn phí.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/xuc-xac-vo-tan-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/rolling-for-days-i.png"
   },
   {
     "name": "Ân Huệ Của Varus",
-    "slug": "an-hue-cua-varus",
+    "slug": "godaugmentvarusii",
     "tier": 2,
     "rank": "S",
     "description": "Đội của bạn nhận được 18 máu cho mỗi tổng cấp sao trong đội hình, và tỉ lệ xuất hiện tướng 5 vàng tăng thêm 2%.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-varus.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentvarusii.png"
   },
   {
     "name": "Bài Học Sơ Khai",
-    "slug": "bai-hoc-so-khai",
+    "slug": "earlylearningii",
     "tier": 2,
     "rank": "S",
     "description": "Đội của bạn nhận 1% Sức Mạnh Công Kích & Sức Mạnh Phép Thuật. Lượng này sẽ tăng thêm 1% sau mỗi giao tranh người chơi. Các tướng 1 vàng nhận gấp đôi.\ntft10_headliner_default\nĐTCL Vegas Open, 2023",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bai-hoc-so-khai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/earlylearningii.png"
   },
   {
     "name": "Cắm Rễ Phân Tán",
-    "slug": "cam-re-phan-tan",
+    "slug": "spreadingrootsii",
     "tier": 2,
     "rank": "S",
     "description": "Nhận 2 Ấn ngẫu nhiên và 1 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cam-re-phan-tan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/spreadingrootsii.png"
   },
   {
     "name": "Cắm Rễ Phân Tán+",
-    "slug": "cam-re-phan-tan",
+    "slug": "spreadingrootsii",
     "tier": 2,
     "rank": "S",
     "description": "Nhận 2 Ấn ngẫu nhiên, 1 Búa Rèn và 2 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cam-re-phan-tan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/spreadingrootsii.png"
   },
   {
     "name": "Nghĩ Về Tương Lai",
-    "slug": "nghi-ve-tuong-lai",
+    "slug": "forwardthinkingii",
     "tier": 2,
     "rank": "S",
     "description": "Mất đi toàn bộ vàng. Sau 5 giao tranh người chơi, nhận lại lượng vàng ban đầu và thêm 70 vàng nữa.\n\nVàng Sắp Nhận Được: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nghi-ve-tuong-lai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/forwardthinkingii.png"
   },
   {
     "name": "NHẮM MẮT CHƠI BỪA",
-    "slug": "nham-mat-choi-bua",
+    "slug": "noscoutnopivotii",
     "tier": 2,
     "rank": "S",
     "description": "Các tướng tham gia giao tranh người chơi không thể được đưa về hàng dự bị hoặc bán. Đội của bạn nhận 1% Máu, 1% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật sau giao tranh người chơi. \n\ntft10_headliner_default",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nham-mat-choi-bua.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/noscoutnopivotii.png"
   },
   {
     "name": "Sơ Đồ Tuyến Sau",
-    "slug": "so-do-tuyen-sau",
+    "slug": "backlineblueprintii",
     "tier": 2,
     "rank": "S",
     "description": "Nhận 1 tướng 3 vàng không phải Đỡ Đòn và 1 Ấn phù hợp với tộc/hệ cuối cùng của tướng đó.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/so-do-tuyen-sau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/backlineblueprintii.png"
   },
   {
     "name": "Tái Lập Vũ Trụ",
-    "slug": "tai-lap-vu-tru",
+    "slug": "cosmicrestartii",
     "tier": 2,
     "rank": "S",
     "description": "Cầu gọi các Vị Thần để bán toàn bộ bàn đấu và hàng dự bị của bạn. Nhận 2 Ấn ngẫu nhiên và 11 lượt đổi Cửa Hàng miễn phí.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tai-lap-vu-tru.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cosmicrestartii.png"
   },
   {
     "name": "Thua Có Tính Toán",
-    "slug": "thua-co-tinh-toan",
+    "slug": "calculatedloss2",
     "tier": 1,
     "rank": "S",
     "description": "Sau khi thua trận, nhận 2 vàng và 1 lượt đổi Cửa Hàng miễn phí.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thua-co-tinh-toan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/calculatedloss2.png"
   },
   {
     "name": "U.R.F.",
-    "slug": "urf",
+    "slug": "ultrarapidfireii",
     "tier": 2,
     "rank": "S",
     "description": "Nhận 1 Xẻng Vàng. Các tướng mang Xẻng Vàng hoặc Chảo Vàng nhận thêm 15% Tốc Độ Đánh và 2 Hồi Năng Lượng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/urf.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ultrarapidfireii.png"
   },
   {
     "name": "Xúc Xắc Hoành Tráng",
-    "slug": "xuc-xac-hoanh-trang",
+    "slug": "epicrolldownii",
     "tier": 2,
     "rank": "S",
     "description": "Khi đạt Cấp 8, nhận 20 Lượt Đổi Cửa Hàng.\n\nQuán Quân Runeterra Tái Hợp, 2023",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/xuc-xac-hoanh-trang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/epicrolldownii.png"
   },
   {
     "name": "Zed Kẻ Xâm Lăng",
-    "slug": "zed-ke-xam-lang",
+    "slug": "invaderzedii",
     "tier": 2,
     "rank": "S",
     "description": "Nhận 1 Ngọn Giáo Shojin. Ở Vòng 4-2, nhận 1 Zed. Sau khi nhận Zed, hắn có thể xuất hiện trong cửa hàng của bạn.\n\nZed là Đấu Sĩ Vật Lý 5 vàng có khả năng tạo ra các phân thân của chính mình.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/zed-ke-xam-lang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/invaderzedii.png"
   },
   {
     "name": "Cây Tộc Hệ",
-    "slug": "cay-toc-he",
+    "slug": "thetraittreeiii",
     "tier": 3,
     "rank": "S",
     "description": "Nhận 3 Ấn ngẫu nhiên, 1 Búa Rèn và 2 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cay-toc-he.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thetraittreeiii.png"
   },
   {
     "name": "Cây Tộc Hệ+",
-    "slug": "cay-toc-he",
+    "slug": "thetraittreeiii",
     "tier": 3,
     "rank": "S",
     "description": "Nhận 3 Ấn ngẫu nhiên, 1 Búa Rèn và 4 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cay-toc-he.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thetraittreeiii.png"
   },
   {
     "name": "Cố Gắng Lật Kèo",
-    "slug": "co-gang-lat-keo",
+    "slug": "comebackstoryiii",
     "tier": 3,
     "rank": "S",
     "description": "Đội của bạn nhận 4 Máu và 0.4% Tốc Độ Đánh với mỗi Máu người chơi đã mất.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/co-gang-lat-keo.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/comebackstoryiii.png"
   },
   {
     "name": "Đánh Là Trúng",
-    "slug": "danh-la-trung",
+    "slug": "justhitiii",
     "tier": 3,
     "rank": "S",
     "description": "Nhận 1 Máy Sao Chép Tướng, 18 lượt đổi Cửa Hàng và 3 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/danh-la-trung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/justhitiii.png"
   },
   {
     "name": "Hang Ổ Baron",
-    "slug": "hang-o-baron",
+    "slug": "thebaronslairiii",
     "tier": 3,
     "rank": "S",
     "description": "Nhận 1 trang bị Đỡ Đòn ngẫu nhiên. Sau 8 giây giao tranh, đội của bạn nhận thêm 5% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật mỗi giây cho đến hết giao tranh.\n\nTFT Paris Open, 2025",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hang-o-baron.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thebaronslairiii.png"
   },
   {
     "name": "Linh Hoạt",
-    "slug": "linh-hoat",
+    "slug": "flexibleii",
     "tier": 2,
     "rank": "S",
     "description": "Nhận 1 Ấn ngẫu nhiên. Khi bắt đầu mỗi Giai Đoạn, nhận 1 Ấn ngẫu nhiên. Đội của bạn nhận 40 Máu với mỗi Ấn mà họ đang mang.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/linh-hoat.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/flexibleii.png"
   },
   {
     "name": "Linh Thú Vào Bếp",
-    "slug": "linh-thu-vao-bep",
+    "slug": "tacticianskitcheniii",
     "tier": 3,
     "rank": "S",
     "description": "Nhận 1 Ấn ngẫu nhiên. Sau 3 vòng đấu, nhận 1 Áo Choàng Chiến Thuật.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/linh-thu-vao-bep.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tacticianskitcheniii.png"
   },
   {
     "name": "Tất Tay Bậc Đồng II",
-    "slug": "tat-tay-bac-dong-ii",
+    "slug": "bronzeforlifeiii",
     "tier": 3,
     "rank": "S",
     "description": "Đội của bạn nhận 2% Khuếch Đại Sát Thương và 4 Giáp & Kháng Phép cho mỗi tộc/hệ bậc Đồng.\n\nKhuếch Đại Sát Thương: X\nGiáp & Kháng Phép: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tat-tay-bac-dong-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bronzeforlifeiii.png"
   },
   {
     "name": "Tôi Luyện Sức Mạnh",
-    "slug": "toi-luyen-suc-manh",
+    "slug": "forgedinstrengthiii",
     "tier": 3,
     "rank": "S",
     "description": "Nhận 1 Tạo Tác ngẫu nhiên. Khi bạn xuống dưới 35 Máu, nhận thêm 3 Tạo Tác ngẫu nhiên.\n\nGiải Vô Địch Remix Rumble, 2023",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/toi-luyen-suc-manh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/forgedinstrengthiii.png"
   },
   {
     "name": "Vé Kim Cương",
-    "slug": "ve-kim-cuong",
+    "slug": "goldenticket3",
     "tier": 1,
     "rank": "S",
     "description": "Mỗi khi Cửa Hàng được đổi lại, bạn có 45% tỉ lệ nhận được thêm 1 lượt đổi miễn phí.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ve-kim-cuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goldenticket3.png"
   },
   {
     "name": "Bán Thăng Hoa",
-    "slug": "ban-thang-hoa",
+    "slug": "ascension1",
     "tier": 1,
     "rank": "A",
     "description": "Sau 12 giây giao tranh, đội của bạn nhận thêm 20% Khuếch Đại Sát Thương.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ban-thang-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ascension1.png"
   },
   {
     "name": "Băng Trộm",
-    "slug": "bang-trom",
+    "slug": "bandthieves1",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 1 Găng Đạo Tặc",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bang-trom.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bandthieves1.png"
   },
   {
     "name": "Chuyện Đời Thường",
-    "slug": "chuyen-doi-thuong",
+    "slug": "sliceoflifei",
     "tier": 1,
     "rank": "A",
     "description": "Hai lần mỗi giai đoạn, nhận 1 tướng ngẫu nhiên. Giá của tướng tăng theo Giai Đoạn. Hiệu ứng này kết thúc sau khi nhận được 1 tướng 5 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chuyen-doi-thuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sliceoflifei.png"
   },
   {
     "name": "Độc Hành I",
-    "slug": "doc-hanh-i",
+    "slug": "exiles1",
     "tier": 1,
     "rank": "A",
     "description": "Những tướng không đứng liền kề với bất kì đồng minh nào khác khi bắt đầu giao tranh nhận lá chắn tương đương 20% Máu tối đa trong 10 giây.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/doc-hanh-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/exiles1.png"
   },
   {
     "name": "Hình Nhân Hóa",
-    "slug": "hinh-nhan-hoa",
+    "slug": "dummifyi",
     "tier": 1,
     "rank": "A",
     "description": "Mất đi tất cả tướng trên bàn đấu và trên hàng dự bị của bạn. Nhận 1 Hình Nhân mang 60% tổng Máu của tất cả các tướng đó. Hình Nhân nhận thêm 1000 Máu mỗi giai đoạn. Nhận 1 tướng 2 vàng 2 sao không phải Đỡ Đòn.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hinh-nhan-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dummifyi.png"
   },
   {
     "name": "Hộp Pandora",
-    "slug": "hop-pandora",
+    "slug": "pandora1",
     "tier": 1,
     "rank": "A",
     "description": "Bắt đầu vòng đấu: Các trang bị trên hàng dự bị được đánh tráo ngẫu nhiên. \n\nNhận 1 trang bị thành phần ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hop-pandora.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/pandora1.png"
   },
   {
     "name": "Kết Nối Gián Đoạn",
-    "slug": "ket-noi-gian-doan",
+    "slug": "missed-connections-i",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 1 bản sao của mỗi tướng Bậc 1.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ket-noi-gian-doan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/missed-connections-i.png"
   },
   {
     "name": "Khởi Động Nhanh",
-    "slug": "khoi-dong-nhanh",
+    "slug": "kickstarti",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 1 vàng và 1 tướng 2 vàng 2 sao ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/khoi-dong-nhanh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kickstarti.png"
   },
   {
     "name": "Kiên Nhẫn Là Một Đức Tính",
-    "slug": "kien-nhan-la-mot-duc-tinh",
+    "slug": "patienceisavirtuei",
     "tier": 1,
     "rank": "A",
     "description": "Nhận ngay 4 lượt đổi lại. Mỗi vòng đấu, nhận 1 lượt đổi miễn phí nếu bạn không mua tướng ở vòng đấu trước.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kien-nhan-la-mot-duc-tinh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/patienceisavirtuei.png"
   },
   {
     "name": "Nhất Thống",
-    "slug": "nhat-thong",
+    "slug": "standunited1",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 1.5% Sức Mạnh Công Kích và 1.5% Sức Mạnh Phép Thuật với mỗi Tộc/Hệ không phải duy nhất được kích hoạt trong đội hình.\n\nThưởng Hiện Tại: X  X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nhat-thong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/standunited1.png"
   },
   {
     "name": "Nữ Chiến Binh Khiên",
-    "slug": "nu-chien-binh-khien",
+    "slug": "leonaheroi",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 1 Leona. Leona mạnh nhất của bạn trở thành một Đấu Sĩ Vật Lý, lao qua kẻ địch để gây sát thương vật lý, làm choáng mục tiêu đầu tiên trúng phải.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nu-chien-binh-khien.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/leonaheroi.png"
   },
   {
     "name": "Ôm Tập Thể I",
-    "slug": "om-tap-the-i",
+    "slug": "grouphug1i",
     "tier": 1,
     "rank": "A",
     "description": "Bắt đầu giao tranh: Đồng minh sẽ tăng cho các đồng minh liền kề khác 7 Giáp và Kháng Phép. Hiệu ứng này có thể cộng dồn.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/om-tap-the-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/grouphug1i.png"
   },
   {
     "name": "Song Vệ",
-    "slug": "song-ve",
+    "slug": "twinguardiansi",
     "tier": 1,
     "rank": "A",
     "description": "Nếu bạn có đúng 2 đồng minh ở hàng đầu, tăng cho họ 100 Máu cộng thêm, 35 Giáp và 35 Kháng Phép.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/song-ve.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/twinguardiansi.png"
   },
   {
     "name": "Tập Chịu Đòn",
-    "slug": "tap-chiu-don",
+    "slug": "boxinglessonsi",
     "tier": 1,
     "rank": "A",
     "description": "Đội của bạn nhận 30 Máu với mỗi đồng minh bắt đầu giao tranh ở 2 hàng đầu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tap-chiu-don.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/boxinglessonsi.png"
   },
   {
     "name": "Thanh Lý Toàn Bộ",
-    "slug": "thanh-ly-toan-bo",
+    "slug": "firesalei",
     "tier": 1,
     "rank": "A",
     "description": "Mỗi vòng đấu, đánh cắp 1 tướng ngẫu nhiên giá 3 vàng hoặc thấp hơn từ cửa hàng. Nhận 1 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thanh-ly-toan-bo.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/firesalei.png"
   },
   {
     "name": "Túi Đồ Cỡ Nhỏ",
-    "slug": "tui-do-co-nho",
+    "slug": "smallgrabbagi",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 2 trang bị thành phần ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tui-do-co-nho.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/smallgrabbagi.png"
   },
   {
     "name": "2 Vàng Là Nhất",
-    "slug": "2-vang-la-nhat",
+    "slug": "twomuchvalueii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 lượt đổi với mỗi 2 tướng 2 vàng khác nhau được triển khai ở giao tranh người chơi gần nhất. Nhận 1 tướng 2 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/2-vang-la-nhat.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/twomuchvalueii.png"
   },
   {
     "name": "Aura Farming",
-    "slug": "aura-farming",
+    "slug": "aurafarmingii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 tướng 5 vàng 2 sao mang 1 trang bị đề xuất. Bạn không thể triển khai tướng này cho tới Vòng 4-3.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/aura-farming.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/aurafarmingii.png"
   },
   {
     "name": "Ân Huệ Của Ahri",
-    "slug": "an-hue-cua-ahri",
+    "slug": "godaugmentahriii",
     "tier": 2,
     "rank": "A",
     "description": "Đội của bạn nhận 2% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật mỗi cấp. Nhận 2 XP mỗi vòng cho đến hết trận đấu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-ahri.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentahriii.png"
   },
   {
     "name": "Ân Huệ Của Ekko",
-    "slug": "an-hue-cua-ekko",
+    "slug": "godaugmentekkoii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận Dị Thường, một trang bị giúp tướng tiến hóa mạnh mẽ tùy theo vai trò của họ. Nhận 2 Nam Châm Ma Thuật.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-ekko.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentekkoii.png"
   },
   {
     "name": "Ân Huệ Của Kayle",
-    "slug": "an-hue-cua-kayle",
+    "slug": "godaugmentkayleii",
     "tier": 2,
     "rank": "A",
     "description": "Với mỗi trang bị hoàn chỉnh khác biệt đội của bạn đang sử dụng, cả đội nhận được 15 Máu, 1% Sức Mạnh Công Kích và 1% Sức Mạnh Phép Thuật.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-kayle.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentkayleii.png"
   },
   {
     "name": "Ân Huệ Của Yasuo",
-    "slug": "an-hue-cua-yasuo",
+    "slug": "godaugmentyasuoii",
     "tier": 2,
     "rank": "A",
     "description": "Tăng sức mạnh của các ô Yasuo thêm 50%. Nếu bạn chỉ có 2 ô, nhận 8 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-yasuo.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentyasuoii.png"
   },
   {
     "name": "Bừa Bộn",
-    "slug": "bua-bon",
+    "slug": "dizzy-ii",
     "tier": 2,
     "rank": "A",
     "description": "Lập tức nhận 4 tướng 1-vàng ngẫu nhiên. Nếu hàng chờ của bạn đầy khi kết thúc một vòng giao chiến với người chơi, nhận 3 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bua-bon.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dizzy-ii.png"
   },
   {
     "name": "Chỉ Huy Siêu Thú",
-    "slug": "chi-huy-sieu-thu",
+    "slug": "animacommanderii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 Briar, 1 Jinx và 1 Illaoi. Tăng Máu hiện tại và Máu tối đa của người chơi thêm 5.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chi-huy-sieu-thu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/animacommanderii.png"
   },
   {
     "name": "Chờ Đợi Xứng Đáng",
-    "slug": "cho-doi-xung-dang",
+    "slug": "worththewaitii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 tướng 1 vàng ngẫu nhiên. Nhận 1 bản sao nữa của tướng đó khi bắt đầu mỗi vòng đấu cho đến hết trận.\n\nTướng: ???",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cho-doi-xung-dang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/worththewaitii.png"
   },
   {
     "name": "Củng Cố Tuyến Trước",
-    "slug": "cung-co-tuyen-truoc",
+    "slug": "frontlinefoundationii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 tướng Đỡ Đòn 1 vàng 2 sao và 1 Ấn phù hợp với tộc/hệ cuối cùng của tướng đó.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cung-co-tuyen-truoc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/frontlinefoundationii.png"
   },
   {
     "name": "Độc Hành II",
-    "slug": "doc-hanh-ii",
+    "slug": "exiles2",
     "tier": 1,
     "rank": "A",
     "description": "Những tướng không đứng liền kề với bất kì đồng minh nào khác khi bắt đầu giao tranh nhận lá chắn tương đương 30% Máu tối đa trong 10 giây.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/doc-hanh-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/exiles2.png"
   },
   {
     "name": "Giáp Gai Thép",
-    "slug": "giap-gai-thep",
+    "slug": "thornplatedarmorii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 Áo Choàng Gai. Áo Choàng Gai của bạn gây thêm 20 - 170% sát thương (tùy vào Giai Đoạn).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/giap-gai-thep.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thornplatedarmorii.png"
   },
   {
     "name": "Gói Bảo Hộ",
-    "slug": "goi-bao-ho",
+    "slug": "carepackageii",
     "tier": 2,
     "rank": "A",
     "description": "Ngay bây giờ và khi bắt đầu 2 Giai Đoạn tiếp theo, nhận 1 gói bảo hộ chứa báu vật và 3 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goi-bao-ho.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/carepackageii.png"
   },
   {
     "name": "Gói Tăng Cường++",
-    "slug": "goi-tang-cuong",
+    "slug": "boosterpack1ii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận các tướng ngẫu nhiên có tổng giá là 26 vàng. (Đảm bảo có ít nhất một tướng 5 vàng!)\n\n(Mỗi tướng đều có tỉ lệ nhỏ trở thành dạng ba chiều!)",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goi-tang-cuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/boosterpack1ii.png"
   },
   {
     "name": "Hình Nộm Va Chạm",
-    "slug": "hinh-nom-va-cham",
+    "slug": "crash-test-dummies-ii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 2 Hình Nhân. Bắt đầu giao tranh: Hình Nhân sẽ lao thẳng vào giữa đội hình địch và Làm Choáng chúng trong 1 giây.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hinh-nom-va-cham.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/crash-test-dummies-ii.png"
   },
   {
     "name": "Hưởng Ké Hào Quang Yasuo",
-    "slug": "huong-ke-hao-quang-yasuo",
+    "slug": "sharespotlight2",
     "tier": 1,
     "rank": "A",
     "description": "Các ô của Yasuo cũng ảnh hưởng đến các đơn vị liền kề, nhưng chỉ với hiệu quả 100%.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/huong-ke-hao-quang-yasuo.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sharespotlight2.png"
   },
   {
     "name": "Kamekameha",
-    "slug": "kamekameha",
+    "slug": "furiousblowsii",
     "tier": 2,
     "rank": "A",
     "description": "Mỗi đòn đánh thứ 5 gây thêm sát thương chuẩn tương đương 150% Sức Mạnh Công Kích Cơ Bản.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kamekameha.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/furiousblowsii.png"
   },
   {
     "name": "Khảm Bảo Thạch I",
-    "slug": "kham-bao-thach-i",
+    "slug": "jeweled-lotus-ii",
     "tier": 2,
     "rank": "A",
     "description": "Đội của bạn nhận 20% Tỉ Lệ Chí Mạng và Chuẩn Xác.\n\nPrecision: Ability damage can critically strike. Additional Precision grants 10% Critical Strike Damage.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kham-bao-thach-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/jeweled-lotus-ii.png"
   },
   {
     "name": "Khiên Đơn Đấu",
-    "slug": "khien-don-dau",
+    "slug": "soloplateii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 Thú Tượng Thạch Giáp. Bắt đầu giao tranh: Các đồng minh mang Thú Tượng Thạch Giáp nhận 17% Máu tối đa nếu họ đứng một mình một hàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/khien-don-dau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/soloplateii.png"
   },
   {
     "name": "Kiên Nhẫn Học Tập",
-    "slug": "kien-nhan-hoc-tap",
+    "slug": "learning-from-experience-ii",
     "tier": 2,
     "rank": "A",
     "description": "Sau khi giao chiến với người chơi, nhận thêm 2 XP nếu bạn thắng hoặc 3 XP nếu bạn thua.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kien-nhan-hoc-tap.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/learning-from-experience-ii.png"
   },
   {
     "name": "Kim Long",
-    "slug": "kim-long",
+    "slug": "thegoldendragonii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 Giáp Đại Hãn. Các tướng mang Giáp Đại Hãn chiếm 2 vị trí trong đội hình nhưng nhận thêm 700 Máu và 20% Chống Chịu.\n\nGiáp Đại Hãn này mang lại vàng và tăng sức mạnh chiến đấu.\nGiải Vô Địch Thế Giới Rồng, 2022",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kim-long.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thegoldendragonii.png"
   },
   {
     "name": "Lò Rèn Thăng Hoa",
-    "slug": "lo-ren-thang-hoa",
+    "slug": "jobs-done-ii",
     "tier": 2,
     "rank": "A",
     "description": "Chọn 1 trong 4 Tạo Tác Thánh Thần.\n\nTạo Tác là những trang bị mạnh mẽ hơn với hiệu ứng đặc biệt.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lo-ren-thang-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/jobs-done-ii.png"
   },
   {
     "name": "Lò Rèn Thần Thoại",
-    "slug": "lo-ren-than-thoai",
+    "slug": "portableforge2",
     "tier": 1,
     "rank": "A",
     "description": "Chọn 1 trong 4 Tạo Tác.\n\nTạo Tác là những trang bị mạnh mẽ hơn với hiệu ứng đặc biệt.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lo-ren-than-thoai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/portableforge2.png"
   },
   {
     "name": "Lựa Chọn Độc Quyền",
-    "slug": "lua-chon-doc-quyen",
+    "slug": "exclusivecustomizationii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 Rương Trang Bị May Mắn, 1 Nam Châm Ma Thuật và 10 vàng.\n\nSử dụng 1 Rương Trang Bị May Mắn lên 1 tướng để chọn một trong số các trang bị gợi ý!",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lua-chon-doc-quyen.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/exclusivecustomizationii.png"
   },
   {
     "name": "Người Bạn Vàng",
-    "slug": "nguoi-ban-vang",
+    "slug": "constructacompanioniii",
     "tier": 3,
     "rank": "A",
     "description": "Tướng 1 vàng tiếp theo bạn mua được nâng lên 3 sao. Nhận 2 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nguoi-ban-vang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/constructacompanioniii.png"
   },
   {
     "name": "Nhà Máy Tái Chế",
-    "slug": "nha-may-tai-che",
+    "slug": "salvage2",
     "tier": 1,
     "rank": "A",
     "description": "Nhận ngay 1 trang bị hoàn chỉnh ngẫu nhiên, và 1 thành phần sau 8 vòng giao tranh người chơi. Bán tướng sẽ tách trang bị hoàn chỉnh của tướng đó ra thành trang bị thành phần (ngoại trừ các trang bị Chiến Thuật và Ấn).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nha-may-tai-che.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/salvage2.png"
   },
   {
     "name": "Ôm Tập Thể II",
-    "slug": "om-tap-the-ii",
+    "slug": "grouphug2ii",
     "tier": 2,
     "rank": "A",
     "description": "Bắt đầu giao tranh: Đồng minh sẽ tăng cho các đồng minh liền kề khác 10 Giáp và Kháng Phép. Hiệu ứng này có thể cộng dồn.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/om-tap-the-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/grouphug2ii.png"
   },
   {
     "name": "Quân Đoàn 3 Sao",
-    "slug": "quan-doan-3-sao",
+    "slug": "legionofthreesii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 Ấn ngẫu nhiên. Các tướng 3 vàng của bạn và mọi đồng minh được trang bị Ấn nhận 150 Máu và 12% Tốc Độ Đánh.\n\nGiải Vô Địch Ngày Phán Quyết, 2021",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/quan-doan-3-sao.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/legionofthreesii.png"
   },
   {
     "name": "Săn Kho Báu",
-    "slug": "san-kho-bau",
+    "slug": "treasurehuntii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 rương bị khóa mỗi Giai Đoạn từ bây giờ cho đến Giai Đoạn 6. Mở khóa từng rương khi bạn tiêu 16 vàng cho các lượt đổi trong Cửa Hàng. Những rương này sẽ tồn tại cho đến khi được mở.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/san-kho-bau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/treasurehuntii.png"
   },
   {
     "name": "Sinh Nhật Đoàn Tụ",
-    "slug": "sinh-nhat-doan-tu",
+    "slug": "birthdayreunionii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 1 tướng 2 vàng 2 sao ngẫu nhiên. Khi đạt Cấp 7, nhận 1 Găng Đạo Tặc. Khi đạt Cấp 9, nhận 1 tướng 5 vàng 2 sao ngẫu nhiên.\n\nTactician's Crown Họa Thế Chi Linh, 2024",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sinh-nhat-doan-tu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/birthdayreunionii.png"
   },
   {
     "name": "Sức Sống Mới II",
-    "slug": "suc-song-moi-ii",
+    "slug": "second--wind-ii",
     "tier": 2,
     "rank": "A",
     "description": "Sau 10 giây giao tranh, đội của bạn hồi lại 60% Máu đã mất.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/suc-song-moi-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/second--wind-ii.png"
   },
   {
     "name": "Tài Khoản Tiết Kiệm",
-    "slug": "tai-khoan-tiet-kiem",
+    "slug": "savingsaccountii",
     "tier": 2,
     "rank": "A",
     "description": "Sau khi bạn nhận được 50 vàng lợi tức, nhận 25 vàng. Lợi tức tối đa của bạn tăng lên thành 7. Nhận ngay 4 vàng.\n\nVàng kiếm được: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tai-khoan-tiet-kiem.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/savingsaccountii.png"
   },
   {
     "name": "Tất Tay Bậc Đồng I",
-    "slug": "tat-tay-bac-dong-i",
+    "slug": "bronzeforlifeii",
     "tier": 2,
     "rank": "A",
     "description": "Đội của bạn nhận 2% Khuếch Đại Sát Thương cho mỗi tộc/hệ bậc Đồng.\n\nThưởng Khuếch Đại Sát Thương: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tat-tay-bac-dong-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bronzeforlifeii.png"
   },
   {
     "name": "Thăng Hoa",
-    "slug": "thang-hoa",
+    "slug": "ascension2",
     "tier": 1,
     "rank": "A",
     "description": "Sau 12 giây giao tranh, đội của bạn nhận thêm 35% Khuếch Đại Sát Thương.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thang-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ascension2.png"
   },
   {
     "name": "Thép Mạ Vàng",
-    "slug": "thep-ma-vang",
+    "slug": "gildedsteelii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 2 tướng 5 vàng không phải Đỡ Đòn. Nếu bạn triển khai ít nhất 1 tướng 5 vàng, các tướng từ 1 đến 4 vàng của bạn nhận được 8% Chống Chịu.\n\nTactician's Crown K.O. Đại Chiến Anh Hùng, 2025",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thep-ma-vang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/gildedsteelii.png"
   },
   {
     "name": "Thợ Rèn Gậy",
-    "slug": "tho-ren-gay",
+    "slug": "rodsmithii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 2 trang bị hoàn chỉnh ngẫu nhiên được ghép từ Gậy Quá Khổ.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tho-ren-gay.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/rodsmithii.png"
   },
   {
     "name": "Thợ Rèn Kiếm",
-    "slug": "tho-ren-kiem",
+    "slug": "swordsmithii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 2 trang bị hoàn chỉnh ngẫu nhiên được ghép từ Kiếm B.F.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tho-ren-kiem.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/swordsmithii.png"
   },
   {
     "name": "Túi Đồ Cỡ Đại",
-    "slug": "tui-do-co-dai",
+    "slug": "grab-bag-ii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 3 trang bị thành phần ngẫu nhiên, 2 vàng và 1 Búa Rèn. \n\nBúa Rèn cho phép bạn tái tạo bất kỳ trang bị nào.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tui-do-co-dai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/grab-bag-ii.png"
   },
   {
     "name": "Túi Đồ Siêu Hùng",
-    "slug": "tui-do-sieu-hung",
+    "slug": "heroic-grab-bag-ii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 2 Máy Sao Chép Tướng Cỡ Nhỏ và 4 vàng.\n\nTrang bị này cho phép bạn sao chép một tướng 3 vàng trở xuống.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tui-do-sieu-hung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/heroic-grab-bag-ii.png"
   },
   {
     "name": "Túi Đồ Siêu Hùng+",
-    "slug": "tui-do-sieu-hung",
+    "slug": "heroic-grab-bag-ii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 2 Máy Sao Chép Tướng Cỡ Nhỏ và 8 vàng.\n\nTrang bị này cho phép bạn sao chép một tướng 3 vàng trở xuống.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tui-do-sieu-hung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/heroic-grab-bag-ii.png"
   },
   {
     "name": "Ván Cược URF",
-    "slug": "van-cuoc-urf",
+    "slug": "urfsgambitii",
     "tier": 2,
     "rank": "A",
     "description": "Nếu bạn thắng vòng giao tranh người chơi tiếp theo, nhận 1 Xẻng Vàng. Nếu thua, nhận 1 Chảo Vàng. Nhận ngay 1 gói trang bị thành phần và 6 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/van-cuoc-urf.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/urfsgambitii.png"
   },
   {
     "name": "Vay Tạm Ứng",
-    "slug": "vay-tam-ung",
+    "slug": "advancedloanii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 20 Vàng. Nâng cấp tiếp theo của bạn bị giảm 1 bậc.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/vay-tam-ung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/advancedloanii.png"
   },
   {
     "name": "Vay Tạm Ứng+",
-    "slug": "vay-tam-ung",
+    "slug": "advancedloanii",
     "tier": 2,
     "rank": "A",
     "description": "Nhận 33 Vàng. Nâng cấp tiếp theo của bạn bị giảm 1 bậc.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/vay-tam-ung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/advancedloanii.png"
   },
   {
     "name": "Xúc Xắc Ma Pháp",
-    "slug": "xuc-xac-ma-phap",
+    "slug": "a-magical-roll-ii",
     "tier": 2,
     "rank": "A",
     "description": "Đổ 3 xúc xắc. Nhận nhiều loại phần thưởng dựa trên tổng số đã đổ được.\n\nPhần Thưởng: ???",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/xuc-xac-ma-phap.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/a-magical-roll-ii.png"
   },
   {
     "name": "Băng Trộm II",
-    "slug": "bang-trom-ii",
+    "slug": "bandthieves3",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 2 Găng Đạo Tặc. Sau 8 giao tranh người chơi, nhận thêm 1 Găng Đạo Tặc.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bang-trom-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bandthieves3.png"
   },
   {
     "name": "Băng Trộm II+",
-    "slug": "bang-trom-ii",
+    "slug": "bandthieves3",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 2 Găng Đạo Tặc. Sau 6 giao tranh người chơi, nhận thêm 1 Găng Đạo Tặc.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bang-trom-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bandthieves3.png"
   },
   {
     "name": "Băng Trộm II++",
-    "slug": "bang-trom-ii",
+    "slug": "bandthieves3",
     "tier": 1,
     "rank": "A",
     "description": "Nhận 2 Găng Đạo Tặc. Sau 3 giao tranh người chơi, nhận thêm 1 Găng Đạo Tặc.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bang-trom-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bandthieves3.png"
   },
   {
     "name": "Đầu Tư++",
-    "slug": "dau-tu",
+    "slug": "invested-iii",
     "tier": 3,
     "rank": "A",
     "description": "Nhận 40 vàng. Sau mỗi giao tranh, nhận 1 lượt làm mới Cửa Hàng với mỗi 10 vàng vượt hơn 50 (tối đa 80 vàng).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dau-tu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/invested-iii.png"
   },
   {
     "name": "Giữ Vững Hàng Ngũ",
-    "slug": "giu-vung-hang-ngu",
+    "slug": "holdthelineiii",
     "tier": 3,
     "rank": "A",
     "description": "Các đồng minh ở 2 hàng sau nhận 10% Sức Mạnh Phép Thuật và 9% Sức Mạnh Công Kích với mỗi đồng minh bắt đầu giao tranh ở hàng trên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/giu-vung-hang-ngu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/holdthelineiii.png"
   },
   {
     "name": "Khổng Lồ Tí Hon",
-    "slug": "khong-lo-ti-hon",
+    "slug": "tiniest-titaniii",
     "tier": 3,
     "rank": "A",
     "description": "Nhận 2 Máu người chơi và 2 vàng sau mỗi giao tranh người chơi. Linh Thú của bạn cũng sẽ di chuyển nhanh hơn. Nhận ngay 10 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/khong-lo-ti-hon.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tiniest-titaniii.png"
   },
   {
     "name": "Thức Tỉnh Linh Hồn",
-    "slug": "thuc-tinh-linh-hon",
+    "slug": "awakenedsouliii",
     "tier": 3,
     "rank": "A",
     "description": "Bắt đầu giao tranh: Đội của bạn nhận 1.5% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật mỗi giây trong 10 giây. Khi đạt cộng dồn tối đa, gây thêm 12% sát thương chuẩn.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thuc-tinh-linh-hon.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/awakenedsouliii.png"
   },
   {
     "name": "Triệu Gọi Hỗn Mang",
-    "slug": "trieu-goi-hon-mang",
+    "slug": "calltochaosiii",
     "tier": 3,
     "rank": "A",
     "description": "Nhận 1 phần thưởng mạnh mẽ ngẫu nhiên.\n\nPhần Thưởng: ???",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trieu-goi-hon-mang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/calltochaosiii.png"
   },
   {
     "name": "Túi Đồ Urf",
-    "slug": "tui-do-urf",
+    "slug": "urfs-grab-bag-iii",
     "tier": 3,
     "rank": "A",
     "description": "Nhận 1 Xẻng Vàng, 3 trang bị thành phần ngẫu nhiên và 5 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tui-do-urf.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/urfs-grab-bag-iii.png"
   },
   {
     "name": "Ván Cược Hoàng Kim",
-    "slug": "van-cuoc-hoang-kim",
+    "slug": "goldengambleiii",
     "tier": 3,
     "rank": "A",
     "description": "Nhận 1 vàng và tung đồng xu. Nếu ra mặt ngửa, nhận 1 Rương Trang Bị Ánh Sáng May Mắn. Nếu ra mặt sấp, nhận 2 Gói Trang Bị Hoàn Chỉnh.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/van-cuoc-hoang-kim.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goldengambleiii.png"
   },
   {
     "name": "Ván Cược Hoàng Kim+",
-    "slug": "van-cuoc-hoang-kim",
+    "slug": "goldengambleiii",
     "tier": 3,
     "rank": "A",
     "description": "Nhận 4 vàng và tung đồng xu. Nếu ra mặt ngửa, nhận 1 Rương Trang Bị Ánh Sáng May Mắn. Nếu ra mặt sấp, nhận 2 Gói Trang Bị Hoàn Chỉnh.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/van-cuoc-hoang-kim.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goldengambleiii.png"
   },
   {
     "name": "Ván Cược Hoàng Kim++",
-    "slug": "van-cuoc-hoang-kim",
+    "slug": "goldengambleiii",
     "tier": 3,
     "rank": "A",
     "description": "Nhận 12 vàng và tung đồng xu. Nếu ra mặt ngửa, nhận 1 Rương Trang Bị Ánh Sáng May Mắn. Nếu ra mặt sấp, nhận 2 Gói Trang Bị Hoàn Chỉnh.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/van-cuoc-hoang-kim.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goldengambleiii.png"
   },
   {
     "name": "AFK",
-    "slug": "afk",
+    "slug": "afk-i",
     "tier": 1,
     "rank": "B",
     "description": "Bạn không thể hành động trong 3 vòng đấu tới. Sau đó, nhận 17 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/afk.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/afk-i.png"
   },
   {
     "name": "Ăn Mòn",
-    "slug": "an-mon",
+    "slug": "corrosioni",
     "tier": 1,
     "rank": "B",
     "description": "Tướng địch đứng ở 2 hàng trên sẽ bị mất 4 Giáp và Kháng Phép sau mỗi 2 giây.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-mon.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/corrosioni.png"
   },
   {
     "name": "Bạn Thân I",
-    "slug": "ban-than-i",
+    "slug": "best-friends-i",
     "tier": 1,
     "rank": "B",
     "description": "Các đồng minh được xếp cặp cách biệt với các đơn vị khác nhận 10% Tốc Độ Đánh và 13 Giáp khi bắt đầu giao tranh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ban-than-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/best-friends-i.png"
   },
   {
     "name": "Boong!",
-    "slug": "boong",
+    "slug": "bonki",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Nasus. Nasus mạnh nhất của bạn trở thành Đấu Sĩ Vật Lý với Kỹ Năng đơn mục tiêu mạnh dần lên sau mỗi lần hạ gục.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/boong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bonki.png"
   },
   {
     "name": "Cảm Thấy May Mắn",
-    "slug": "cam-thay-may-man",
+    "slug": "feelingluckyi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 12 vàng, sau đó tung đồng xu. Nếu ra mặt ngửa, nhận thêm 4 vàng.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cam-thay-may-man.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/feelingluckyi.png"
   },
   {
     "name": "Cầu Hồi Phục I",
-    "slug": "cau-hoi-phuc-i",
+    "slug": "healing-orbs-i",
     "tier": 1,
     "rank": "B",
     "description": "Khi một kẻ địch bị hạ gục, tướng đồng minh gần nhất được hồi lại 220 máu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cau-hoi-phuc-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/healing-orbs-i.png"
   },
   {
     "name": "Chế Tạo Bằng Hữu",
-    "slug": "che-tao-bang-huu",
+    "slug": "constructacompanioniii",
     "tier": 3,
     "rank": "B",
     "description": "Tướng 1 vàng tiếp theo bạn mua được nâng lên 3 sao. Nhận 2 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/che-tao-bang-huu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/constructacompanioniii.png"
   },
   {
     "name": "Chuyển Đổi Năng Lượng I",
-    "slug": "chuyen-doi-nang-luong-i",
+    "slug": "chargetransfer1i",
     "tier": 1,
     "rank": "B",
     "description": "Đội của bạn nhận thêm 5% Khuếch Đại Sát Thương. 50% sát thương vượt mức sẽ được gây lên kẻ địch gần nhất dưới dạng sát thương phép.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chuyen-doi-nang-luong-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chargetransfer1i.png"
   },
   {
     "name": "Cung Dự Phòng",
-    "slug": "cung-du-phong",
+    "slug": "recurvewreckeri",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Cung Gỗ. Sau khi đội của bạn tấn công 1000 lần, nhận thêm 2.\n\nĐòn Đánh: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cung-du-phong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/recurvewreckeri.png"
   },
   {
     "name": "Đặc Quyền Phú Gia",
-    "slug": "dac-quyen-phu-gia",
+    "slug": "silver-spoon-i",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 10 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dac-quyen-phu-gia.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/silver-spoon-i.png"
   },
   {
     "name": "Đồng Minh Của Bụt",
-    "slug": "dong-minh-cua-but",
+    "slug": "caretakers-chosen-i",
     "tier": 1,
     "rank": "B",
     "description": "Lập tức nhận một tướng 2-vàng ngẫu nhiên. Mỗi lần thăng cấp, nhận được tướng này một lần nữa.\n\nTướng: ???",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dong-minh-cua-but.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/caretakers-chosen-i.png"
   },
   {
     "name": "Được Này Mất Kia I",
-    "slug": "duoc-nay-mat-kia-i",
+    "slug": "good-for-something-i",
     "tier": 1,
     "rank": "B",
     "description": "Tướng không mang trang bị có 40% xác suất rơi ra 1 vàng khi hy sinh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/duoc-nay-mat-kia-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/good-for-something-i.png"
   },
   {
     "name": "Giáp Tự Chế I",
-    "slug": "giap-tu-che-i",
+    "slug": "makeshift1",
     "tier": 1,
     "rank": "B",
     "description": "Các đồng minh không mang trang bị nhận 30 Giáp và Kháng Phép.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/giap-tu-che-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/makeshift1.png"
   },
   {
     "name": "Hướng Đến Hồi Kết",
-    "slug": "huong-den-hoi-ket",
+    "slug": "late-game-specialist-i",
     "tier": 1,
     "rank": "B",
     "description": "Khi đạt cấp 9, nhận 36 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/huong-den-hoi-ket.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/late-game-specialist-i.png"
   },
   {
     "name": "Khéo Tay Hay Làm",
-    "slug": "kheo-tay-hay-lam",
+    "slug": "craftedcraftingi",
     "tier": 1,
     "rank": "B",
     "description": "Mỗi khi bạn chế tạo 1 trang bị hoàn chỉnh, nhận 2 lượt đổi.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kheo-tay-hay-lam.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/craftedcraftingi.png"
   },
   {
     "name": "Kho Báu Sắt",
-    "slug": "kho-bau-sat",
+    "slug": "iron-assets-i",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 gói trang bị thành phần và 3 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kho-bau-sat.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/iron-assets-i.png"
   },
   {
     "name": "Khóa Dự Phòng",
-    "slug": "khoa-du-phong",
+    "slug": "extrabucklesi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Đai Khổng Lồ. Sau khi đội của bạn nhận 75000 sát thương, nhận thêm 2.\n\nSát thương gánh chịu: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/khoa-du-phong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/extrabucklesi.png"
   },
   {
     "name": "Khổng Lồ Hóa",
-    "slug": "khong-lo-hoa",
+    "slug": "tiny-titans-i",
     "tier": 1,
     "rank": "B",
     "description": "Tăng máu hiện tại và máu tối đa của người chơi thêm 20.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/khong-lo-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tiny-titans-i.png"
   },
   {
     "name": "Kích Cỡ Là Quan Trọng",
-    "slug": "kich-co-la-quan-trong",
+    "slug": "sizemattersi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Đai Khổng Lồ. Sau khi một tướng bắt đầu giao tranh với hơn 3600 Máu tối đa, nhận một Giáp Máu Warmog.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kich-co-la-quan-trong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sizemattersi.png"
   },
   {
     "name": "Lập Đội",
-    "slug": "lap-doi",
+    "slug": "teaming-up-i",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 trang bị thành phần ngẫu nhiên và 2 tướng 3 vàng ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lap-doi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/teaming-up-i.png"
   },
   {
     "name": "Lấy Công Bù Thủ I",
-    "slug": "lay-cong-bu-thu-i",
+    "slug": "glasscannoni",
     "tier": 1,
     "rank": "B",
     "description": "Các đồng minh bắt đầu giao tranh ở hàng sau sẽ khởi đầu với 80% Máu nhưng nhận thêm 16% Khuếch Đại Sát Thương.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lay-cong-bu-thu-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/glasscannoni.png"
   },
   {
     "name": "Leo Hạng I",
-    "slug": "leo-hang-i",
+    "slug": "climbtheladderi",
     "tier": 1,
     "rank": "B",
     "description": "Mỗi khi một đồng minh tử trận, các đồng minh có chung ít nhất 1 tộc/hệ với họ sẽ nhận thêm 3% Sức Mạnh Phép Thuật, 3% Sức Mạnh Công Kích, 3 Giáp và 3 Kháng Phép.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/leo-hang-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/climbtheladderi.png"
   },
   {
     "name": "Lệ Lưu Ly",
-    "slug": "le-luu-ly",
+    "slug": "griefofthegreatgoddessi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Nước Mắt Nữ Thần. Sau khi đội của bạn tiêu hao 6500 Năng Lượng, nhận thêm 2.\n\nNăng lượng đã tiêu hao: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/le-luu-ly.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/griefofthegreatgoddessi.png"
   },
   {
     "name": "Lò Rèn Tiềm Ẩn",
-    "slug": "lo-ren-tiem-an",
+    "slug": "long-time-crafting-i",
     "tier": 1,
     "rank": "B",
     "description": "Sau 8 giao tranh với người chơi, nhận 1 Gói Trang Bị Tạo Tác. \n\nGói này sẽ đưa ra 4 lựa chọn. Tạo Tác là những trang bị mạnh mẽ hơn với hiệu ứng đặc biệt.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lo-ren-tiem-an.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/long-time-crafting-i.png"
   },
   {
     "name": "Meep Cực Tốc",
-    "slug": "meep-cuc-toc",
+    "slug": "poppyheroi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Poppy. Poppy mạnh nhất của bạn trở thành Thuật Sư Vật Lý tầm xa, ném một Meep tốc độ cao vào mục tiêu của mình.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/meep-cuc-toc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/poppyheroi.png"
   },
   {
     "name": "Một, Hai, Năm!",
-    "slug": "mot-hai-nam",
+    "slug": "one-two-five-i",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 trang bị thành phần ngẫu nhiên, 2 vàng và 1 tướng 5-vàng ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/mot-hai-nam.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/one-two-five-i.png"
   },
   {
     "name": "Mở Lối",
-    "slug": "mo-loi",
+    "slug": "carveapathi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Kiếm B.F. Sau khi đội của bạn gây 65000 sát thương vật lý, nhận thêm 2.\n\nSát thương gây ra: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/mo-loi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/carveapathi.png"
   },
   {
     "name": "Nâng Tầm Uy Lực",
-    "slug": "nang-tam-uy-luc",
+    "slug": "powerupi",
     "tier": 1,
     "rank": "B",
     "description": "Nâng Cấp tiếp theo của bạn được tăng một bậc.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nang-tam-uy-luc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/powerupi.png"
   },
   {
     "name": "Nước Đi Liều Lĩnh",
-    "slug": "nuoc-di-lieu-linh",
+    "slug": "risky-moves-i",
     "tier": 1,
     "rank": "B",
     "description": "Linh Thú của bạn mất 20 Máu, nhưng sau 7 vòng giao chiến với người chơi, nhận 30 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nuoc-di-lieu-linh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/risky-moves-i.png"
   },
   {
     "name": "Ô Hoàng Kim của Yasuo",
-    "slug": "o-hoang-kim-cua-yasuo",
+    "slug": "findyourcenteri",
     "tier": 1,
     "rank": "B",
     "description": "Tô 1 Ô Hoàng Kim. Tướng đứng trên ô đó nhận 250 máu, 25% tốc độ đánh và rớt ra 1 vàng khi có mạng hạ gục.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/o-hoang-kim-cua-yasuo.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/findyourcenteri.png"
   },
   {
     "name": "Tập Trung Hỏa Lực",
-    "slug": "tap-trung-hoa-luc",
+    "slug": "marksmani",
     "tier": 1,
     "rank": "B",
     "description": "Đội của bạn nhận 10% Sức Mạnh Công Kích. Mỗi 5 giây, nhận thêm 5%.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tap-trung-hoa-luc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/marksmani.png"
   },
   {
     "name": "Thuế Nhận Thức",
-    "slug": "thue-nhan-thuc",
+    "slug": "cognitivetaxi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 8 vàng và 1 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thue-nhan-thuc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cognitivetaxi.png"
   },
   {
     "name": "Thuế Nhận Thức+",
-    "slug": "thue-nhan-thuc",
+    "slug": "cognitivetaxi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 12 vàng và 3 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thue-nhan-thuc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cognitivetaxi.png"
   },
   {
     "name": "Tiền Tuyến Vững Chãi",
-    "slug": "tien-tuyen-vung-chai",
+    "slug": "lineup-i",
     "tier": 1,
     "rank": "B",
     "description": "Đội của bạn nhận 2 Giáp và Kháng Phép với mỗi đồng minh bắt đầu giao tranh ở 2 hàng đầu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tien-tuyen-vung-chai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lineup-i.png"
   },
   {
     "name": "Tiền Vệ Trung Tâm",
-    "slug": "tien-ve-trung-tam",
+    "slug": "findyourcenteri",
     "tier": 1,
     "rank": "B",
     "description": "Tướng bắt đầu giao tranh ở chính giữa hàng trên sẽ được nhận 15% Khuếch Đại Sát Thương và 25% Máu tối đa.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tien-ve-trung-tam.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/findyourcenteri.png"
   },
   {
     "name": "Tiếp Tế Trang Bị",
-    "slug": "tiep-te-trang-bi",
+    "slug": "itemgrabbag1",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 trang bị hoàn chỉnh ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tiep-te-trang-bi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/itemgrabbag1.png"
   },
   {
     "name": "Tòa Tháp",
-    "slug": "toa-thap",
+    "slug": "thetoweri",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Hình Nhân khổng lồ với lượng Máu tăng thêm (tăng theo Giai đoạn). Cứ mỗi 4 giây, nó phóng điện vào 3 kẻ địch gần nhất, gây sát thương chuẩn tương đương 5% Máu tối đa.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/toa-thap.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thetoweri.png"
   },
   {
     "name": "Trên Đà Phát Triển",
-    "slug": "tren-da-phat-trien",
+    "slug": "onarolli",
     "tier": 1,
     "rank": "B",
     "description": "Mỗi khi bạn nâng sao cho tướng mà bạn đã triển khai trong giao tranh trước, nhận 1 lượt đổi Cửa Hàng miễn phí. Nhận 6 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tren-da-phat-trien.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/onarolli.png"
   },
   {
     "name": "Triệu Hồi Bất Tận",
-    "slug": "trieu-hoi-bat-tan",
+    "slug": "hyperbolicrodextenderi",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Gậy Quá Khổ. Sau khi đội của bạn gây 38000 sát thương phép, nhận thêm 2.\n\nSát thương gây ra: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trieu-hoi-bat-tan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hyperbolicrodextenderi.png"
   },
   {
     "name": "Tụ Điện I",
-    "slug": "tu-dien-i",
+    "slug": "electrocharge-i",
     "tier": 1,
     "rank": "B",
     "description": "Mỗi khi đồng minh nhận 4 đòn đánh, họ sẽ gây 30 - 90 (dựa trên Giai Đoạn hiện tại) sát thương phép lên kẻ địch gần đó (1 giây hồi chiêu).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tu-dien-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/electrocharge-i.png"
   },
   {
     "name": "Xây Dựng Đội Hình",
-    "slug": "xay-dung-doi-hinh",
+    "slug": "building-an-army-i",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 Máy Sao Chép Tướng Cỡ Nhỏ. Nhận thêm 1 Máy Sao Chép Tướng Cỡ Nhỏ nữa sau 5 vòng giao tranh người chơi.\n\nTrang bị này cho phép bạn sao chép một tướng 3 vàng trở xuống.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/xay-dung-doi-hinh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/building-an-army-i.png"
   },
   {
     "name": "Arcane Viktor-y",
-    "slug": "arcane-viktor-y",
+    "slug": "arcaneviktoryii",
     "tier": 2,
     "rank": "B",
     "description": "Sau 8 giây giao tranh, làm choáng đội địch trong 1.5 giây. Lặp lại hiệu ứng này sau 18 giây giao tranh.\n\nĐTCL Macao Open, 2024",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/arcane-viktor-y.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/arcaneviktoryii.png"
   },
   {
     "name": "Ân Huệ Của Aurelion Sol",
-    "slug": "an-hue-cua-aurelion-sol",
+    "slug": "godaugmentaurelionsolii",
     "tier": 2,
     "rank": "B",
     "description": "Chọn 1 trong số 3 nhiệm vụ để chứng minh bản thân với Aurelion Sol.\n\nNhiệm Vụ Đã Chọn: ???",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-aurelion-sol.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentaurelionsolii.png"
   },
   {
     "name": "Ân Huệ Của Evelynn",
-    "slug": "an-hue-cua-evelynn",
+    "slug": "godaugmentevelynnii",
     "tier": 2,
     "rank": "B",
     "description": "Đội của bạn nhận 10% Chống Chịu. Mất thêm 1 Máu Người Chơi khi bạn thua giao tranh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-evelynn.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentevelynnii.png"
   },
   {
     "name": "Ân Huệ Của Soraka",
-    "slug": "an-hue-cua-soraka",
+    "slug": "godaugmentsorakaii",
     "tier": 2,
     "rank": "B",
     "description": "Đội của bạn nhận 2 Máu với mỗi máu người chơi đã mất. Khi bắt đầu mỗi vòng giao tranh người chơi, nhận thêm 1 máu người chơi.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-soraka.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentsorakaii.png"
   },
   {
     "name": "Ân Huệ Của Thresh",
-    "slug": "an-hue-cua-thresh",
+    "slug": "godaugmentthreshii",
     "tier": 2,
     "rank": "B",
     "description": "Mỗi vòng đấu, đổ 1 con xúc xắc. Nhận thưởng dựa trên kết quả xúc xắc.\n\n\nMáu: X\nTốc Độ Đánh: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-hue-cua-thresh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/godaugmentthreshii.png"
   },
   {
     "name": "Bạn Thân II",
-    "slug": "ban-than-ii",
+    "slug": "best-friends-ii",
     "tier": 2,
     "rank": "B",
     "description": "Các đồng minh được xếp cặp cách biệt với các đơn vị khác nhận 15% Tốc Độ Đánh và 22 Giáp khi bắt đầu giao tranh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ban-than-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/best-friends-ii.png"
   },
   {
     "name": "Bảo Hộ Vô Tận",
-    "slug": "bao-ho-vo-tan",
+    "slug": "infinityprotectionii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận ngay 3 vàng. Ở Giai Đoạn 3-7, nhận 1 Tam Luyện Kiếm. Tam Luyện Kiếm trao cho các đồng minh cùng hàng một lá chắn bằng 12% Máu.\n\nGiải Vô Địch Quái Vật Tấn Công, 2023",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bao-ho-vo-tan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/infinityprotectionii.png"
   },
   {
     "name": "Bộ Ba Hoàn Hảo I",
-    "slug": "bo-ba-hoan-hao-i",
+    "slug": "trifecta-ii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 2 tướng 3 vàng.\nBắt Đầu Giao Tranh: 3 tướng 3 vàng ngẫu nhiên nhận 220 Máu và 20% Tốc Độ Đánh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bo-ba-hoan-hao-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trifecta-ii.png"
   },
   {
     "name": "Cặp Đôi Siêu Cứng",
-    "slug": "cap-doi-sieu-cung",
+    "slug": "two-tanky-ii",
     "tier": 2,
     "rank": "B",
     "description": "Khi triển khai đúng 2 bản sao của một tướng, cả hai nhận thêm 500 Máu. Khi một bản sao tử trận, bản sao còn lại nhận Lá Chắn bằng 40% Máu tối đa trong 12 giây. Khi ghép tướng 3 sao, nhận 1 bản sao 2 sao.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cap-doi-sieu-cung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/two-tanky-ii.png"
   },
   {
     "name": "Cầu Hồi Phục II",
-    "slug": "cau-hoi-phuc-ii",
+    "slug": "healing-orbs-ii",
     "tier": 2,
     "rank": "B",
     "description": "Khi một kẻ địch bị hạ gục, tướng đồng minh gần nhất được hồi lại 500 máu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cau-hoi-phuc-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/healing-orbs-ii.png"
   },
   {
     "name": "Cây Cung Thần Tốc",
-    "slug": "cay-cung-than-toc",
+    "slug": "you-have-my-bow-ii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Cung Gỗ. Đội của bạn nhận 12% Tốc Độ Đánh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cay-cung-than-toc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/you-have-my-bow-ii.png"
   },
   {
     "name": "Cấy Ghép Siêu Công Nghệ",
-    "slug": "cay-ghep-sieu-cong-nghe",
+    "slug": "cybernetic2",
     "tier": 1,
     "rank": "B",
     "description": "Đồng minh nhận 100 Máu và 15% Sức Mạnh Công Kích. Nhận 1 Kiếm B.F.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cay-ghep-sieu-cong-nghe.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cybernetic2.png"
   },
   {
     "name": "Chiến Tướng Khải Hoàn",
-    "slug": "chien-tuong-khai-hoan",
+    "slug": "unforgottenii",
     "tier": 2,
     "rank": "B",
     "description": "Mỗi vòng đấu, đội của bạn nhận 5% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật. Các tướng khởi đầu với 1 cộng dồn hiệu ứng này, có thể cộng dồn tối đa 4 lần.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chien-tuong-khai-hoan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/unforgottenii.png"
   },
   {
     "name": "Chuyển Đổi Năng Lượng II",
-    "slug": "chuyen-doi-nang-luong-ii",
+    "slug": "chargetransfer2ii",
     "tier": 2,
     "rank": "B",
     "description": "Đội của bạn nhận thêm 8% Khuếch Đại Sát Thương. 80% sát thương vượt mức sẽ được gây lên kẻ địch gần nhất dưới dạng sát thương phép.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chuyen-doi-nang-luong-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chargetransfer2ii.png"
   },
   {
     "name": "Cộng Mệt Nghỉ!",
-    "slug": "cong-met-nghi",
+    "slug": "tons-of-stats-ii",
     "tier": 2,
     "rank": "B",
     "description": "Đội của bạn nhận thêm 44 Máu, 4% Sức Mạnh Công Kích, 4% Sức Mạnh Phép Thuật, 4 Giáp, 4 Kháng Phép, 4% Tốc Độ Đánh và 4 Năng Lượng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cong-met-nghi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tons-of-stats-ii.png"
   },
   {
     "name": "Cơn Khát Vàng",
-    "slug": "con-khat-vang",
+    "slug": "moneyhungry1ii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 7 vàng ngay lập tức, sau đó nhận thêm 7 vàng vào khởi đầu mỗi giai đoạn. Nhặt vàng sẽ khiến Linh Thú của bạn to hơn.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/con-khat-vang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/moneyhungry1ii.png"
   },
   {
     "name": "Dòng Tiền Mờ Ám",
-    "slug": "dong-tien-mo-am",
+    "slug": "mirroredmonetizationii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 4 vàng. Trong 2 vòng tiếp theo, tướng địch sẽ rớt ra 2 vàng khi bị tiêu diệt.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dong-tien-mo-am.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/mirroredmonetizationii.png"
   },
   {
     "name": "Động Cơ Tăng Tốc",
-    "slug": "dong-co-tang-toc",
+    "slug": "clockworkacceleratorii",
     "tier": 2,
     "rank": "B",
     "description": "Đội của bạn được tăng 10% Tốc Độ Đánh sau mỗi 3 giây giao tranh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dong-co-tang-toc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/clockworkacceleratorii.png"
   },
   {
     "name": "Đường Ra Trận",
-    "slug": "duong-ra-tran",
+    "slug": "warpathii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 tướng 2 vàng 2 sao. Sau khi gây 80 sát thương lên người chơi, nhận 1 rương chứa các tướng bậc cao và trang bị.\n(Hiện tại: X)",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/duong-ra-tran.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/warpathii.png"
   },
   {
     "name": "Giáp Tự Chế II",
-    "slug": "giap-tu-che-ii",
+    "slug": "makeshift2",
     "tier": 1,
     "rank": "B",
     "description": "Các đồng minh không mang trang bị nhận 50 Giáp và Kháng Phép.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/giap-tu-che-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/makeshift2.png"
   },
   {
     "name": "Giọt Lệ Bi Ai",
-    "slug": "giot-le-bi-ai",
+    "slug": "crymeariverii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Nước Mắt Nữ Thần. Đội của bạn nhận 1 Hồi Năng Lượng. Sau 12 giây giao tranh, tăng hiệu ứng này lên thành 3.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/giot-le-bi-ai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/crymeariverii.png"
   },
   {
     "name": "Gói Tăng Cường+",
-    "slug": "goi-tang-cuong",
+    "slug": "boosterpack1ii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận các tướng ngẫu nhiên có tổng giá là 18 vàng. (Đảm bảo có ít nhất một tướng 4 vàng!)\n\n(Mỗi tướng đều có tỉ lệ nhỏ trở thành dạng ba chiều!)",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goi-tang-cuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/boosterpack1ii.png"
   },
   {
     "name": "Hạ Đo Ván",
-    "slug": "ha-do-van",
+    "slug": "slamminii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 3 vàng. Sau mỗi vòng giao tranh với người chơi, nếu không có trang bị nào của bạn nằm ở hàng dự bị (ngoài các trang bị tiêu thụ), nhận 2 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ha-do-van.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/slamminii.png"
   },
   {
     "name": "Hạ Đo Ván+",
-    "slug": "ha-do-van",
+    "slug": "slamminii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận ngay 8 vàng và 10 XP. Sau mỗi vòng giao tranh với người chơi, nếu không có trang bị nào của bạn nằm ở hàng dự bị (ngoài các trang bị tiêu thụ), nhận 2 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ha-do-van.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/slamminii.png"
   },
   {
     "name": "Hàng Chờ Đấu Đôi",
-    "slug": "hang-cho-dau-doi",
+    "slug": "duoqueueii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 2 tướng 5 vàng ngẫu nhiên và 2 bản sao của 1 trang bị thành phần ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hang-cho-dau-doi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/duoqueueii.png"
   },
   {
     "name": "Hào Quang Nhân Vật Chính",
-    "slug": "hao-quang-nhan-vat-chinh",
+    "slug": "plotarmorii",
     "tier": 2,
     "rank": "B",
     "description": "Đội của bạn nhận 8 Giáp và Kháng Phép. Sau khi còn dưới 50% Máu, tăng hiệu ứng này lên thành 40 cho đến hết giao tranh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hao-quang-nhan-vat-chinh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/plotarmorii.png"
   },
   {
     "name": "Huấn Luyện Cận Vệ",
-    "slug": "huan-luyen-can-ve",
+    "slug": "bodyguardstrainingii",
     "tier": 2,
     "rank": "B",
     "description": "Các đồng minh nhận 10 Giáp và Kháng Phép, tăng thêm 2 với mỗi cấp người chơi.\n\nChung Kết Thế Giới Thời Đại Công Nghệ, 2022",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/huan-luyen-can-ve.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bodyguardstrainingii.png"
   },
   {
     "name": "Huyết Tế",
-    "slug": "huyet-te",
+    "slug": "trailofbloodii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Huyết Kiếm. Bắt đầu giao tranh: Các đồng minh mang Huyết Kiếm mất đi 20% Máu nhưng nhận Lá Chắn bằng 30% Máu và 10% Sức Mạnh Công Kích.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/huyet-te.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trailofbloodii.png"
   },
   {
     "name": "Khu Giao Dịch",
-    "slug": "khu-giao-dich",
+    "slug": "trade2",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 1 lượt đổi miễn phí mỗi vòng đấu. Nhận 2 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/khu-giao-dich.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trade2.png"
   },
   {
     "name": "Kỷ Nguyên",
-    "slug": "ky-nguyen",
+    "slug": "epochii",
     "tier": 2,
     "rank": "B",
     "description": "Ngay lập tức, và khi bắt đầu mỗi giai đoạn, nhận 4 XP và 2 lượt đổi miễn phí.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ky-nguyen.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/epochii.png"
   },
   {
     "name": "Kỷ Nguyên+",
-    "slug": "ky-nguyen",
+    "slug": "epochii",
     "tier": 2,
     "rank": "B",
     "description": "Ngay lập tức, và khi bắt đầu mỗi giai đoạn, nhận 8 XP và 2 lượt đổi miễn phí.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ky-nguyen.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/epochii.png"
   },
   {
     "name": "Lấy Công Bù Thủ II",
-    "slug": "lay-cong-bu-thu-ii",
+    "slug": "glasscannonii",
     "tier": 2,
     "rank": "B",
     "description": "Các đồng minh bắt đầu giao tranh ở hàng sau sẽ khởi đầu với 80% Máu nhưng nhận thêm 25% Khuếch Đại Sát Thương.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lay-cong-bu-thu-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/glasscannonii.png"
   },
   {
     "name": "Leo Hạng II",
-    "slug": "leo-hang-ii",
+    "slug": "climbtheladderii",
     "tier": 2,
     "rank": "B",
     "description": "Mỗi khi một đồng minh tử trận, các đồng minh có chung ít nhất 1 tộc/hệ với họ sẽ nhận thêm 5% Sức Mạnh Phép Thuật, 5% Sức Mạnh Công Kích, 5 Giáp và 5 Kháng Phép.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/leo-hang-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/climbtheladderii.png"
   },
   {
     "name": "Lệch Chuẩn",
-    "slug": "lech-chuan",
+    "slug": "misfitsii",
     "tier": 2,
     "rank": "B",
     "description": "Đội của bạn nhận 55 Máu cho mỗi tộc/hệ độc nhất đang kích hoạt. Nhận 1 Rhaast và 1 Miss Fortune.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lech-chuan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/misfitsii.png"
   },
   {
     "name": "Linh Hồn Chuộc Tội",
-    "slug": "linh-hon-chuoc-toi",
+    "slug": "spiritofredemptionii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Giáp Tâm Linh. Mỗi 5 giây, Giáp Tâm Linh hồi lại cho các đồng minh trong phạm vi 1 ô 7.5% Máu đã mất của họ.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/linh-hon-chuoc-toi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/spiritofredemptionii.png"
   },
   {
     "name": "Ma Thuật Đan Kết",
-    "slug": "ma-thuat-dan-ket",
+    "slug": "wovenmagiciii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 trang bị thành phần ngẫu nhiên. Mỗi 2200 Năng Lượng đội của bạn tiêu hao sẽ trao thêm 1 trang bị thành phần (tối đa X/3).\n\nNăng lượng đã tiêu hao: X/2200",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ma-thuat-dan-ket.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/wovenmagiciii.png"
   },
   {
     "name": "Nếm Mùi Lửa",
-    "slug": "nem-mui-lua",
+    "slug": "feedtheflamesii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Áo Choàng Lửa. Đội của bạn nhận 12% Hút Máu Toàn Phần khi tấn công các kẻ địch đang chịu Thiêu Đốt.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nem-mui-lua.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/feedtheflamesii.png"
   },
   {
     "name": "Nhà Máy Tái Chế+",
-    "slug": "nha-may-tai-che",
+    "slug": "salvage2",
     "tier": 1,
     "rank": "B",
     "description": "Nhận ngay 1 trang bị hoàn chỉnh ngẫu nhiên, và 1 thành phần sau 4 vòng giao tranh người chơi. Bán tướng sẽ tách trang bị hoàn chỉnh của tướng đó ra thành trang bị thành phần (ngoại trừ các trang bị Chiến Thuật và Ấn).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nha-may-tai-che.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/salvage2.png"
   },
   {
     "name": "Nhận 21 Vàng",
-    "slug": "nhan-21-vang",
+    "slug": "windfall2",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 21 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nhan-21-vang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/windfall2.png"
   },
   {
     "name": "Nhân Bản",
-    "slug": "nhan-ban",
+    "slug": "replication-ii",
     "tier": 2,
     "rank": "B",
     "description": "Chọn 1 trong 3 trang bị thành phần. Trong 2 vòng đấu tiếp theo, nhận 1 bản sao của thành phần đó.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nhan-ban.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/replication-ii.png"
   },
   {
     "name": "Những Người Bạn Nhỏ",
-    "slug": "nhung-nguoi-ban-nho",
+    "slug": "little-buddies-ii",
     "tier": 2,
     "rank": "B",
     "description": "Tướng 4 vàng và 5 vàng của bạn nhận 55 Máu và 6% Tốc Độ Đánh với mỗi tướng 1 vàng và 2 vàng trên bàn đấu của bạn.\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nhung-nguoi-ban-nho.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/little-buddies-ii.png"
   },
   {
     "name": "Phóng Hỏa",
-    "slug": "phong-hoa",
+    "slug": "sunfireboard2",
     "tier": 1,
     "rank": "B",
     "description": "Bắt Đầu Giao Tranh: Thiêu đốt mọi kẻ địch gây sát thương bằng 15% Máu tối đa của chúng trong 15 giây và giảm lượng hồi máu chúng nhận được đi 33%.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/phong-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sunfireboard2.png"
   },
   {
     "name": "Quá Tải Tư Duy",
-    "slug": "qua-tai-tu-duy",
+    "slug": "cognitiveoverloadii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 7 vàng, 1 tướng 1 vàng 2 sao, 1 tướng 2 vàng, 2 tướng 3 vàng, 1 XP, và 1 lượt đổi Cửa Hàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/qua-tai-tu-duy.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cognitiveoverloadii.png"
   },
   {
     "name": "Sát Thủ Đánh Thuê",
-    "slug": "sat-thu-danh-thue",
+    "slug": "contractkillerii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Pyke. Pyke mạnh nhất của bạn trở thành Đấu Sĩ Vật Lý, tạo ra vàng khi đội có điểm hạ gục và nhận một Kỹ Năng đặt lại khi hạ gục.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sat-thu-danh-thue.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/contractkillerii.png"
   },
   {
     "name": "Sát Thủ Khát Máu",
-    "slug": "sat-thu-khat-mau",
+    "slug": "indiscriminateslayerii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Diệt Khổng Lồ. Diệt Khổng Lồ tăng Khuếch Đại Sát Thương lên mọi kẻ địch thay vì chỉ áp dụng với các tướng Đỡ Đòn.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sat-thu-khat-mau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/indiscriminateslayerii.png"
   },
   {
     "name": "Song Sát Tốc Hành",
-    "slug": "song-sat-toc-hanh",
+    "slug": "speedydoublekillii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Cuồng Đao Guinsoo. Khi 2 người chơi đã bị loại, nhận 40 vàng.\n\nGiải Vô Địch Định Mệnh, 2021",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/song-sat-toc-hanh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/speedydoublekillii.png"
   },
   {
     "name": "Số 4 Hoàn Hảo",
-    "slug": "so-4-hoan-hao",
+    "slug": "maythefoursbewithyouii",
     "tier": 2,
     "rank": "B",
     "description": "Các tướng 4 vàng của bạn và Jhin nhận thêm 254 Máu và 14% Tốc Độ Đánh. Nhận 1 Jhin.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/so-4-hoan-hao.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/maythefoursbewithyouii.png"
   },
   {
     "name": "Sống Vội",
-    "slug": "song-voi",
+    "slug": "hyperroll2",
     "tier": 1,
     "rank": "B",
     "description": "Bạn không còn lợi tức, nhưng sẽ nhận 3 vàng khi bắt đầu mỗi vòng giao tranh người chơi. Nhận ngay 3 vàng.\n\nLợi tức là lượng vàng bạn nhận được thêm từ mỗi 10 vàng bạn giữ lại.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/song-voi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hyperroll2.png"
   },
   {
     "name": "Tăng Trưởng Bùng Nổ",
-    "slug": "tang-truong-bung-no",
+    "slug": "explosivegrowthii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 7 XP ngay bây giờ và khi bắt đầu 3 vòng đấu tiếp theo.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tang-truong-bung-no.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/explosivegrowthii.png"
   },
   {
     "name": "Tăng Trưởng Bùng Nổ+",
-    "slug": "tang-truong-bung-no",
+    "slug": "explosivegrowthii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 10 XP ngay bây giờ và khi bắt đầu 3 vòng đấu tiếp theo.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tang-truong-bung-no.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/explosivegrowthii.png"
   },
   {
     "name": "Thăng Tiến Cuối Trận",
-    "slug": "thang-tien-cuoi-tran",
+    "slug": "lategamescalingii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 2 XP khi bắt đầu vòng giao tranh người chơi. Tướng 5 vàng của bạn nhận 12% Máu và 12% Tốc Độ Đánh.\n\nTactician's Crown Thành Phố Công Nghệ, 2025",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thang-tien-cuoi-tran.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lategamescalingii.png"
   },
   {
     "name": "Tôi Thăng Cấp Một Mình",
-    "slug": "toi-thang-cap-mot-minh",
+    "slug": "sololevelingii",
     "tier": 2,
     "rank": "B",
     "description": "Trong 5 giao tranh tiếp theo, bạn chỉ được triển khai 1 tướng, nhưng tướng đó sẽ được tăng mạnh chỉ số. Nhận 1 XP với mỗi mạng hạ gục tướng đó đạt được. Sau đó, nhận 2 trang bị thành phần.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/toi-thang-cap-mot-minh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sololevelingii.png"
   },
   {
     "name": "Trái Tim Sắt Đá",
-    "slug": "trai-tim-sat-da",
+    "slug": "healthygainsii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Trái Tim Kiên Định. Mỗi 10 giây mà chủ sở hữu sống sót trong giao tranh, Trái Tim Kiên Định nhận thêm vĩnh viễn 12 Máu tối đa.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trai-tim-sat-da.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/healthygainsii.png"
   },
   {
     "name": "Trang Bị Pandora II",
-    "slug": "trang-bi-pandora-ii",
+    "slug": "pandora2",
     "tier": 1,
     "rank": "B",
     "description": "Bắt đầu vòng đấu: Các trang bị trên hàng dự bị được đánh tráo ngẫu nhiên.\n\nNhận 2 trang bị thành phần ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trang-bi-pandora-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/pandora2.png"
   },
   {
     "name": "Trí Tuệ Siêu Công Nghệ",
-    "slug": "tri-tue-sieu-cong-nghe",
+    "slug": "cybernetic-uplink-ii",
     "tier": 2,
     "rank": "B",
     "description": "Đồng minh mang trang bị nhận 100 Máu và 2 Hồi Năng Lượng. Nhận 1 Nước Mắt Nữ Thần.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tri-tue-sieu-cong-nghe.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cybernetic-uplink-ii.png"
   },
   {
     "name": "Trượng Đại Thiên Sứ",
-    "slug": "truong-dai-thien-su",
+    "slug": "seraphimsstaffii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Quyền Trượng Thiên Thần. Quyền Trượng Thiên Thần tăng thêm 2 Hồi Phục Năng Lượng nếu chủ sở hữu có 90% Sức Mạnh Phép Thuật trở lên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/truong-dai-thien-su.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/seraphimsstaffii.png"
   },
   {
     "name": "Tụ Điện II",
-    "slug": "tu-dien-ii",
+    "slug": "electrocharge-ii",
     "tier": 2,
     "rank": "B",
     "description": "Mỗi khi đồng minh nhận 4 đòn đánh, họ sẽ gây 50 - 140 (dựa trên Giai Đoạn hiện tại) sát thương phép lên kẻ địch gần đó (1 giây hồi chiêu).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tu-dien-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/electrocharge-ii.png"
   },
   {
     "name": "Túi Đồ Siêu Hùng++",
-    "slug": "tui-do-sieu-hung",
+    "slug": "heroic-grab-bag-ii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 2 Máy Sao Chép Tướng Cỡ Nhỏ và 14 vàng.\n\nTrang bị này cho phép bạn sao chép một tướng 3 vàng trở xuống.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tui-do-sieu-hung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/heroic-grab-bag-ii.png"
   },
   {
     "name": "Tự Hủy",
-    "slug": "tu-huy",
+    "slug": "selfdestructii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Gragas. Gragas mạnh nhất của bạn trở thành Đấu Sĩ Phép với vụ nổ cực lớn, nhưng cũng tự gây sát thương lên bản thân.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tu-huy.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/selfdestructii.png"
   },
   {
     "name": "Tứ Phương Tiếp Viện",
-    "slug": "tu-phuong-tiep-vien",
+    "slug": "reinfourcementii",
     "tier": 2,
     "rank": "B",
     "description": "Tướng 4 vàng tiếp theo bạn mua bằng vàng sẽ lập tức được nâng lên 2 sao. Nhận 5 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tu-phuong-tiep-vien.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/reinfourcementii.png"
   },
   {
     "name": "Võ Sĩ Giác Đấu",
-    "slug": "vo-si-giac-dau",
+    "slug": "prizefighterii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 2 trang bị thành phần. Bạn sẽ nhận được 1 trang bị thành phần sau mỗi 5 lần thắng giao tranh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/vo-si-giac-dau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/prizefighterii.png"
   },
   {
     "name": "Vương Miện Nặng Trĩu",
-    "slug": "vuong-mien-nang-triu",
+    "slug": "heavyisthecrownii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Vương Miện Demacia, tăng mạnh các chỉ số cộng thêm cho tướng mang nó. Nếu tướng mang trang bị này hy sinh, thua vòng đấu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/vuong-mien-nang-triu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/heavyisthecrownii.png"
   },
   {
     "name": "Ý Chỉ Xích Chùy",
-    "slug": "y-chi-xich-chuy",
+    "slug": "will-of-the-flail-ii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Găng Đấu Tập. Đội của bạn nhận thêm 8% Tốc Độ Đánh và 20% Tỉ Lệ Chí Mạng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/y-chi-xich-chuy.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/will-of-the-flail-ii.png"
   },
   {
     "name": "Báo Oán",
-    "slug": "bao-oan",
+    "slug": "retributioniii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 2 Bàn Tay Công Lý. Đồng minh được trang bị Bàn Tay Công Lý nhận Chuẩn Xác.\n\nPrecision: Ability damage can critically strike. Additional Precision grants 10% Critical Strike Damage.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bao-oan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/retributioniii.png"
   },
   {
     "name": "Bão Vàng",
-    "slug": "bao-vang",
+    "slug": "moneymonsooniii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 7 vàng ngay bây giờ và mỗi vòng đấu cho đến hết trận.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bao-vang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/moneymonsooniii.png"
   },
   {
     "name": "Bộ Ba Hoàn Hảo II",
-    "slug": "bo-ba-hoan-hao-ii",
+    "slug": "trifecta-iii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 3 tướng 3 vàng. Các đồng minh được tăng 5% Tốc Độ Đánh. \nBắt Đầu Giao Tranh: 3 tướng 3 vàng ngẫu nhiên nhận thêm 300 Máu và 25% Tốc Độ Đánh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bo-ba-hoan-hao-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trifecta-iii.png"
   },
   {
     "name": "Chế Tạo Tại Chỗ",
-    "slug": "che-tao-tai-cho",
+    "slug": "living-forge-iii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận ngay 1 Gói Trang Bị Tạo Tác và sau mỗi 8 vòng giao chiến với người chơi.\n\nTạo Tác là những trang bị mạnh mẽ hơn với hiệu ứng đặc biệt.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/che-tao-tai-cho.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/living-forge-iii.png"
   },
   {
     "name": "Chỉ Một Con Đường",
-    "slug": "chi-mot-con-duong",
+    "slug": "hardcommitiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 Ấn ngẫu nhiên. Ngay lập tức và khi bắt đầu mỗi Giai Đoạn, nhận 1 tướng 1 sao cùng tộc/hệ, có giá bằng với Giai Đoạn hiện tại (tối đa 5) và 4 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/chi-mot-con-duong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hardcommitiii.png"
   },
   {
     "name": "Chờ Đợi Xứng Đáng II",
-    "slug": "cho-doi-xung-dang-ii",
+    "slug": "worththewaitiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 2 bản sao của một tướng 2 vàng ngẫu nhiên. Nhận 1 bản sao nữa của tướng đó khi bắt đầu mỗi vòng đấu cho đến hết trận.\n\nTướng: ???",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cho-doi-xung-dang-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/worththewaitiii.png"
   },
   {
     "name": "Đam Mê Đai Lưng",
-    "slug": "dam-me-dai-lung",
+    "slug": "beltoverflowiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 4 Đai Khổng Lồ. Đai Khổng Lồ của bạn cho thêm +85 Máu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dam-me-dai-lung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/beltoverflowiii.png"
   },
   {
     "name": "Đam Mê Gậy",
-    "slug": "dam-me-gay",
+    "slug": "wandoverflowiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 4 Gậy Quá Khổ. Gậy Quá Khổ của bạn sẽ cho +5% Tốc Độ Đánh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dam-me-gay.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/wandoverflowiii.png"
   },
   {
     "name": "Đam Mê Kiếm",
-    "slug": "dam-me-kiem",
+    "slug": "bladeoverflowiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 4 Kiếm B.F. Kiếm B.F. của bạn sẽ cho +4% Tốc Độ Đánh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dam-me-kiem.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bladeoverflowiii.png"
   },
   {
     "name": "Đầu Tư+",
-    "slug": "dau-tu",
+    "slug": "invested-iii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 26 vàng. Sau mỗi giao tranh, nhận 1 lượt làm mới Cửa Hàng với mỗi 10 vàng vượt hơn 50 (tối đa 80 vàng).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dau-tu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/invested-iii.png"
   },
   {
     "name": "Đẩy Nhanh Tiến Độ",
-    "slug": "day-nhanh-tien-do",
+    "slug": "upwardmobilityiii",
     "tier": 3,
     "rank": "B",
     "description": "Giảm 1 vàng khi mua XP. Nhận 2 Máu và 2 lượt đổi miễn phí mỗi khi bạn thăng cấp.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/day-nhanh-tien-do.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/upwardmobilityiii.png"
   },
   {
     "name": "Đo Ni Đóng Giày",
-    "slug": "do-ni-dong-giay",
+    "slug": "lucky-gloves-iii",
     "tier": 3,
     "rank": "B",
     "description": "Găng Đạo Tặc sẽ luôn cho tướng của bạn những trang bị lý tưởng. Nhận 2 Găng Đấu Tập.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/do-ni-dong-giay.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lucky-gloves-iii.png"
   },
   {
     "name": "Đo Ni Đóng Giày+",
-    "slug": "do-ni-dong-giay",
+    "slug": "lucky-gloves-iii",
     "tier": 3,
     "rank": "B",
     "description": "Găng Đạo Tặc sẽ luôn cho tướng của bạn những trang bị khuyên dùng. Nhận ngay 2 Găng Đấu Tập, nhận thêm 1 găng sau 4 giao tranh người chơi.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/do-ni-dong-giay.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lucky-gloves-iii.png"
   },
   {
     "name": "Kề Vai Sát Cánh",
-    "slug": "ke-vai-sat-canh",
+    "slug": "westicktogetheriii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 Ấn ngẫu nhiên và 1 gói trang bị hoàn chỉnh. Các đồng minh có chung tộc/hệ với Ấn đó nhận thêm 30% Tốc Độ Đánh. TFT_Augment_Template_Blank\n\nTactician's Crown Bước Vào Arcane, 2025",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ke-vai-sat-canh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/westicktogetheriii.png"
   },
   {
     "name": "Khảm Bảo Thạch II",
-    "slug": "kham-bao-thach-ii",
+    "slug": "jeweled-lotus-iii",
     "tier": 3,
     "rank": "B",
     "description": "Đội của bạn nhận 25% Tỉ Lệ Chí Mạng, 10% Sát Thương Chí Mạng và Chuẩn Xác.\n\nPrecision: Ability damage can critically strike. Additional Precision grants 10% Critical Strike Damage.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kham-bao-thach-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/jeweled-lotus-iii.png"
   },
   {
     "name": "Kho Báu Chôn Giấu",
-    "slug": "kho-bau-chon-giau",
+    "slug": "buried-treasures-iii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 trang bị thành phần ngẫu nhiên ngay bây giờ và khi bắt đầu 5 vòng tiếp theo.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kho-bau-chon-giau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/buried-treasures-iii.png"
   },
   {
     "name": "Khuyến Mãi Kinh Nghiệm",
-    "slug": "khuyen-mai-kinh-nghiem",
+    "slug": "levelup3",
     "tier": 1,
     "rank": "B",
     "description": "Khi bạn mua XP, nhận thêm 2 XP. Ngay lập tức nhận 10 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/khuyen-mai-kinh-nghiem.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/levelup3.png"
   },
   {
     "name": "Kiếm Tử Thần",
-    "slug": "kiem-tu-than",
+    "slug": "deadlierbladesii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Kiếm Tử Thần. Kiếm Tử Thần vĩnh viễn tăng thêm 1% Sức Mạnh Công Kích mỗi khi chủ sở hữu tham gia hạ gục.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/kiem-tu-than.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/deadlierbladesii.png"
   },
   {
     "name": "Kỳ Vọng Bất Ngờ",
-    "slug": "ky-vong-bat-ngo",
+    "slug": "addicted-to-rolling-iii",
     "tier": 3,
     "rank": "B",
     "description": "Ngay bây giờ và khi bắt đầu 2 giai đoạn tiếp theo, đổ 3 xúc xắc. Nhận nhiều loại phần thưởng dựa trên tổng số đã đổ được.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ky-vong-bat-ngo.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/addicted-to-rolling-iii.png"
   },
   {
     "name": "Lựa Chọn Độc Quyền II",
-    "slug": "lua-chon-doc-quyen-ii",
+    "slug": "exclusivecustomizationii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 2 Rương Trang Bị May Mắn, 1 Nam Châm Ma Thuật và 10 vàng.\n\nSử dụng 1 Rương Trang Bị May Mắn lên 1 tướng để chọn một trong số các trang bị gợi ý!",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lua-chon-doc-quyen-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/exclusivecustomizationii.png"
   },
   {
     "name": "Món Quà Ngọt Ngào",
-    "slug": "mon-qua-ngot-ngao",
+    "slug": "sweettreatsiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 gói Trang Bị Tạo Tác. Đội của bạn nhận 20 Máu với mỗi trang bị đang mang trên tướng.\n\nMáu Nhận Thêm: X\n\nTactician's Crown Hỗn Loạn Huyền Diệu, 2024",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/mon-qua-ngot-ngao.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sweettreatsiii.png"
   },
   {
     "name": "Một Bùa, Hai Bùa",
-    "slug": "mot-bua-hai-bua",
+    "slug": "onebufftwobuffiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 Bùa Đỏ, 1 Bùa Xanh và 1 Máy Sao Chép Tướng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/mot-bua-hai-bua.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/onebufftwobuffiii.png"
   },
   {
     "name": "Mũ Tử Thần",
-    "slug": "mu-tu-than",
+    "slug": "deadliercapsii",
     "tier": 2,
     "rank": "B",
     "description": "Nhận 1 Mũ Phù Thủy Rabadon. Mũ Phù Thủy Rabadon vĩnh viễn tăng thêm 1% Sức Mạnh Phép Thuật mỗi khi chủ sở hữu tham gia hạ gục.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/mu-tu-than.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/deadliercapsii.png"
   },
   {
     "name": "Nhỏ Mà Có Võ",
-    "slug": "nho-ma-co-vo",
+    "slug": "tinybutdeadlyiii",
     "tier": 3,
     "rank": "B",
     "description": "Đội của bạn hóa nhỏ, nhận thêm 30% Tốc Độ Đánh và Tốc Độ Di Chuyển.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nho-ma-co-vo.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tinybutdeadlyiii.png"
   },
   {
     "name": "Phi Vụ Trang Bị",
-    "slug": "phi-vu-trang-bi",
+    "slug": "museumheistiii",
     "tier": 3,
     "rank": "B",
     "description": "Sau 6 giao tranh người chơi, nhận tất cả trang bị thành phần. Nhận ngay 1 trang bị thành phần ngẫu nhiên.\n\nTFT_Augment_Template_Blank TFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/phi-vu-trang-bi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/museumheistiii.png"
   },
   {
     "name": "Quang Lân Tiểu Yêu",
-    "slug": "quang-lan-tieu-yeu",
+    "slug": "roll-the-dice-iii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 Găng Tinh Xảo. Trang bị này sẽ tạo thêm 2 trang bị Ánh Sáng ngẫu nhiên mỗi vòng đấu.\n\nTrang Bị Ánh Sáng là phiên bản mạnh mẽ hơn của những trang bị hoàn chỉnh.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/quang-lan-tieu-yeu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/roll-the-dice-iii.png"
   },
   {
     "name": "Quỹ Phòng Hộ",
-    "slug": "quy-phong-ho",
+    "slug": "richgetricher3",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 22 vàng. Lợi tức tối đa được tăng lên 10.\n\nLợi tức là lượng vàng bạn nhận được thêm từ mỗi 10 vàng bạn giữ lại.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/quy-phong-ho.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/richgetricher3.png"
   },
   {
     "name": "Thích Mở Rộng",
-    "slug": "thich-mo-rong",
+    "slug": "going-long-iii",
     "tier": 3,
     "rank": "B",
     "description": "Bạn sẽ không còn nhận được lợi tức. Nhận ngay 13 vàng. Bắt Đầu Vòng Đấu: nhận 4 ĐKN.\n\nLợi tức là lượng vàng bạn nhận được thêm từ mỗi 10 vàng bạn giữ lại.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thich-mo-rong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/going-long-iii.png"
   },
   {
     "name": "Tiêu Dùng Thông Minh",
-    "slug": "tieu-dung-thong-minh",
+    "slug": "wisespending3",
     "tier": 1,
     "rank": "B",
     "description": "Bạn không thể mua XP nữa. Với mỗi lần bạn dùng vàng để làm mới Cửa Hàng, nhận 2 XP. Nhận ngay 3 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tieu-dung-thong-minh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/wisespending3.png"
   },
   {
     "name": "Tinh Túy Kim Long",
-    "slug": "tinh-tuy-kim-long",
+    "slug": "shimmerscaleessenceiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 Giáp Đại Hãn. Sau 6 vòng đấu, nhận 1 Kiếm Của Tay Bạc.\n\nNhững trang bị này mang lại vàng và tăng sức mạnh chiến đấu.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tinh-tuy-kim-long.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/shimmerscaleessenceiii.png"
   },
   {
     "name": "To Lớn & Mạnh Mẽ",
-    "slug": "to-lon-manh-me",
+    "slug": "giantandmightyiii",
     "tier": 3,
     "rank": "B",
     "description": "Đội của bạn hóa lớn, được tăng 200 Máu và 10% Máu tối đa.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/to-lon-manh-me.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/giantandmightyiii.png"
   },
   {
     "name": "Tối Đa Hóa",
-    "slug": "toi-da-hoa",
+    "slug": "minmaxiii",
     "tier": 3,
     "rank": "B",
     "description": "Nhận 1 Nam Châm Hoàng Kim và 4 trang bị thành phần ngẫu nhiên.\n\nNam Châm Hoàng Kim là 1 Nam Châm Ma Thuật với lượt sử dụng vô hạn.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/toi-da-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/minmaxiii.png"
   },
   {
     "name": "Trang Bị Pandora III",
-    "slug": "trang-bi-pandora-iii",
+    "slug": "pandora3",
     "tier": 1,
     "rank": "B",
     "description": "Bắt đầu vòng đấu: Các trang bị trên hàng dự bị được đánh tráo ngẫu nhiên. \n\nNhận 1 Trang Bị Ánh Sáng ngẫu nhiên.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trang-bi-pandora-iii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/pandora3.png"
   },
   {
     "name": "Trung Tâm Thương Mại",
-    "slug": "trung-tam-thuong-mai",
+    "slug": "trade3",
     "tier": 1,
     "rank": "B",
     "description": "Nhận 16 lượt đổi cửa hàng miễn phí ngay và 3 lượt đổi mỗi vòng đấu cho đến hết trận.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trung-tam-thuong-mai.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trade3.png"
   },
   {
     "name": "Tuyển Nhân Sự",
-    "slug": "tuyen-nhan-su",
+    "slug": "newrecruit3",
     "tier": 1,
     "rank": "B",
     "description": "Nhận thêm +1 số lượng tướng tối đa và 1 tướng 4 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tuyen-nhan-su.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/newrecruit3.png"
   },
   {
     "name": "Vương Miện Hắc Hóa",
-    "slug": "vuong-mien-hac-hoa",
+    "slug": "cursedcrown-iii",
     "tier": 3,
     "rank": "B",
     "description": "Tăng +2 số lượng tướng tối đa và đội của bạn nhận 4% Chống Chịu, nhưng bạn sẽ nhận gấp đôi sát thương lên Linh Thú khi thua giao tranh người chơi.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/vuong-mien-hac-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cursedcrown-iii.png"
   },
   {
     "name": "Bước Đột Phá",
-    "slug": "buoc-dot-pha",
+    "slug": "criticalsuccessi",
     "tier": 1,
     "rank": "C",
     "description": "Nhận 1 Găng Đấu Tập. Sau khi các đòn đánh từ đội của bạn chí mạng 320 lần, nhận thêm 2.\n\nĐòn chí mạng: X",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/buoc-dot-pha.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/criticalsuccessi.png"
   },
   {
     "name": "Hút Sinh Lực I",
-    "slug": "hut-sinh-luc-i",
+    "slug": "dhampyrii",
     "tier": 2,
     "rank": "C",
     "description": "Bạn hồi máu bằng 12% sát thương bạn gây lên Linh Thú của đối thủ. Đội của bạn nhận 10% Hút Máu Toàn Phần.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hut-sinh-luc-i.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dhampyrii.png"
   },
   {
     "name": "Liên Hoàn Tinh Tú",
-    "slug": "lien-hoan-tinh-tu",
+    "slug": "aatroxheroi",
     "tier": 1,
     "rank": "C",
     "description": "Nhận 1 Aatrox. Aatrox mạnh nhất của bạn trở thành Đấu Sĩ Vật Lý với kỹ năng chuyển đổi giữa 3 đòn tấn công khác nhau.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/lien-hoan-tinh-tu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/aatroxheroi.png"
   },
   {
     "name": "Một Hai Ba",
-    "slug": "mot-hai-ba",
+    "slug": "threes-company-i",
     "tier": 1,
     "rank": "C",
     "description": "Nhận 1 tướng 1 vàng, 1 tướng 2 vàng và 1 tướng 3 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/mot-hai-ba.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/threes-company-i.png"
   },
   {
     "name": "Tiền Ăn Trưa",
-    "slug": "tien-an-trua",
+    "slug": "bloodbanki",
     "tier": 1,
     "rank": "C",
     "description": "Bạn sẽ nhận được 2 vàng cho mỗi 8 sát thương bạn gây lên linh thú của đối thủ.\nTổng thu nhập: X Vàng",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tien-an-trua.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/bloodbanki.png"
   },
   {
     "name": "Xoay Bài Tự Động",
-    "slug": "xoay-bai-tu-dong",
+    "slug": "recombobulator-i",
     "tier": 1,
     "rank": "C",
     "description": "Tất cả tướng trên sân đấu của bạn sẽ vĩnh viễn chuyển thành tướng ngẫu nhiên với giá cao hơn 1 bậc (tối đa 5). Nhận 2 Nam Châm Ma Thuật.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/xoay-bai-tu-dong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/recombobulator-i.png"
   },
   {
     "name": "Ăn Trộm",
-    "slug": "an-trom",
+    "slug": "pilferii",
     "tier": 2,
     "rank": "C",
     "description": "Mỗi vòng đấu, nhận 1 bản sao 1 sao của tướng đầu tiên bạn tiêu diệt ở vòng giao tranh trước. Lần đầu tiên bạn nhận được số lượng tướng trị giá 21 vàng theo cách này, nhận 1 Găng Đạo Tặc. TFT_Augment_Template_Blank\n\nTFT_Augment_Template_Blank",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/an-trom.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/pilferii.png"
   },
   {
     "name": "Gói Tăng Cường",
-    "slug": "goi-tang-cuong",
+    "slug": "boosterpack1ii",
     "tier": 2,
     "rank": "C",
     "description": "Nhận các tướng ngẫu nhiên có tổng giá là 10 vàng. (Đảm bảo có ít nhất một tướng 3 vàng!)\n\n(Mỗi tướng đều có tỉ lệ nhỏ trở thành dạng ba chiều!)",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goi-tang-cuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/boosterpack1ii.png"
   },
   {
     "name": "Hút Sinh Lực II",
-    "slug": "hut-sinh-luc-ii",
+    "slug": "dhampyrii",
     "tier": 2,
     "rank": "C",
     "description": "Bạn hồi máu bằng 12% sát thương bạn gây lên Linh Thú của đối thủ. Đội của bạn nhận 18% Hút Máu Toàn Phần.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/hut-sinh-luc-ii.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dhampyrii.png"
   },
   {
     "name": "Nhiệt Tử",
-    "slug": "nhiet-tu",
+    "slug": "starconquerorii",
     "tier": 2,
     "rank": "C",
     "description": "Nhận 1 Mordekaiser. Mordkaiser mạnh nhất của bạn trở thành Đấu Sĩ Phép mang một hào quang tăng dần, gây sát thương theo thời gian.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/nhiet-tu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/starconquerorii.png"
   },
   {
     "name": "Phản Ứng Phụ",
-    "slug": "phan-ung-phu",
+    "slug": "sideeffectsii",
     "tier": 2,
     "rank": "C",
     "description": "Khi một đồng minh được hồi máu, họ gây 50% sát thương phép tương đương lượng hồi máu lên mục tiêu của mình. Mỗi 5 giây, đồng minh hồi lại 4% Máu tối đa của họ.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/phan-ung-phu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sideeffectsii.png"
   },
   {
     "name": "Sét Cao Thế",
-    "slug": "set-cao-the",
+    "slug": "highvoltageii",
     "tier": 2,
     "rank": "C",
     "description": "Nhận 1 Nỏ Sét. Nỏ Sét của bạn được +3 ô bán kính tác dụng và gây thêm 20% sát thương.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/set-cao-the.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/highvoltageii.png"
   },
   {
     "name": "Siêu Vũ Trụ",
-    "slug": "sieu-vu-tru",
+    "slug": "meepspace9ii",
     "tier": 2,
     "rank": "C",
     "description": "Nhận 1 Meepsie. Meepsie mạnh nhất của bạn trở thành Đấu Sĩ Phép, nhảy đến một ô gần đó để gây sát thương trong một vùng rộng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/sieu-vu-tru.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/meepspace9ii.png"
   },
   {
     "name": "Thần Luật Khả Biến",
-    "slug": "than-luat-kha-bien",
+    "slug": "divineamendmentii",
     "tier": 2,
     "rank": "C",
     "description": "Tướng Thần Phán bổ sung hiệu ứng thứ hai vào luật lệ của họ.\nNhận 1 Leona và 1 Zoe.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/than-luat-kha-bien.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/divineamendmentii.png"
   },
   {
     "name": "Thông Thoáng",
-    "slug": "thong-thoang",
+    "slug": "clearmind2",
     "tier": 1,
     "rank": "C",
     "description": "Nếu không có tướng trong hàng dự bị khi kết thúc giao tranh với người chơi, nhận 3 ĐKN.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/thong-thoang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/clearmind2.png"
   },
   {
     "name": "Vươn Tới Tinh Tú",
-    "slug": "vuon-toi-tinh-tu",
+    "slug": "reachforthestarsii",
     "tier": 2,
     "rank": "C",
     "description": "Nhận 1 Jax. Jax mạnh nhất của bạn trở thành Đấu Sĩ Phép, gây thêm sát thương phép khi tấn công và nhận Tốc Độ Đánh cộng dồn mỗi khi sử dụng kỹ năng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/vuon-toi-tinh-tu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/reachforthestarsii.png"
   },
   {
     "name": "Cái Giá Phải Trả",
-    "slug": "cai-gia-phai-tra",
+    "slug": "atwhatcostiii",
     "tier": 3,
     "rank": "C",
     "description": "Lập tức tăng lên cấp 6 và nhận 8 XP. Bạn sẽ không còn được chọn những nâng cấp sắp tới.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cai-gia-phai-tra.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/atwhatcostiii.png"
   },
   {
     "name": "Cuộc Phiêu Lưu Tôn Quý",
-    "slug": "cuoc-phieu-luu-ton-quy",
+    "slug": "exaltedadventureiii",
     "tier": 3,
     "rank": "C",
     "description": "Nhận 3 tướng 2 vàng. Nếu bạn nâng 2 tướng trong số đó lên 3 sao, nhận 1 hộp báu vật. Nhận 1 Máy Sao Chép Tướng Cỡ Nhỏ khi khởi đầu 2 giai đoạn tiếp theo.\n\nTướng: ?, ?, ?",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/cuoc-phieu-luu-ton-quy.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/exaltedadventureiii.png"
   },
   {
     "name": "Dịch Vụ Gói Đăng Ký",
-    "slug": "dich-vu-goi-dang-ky",
+    "slug": "subscriptionserviceiii",
     "tier": 3,
     "rank": "C",
     "description": "Ngay bây giờ và vào thời điểm bắt đầu mỗi Giai Đoạn, mở 1 Cửa Hàng bao gồm 4 tướng 4 vàng khác nhau và nhận 6 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/dich-vu-goi-dang-ky.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/subscriptionserviceiii.png"
   },
   {
     "name": "Gói Đăng Ký Hạng Sang",
-    "slug": "goi-dang-ky-hang-sang",
+    "slug": "luxurysubscriptioniii",
     "tier": 3,
     "rank": "C",
     "description": "Nhận một gói quà chứa 1 tướng 5 vàng, 1 tướng 1 vàng 2 sao và 5 vàng.\n\nKhi bắt đầu 2 giai đoạn tiếp theo, nhận gói quà một lần nữa.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/goi-dang-ky-hang-sang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/luxurysubscriptioniii.png"
   },
   {
     "name": "Quà Sinh Nhật",
-    "slug": "qua-sinh-nhat",
+    "slug": "golden-gifts-iii",
     "tier": 3,
     "rank": "C",
     "description": "Nhận một tướng 2 sao và 1 vàng mỗi khi bạn lên cấp. Bậc của tướng sẽ là cấp của bạn trừ 4 (tối đa: 5 vàng).",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/qua-sinh-nhat.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/golden-gifts-iii.png"
   },
   {
     "name": "Quỹ Phòng Hộ+",
-    "slug": "quy-phong-ho",
+    "slug": "richgetricher3",
     "tier": 1,
     "rank": "C",
     "description": "Nhận 30 vàng. Lợi tức tối đa được tăng lên 10.\n\nLợi tức là lượng vàng bạn nhận được thêm từ mỗi 10 vàng bạn giữ lại.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/quy-phong-ho.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/richgetricher3.png"
   },
   {
     "name": "Rồng Đẻ Trứng Vàng",
-    "slug": "rong-de-trung-vang",
+    "slug": "the-golden-egg-iii",
     "tier": 3,
     "rank": "C",
     "description": "Nhận một trứng vàng nở ra sau 11 vòng đấu, cho lượng lớn báu vật. Chiến thắng vòng giao tranh người chơi sẽ đẩy nhanh thời gian nở trứng thêm một vòng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/rong-de-trung-vang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/the-golden-egg-iii.png"
   },
   {
     "name": "Toàn Thắng",
-    "slug": "toan-thang",
+    "slug": "winoutiii",
     "tier": 3,
     "rank": "C",
     "description": "Khi đạt cấp 9, ngay lập tức lên cấp 10 và nhận 8 lượt đổi Cửa Hàng miễn phí. Nhận ngay 6 XP.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/toan-thang.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/winoutiii.png"
   },
   {
     "name": "Trái Tim Của Hiểm Họa",
-    "slug": "trai-tim-cua-hiem-hoa",
+    "slug": "heartoftheswarmiii",
     "tier": 3,
     "rank": "C",
     "description": "Tất cả tướng 3 sao giờ sẽ được tính vào sức mạnh Bầy Đàn Hiểm Họa. Ở cấp 10, khi triển khai 6 tướng 3 sao độc nhất, Tộc Thượng Cổ sẽ triệu hồi THƯỢNG CỔ THẦN BINH. Nhận 1 Briar, 1 Bel'Veth và 1 Rek'Sai.\n\nTướng 3 Sao Độc Nhất Đã Triển Khai: X / 6\n\nCấp: X / 10",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/trai-tim-cua-hiem-hoa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/heartoftheswarmiii.png"
   },
   {
     "name": "Tự Lập Đội",
-    "slug": "tu-lap-doi",
+    "slug": "constructacompanioniii",
     "tier": 3,
     "rank": "C",
     "description": "Nhận 1 tướng 1 vàng 3 sao ngẫu nhiên. Nhận 8 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/tu-lap-doi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/constructacompanioniii.png"
   },
   {
     "name": "Kẻ Sống Sót",
-    "slug": "ke-song-sot",
+    "slug": "survivori",
     "tier": 1,
     "rank": "D",
     "description": "Nhận 4 vàng. Sau khi 3 người chơi bị loại, nhận thêm 100 vàng.",
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/ke-song-sot.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/augments/survivori.png"
   }
 ]

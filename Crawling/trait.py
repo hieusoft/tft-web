@@ -189,8 +189,18 @@ def process_item(item: dict) -> dict | None:
     if not name:
         return None
 
-    slug      = vn_to_slug(name)
     image_url = item.get("image", "")
+    slug = ""
+    if image_url:
+        import urllib.parse
+        parsed = urllib.parse.urlparse(image_url)
+        path = urllib.parse.unquote(parsed.path)
+        slug = path.split("/")[-1].split(".")[0]
+        slug = slug.replace("_", "").lower()
+        
+    if not slug:
+        slug = vn_to_slug(name)
+
     ext       = get_ext_from_url(image_url) if image_url else "png"
     r2_key    = f"{R2_FOLDER}/{slug}.{ext}"
     r2_url    = image_url
