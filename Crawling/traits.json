@@ -1,414 +1,843 @@
 [
   {
-    "name": "U Sầu",
-    "description": "Bắt đầu giao tranh: Đánh dấu Buồn Bực lên tất cả kẻ địch.<br><br>Lần đầu tiên kẻ địch chịu sát thương mỗi giao tranh, Buồn Bực sẽ được tiêu thụ, đánh cắp @ADAP1@% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật từ chúng để trao cho Vex mạnh nhất của bạn.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Thách Đấu",
-    "description": "Đội của bạn nhận @TeamwideAS*100@% Tốc Độ Đánh. Tướng Thách Đấu nhận Tốc Độ Đánh cộng thêm. Khi mục tiêu của họ bị hạ, tướng Thách Đấu lướt tới mục tiêu mới và tăng @BurstPercent*100@% lượng Tốc Độ Đánh cộng thêm trong @BurstDuration@ giây.<br><br><row>(@MinUnits@) @AttackSpeedPercent*100@%&nbsp;%i:scaleAS%</row><br><row>(@MinUnits@) @AttackSpeedPercent*100@%&nbsp;%i:scaleAS%</row><br><row>(@MinUnits@) @AttackSpeedPercent*100@%&nbsp;%i:scaleAS%</row><br><row>(@MinUnits@) @AttackSpeedPercent*100@%&nbsp;%i:scaleAS%</row>",
-    "breakpoints": [
-      2,
-      3,
-      4,
-      5
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chọn Tộc/Hệ",
-    "description": "Khi bạn triển khai Miss Fortune, chọn giữa Chế Độ Dẫn Truyền, Chế Độ Thách Đấu và Chế Độ Nhân Bản. Miss Fortune sẽ có kỹ năng riêng biệt tùy theo chế độ và nhận được tộc/hệ tương ứng.",
-    "breakpoints": [],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Tướng Chiêm Tinh dệt nên những chòm sao khác nhau trong mỗi trận đấu. Trận này: <TFTStargazer>Heo Rừng</TFTStargazer>.<br><br>Nhận vàng khi thắng giao tranh người chơi. Đồng minh đứng trên ô cường hóa nhận thêm @Wolf_Health_Teamwide*100@% Máu, Sức Mạnh Công Kích và Sức Mạnh Phép Thuật. Tướng Chiêm Tinh nhận được nhiều hơn.<br><br>(Vàng Kiếm Được: @TFTUnitProperty.trait:TFT17_Stargazer_Wolf_TotalGold@)<br><br><expandRow>(@MinUnits@) @Wolf_Gold@ vàng, @Wolf_Health*100@% %i:scaleHealth%, @Wolf_ADAP@% %i:scaleAD%%i:scaleAP%</expandRow><br><br><rules>Mỗi cấp người chơi sẽ mở thêm ô.</rules>",
-    "breakpoints": [
-      3,
-      4,
-      5,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Nhân Bản",
-    "description": "Kỹ năng của tướng Nhân Bản kích hoạt lần hai với hiệu lực giảm bớt.<br><br><expandRow>(@MinUnits@) @Effectiveness*100@% sức mạnh</expandRow>",
-    "breakpoints": [
-      2,
-      4
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Tiên Phong",
-    "description": "Tướng Tiên Phong được tăng @DamageReductionPct*100@% Chống Chịu khi có Lá Chắn. <br><br>Bắt đầu giao tranh và khi còn @HealthThreshold*100@%&nbsp;Máu: Nhận một Lá Chắn theo Máu tối đa trong @ShieldDuration@&nbsp;giây.<br><br><row>(@MinUnits@) @ShieldPercentAmount*100@% Máu tối đa</row><br><row>(@MinUnits@) @ShieldPercentAmount*100@% Máu tối đa</row><br><row>(@MinUnits@) @ShieldPercentAmount*100@% Máu tối đa;<br>@EnhancedDurability*100@%&nbsp;%i:scaleDR% khi có Lá Chắn</row>",
-    "breakpoints": [
-      2,
-      4,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Siêu Linh",
-    "description": "Nhận trang bị Siêu Linh có thể lắp cho bất kỳ đồng minh nào.<br><br><row>(@MinUnits@) Nhận @TFTUnitProperty.trait:TFT17_PsyOps_Item1@</row><br><row>(@MinUnits@) Nhận @TFTUnitProperty.trait:TFT17_PsyOps_Item2@, trang bị Siêu Linh sẽ có thêm hiệu ứng trên các tướng Siêu Linh</row><br><br><br>",
-    "breakpoints": [
-      2,
-      4
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
+    "name": "Ác Nữ",
+    "slug": "ac-nu",
+    "tier": "S",
+    "placement": "3.72",
+    "top4": "21.8%",
+    "pick_count": "1.116.485",
+    "pick_percent": "11.2%",
+    "description": "Đồng minh được giảm 5% sát thương nhận phải từ kỹ năng, tăng thành 10% khi Morgana ở Thể Hắc Ám.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/ac-nu.png"
   },
   {
     "name": "Hủy Diệt",
-    "description": "Kẻ địch bị giảm @PctResists*100@% Giáp và Kháng Phép.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Thời Không",
-    "description": "<row>(@MinUnits@) Khi bạn thua, nhận lượt đổi miễn phí. Khi bạn thắng, tích trữ XP trong một Lõi Thời Không (tăng theo giai đoạn).</row><br><row>(@MinUnits@) VÀ Đồng minh nhận thêm @AttackSpeed*100@% Tốc Độ Đánh.</row><br><row>(@MinUnits@) VÀ Tướng Thời Không nhận thêm @TimebreakerAdditionalAS*100@% Tốc Độ Đánh</row><br><br><rules>Lượt đổi khi Thua: @TFTUnitProperty.:TFT17_Timebreaker_NumRerollsTooltip@<br>XP khi Thắng: @TFTUnitProperty.:TFT17_Timebreaker_NumXPTooltip@</rules>",
-    "breakpoints": [
-      2,
-      3,
-      4
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Toán Cướp",
-    "description": "Đội của bạn nhận @TeamwideBonus*100@% Hút Máu Toàn Phần. Tướng Toán Cướp nhận thêm Hút Máu Toàn Phần, Sức Mạnh Công Kích và lượng máu hồi vượt trội từ Hút Máu Toàn Phần sẽ được chuyển hóa thành Lá Chắn (tối đa @MaxPercentHealthShield*100@% Máu tối đa.)<br><br><row>(@MinUnits@) @Omnivamp*100@% %i:scaleSV%, @AD*100@% %i:scaleAD%</row><br><row>(@MinUnits@) @Omnivamp*100@% %i:scaleSV%, @AD*100@% %i:scaleAD%</row><br><row>(@MinUnits@) @Omnivamp*100@% %i:scaleSV%, @AD*100@% %i:scaleAD%.</row>",
-    "breakpoints": [
-      2,
-      4,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Xạ Thần",
-    "description": "Khi bạn triển khai Miss Fortune, chọn giữa Chế Độ Dẫn Truyền, Chế Độ Thách Đấu và Chế Độ Nhân Bản. Miss Fortune sẽ có kỹ năng riêng biệt tùy theo chế độ và nhận được tộc/hệ tương ứng.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Siêu Thú",
-    "description": "Sau khi thua một giao tranh người chơi, nhận @TechPerCombat@ Linh Kiện, cộng thêm số Linh Kiện bằng @TechPerLoss@ lần độ dài chuỗi thua của bạn. Ngoài ra, nhận thêm @TechPerKill@ Linh Kiện mỗi khi tướng Siêu Thú tham gia hạ gục.<br><br>Mỗi khi tướng Siêu Thú tích đủ @TechBreakpoint@ Linh Kiện, họ sẽ thử nghiệm các Vũ Khí Siêu Thú mới. Bạn có thể nhận chúng ngay hoặc tích thêm Linh Kiện để nhận được những vũ khí mạnh mẽ hơn ở lần sau.<br><br><row>(@MinUnits@) Bắt Đầu Nghiên Cứu! </row><br><row>(@MinUnits@) Sau khi thắng 1 vòng giao tranh người chơi, nhận được báu vật!</row>",
-    "breakpoints": [
-      3,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Định Mệnh",
-    "description": "Thiên Phú: Tướng Định Mệnh sở hữu <TFTKeyword>Chuẩn Xác</TFTKeyword>.<br><br><row>(@MinUnits@) Các hiệu ứng theo xác suất trên kỹ năng sẽ được hưởng <TFTKeyword>May Mắn</TFTKeyword>.</row><br><row>(@MinUnits@) Nhận @CritChance*100@% Tỉ Lệ Chí Mạng và @CritDamage@%&nbsp;Sát Thương Chí Mạng. Đòn chí mạng cũng trở nên <TFTKeyword>May Mắn</TFTKeyword>.</row><br><br>{{TFT_Keyword_Precision}}<br><rules>May Mắn: Tính toán hai lần, lấy kết quả tốt hơn.</rules>",
-    "breakpoints": [
-      2,
-      4
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Thợ Săn Vũ Trụ",
-    "description": "Zed được nhận từ nâng cấp Zed Kẻ Xâm Lăng.<br><br>Khi còn ít nhất một phân thân tồn tại, Zed nhận thêm @BonusAD*100@% Sức Mạnh Công Kích.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
+    "slug": "huy-diet",
+    "tier": "S",
+    "placement": "3.80",
+    "top4": "20.5%",
+    "pick_count": "1.680.223",
+    "pick_percent": "16.9%",
+    "description": "Kẻ địch bị giảm 10% Giáp và Kháng Phép.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/huy-diet.png"
   },
   {
     "name": "Chiến Lũy",
-    "description": "Triệu hồi một di vật có thể đặt. Khi bắt đầu giao tranh, nó trao cho các đồng minh liền kề một lá chắn bằng @PercentHealthShield*100@% Máu tối đa và @AttackSpeed*100@% Tốc Độ Đánh.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chỉ Huy",
-    "description": "(@MinUnits@) Sona ban cho bạn một Lệnh Chỉ Huy ngẫu nhiên mỗi @RoundsPerMod@ vòng, giúp bạn thay đổi cách mà 1 đồng minh hành động trong giao tranh. Các Lệnh Chỉ Huy tồn tại trong @RoundsPerMod@ giao tranh người chơi ngay cả khi chúng không được trang bị.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: <TFTStargazer>Huy Chương</TFTStargazer>.<br><row>(@MinUnits@) Đồng minh trên ô cường hóa nhận @Medallion_DA@% Khuếch Đại Sát Thương, tăng thêm @Medallion_IncreasePer3Star@% với mỗi tướng 3 sao.</row><br>(Thưởng&nbsp;Hiện Tại:&nbsp;@TFTUnitProperty.trait:TFT17_Stargazer_Medallion_Increase@% %i:scaleDA%)<br><rules>Mỗi cấp người chơi sẽ mở thêm ô.</rules>",
-    "breakpoints": [
-      3
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: <TFTStargazer>Nữ Thợ Săn</TFTStargazer>.<br>Bắt đầu giao tranh: Đánh dấu kẻ địch có lượng Máu cao nhất.<br>Đồng minh trên ô cường hóa nhận thêm @Huntress_AS_Teamwide*100@% Tốc Độ Đánh. Tướng Chiêm Tinh trên ô cường hóa nhận được nhiều hơn và hồi máu bằng @Huntress_Heal*100@% Máu tối đa của họ khi một kẻ địch bị đánh dấu tử trận.<br><row>(@MinUnits@) @Huntress_AS*100@% %i:scaleAS%, @NumMarks@ đánh dấu</row><br><row>(@MinUnits@) @Huntress_AS*100@% %i:scaleAS%, @NumMarks@ đánh dấu</row><br><row>(@MinUnits@) @Huntress_AS*100@% %i:scaleAS%, @NumMarks@ đánh dấu</row><br><rules>Mỗi cấp người chơi sẽ mở thêm ô</rules>",
-    "breakpoints": [
-      3,
-      5,
-      7
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Thần Ban Phước",
-    "description": "@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey1@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey2@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey3@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey4@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey5@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey6@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey7@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey8@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey9@<br><br>@TFTUnitProperty.trait:TFT17_CarouselMarket_TraitTRAKey10@<br>",
-    "breakpoints": [],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: <TFTStargazer>Cự Xà</TFTStargazer>.<br>Ô cường hóa cho thêm @Serpent_DR_Teamwide*100@% Chống Chịu. Tướng Chiêm Tinh trên ô cường hóa nhận được nhiều hơn và áp dụng hiệu ứng độc lên kẻ địch, lặp lại một phần sát thương đã gây ra dưới dạng sát thương phép trong @Serpent_Duration@ giây.<br><expandRow>(@MinUnits@) @Serpent_DR*100@% %i:scaleDR%, @Serpent_Poison*100@% sát thương độc</expandRow><br><rules>Mỗi cấp người chơi sẽ mở thêm ô</rules>",
-    "breakpoints": [
-      3,
-      5,
-      7
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: <TFTStargazer>Đền Thờ</TFTStargazer>.<br><row>(@MinUnits@) Khi BẤT KỲ tướng nào bị hạ gục, họ được hiến tế cho Đền Thờ. Đồng minh đứng trên ô cường hóa nhận thêm @Shield_Health_Teamwide@% Máu và @Shield_AS_Teamwide@% Tốc Độ Đánh.<br>Sau @Shield_NumDeaths@ lần hiến tế, các tướng Chiêm Tinh ở ô cường hóa nhận thêm @Shield_CashoutHP@% %i:scaleHealth% và @Shield_CashoutAS@% %i:scaleAS%<br>Hiến tế: (@TFTUnitProperty.trait:TFT17_Stargazer_Shield_Deaths@ / @Shield_NumDeaths@)</row><br><rules>Mỗi cấp người chơi sẽ mở thêm ô.</rules>",
-    "breakpoints": [
-      3
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: <TFTStargazer>Bệ Đá Cổ</TFTStargazer>.<br>Đồng minh đứng trên ô cường hóa nhận @Fountain_ManaRegen_Teamwide@ Hồi Năng Lượng. Tướng Chiêm Tinh đứng trên ô cường hóa sẽ nhận được nhiều hơn và hồi máu cho đồng minh thấp Máu nhất bằng kỹ năng của họ.<br><expandRow>(@MinUnits@) @Fountain_ManaRegen@ %i:TFTManaRegen%, @Fountain_HealPercent*100@% hồi máu từ sát thương kỹ năng</expandRow><br><rules>Mỗi cấp người chơi sẽ mở thêm ô</rules>",
-    "breakpoints": [
-      3,
-      5
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Vô Pháp",
-    "description": "Tướng Vô Pháp nhận thêm Sức Mạnh Công Kích và Sức Mạnh Phép Thuật. Lần đầu tiên khi xuống dưới @HealthThreshold*100@% máu, họ sẽ trốn vào trong bóng tối. Kẻ địch đang nhắm vào họ sẽ chuyển hướng sang một đơn vị ở gần, ưu tiên tướng Đỡ Đòn.<br><br><row>(@MinUnits@) @AP@% %i:scaleAD% %i:scaleAP%</row><br><row>(@MinUnits@) @AP@% %i:scaleAD% %i:scaleAP%</row><br><row>(@MinUnits@) @AP@% %i:scaleAD% %i:scaleAP%</row><br><row>(@MinUnits@) @AP@% %i:scaleAD% %i:scaleAP%</row>",
-    "breakpoints": [
-      2,
-      3,
-      4,
-      5
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Hắc Tinh",
-    "description": "<row>(@MinUnits@) Tướng Hắc Tinh triệu hồi một hố đen nuốt chửng kẻ địch khi chúng còn dưới @ExecuteHPPercent*100@% máu tối đa.</row><br><row>(@MinUnits@) VÀ họ nhận được @ADAP@% %i:scaleAD%%i:scaleAP%.</row><br><row>(@MinUnits@) VÀ tướng Hắc Tinh mạnh nhất hóa siêu khổng lồ, nhận thêm @SupermassivePercentBonus*100@% hiệu ứng từ Hắc Tinh, đồng thời tạo ra 2 Hố Đen Vũ Trụ nhỏ.</row><br><row>(@MinUnits@) Tất cả tướng Hắc Tinh sẽ hóa siêu khổng lồ. Ở cấp 10, NUỐT CHỬNG TẤT CẢ. </row>",
-    "breakpoints": [
-      2,
-      4,
-      6,
-      9
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Tộc Thượng Cổ",
-    "description": "<row>(@MinUnits@) Gây sát thương sẽ sinh ra Bầy Đàn Hiểm Họa dựa trên cấp sao độc nhất của tướng Tộc Thượng Cổ.</row><br><row>(@MinUnits@) Sinh ra thêm @PercentMoreSwarmlings@% Bầy Đàn! Sau mỗi giao tranh người chơi, nhận 1 tướng 1 vàng hoặc 2 vàng ngẫu nhiên. </row><br><br><rules>@DamageTakenPercentModifier*100@% sát thương gánh chịu được tính vào sát thương gây ra.</rules>",
-    "breakpoints": [
-      2,
-      3
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Hành Tinh",
-    "description": "<row>(@MinUnits@) Khi các tướng Hành Tinh tiến vào trạng thái {{TFT17_SpaceGroove_TheGroove}}, họ nhận Tốc Độ Đánh và hồi Máu tối đa, tăng theo mỗi tướng Hành Tinh trong đội.</row><br><row>(@MinUnits@) Tất cả tướng Hành Tinh bắt đầu giao tranh ở trạng thái {{TFT17_SpaceGroove_TheGroove}} trong @StartOfCombatDuration@ giây.</row><br><row>(@MinUnits@) Mỗi giây trong trạng thái {{TFT17_SpaceGroove_TheGroove}} trao @ADAPPerSecond@% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật cộng dồn.</row><br><row>(@MinUnits@) Tăng hiệu ứng thêm @EffectBonus@%!</row><br><row>(@MinUnits@) {{TFT17_SpaceGroove_Groove}}</row><br><br>{{TFT17_SpaceGroove_TheGroove}}: @TFTUnitProperty.:TFT17_SpaceGroove_AS*100@% %i:scaleAS%, @TFTUnitProperty.:TFT17_SpaceGroove_HealthRegen*100@% %i:scaleHPRegen%",
-    "breakpoints": [
-      1,
-      3,
-      5,
-      7,
-      10
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Thần Phán",
-    "description": "Viết ra một luật lệ thần thánh độc nhất, cho phép bạn chọn một hệ quả để áp dụng lên tướng Thần Phán khi nguyên nhân được chọn xảy ra.<br><br><row>(@MinUnits@) Chọn một nguyên nhân và hệ quả cho luật lệ của bạn</row><br><row>(@MinUnits@) Hệ quả sẽ mạnh hơn. </row>",
-    "breakpoints": [
-      2,
-      3
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: <TFTStargazer>Ngọn Núi</TFTStargazer><br>Mỗi @Mountain_RoundsPerEmblem@ giao tranh người chơi, nhận 1 Ấn Chiêm Tinh. Tướng Chiêm Tinh trên ô cường hóa nhận thêm chỉ số.<br>(Giao Tranh Còn Lại:&nbsp;@TFTUnitProperty.trait:TFT17_Stargazer_Mountain_CombatsRemaining@)<br><row>(@MinUnits@) Nhận @Mountain_Health*100@% Máu</row><br><row>(@MinUnits@) VÀ @Mountain_ADAP*100@% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật</row><br><row>(@MinUnits@) VÀ @Mountain_Resists@ Giáp & Kháng Phép</row><br><row>(@MinUnits@) VÀ @Mountain_AS*100@% Tốc Độ Đánh</row><br><row>(@MinUnits@) VÀ @Mountain_DR*100@% Chống Chịu</row><br><row>(@MinUnits@) VÀ các chỉ số thưởng khác +@Mountain_StatIncrease*100@%</row><br><rules>Mỗi cấp người chơi sẽ mở thêm ô.</rules>",
-    "breakpoints": [
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Du Mục",
-    "description": "Tướng Du Mục triệu hồi Liên Kết Tinh Tú để hỗ trợ họ trong giao tranh.<br><br><row>(@MinUnits@) Triệu hồi Bia</row><br><row>(@MinUnits@) Triệu hồi Bayin</row><br><row>(@MinUnits@) Liên kết giữa Bia và Bayin trở nên sâu sắc hơn</row><br><br><rules>Sức mạnh của Bia và Bayin sẽ tăng theo tổng cấp sao của tất cả tướng Du Mục.</rules>",
-    "breakpoints": [
-      3,
-      5,
-      7
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
+    "slug": "chien-luy",
+    "tier": "S",
+    "placement": "3.92",
+    "top4": "19.4%",
+    "pick_count": "1.394.498",
+    "pick_percent": "14.0%",
+    "description": "Triệu hồi một di vật có thể đặt. Khi bắt đầu giao tranh, nó trao cho các đồng minh liền kề một lá chắn bằng 10% Máu tối đa và 10% Tốc Độ Đánh.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chien-luy.png"
   },
   {
     "name": "Chuộc Tội",
-    "description": "<row>(@MinUnits@) Với mỗi tộc/hệ không phải duy nhất bạn đang kích hoạt, đội của bạn nhận được @BonusOffensiveStat1*100@%/@BonusOffensiveStat2*100@%/@BonusOffensiveStat3*100@% Tốc Độ Đánh, @BonusDefensiveStat1@/@BonusDefensiveStat2@/@BonusDefensiveStat3@ Giáp và Kháng Phép.</row><br><br>Tốc Độ Đánh Toàn Đội: @TFTUnitProperty.trait:TFT17_RhaastUnique_OffensiveStatToGain@% %i:scaleAS%<br>Chống Chịu Toàn Đội: @TFTUnitProperty.trait:TFT17_RhaastUnique_DefensiveStatToGain@ %i:scaleArmor%%i:scaleMR%",
-    "breakpoints": [
-      1
+    "slug": "chuoc-toi",
+    "tier": "S",
+    "placement": "3.96",
+    "top4": "17.3%",
+    "pick_count": "1.734.868",
+    "pick_percent": "17.4%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 1,
+        "effect": "Với mỗi tộc/hệ không phải duy nhất bạn đang kích hoạt, đội của bạn nhận được 2%/2.5%/3% Tốc Độ Đánh, 2/2.5/3 Giáp và Kháng Phép. Tốc Độ Đánh Toàn Đội: X [AS] Chống Chịu Toàn Đội: X [Armor][MR]"
+      }
     ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chuoc-toi.png"
   },
   {
-    "name": "Đấu Sĩ",
-    "description": "Đội của bạn nhận @TeamwideBonus*100@% Máu. Tướng Đấu Sĩ nhận được nhiều hơn.<br><br><expandRow>(@MinUnits@) +@HealthBonus*100@% Máu tối đa</expandRow>",
-    "breakpoints": [
-      2,
-      4,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Can Trường",
-    "description": "Đội của bạn nhận @TeamwideResists@ Giáp và Kháng Phép.<br><br>Tướng Can Trường nhận được nhiều hơn, và giá trị tăng gấp đôi trong @Duration@ giây đầu của giao tranh.<br><br><row>(@MinUnits@) @BonusArmor@ %i:scaleArmor%%i:scaleMR%</row><br><row>(@MinUnits@) @BonusArmor@ %i:scaleArmor%%i:scaleMR%</row><br><row>(@MinUnits@) @BonusArmor@ %i:scaleArmor%%i:scaleMR%; Tướng không phải Can Trường nhận thêm @EnhancedTeamwideArmor@ %i:scaleArmor%%i:scaleMR%.</row>",
-    "breakpoints": [
-      2,
-      4,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Tinh Linh Chuông",
-    "description": "Tướng Tinh Linh Chuông sẽ thu hút Meep đến gia hộ kỹ năng của họ theo cách riêng. Họ còn được nhận Máu cộng thêm.<br><br><row>(@MinUnits@) @Meeps@ %i:set14AmpIcon%, @BonusHealth@ %i:scaleHealth%</row><br><row>(@MinUnits@) @Meeps@ %i:set14AmpIcon%, @BonusHealth@ %i:scaleHealth%</row><br><row>(@MinUnits@) @Meeps@ %i:set14AmpIcon%, @BonusHealth@ %i:scaleHealth%. Tạo ra một Ô Nhân Bản trên hàng dự bị của bạn. Nhận vàng và 1 bản sao 1 sao của vị tướng được đặt trên đó khi quá trình nhân bản hoàn tất.</row><br><row>(@MinUnits@) @Meeps@ %i:set14AmpIcon%, @BonusHealth@ %i:scaleHealth%. TRIỆU HỒI TỨ ĐẠI MEEP CHÚA!</row><br><br><rules>Thời gian nhân bản = Giá tướng</rules>",
-    "breakpoints": [
-      3,
-      5,
-      7,
-      10
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Dẫn Truyền",
-    "description": "Thiên Phú: Tướng Dẫn Truyền nhận thêm @InnateManaGain*100@% Năng Lượng từ mọi nguồn.<br><br>Đội của bạn được tăng Hồi Năng Lượng, tướng Dẫn Truyền nhận được nhiều hơn.<br><br><expandRow>(@MinUnits@) @TeamManaRegen@ %i:TFTManaRegen% | @ChannelerManaRegen@ %i:TFTManaRegen%</expandRow><br><br>",
-    "breakpoints": [
-      2,
-      3,
-      4,
-      5
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Máy Móc",
-    "description": "Thiên Phú: Các tướng Máy Móc có thể biến đổi thành dạng Tối Thượng, nâng cấp kỹ năng và nhận thêm @TransformedPercentHealth*100@% Máu. Tướng Máy Móc sau khi biến đổi sẽ chiếm 2 vị trí trong đội hình và được tính gấp đôi cho tộc/hệ Máy Móc.<br><br><row>(@MinUnits@) Lõi Năng Lượng: Tướng Máy Móc nhận @AP@%&nbsp;%i:scaleAD%%i:scaleAP%.</row><br><row>(@MinUnits@) Lõi Ép Xung: Tăng thành @AP@%&nbsp;%i:scaleAD%%i:scaleAP%.</row><br><row>(@MinUnits@) Cơ Khí Chuẩn Xác: +@TeamSize@ số lượng tướng tối đa</row><br><br><rules>Sử dụng trang bị Máy Biến Hình để chuyển đổi dạng cho các tướng Máy Móc của bạn</rules>",
-    "breakpoints": [
-      3,
-      4,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Tối Tân",
-    "description": "Sau khi tham gia giao tranh, mở 1 kho vũ khí để mua 1 nâng cấp vĩnh viễn cho Graves mạnh nhất của bạn.<br><br>Cứ mỗi @NumberOfUpgradesBeforeRoundCostIncrease@ nâng cấp, các nâng cấp trong tương lai sẽ lâu hơn một vòng.<br><br><rules>Nâng Cấp Tiếp Theo: @TFTUnitProperty.trait:TFT17_GravesTrait_RoundsUntilUpgrade@ Vòng.</rules>",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Chiêm Tinh",
-    "description": "Tướng Chiêm Tinh dệt nên chòm sao khác nhau trong mỗi trận đấu.<br><br>Tướng Chiêm Tinh đứng trên ô cường hóa nhận nhiều chỉ số thưởng, bắt đầu từ (@MinUnits@) đơn vị.<br><br><rules>Mỗi cấp người chơi sẽ mở thêm ô.</rules>",
-    "breakpoints": [
-      3,
-      5,
-      7
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Viễn Chinh",
-    "description": "Bắt đầu giao tranh: Tướng Đỡ Đòn của bạn nhận được Lá Chắn trong @ShieldDuration@ giây. Các đồng minh khác của bạn nhận được Khuếch Đại Sát Thương. <br><br>Tướng Viễn Chinh nhận gấp đôi.<br><br><expandRow>(@MinUnits@) @ShieldHP@ Lá Chắn; @BonusDA*100@% %i:scaleDA%</expandRow><br>",
-    "breakpoints": [
-      2,
-      3,
-      4,
-      5,
-      6
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Tiệc Tùng",
-    "description": "Một lần mỗi giao tranh khi xuống dưới @HealthThreshold*100@% Máu, trở nên không thể bị chọn mục tiêu và tự sửa chữa để hồi @PercentHealthHeal*100@% Máu tối đa mỗi giây. Khi hồi đầy Máu, hoặc khi không còn đồng minh nào khác, quay trở lại giao tranh. Nếu được hồi đầy máu, trong phần còn lại của giao tranh, Blitzcrank sẽ ở trạng thái {{TFT17_SpaceGroove_TheGroove}} và nội tại của Kẻ Phá Tiệc sẽ bắn tia nhanh gấp bốn lần.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "N.O.V.A.",
-    "description": "<row>(@MinUnits@) @TeamAttackDelay@ giây sau khi bắt đầu giao tranh, tướng N.O.V.A. trao đột phá sức mạnh cho đồng minh tùy theo tướng.</row><br><row>(@MinUnits@) Nhận 1 bộ chọn Tiến Công. Tướng N.O.V.A. được chọn sẽ kích hoạt Tiến Công của họ trong khi đột phá sức mạnh.</row><br><br><ShowIf.TFT17_DRX_HasAatrox><status>Aatrox:</status> Sát thương của đồng minh sẽ gây @ShredAndSunder*100@% <TFTKeyword>Cào Xé</TFTKeyword> và <TFTKeyword>Phân Tách</TFTKeyword> lên kẻ địch</ShowIf.TFT17_DRX_HasAatrox><ShowIfNot.TFT17_DRX_HasAatrox><TFTGuildInactive>Aatrox: Cào Xé và Phân Tách kẻ địch</TFTGuildInactive></ShowIfNot.TFT17_DRX_HasAatrox><br><ShowIf.TFT17_DRX_HasCaitlyn><status>Caitlyn:</status> Trao cho đồng minh @AS*100@% Tốc Độ Đánh</ShowIf.TFT17_DRX_HasCaitlyn><ShowIfNot.TFT17_DRX_HasCaitlyn><TFTGuildInactive>Caitlyn: Trao Tốc Độ Đánh</TFTGuildInactive></ShowIfNot.TFT17_DRX_HasCaitlyn><br><ShowIf.TFT17_DRX_HasAkali><status>Akali:</status> Đồng minh nhận <TFTKeyword>Chuẩn Xác</TFTKeyword></ShowIf.TFT17_DRX_HasAkali><ShowIfNot.TFT17_DRX_HasAkali><TFTGuildInactive>Akali: Đồng minh nhận Chuẩn Xác</TFTGuildInactive></ShowIfNot.TFT17_DRX_HasAkali><br><ShowIf.TFT17_DRX_HasMaokai><status>Maokai:</status> Đồng minh hồi @Heal*100@% Máu tối đa</ShowIf.TFT17_DRX_HasMaokai><ShowIfNot.TFT17_DRX_HasMaokai><TFTGuildInactive>Maokai: Hồi máu cho đồng minh</TFTGuildInactive></ShowIfNot.TFT17_DRX_HasMaokai><br><ShowIf.TFT17_DRX_HasKindred><status>Kindred:</status> Tạo <TFTBonus>@ShieldValue@</TFTBonus> lá chắn cho tướng Đỡ Đòn mạnh nhất</ShowIf.TFT17_DRX_HasKindred><ShowIfNot.TFT17_DRX_HasKindred><TFTGuildInactive>Kindred: Tạo lá chắn cho một đồng minh</TFTGuildInactive></ShowIfNot.TFT17_DRX_HasKindred><br><ShowIf.TFT17_DRX_HasEmblem><status>Ấn:</status> Đồng minh gây thêm @BonusTrueDamage*100@% sát thương chuẩn có cộng dồn</ShowIf.TFT17_DRX_HasEmblem><ShowIfNot.TFT17_DRX_HasEmblem><TFTGuildInactive>Ấn: Gây thêm sát thương chuẩn</TFTGuildInactive></ShowIfNot.TFT17_DRX_HasEmblem>",
-    "breakpoints": [
-      2,
-      5
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Tiên Tri",
-    "description": "Mỗi @Rounds@ vòng, Tahm Kench sẽ cho 1 phần thưởng!<br><br>Số Vòng Còn Lại: @TFTUnitProperty.trait:TFT17_TahmKench_RoundsRemaining@<br>Phần Thưởng Cuối: @TFTUnitProperty.trait:TFT17_TahmKench_LastReward@",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
-  },
-  {
-    "name": "Bắn Tỉa",
-    "description": "Tướng Bắn Tỉa nhận Khuếch Đại Sát Thương, tăng lên với những mục tiêu ở xa.<br><br><row>(@MinUnits@) @PercentDamageIncrease@%&nbsp;%i:scaleDA%; +@PerHexIncrease@%&nbsp;%i:scaleDA% mỗi ô</row><br><row>(@MinUnits@) @PercentDamageIncrease@%&nbsp;%i:scaleDA%; +@PerHexIncrease@%&nbsp;%i:scaleDA% mỗi ô</row><br><row>(@MinUnits@) @PercentDamageIncrease@%&nbsp;%i:scaleDA%; +@PerHexIncrease@%&nbsp;%i:scaleDA% mỗi ô</row>",
-    "breakpoints": [
-      2,
-      3,
-      4
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
+    "name": "Chỉ Huy",
+    "slug": "chi-huy",
+    "tier": "S",
+    "placement": "3.99",
+    "top4": "18.0%",
+    "pick_count": "953.955",
+    "pick_percent": "9.6%",
+    "description": "(1) Sona ban cho bạn một Lệnh Chỉ Huy ngẫu nhiên mỗi 2 vòng, giúp bạn thay đổi cách mà 1 đồng minh hành động trong giao tranh. Các Lệnh Chỉ Huy tồn tại trong 2 giao tranh người chơi ngay cả khi chúng không được trang bị.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chi-huy.png"
   },
   {
     "name": "Song Đấu",
-    "description": "Linh Thú của bạn hồi máu bằng @PlayerOmnivamp*100@% sát thương người chơi bạn gây ra khi chiến thắng.<br><br>Fiora luôn giành chiến thắng trong trận đấu tay đôi.",
-    "breakpoints": [
-      1
-    ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
+    "slug": "song-dau",
+    "tier": "S",
+    "placement": "4.01",
+    "top4": "18.6%",
+    "pick_count": "1.621.590",
+    "pick_percent": "16.3%",
+    "description": "Linh Thú của bạn hồi máu bằng 15% sát thương người chơi bạn gây ra khi chiến thắng. Fiora luôn giành chiến thắng trong trận đấu tay đôi.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/song-dau.png"
   },
   {
-    "name": "Ác Nữ",
-    "description": "Đồng minh được giảm @UntransformedAbilityDA*100@% sát thương nhận phải từ kỹ năng, tăng thành @TransformedAbilityDA*100@% khi Morgana ở Thể Hắc Ám.",
-    "breakpoints": [
-      1
+    "name": "Tiệc Tùng",
+    "slug": "tiec-tung",
+    "tier": "S",
+    "placement": "4.07",
+    "top4": "18.2%",
+    "pick_count": "1.670.020",
+    "pick_percent": "16.8%",
+    "description": "Một lần mỗi giao tranh khi xuống dưới 45% Máu, trở nên không thể bị chọn mục tiêu và tự sửa chữa để hồi 15% Máu tối đa mỗi giây. Khi hồi đầy Máu, hoặc khi không còn đồng minh nào khác, quay trở lại giao tranh. Nếu được hồi đầy máu, trong phần còn lại của giao tranh, Blitzcrank sẽ ở trạng thái The Groove và nội tại của Kẻ Phá Tiệc sẽ bắn tia nhanh gấp bốn lần.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tiec-tung.png"
+  },
+  {
+    "name": "Thách Đấu",
+    "slug": "thach-dau",
+    "tier": "S",
+    "placement": "4.16",
+    "top4": "13.9%",
+    "pick_count": "1.826.546",
+    "pick_percent": "18.4%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "15% [AS]"
+      },
+      {
+        "unit": 3,
+        "effect": "22% [AS]"
+      },
+      {
+        "unit": 4,
+        "effect": "40% [AS]"
+      },
+      {
+        "unit": 5,
+        "effect": "55% [AS]"
+      }
     ],
-    "source": "https://raw.communitydragon.org/latest/cdragon/tft/vi_vn.json"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/thach-dau.png"
+  },
+  {
+    "name": "Chiêm Tinh - Cự Xà",
+    "slug": "chiem-tinh-cu-xa",
+    "tier": "S",
+    "placement": "4.18",
+    "top4": "15.1%",
+    "pick_count": "286.564",
+    "pick_percent": "2.9%",
+    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Cự Xà. Ô cường hóa cho thêm 5% Chống Chịu. Tướng Chiêm Tinh trên ô cường hóa nhận được nhiều hơn và áp dụng hiệu ứng độc lên kẻ địch, lặp lại một phần sát thương đã gây ra dưới dạng sát thương phép trong 3 giây.",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "5% [DR], 25% sát thương độc"
+      },
+      {
+        "unit": 5,
+        "effect": "10% [DR], 40% sát thương độc"
+      },
+      {
+        "unit": 7,
+        "effect": "15% [DR], 60% sát thương độc"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-cu-xa.png"
+  },
+  {
+    "name": "Vô Pháp",
+    "slug": "vo-phap",
+    "tier": "S",
+    "placement": "4.18",
+    "top4": "13.4%",
+    "pick_count": "2.495.155",
+    "pick_percent": "25.1%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "12% [AD] [AP]"
+      },
+      {
+        "unit": 3,
+        "effect": "25% [AD] [AP]"
+      },
+      {
+        "unit": 4,
+        "effect": "40% [AD] [AP]"
+      },
+      {
+        "unit": 5,
+        "effect": "55% [AD] [AP]"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/vo-phap.png"
+  },
+  {
+    "name": "N.O.V.A.",
+    "slug": "nova",
+    "tier": "S",
+    "placement": "4.20",
+    "top4": "14.1%",
+    "pick_count": "3.431.487",
+    "pick_percent": "34.5%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 5,
+        "effect": "Nhận 1 bộ chọn Tiến Công. Tướng N.O.V.A. được chọn sẽ kích hoạt Tiến Công của họ trong khi đột phá sức mạnh. Aatrox: Sát thương của đồng minh sẽ gây 30% Cào Xé và Phân Tách lên kẻ địchAatrox: Cào Xé và Phân Tách kẻ địch Caitlyn: Trao cho đồng minh 20% Tốc Độ ĐánhCaitlyn: Trao Tốc Độ Đánh Akali: Đồng minh nhận Chuẩn XácAkali: Đồng minh nhận Chuẩn Xác Maokai: Đồng minh hồi 12% Máu tối đaMaokai: Hồi máu cho đồng minh Kindred: Tạo 800 lá chắn cho tướng Đỡ Đòn mạnh nhấtKindred: Tạo lá chắn cho một đồng minh Ấn: Đồng minh gây thêm 10% sát thương chuẩn có cộng dồnẤn: Gây thêm sát thương chuẩn"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/nova.png"
+  },
+  {
+    "name": "Bắn Tỉa",
+    "slug": "ban-tia",
+    "tier": "S",
+    "placement": "4.24",
+    "top4": "18.2%",
+    "pick_count": "1.109.465",
+    "pick_percent": "11.1%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "18% [DA]; +2% [DA] mỗi ô"
+      },
+      {
+        "unit": 3,
+        "effect": "24% [DA]; +3% [DA] mỗi ô"
+      },
+      {
+        "unit": 4,
+        "effect": "28% [DA]; +4% [DA] mỗi ô"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/ban-tia.png"
+  },
+  {
+    "name": "Du Mục",
+    "slug": "du-muc",
+    "tier": "S",
+    "placement": "4.24",
+    "top4": "13.1%",
+    "pick_count": "1.807.963",
+    "pick_percent": "18.2%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Triệu hồi Bia"
+      },
+      {
+        "unit": 5,
+        "effect": "Triệu hồi Bayin"
+      },
+      {
+        "unit": 7,
+        "effect": "Liên kết giữa Bia và Bayin trở nên sâu sắc hơn Sức mạnh của Bia và Bayin sẽ tăng theo tổng cấp sao của tất cả tướng Du Mục."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/du-muc.png"
+  },
+  {
+    "name": "Thời Không",
+    "slug": "thoi-khong",
+    "tier": "A",
+    "placement": "4.25",
+    "top4": "14.5%",
+    "pick_count": "2.064.781",
+    "pick_percent": "20.7%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "Đồng minh tăng 15% Tốc Độ Đánh."
+      },
+      {
+        "unit": 3,
+        "effect": "VÀ Khi bạn thua, nhận lượt làm mới miễn phí. Khi bạn thắng, tích trữ XP trong một Lõi Thời Không (tăng theo giai đoạn)."
+      },
+      {
+        "unit": 4,
+        "effect": "VÀ Tướng Thời Không nhận thêm 50% Tốc Độ Đánh Lượt đổi khi Thua: 1 XP khi Thắng: 2"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/thoi-khong.png"
+  },
+  {
+    "name": "Toán Cướp",
+    "slug": "toan-cuop",
+    "tier": "A",
+    "placement": "4.25",
+    "top4": "14.2%",
+    "pick_count": "2.724.424",
+    "pick_percent": "27.4%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "5% [SV], 20% [AD]"
+      },
+      {
+        "unit": 4,
+        "effect": "7% [SV], 40% [AD]"
+      },
+      {
+        "unit": 6,
+        "effect": "10% [SV], 60% [AD]."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/toan-cuop.png"
+  },
+  {
+    "name": "Định Mệnh",
+    "slug": "dinh-menh",
+    "tier": "A",
+    "placement": "4.26",
+    "top4": "12.9%",
+    "pick_count": "1.688.142",
+    "pick_percent": "17.0%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "Các hiệu ứng theo xác suất trên kỹ năng sẽ được hưởng May Mắn."
+      },
+      {
+        "unit": 4,
+        "effect": "Nhận 20% Tỉ Lệ Chí Mạng và 20% Sát Thương Chí Mạng. Đòn chí mạng cũng trở nên May Mắn. Precision: Ability damage can critically strike. Additional Precision grants 10% Critical Strike Damage. May Mắn: Tính toán hai lần, lấy kết quả tốt hơn."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/dinh-menh.png"
+  },
+  {
+    "name": "Hắc Tinh",
+    "slug": "hac-tinh",
+    "tier": "A",
+    "placement": "4.28",
+    "top4": "14.2%",
+    "pick_count": "3.809.858",
+    "pick_percent": "38.3%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 4,
+        "effect": "VÀ họ nhận được 45% [AD][AP]."
+      },
+      {
+        "unit": 6,
+        "effect": "VÀ tướng Hắc Tinh mạnh nhất hóa siêu khổng lồ, nhận thêm 85% hiệu ứng từ Hắc Tinh, đồng thời tạo ra 2 Hố Đen Vũ Trụ nhỏ."
+      },
+      {
+        "unit": 9,
+        "effect": "Tất cả tướng Hắc Tinh sẽ hóa siêu khổng lồ. Ở cấp 10, NUỐT CHỬNG TẤT CẢ."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/hac-tinh.png"
+  },
+  {
+    "name": "Dẫn Truyền",
+    "slug": "dan-truyen",
+    "tier": "A",
+    "placement": "4.28",
+    "top4": "14.3%",
+    "pick_count": "1.715.323",
+    "pick_percent": "17.2%",
+    "description": "Đội của bạn được tăng Hồi Năng Lượng, tướng Dẫn Truyền nhận được nhiều hơn.",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "1 [Mana Regen] | 3 [Mana Regen]"
+      },
+      {
+        "unit": 3,
+        "effect": "1 [Mana Regen] | 5 [Mana Regen]"
+      },
+      {
+        "unit": 4,
+        "effect": "2 [Mana Regen] | 7 [Mana Regen]"
+      },
+      {
+        "unit": 5,
+        "effect": "3 [Mana Regen] | 9 [Mana Regen]"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/dan-truyen.png"
+  },
+  {
+    "name": "Siêu Linh",
+    "slug": "sieu-linh",
+    "tier": "A",
+    "placement": "4.30",
+    "top4": "12.7%",
+    "pick_count": "1.671.343",
+    "pick_percent": "16.8%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "Nhận X"
+      },
+      {
+        "unit": 4,
+        "effect": "Nhận X, trang bị Siêu Linh sẽ có thêm hiệu ứng trên các tướng Siêu Linh"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/sieu-linh.png"
+  },
+  {
+    "name": "Thợ Săn Vũ Trụ",
+    "slug": "tho-san-vu-tru",
+    "tier": "A",
+    "placement": "4.31",
+    "top4": "19.0%",
+    "pick_count": "166.665",
+    "pick_percent": "1.7%",
+    "description": "Zed được nhận từ nâng cấp Zed Kẻ Xâm Lăng. Khi còn ít nhất một phân thân tồn tại, Zed nhận thêm 40% Sức Mạnh Công Kích.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tho-san-vu-tru.png"
+  },
+  {
+    "name": "Tộc Thượng Cổ",
+    "slug": "toc-thuong-co",
+    "tier": "A",
+    "placement": "4.32",
+    "top4": "11.4%",
+    "pick_count": "908.626",
+    "pick_percent": "9.1%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Sinh ra thêm 45% Bầy Đàn! Sau mỗi giao tranh người chơi, nhận 1 tướng 1 vàng hoặc 2 vàng ngẫu nhiên. 8% sát thương gánh chịu được tính vào sát thương gây ra."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/toc-thuong-co.png"
+  },
+  {
+    "name": "Viễn Chinh",
+    "slug": "vien-chinh",
+    "tier": "A",
+    "placement": "4.32",
+    "top4": "14.0%",
+    "pick_count": "2.781.565",
+    "pick_percent": "27.9%",
+    "description": "Bắt đầu giao tranh: Tướng Đỡ Đòn của bạn nhận được Lá Chắn trong 15 giây. Các đồng minh khác của bạn nhận được Khuếch Đại Sát Thương. Tướng Viễn Chinh nhận gấp đôi.",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "175 Lá Chắn; 9% [DA]"
+      },
+      {
+        "unit": 3,
+        "effect": "250 Lá Chắn; 15% [DA]"
+      },
+      {
+        "unit": 4,
+        "effect": "350 Lá Chắn; 18% [DA]"
+      },
+      {
+        "unit": 5,
+        "effect": "500 Lá Chắn; 22% [DA]"
+      },
+      {
+        "unit": 6,
+        "effect": "700 Lá Chắn; 27% [DA]"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/vien-chinh.png"
+  },
+  {
+    "name": "Nhân Bản",
+    "slug": "nhan-ban",
+    "tier": "A",
+    "placement": "4.34",
+    "top4": "13.4%",
+    "pick_count": "1.524.270",
+    "pick_percent": "15.3%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "22% sức mạnh"
+      },
+      {
+        "unit": 4,
+        "effect": "45% sức mạnh"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/nhan-ban.png"
+  },
+  {
+    "name": "Can Trường",
+    "slug": "can-truong",
+    "tier": "A",
+    "placement": "4.35",
+    "top4": "14.3%",
+    "pick_count": "3.417.377",
+    "pick_percent": "34.3%",
+    "description": "Đội của bạn nhận 15 Giáp và Kháng Phép. Tướng Can Trường nhận được nhiều hơn, và giá trị tăng gấp đôi trong 10 giây đầu của giao tranh.",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "16 [Armor][MR]"
+      },
+      {
+        "unit": 4,
+        "effect": "40 [Armor][MR]"
+      },
+      {
+        "unit": 6,
+        "effect": "60 [Armor][MR]; Tướng không phải Can Trường nhận thêm 20 [Armor][MR]."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/can-truong.png"
+  },
+  {
+    "name": "Đấu Sĩ",
+    "slug": "dau-si",
+    "tier": "A",
+    "placement": "4.37",
+    "top4": "13.6%",
+    "pick_count": "4.599.446",
+    "pick_percent": "46.2%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "+25% Máu tối đa"
+      },
+      {
+        "unit": 4,
+        "effect": "+45% Máu tối đa"
+      },
+      {
+        "unit": 6,
+        "effect": "+65% Máu tối đa"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/dau-si.png"
+  },
+  {
+    "name": "Tiên Tri",
+    "slug": "tien-tri",
+    "tier": "A",
+    "placement": "4.37",
+    "top4": "14.5%",
+    "pick_count": "2.934.941",
+    "pick_percent": "29.5%",
+    "description": "Mỗi @Rounds@ vòng, Tahm Kench sẽ cho 1 phần thưởng! Số Vòng Còn Lại: X Phần Thưởng Cuối:",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tien-tri.png"
+  },
+  {
+    "name": "Chiêm Tinh - Heo Rừng",
+    "slug": "chiem-tinh-heo-rung",
+    "tier": "A",
+    "placement": "4.39",
+    "top4": "13.8%",
+    "pick_count": "255.586",
+    "pick_percent": "2.6%",
+    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Heo Rừng. Nhận vàng khi thắng giao tranh người chơi. Đồng minh trên ô cường hóa nhận thêm 8% Máu, Sức Mạnh Công Kích và Sức Mạnh Phép Thuật. Tướng Chiêm Tinh nhận nhiều hơn. (Vàng Kiếm Được: X)",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "1 vàng, 2% [Health], 10% [AD][AP]"
+      },
+      {
+        "unit": 4,
+        "effect": "2 vàng, 8% [Health], 15% [AD][AP]"
+      },
+      {
+        "unit": 5,
+        "effect": "4 vàng, 15% [Health], 25% [AD][AP]"
+      },
+      {
+        "unit": 6,
+        "effect": "6 vàng, 22% [Health], 30% [AD][AP]"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-heo-rung.png"
+  },
+  {
+    "name": "Tinh Linh Chuông",
+    "slug": "tinh-linh-chuong",
+    "tier": "A",
+    "placement": "4.41",
+    "top4": "13.2%",
+    "pick_count": "1.435.924",
+    "pick_percent": "14.4%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "2 [icon], 100 [Health]"
+      },
+      {
+        "unit": 5,
+        "effect": "3 [icon], 400 [Health]"
+      },
+      {
+        "unit": 7,
+        "effect": "4 [icon], 400 [Health]. Tạo ra một Ô Nhân Bản trên hàng dự bị của bạn. Nhận vàng và 1 bản sao 1 sao của vị tướng được đặt trên đó khi quá trình nhân bản hoàn tất."
+      },
+      {
+        "unit": 10,
+        "effect": "6 [icon], 500 [Health]. TRIỆU HỒI TỨ ĐẠI MEEP CHÚA! Thời gian nhân bản = Giá tướng"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tinh-linh-chuong.png"
+  },
+  {
+    "name": "U Sầu",
+    "slug": "u-sau",
+    "tier": "A",
+    "placement": "4.43",
+    "top4": "16.8%",
+    "pick_count": "800.340",
+    "pick_percent": "8.0%",
+    "description": "Bắt đầu giao tranh: Đánh dấu Buồn Bực lên tất cả kẻ địch. Lần đầu tiên kẻ địch chịu sát thương mỗi giao tranh, Buồn Bực sẽ được tiêu thụ, đánh cắp 12% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật từ chúng để trao cho Vex mạnh nhất của bạn.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/u-sau.png"
+  },
+  {
+    "name": "Chiêm Tinh - Ngọn Núi",
+    "slug": "chiem-tinh-ngon-nui",
+    "tier": "A",
+    "placement": "4.45",
+    "top4": "16.1%",
+    "pick_count": "367.813",
+    "pick_percent": "3.7%",
+    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Ngọn Núi Mỗi 5 giao tranh người chơi, nhận 1 Ấn Chiêm Tinh. Tướng Chiêm Tinh trên ô cường hóa nhận thêm chỉ số. (Giao Tranh Còn Lại: 5)",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Nhận 15% Máu"
+      },
+      {
+        "unit": 4,
+        "effect": "VÀ 15% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật"
+      },
+      {
+        "unit": 5,
+        "effect": "VÀ 10 Giáp & Kháng Phép"
+      },
+      {
+        "unit": 6,
+        "effect": "VÀ 10% Tốc Độ Đánh"
+      },
+      {
+        "unit": 7,
+        "effect": "VÀ 6% Chống Chịu"
+      },
+      {
+        "unit": 8,
+        "effect": "VÀ các chỉ số thưởng khác +10% Mỗi cấp người chơi sẽ mở thêm ô."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-ngon-nui.png"
+  },
+  {
+    "name": "Chiêm Tinh - Đền Thờ",
+    "slug": "chiem-tinh-den-tho",
+    "tier": "A",
+    "placement": "4.45",
+    "top4": "13.6%",
+    "pick_count": "256.496",
+    "pick_percent": "2.6%",
+    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Đền Thờ.",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Khi BẤT KỲ tướng nào bị hạ gục, họ được hiến tế cho Đền Thờ. Đồng minh đứng trên ô cường hóa nhận thêm 8% Máu và 8% Tốc Độ Đánh. Sau 60 lần hiến tế, các tướng Chiêm Tinh ở ô cường hóa nhận thêm 20% [Health] và 18% [AS] Hiến tế: (X / 60) Mỗi cấp người chơi sẽ mở thêm ô."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-den-tho.png"
+  },
+  {
+    "name": "Hành Tinh",
+    "slug": "hanh-tinh",
+    "tier": "A",
+    "placement": "4.46",
+    "top4": "13.0%",
+    "pick_count": "3.357.281",
+    "pick_percent": "33.7%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Tất cả tướng Hành Tinh bắt đầu giao tranh ở trạng thái The Groove trong 3 giây."
+      },
+      {
+        "unit": 5,
+        "effect": "Mỗi giây trong trạng thái The Groove trao 5% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật cộng dồn."
+      },
+      {
+        "unit": 7,
+        "effect": "Tăng hiệu ứng thêm 10%!"
+      },
+      {
+        "unit": 10,
+        "effect": "Get your Groove on! The Groove: X [AS], X [HP Regen]"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/hanh-tinh.png"
+  },
+  {
+    "name": "Tiên Phong",
+    "slug": "tien-phong",
+    "tier": "A",
+    "placement": "4.49",
+    "top4": "13.5%",
+    "pick_count": "3.989.458",
+    "pick_percent": "40.1%",
+    "description": "Bắt đầu giao tranh và khi còn 50% Máu: Nhận một Lá Chắn theo Máu tối đa trong 10 giây.",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "16% Máu tối đa"
+      },
+      {
+        "unit": 4,
+        "effect": "30% Máu tối đa"
+      },
+      {
+        "unit": 6,
+        "effect": "40% Máu tối đa; 8% [DR] khi có Lá Chắn"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tien-phong.png"
+  },
+  {
+    "name": "Thần Phán",
+    "slug": "than-phan",
+    "tier": "B",
+    "placement": "4.59",
+    "top4": "10.1%",
+    "pick_count": "1.213.283",
+    "pick_percent": "12.2%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 2,
+        "effect": "Chọn một nguyên nhân và hệ quả cho luật lệ của bạn"
+      },
+      {
+        "unit": 3,
+        "effect": "Hệ quả sẽ mạnh hơn."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/than-phan.png"
+  },
+  {
+    "name": "Chiêm Tinh - Huy Chương",
+    "slug": "chiem-tinh-huy-chuong",
+    "tier": "B",
+    "placement": "4.60",
+    "top4": "14.1%",
+    "pick_count": "368.263",
+    "pick_percent": "3.7%",
+    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Huy Chương.",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Đồng minh trên ô cường hóa nhận 12% Khuếch Đại Sát Thương, tăng thêm 5% với mỗi tướng 3 sao. (Thưởng Hiện Tại: X [DA]) Mỗi cấp người chơi sẽ mở thêm ô."
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-huy-chuong.png"
+  },
+  {
+    "name": "Chiêm Tinh - Nữ Thợ Săn",
+    "slug": "chiem-tinh-nu-tho-san",
+    "tier": "B",
+    "placement": "4.60",
+    "top4": "10.7%",
+    "pick_count": "224.103",
+    "pick_percent": "2.3%",
+    "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Nữ Thợ Săn. Bắt đầu giao tranh: Đánh dấu kẻ địch có lượng Máu cao nhất. Đồng minh trên ô cường hóa nhận thêm 15% Tốc Độ Đánh. Tướng Chiêm Tinh trên ô cường hóa nhận được nhiều hơn và hồi máu bằng 15% Máu tối đa của họ khi một kẻ địch bị đánh dấu tử trận.",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "12% [AS], 3 đánh dấu"
+      },
+      {
+        "unit": 5,
+        "effect": "35% [AS], 5 đánh dấu"
+      },
+      {
+        "unit": 7,
+        "effect": "55% [AS], 7 đánh dấu Mỗi cấp người chơi sẽ mở thêm ô"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-nu-tho-san.png"
+  },
+  {
+    "name": "Máy Móc",
+    "slug": "may-moc",
+    "tier": "B",
+    "placement": "4.65",
+    "top4": "14.1%",
+    "pick_count": "490.757",
+    "pick_percent": "4.9%",
+    "description": "",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Lõi Năng Lượng: Tướng Máy Móc nhận 25% [AD][AP]."
+      },
+      {
+        "unit": 4,
+        "effect": "Lõi Ép Xung: Tăng thành 45% [AD][AP]."
+      },
+      {
+        "unit": 6,
+        "effect": "Cơ Khí Chuẩn Xác: +1 số lượng tướng tối đa Sử dụng trang bị Máy Biến Hình để chuyển đổi dạng cho các tướng Máy Móc của bạn"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/may-moc.png"
+  },
+  {
+    "name": "Tối Tân",
+    "slug": "toi-tan",
+    "tier": "B",
+    "placement": "4.66",
+    "top4": "15.9%",
+    "pick_count": "678.190",
+    "pick_percent": "6.8%",
+    "description": "Sau khi tham gia giao tranh, mở 1 kho vũ khí để mua 1 nâng cấp vĩnh viễn cho Graves mạnh nhất của bạn. Cứ mỗi 3 nâng cấp, các nâng cấp trong tương lai sẽ lâu hơn một vòng. Nâng Cấp Tiếp Theo: X Vòng.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/toi-tan.png"
+  },
+  {
+    "name": "Xạ Thần",
+    "slug": "xa-than",
+    "tier": "C",
+    "placement": "4.77",
+    "top4": "9.5%",
+    "pick_count": "318.685",
+    "pick_percent": "3.2%",
+    "description": "Khi bạn triển khai Miss Fortune, chọn giữa Chế Độ Dẫn Truyền, Chế Độ Thách Đấu và Chế Độ Nhân Bản. Miss Fortune sẽ có kỹ năng riêng biệt tùy theo chế độ và nhận được tộc/hệ tương ứng.",
+    "milestones": [],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/xa-than.png"
+  },
+  {
+    "name": "Siêu Thú",
+    "slug": "sieu-thu",
+    "tier": "D",
+    "placement": "5.54",
+    "top4": "12.6%",
+    "pick_count": "339.450",
+    "pick_percent": "3.4%",
+    "description": "Mỗi khi tướng Siêu Thú tích đủ 100 Linh Kiện, họ sẽ thử nghiệm các Vũ Khí Siêu Thú mới. Bạn có thể nhận chúng ngay hoặc tích thêm Linh Kiện để nhận được những vũ khí mạnh mẽ hơn ở lần sau.",
+    "milestones": [
+      {
+        "unit": 3,
+        "effect": "Bắt Đầu Nghiên Cứu!"
+      },
+      {
+        "unit": 6,
+        "effect": "Sau khi thắng 1 vòng giao tranh người chơi, nhận được báu vật!"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/sieu-thu.png"
   }
 ]

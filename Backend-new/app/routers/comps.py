@@ -406,3 +406,82 @@ def delete_comp(
     _invalidate_list_cache(r)
     r.delete(f"{COMP_CACHE_KEY_PREFIX}{comp_id}")
     return {"message": f"Đã xoá đội hình id={comp_id}"}
+
+
+@router.get("/{comp_id}/champion-items", summary="Gợi ý items cho từng tướng trong đội hình")
+def get_comp_champion_items(
+    comp_id: int,
+    top: int = 3,
+    db: Session = Depends(get_db),
+):
+    comp = _get_comp_or_404(comp_id, db)
+    maps = _build_lookup_maps(db)
+    cbi, cbn = maps["champ_by_id"], maps["champ_by_name"]
+
+    if not comp.final_board or not isinstance(comp.final_board, list):
+        return []
+
+    champion_ids: List[int] = []
+    seen_ids: set = set()
+    for slot in comp.final_board:
+        if not isinstance(slot, dict):
+            continue
+        champ_val = slot.get("champion")
+        if champ_val is None:
+            continue
+        champ = _find(champ_val, cbi, cbn)
+        if champ and champ.id not in seen_ids:
+            seen_ids.add(champ.id)
+            champion_ids.append(champ.id)
+
+    if not champion_ids:
+        return []
+
+    from app.models.champion import ChampionItemStats
+    rows = (
+        db.query(ChampionItemStats)
+        .filter(ChampionItemStats.champion_id.in_(champion_ids))
+        .order_by(
+            ChampionItemStats.champion_id,
+            ChampionItemStats.rank_priority,
+        )
+        .all()
+    )
+
+    stats_by_champ: Dict[int, list] = {}
+    for row in rows:
+        stats_by_champ.setdefault(row.champion_id, []).append(row)
+
+    result = []
+    for champ_id in champion_ids:
+        champ = cbi.get(champ_id)
+        if not champ:
+            continue
+
+        item_stats = stats_by_champ.get(champ_id, [])[:top]
+        recommended_items = []
+        for stat in item_stats:
+            item = stat.item
+            if item:
+                recommended_items.append({
+                    "id":            item.id,
+                    "name":          item.name,
+                    "slug":          item.slug,
+                    "image":         item.image,
+                    "rank_priority": stat.rank_priority,
+                    "pick_percent":  stat.pick_percent,
+                    "avg_placement": stat.avg_placement,
+                    "win_rate":      stat.win_rate,
+                    "match_count":   stat.match_count,
+                })
+
+        result.append({
+            "champion_id":   champ.id,
+            "champion_name": champ.name,
+            "champion_slug": champ.slug,
+            "icon_path":     champ.icon_path,
+            "recommended_items": recommended_items,
+        })
+
+    return result
+
