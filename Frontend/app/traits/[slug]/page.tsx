@@ -1,9 +1,28 @@
+import type { Metadata } from "next";
 import apiClient from "@/lib/api-client";
-import { toSlug } from "@/lib/slug";
 import { notFound } from "next/navigation";
-import TraitDetailClient from "./TraitDetailClient"; // Gọi đúng giao diện xịn xò bạn vừa làm
+import TraitDetailClient from "./TraitDetailClient";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const trait = await apiClient.getTraitBySlug(slug);
+  if (!trait) return { title: "Không tìm thấy Tộc/Hệ" };
+  return {
+    title: `${trait.name} - Tộc/Hệ TFT`,
+    description: `Thống kê tộc/hệ ${trait.name} trong TFT: các mốc kích hoạt, tỷ lệ pick, thứ hạng trung bình và danh sách tướng.`,
+    alternates: { canonical: `/traits/${slug}` },
+    openGraph: {
+      title: `${trait.name} | MetaTFT VN`,
+      description: `Xem chi tiết tộc/hệ ${trait.name} trong Teamfight Tactics.`,
+    },
+  };
+}
 
 export default async function TraitDetailPage({
   params,
@@ -12,13 +31,10 @@ export default async function TraitDetailPage({
 }) {
   const { slug } = await params;
 
-  // Lấy data từ API
-  const traits = await apiClient.getTraits();
-  const trait = traits.find((t) => toSlug(t.name) === slug);
+  // Lấy trực tiếp bằng slug từ API (thay vì getTraits() rồi find)
+  const trait = await apiClient.getTraitBySlug(slug);
   
-  // Nếu không tìm thấy thì báo lỗi 404
   if (!trait) notFound();
 
-  // Truyền data xuống Client Component chứa Tailwind
   return <TraitDetailClient trait={trait as any} />;
-}
+}

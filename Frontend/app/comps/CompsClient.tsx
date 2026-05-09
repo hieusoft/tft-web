@@ -1,7 +1,6 @@
 "use client";
 
-// Using native <img> tags for all images to avoid hydration mismatch
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import type { ApiComp, CompBoardSlot, CompActiveTrait } from "@/lib/types/comp";
 
 // ── Constants ────────────────────────────────────────────────────────────────
@@ -33,16 +32,8 @@ const PLAYSTYLE_CONFIG: Record<string, { label: string; color: string; bg: strin
   Slow: { label: "Chậm", color: "#f59e0b", bg: "rgba(245,158,11,0.1)" },
   "Flex": { label: "Linh Hoạt", color: "#a855f7", bg: "rgba(168,85,247,0.1)" },
 };
-
-// ── Props ────────────────────────────────────────────────────────────────────
-
-interface CompsClientProps {
-  initialComps: ApiComp[];
-}
-
-// ── Component ────────────────────────────────────────────────────────────────
-
-export default function CompsClient({ initialComps }: CompsClientProps) {
+// ── Root Component ───────────────────────────────────────────────────────────
+export default function CompsClient({ initialComps }: { initialComps: ApiComp[] }) {
   const [selectedTier, setSelectedTier] = useState("Tất Cả");
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
@@ -197,7 +188,7 @@ function CompRow({
         </div>
       </div>
 
-      {/* ── NEW Expanded Detail — 3-column layout ── */}
+      {/* Expanded detail panel */}
       {isExpanded && (
         <CompDetail comp={comp} sortedTraits={sortedTraits} />
       )}
@@ -205,141 +196,244 @@ function CompRow({
   );
 }
 
-// ── Expanded Detail (3-column layout) ────────────────────────────────────────
+// ── Hex Board Constants ───────────────────────────────────────────────────────
+const B_COLS = 7, B_ROWS = 4, B_HW = 112, B_HH = 130, B_GAP = 4;
+const B_STEP = Math.round(B_HH * 0.75);
+const B_NAT_W = B_COLS * (B_HW + B_GAP) - B_GAP + Math.round(B_HW / 2) + B_GAP; // ≈868
+const B_NAT_H = (B_ROWS - 1) * B_STEP + B_HH + 12; // ≈448
 
-function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompActiveTrait[] }) {
-  const tierCfg = TIER_CONFIG[comp.tier] ?? TIER_CONFIG.C;
+function buildGrid(slots: CompBoardSlot[]) {
+  const grid: (CompBoardSlot | null)[][] = Array.from({ length: B_ROWS }, () =>
+    Array.from({ length: B_COLS }, () => null)
+  );
+  const hasPos = slots.some(s => s.hex != null && s.row != null);
+  if (hasPos) {
+    for (const slot of slots) {
+      if (!slot.champion || slot.hex == null || slot.row == null) continue;
+      const r = slot.row, c = slot.hex - slot.row * B_COLS;
+      if (r >= 0 && r < B_ROWS && c >= 0 && c < B_COLS) grid[r][c] = slot;
+    }
+  } else {
+    let idx = 0;
+    for (let r = 0; r < B_ROWS && idx < slots.length; r++)
+      for (let c = 0; c < B_COLS && idx < slots.length; c++)
+        if (slots[idx]?.champion) { grid[r][c] = slots[idx]; idx++; }
+  }
+  return grid;
+}
 
+// HexBoard — renders the 4×7 hex grid, auto-zooms to availW
+function HexBoard({ slots, availW }: { slots: CompBoardSlot[]; availW: number }) {
+  const zoom = availW > 40 ? Math.min(1, availW / B_NAT_W) : 1;
+  const grid = buildGrid(slots);
   return (
-    <div className="comp-detail" style={{ padding: 0, background: '#0e0e10' }}>
+    <div style={{ position: 'relative', width: B_NAT_W, height: B_NAT_H, zoom, flexShrink: 0 }}>
+      {Array.from({ length: B_ROWS }, (_, ri) =>
+        Array.from({ length: B_COLS }, (_, ci) => {
+          const x = ci * (B_HW + B_GAP) + (ri % 2 === 1 ? Math.round(B_HW / 2 + B_GAP / 2) : 0);
+          const y = ri * B_STEP;
+          return (
+            <div key={`${ri}-${ci}`} style={{ position: 'absolute', left: x, top: y, zIndex: B_ROWS - ri }}>
+              <HexCell slot={grid[ri][ci]} hexW={B_HW} hexH={B_HH} />
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+}
 
-      {/* ══ 3-column main section ══ */}
-      <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr 185px' }}>
+// ── Shared sub-pieces ────────────────────────────────────────────────────────
+const PANEL_LABEL: React.CSSProperties = { fontSize: '0.58rem', fontWeight: 700, color: '#444', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 };
 
-        {/* ── LEFT: Stats + Traits ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '14px 12px', borderRight: '1px solid #1e1e1e', background: '#0f0f12' }}>
-          <div style={{ background: 'linear-gradient(135deg,#1a1a2e,#16213e)', border: '1px solid #2a2a4a', borderRadius: 10, padding: 10 }}>
+function StatStrip({ comp, horizontal }: { comp: ApiComp; horizontal?: boolean }) {
+  const stats = [
+    { label: 'Vị Trí TB', value: comp.avg_placement != null ? comp.avg_placement.toFixed(2) : '—', color: '#e8e8e8' },
+    { label: 'Top 4', value: comp.avg_placement != null ? `${Math.max(0, Math.round((4.5 - comp.avg_placement) * 22))}%` : '—', color: '#22c55e' },
+    { label: 'Win%', value: comp.avg_placement != null ? `${Math.max(0, Math.round((4.5 - comp.avg_placement) * 10))}%` : '—', color: '#f0b90b' },
+  ];
+  if (horizontal) return (
+    <div style={{ display: 'flex' }}>
+      {stats.map(s => (
+        <div key={s.label} style={{ flex: 1, textAlign: 'center', padding: '8px 4px', borderRight: '1px solid #1a1a1a' }}>
+          <div style={{ fontSize: '0.58rem', color: '#555', marginBottom: 2 }}>{s.label}</div>
+          <div style={{ fontSize: '0.85rem', fontWeight: 700, color: s.color }}>{s.value}</div>
+        </div>
+      ))}
+    </div>
+  );
+  return (
+    <div style={{ background: 'linear-gradient(135deg,#1a1a2e,#16213e)', border: '1px solid #2a2a4a', borderRadius: 10, padding: 10 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        {stats.map(s => (
+          <div key={s.label} className="detail-stat-item">
+            <span className="detail-stat-item__label">{s.label}</span>
+            <span className="detail-stat-item__value" style={{ color: s.color }}>{s.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <div className="detail-stat-item"><span className="detail-stat-item__label">Vị Trí TB</span><span className="detail-stat-item__value">{comp.avg_placement != null ? comp.avg_placement.toFixed(2) : '—'}</span></div>
-              <div className="detail-stat-item"><span className="detail-stat-item__label">Top 4</span><span className="detail-stat-item__value detail-stat-item__value--green">{comp.avg_placement != null ? `${Math.max(0, Math.round((4.5 - comp.avg_placement) * 22))}%` : '—'}</span></div>
-              <div className="detail-stat-item"><span className="detail-stat-item__label">Tỷ Lệ Thắng</span><span className="detail-stat-item__value detail-stat-item__value--gold">{comp.avg_placement != null ? `${Math.max(0, Math.round((4.5 - comp.avg_placement) * 10))}%` : '—'}</span></div>
+function AugmentList({ comp }: { comp: ApiComp }) {
+  if (!comp.recommended_augments?.length) return null;
+  return (
+    <div>
+      <div style={PANEL_LABEL}>Lõi Đề Xuất</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        {comp.recommended_augments.map(aug => (
+          <div key={aug.id} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '5px 7px', borderRadius: 6, background: '#1a1a1e', border: '1px solid #252530' }}>
+            {aug.image && <img src={aug.image} alt={aug.name} style={{ width: 28, height: 28, objectFit: 'cover', borderRadius: 5, flexShrink: 0, border: '1px solid #333' }} />}
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#ddd', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{aug.name}</div>
+              {aug.tier != null && (
+                <span style={{
+                  fontSize: '0.52rem', fontWeight: 600, padding: '1px 4px', borderRadius: 3,
+                  color: aug.tier === 1 ? '#9ca3af' : aug.tier === 2 ? '#f59e0b' : '#a855f7',
+                  background: aug.tier === 1 ? 'rgba(156,163,175,0.12)' : aug.tier === 2 ? 'rgba(245,158,11,0.12)' : 'rgba(168,85,247,0.12)'
+                }}>
+                  {aug.tier === 1 ? 'Bạc' : aug.tier === 2 ? 'Vàng' : 'Kim Cương'}
+                </span>
+              )}
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CarouselList({ comp }: { comp: ApiComp }) {
+  if (!comp.carousel_priority?.length) return null;
+  return (
+    <div>
+      <div style={PANEL_LABEL}>Ưu Tiên Vòng Quay</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        {comp.carousel_priority.map((item, i) => (
+          <div key={`${item.id}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 8px', borderRadius: 5, background: '#1a1a1e', border: '1px solid #252530' }}>
+            <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#f0b90b', minWidth: 18 }}>#{i + 1}</span>
+            {item.image && <img src={item.image} alt={item.name} style={{ width: 22, height: 22, objectFit: 'cover', borderRadius: 3, flexShrink: 0, border: '1px solid #333' }} />}
+            <span style={{ fontSize: '0.65rem', color: '#ccc', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Expanded Detail — 3 layout modes ─────────────────────────────────────────
+function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompActiveTrait[] }) {
+  const [vp, setVp] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  const boardRef = useRef<HTMLDivElement>(null);
+  const [availW, setAvailW] = useState(0);
+
+  useEffect(() => {
+    const upd = () => setVp(window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1100 ? 'tablet' : 'desktop');
+    upd();
+    window.addEventListener('resize', upd);
+    return () => window.removeEventListener('resize', upd);
+  }, []);
+
+  useEffect(() => {
+    const el = boardRef.current;
+    if (!el) return;
+    const obs = new ResizeObserver(([e]) => setAvailW(e.contentRect.width));
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [vp]);
+
+  const slots = comp.final_board ?? [];
+  const BOARD_BG: React.CSSProperties = {
+    background: 'radial-gradient(ellipse at 50% 30%, #1e1e3f 0%, #0d0d1a 60%, #060610 100%)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    overflow: 'hidden',
+  };
+
+  // ── MOBILE ──────────────────────────────────────────────────────────────────
+  if (vp === 'mobile') return (
+    <div style={{ background: '#0e0e10', borderTop: '1px solid #1e1e1e' }}>
+      {/* Stats: 3 horizontal cells */}
+      <div style={{ borderBottom: '1px solid #1a1a1a' }}>
+        <StatStrip comp={comp} horizontal />
+      </div>
+
+      {/* Board — full width, auto-zoom */}
+      <div ref={boardRef} style={{ ...BOARD_BG, padding: '16px 8px', borderBottom: '1px solid #1a1a1a' }}>
+        <HexBoard slots={slots} availW={availW - 16} />
+      </div>
+
+      {/* Traits — horizontal scroll */}
+      {sortedTraits.length > 0 && (
+        <div style={{ padding: '10px 12px', borderBottom: '1px solid #1a1a1a', overflowX: 'auto' }}>
+          <div style={PANEL_LABEL}>Tộc / Hệ</div>
+          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+            {sortedTraits.map(t => <TraitCard key={t.id} trait={t} />)}
+          </div>
+        </div>
+      )}
+
+      {/* Augments + Carousel — 2 col */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+        <div style={{ padding: '10px 10px', borderRight: '1px solid #1a1a1a' }}><AugmentList comp={comp} /></div>
+        <div style={{ padding: '10px 10px' }}><CarouselList comp={comp} /></div>
+      </div>
+    </div>
+  );
+
+  // ── TABLET (768–1099px) ──────────────────────────────────────────────────────
+  if (vp === 'tablet') return (
+    <div style={{ background: '#0e0e10', borderTop: '1px solid #1e1e1e' }}>
+      {/* Top: left stats+traits | right board */}
+      <div style={{ display: 'grid', gridTemplateColumns: '210px 1fr' }}>
+        {/* Left */}
+        <div style={{ padding: '14px 12px', borderRight: '1px solid #1e1e1e', background: '#0f0f12', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <StatStrip comp={comp} />
+          {sortedTraits.length > 0 && (
+            <div style={{ flex: 1 }}>
+              <div style={PANEL_LABEL}>Tộc / Hệ</div>
+              <div className="detail-traits-list">
+                {sortedTraits.map(t => <TraitCard key={t.id} trait={t} />)}
+              </div>
+            </div>
+          )}
+        </div>
+        {/* Board */}
+        <div ref={boardRef} style={{ ...BOARD_BG, padding: '24px 16px' }}>
+          <HexBoard slots={slots} availW={availW - 32} />
+        </div>
+      </div>
+
+      {/* Bottom: augments + carousel full width */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: '1px solid #1e1e1e', background: '#0f0f12' }}>
+        <div style={{ padding: '14px 16px', borderRight: '1px solid #1e1e1e' }}><AugmentList comp={comp} /></div>
+        <div style={{ padding: '14px 16px' }}><CarouselList comp={comp} /></div>
+      </div>
+    </div>
+  );
+
+  // ── DESKTOP (≥1100px) — unchanged 3-column ────────────────────────────────
+  return (
+    <div className="comp-detail" style={{ padding: 0, background: '#0e0e10' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr 185px' }}>
+        {/* LEFT */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '14px 12px', borderRight: '1px solid #1e1e1e', background: '#0f0f12' }}>
+          <StatStrip comp={comp} />
           {sortedTraits.length > 0 && (
             <div style={{ flex: 1 }}>
               <h3 style={{ fontSize: '0.62rem', fontWeight: 700, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 6px 0' }}>Tộc / Hệ</h3>
-              <div className="detail-traits-list">
-                {sortedTraits.map((t) => <TraitCard key={t.id} trait={t} />)}
-              </div>
+              <div className="detail-traits-list">{sortedTraits.map(t => <TraitCard key={t.id} trait={t} />)}</div>
             </div>
           )}
         </div>
-
-        {/* ── CENTER: Board + Level Guide ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg,#1a1a2e 0%,#0e0e14 100%)' }}>
-          {/* Board — absolute positioned hexes */}
-          <div style={{
-            flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '28px 16px', overflowX: 'auto',
-            background: 'radial-gradient(ellipse at 50% 30%, #1e1e3f 0%, #0d0d1a 60%, #060610 100%)',
-          }}>
-            {(() => {
-              const slots = comp.final_board ?? [];
-              const ROWS = 4, COLS = 7;
-              const HW = 112, HH = 130;    // bigger hex cells
-              const H_GAP = 4;             // gap between cols
-              const H_STEP = Math.round(HH * 0.75); // honeycomb vertical step
-              const EXTRA = 12;            // small buffer for items overflow
-
-              const boardW = COLS * (HW + H_GAP) - H_GAP + Math.round(HW / 2) + H_GAP;
-              const boardH = (ROWS - 1) * H_STEP + HH + EXTRA;
-
-              // Build grid từ hex (global index 0-27) và row từ backend
-              // col = hex - row * COLS  (vì hex là index tuyệt đối trong grid 4×7)
-              const grid: (typeof slots[0] | null)[][] = Array.from({ length: ROWS }, () =>
-                Array.from({ length: COLS }, () => null)
-              );
-
-              const hasPositionData = slots.some(s => s.hex != null && s.row != null);
-
-              if (hasPositionData) {
-                for (const slot of slots) {
-                  if (!slot.champion || slot.hex == null || slot.row == null) continue;
-                  const r = slot.row;
-                  const c = slot.hex - slot.row * COLS;
-                  if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
-                    grid[r][c] = slot;
-                  }
-                }
-              } else {
-                // Fallback: fill tuần tự nếu backend chưa có position
-                let idx = 0;
-                for (let r = 0; r < ROWS && idx < slots.length; r++)
-                  for (let c = 0; c < COLS && idx < slots.length; c++) {
-                    if (slots[idx]?.champion) grid[r][c] = slots[idx];
-                    idx++;
-                  }
-              }
-
-              return (
-                <div style={{ position: 'relative', width: boardW, height: boardH, flexShrink: 0 }}>
-                  {Array.from({ length: ROWS }, (_, ri) =>
-                    Array.from({ length: COLS }, (_, ci) => {
-                      const cell = grid[ri][ci];
-                      const x = ci * (HW + H_GAP) + (ri % 2 === 1 ? Math.round(HW / 2 + H_GAP / 2) : 0);
-                      const y = ri * H_STEP;
-                      return (
-                        <div key={`${ri}-${ci}`} style={{ position: 'absolute', left: x, top: y, zIndex: ROWS - ri }}>
-                          <HexCell slot={cell} hexW={HW} hexH={HH} />
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
-              );
-            })()}
-          </div>
+        {/* CENTER board */}
+        <div ref={boardRef} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 16px', background: 'radial-gradient(ellipse at 50% 30%, #1e1e3f 0%, #0d0d1a 60%, #060610 100%)' }}>
+          <HexBoard slots={slots} availW={availW - 32} />
         </div>
-
-        {/* ── RIGHT: Augments + Carousel ── */}
+        {/* RIGHT */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '14px 12px', borderLeft: '1px solid #1e1e1e', background: '#0f0f12', overflowY: 'auto' }}>
-          {comp.recommended_augments?.length > 0 && (
-            <div>
-              <h3 style={{ fontSize: '0.62rem', fontWeight: 700, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 7px 0' }}>Lõi Đề Xuất</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                {comp.recommended_augments.map((aug) => (
-                  <div key={aug.id} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px', borderRadius: 6, background: '#1a1a1e', border: '1px solid #252530' }}>
-                    {aug.image && <img src={aug.image} alt={aug.name} style={{ width: 32, height: 32, objectFit: 'cover', borderRadius: 6, flexShrink: 0, border: '1px solid #333' }} />}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 }}>
-                      <span style={{ fontSize: '0.7rem', fontWeight: 600, color: '#ddd', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{aug.name}</span>
-                      {aug.tier != null && (
-                        <span style={{
-                          fontSize: '0.55rem', fontWeight: 600, padding: '1px 5px', borderRadius: 3, width: 'fit-content',
-                          color: aug.tier === 1 ? '#9ca3af' : aug.tier === 2 ? '#f59e0b' : '#a855f7',
-                          background: aug.tier === 1 ? 'rgba(156,163,175,0.15)' : aug.tier === 2 ? 'rgba(245,158,11,0.15)' : 'rgba(168,85,247,0.15)',
-                        }}>{aug.tier === 1 ? 'Bạc' : aug.tier === 2 ? 'Vàng' : 'Kim Cương'}</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          {comp.carousel_priority?.length > 0 && (
-            <div>
-              <h3 style={{ fontSize: '0.62rem', fontWeight: 700, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 7px 0' }}>Ưu Tiên Vòng Quay</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                {comp.carousel_priority.map((item, i) => (
-                  <div key={`${item.id}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 8px', borderRadius: 5, background: '#1a1a1e', border: '1px solid #252530' }}>
-                    <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#f0b90b', minWidth: 18 }}>#{i + 1}</span>
-                    {item.image && <img src={item.image} alt={item.name} style={{ width: 22, height: 22, objectFit: 'cover', borderRadius: 3, flexShrink: 0, border: '1px solid #333' }} />}
-                    <span style={{ fontSize: '0.65rem', color: '#ccc', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <AugmentList comp={comp} />
+          <CarouselList comp={comp} />
         </div>
       </div>
     </div>
@@ -347,9 +441,7 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
 }
 
 
-
-
-// ── Hex Cell (hexagonal shape — for 4×7 board) ──────────────────────────────
+// ── Hex Cell ─────────────────────────────────────────────────────────────────
 
 const HEX_CLIP = 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)';
 
@@ -364,8 +456,6 @@ const COST_GLOW: Record<number, string> = {
 
 function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: number; hexH: number }) {
   const BORDER_PX = 4;
-  const outerW = hexW;
-  const outerH = hexH;
   const innerW = hexW - BORDER_PX * 2;
   const innerH = hexH - BORDER_PX * 2;
 
@@ -374,7 +464,7 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
     return (
       <div style={{ width: hexW, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{
-          width: outerW, height: outerH,
+          width: hexW, height: hexH,
           clipPath: HEX_CLIP,
           background: 'linear-gradient(160deg, rgba(50,50,90,0.6), rgba(20,20,45,0.8))',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -399,9 +489,6 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
   return (
     <div style={{ width: hexW, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
 
-      {/* ★ 3-star above hex */}
-
-
       {/* Hex wrapper — glow + border + art + items overlay */}
       <div style={{
         position: 'relative',
@@ -409,7 +496,7 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
       }}>
         {/* Outer border hex */}
         <div style={{
-          width: outerW, height: outerH,
+          width: hexW, height: hexH,
           clipPath: HEX_CLIP,
           background: `linear-gradient(160deg, ${borderColor}ff, ${borderColor}bb)`,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -464,22 +551,22 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
         {/* Name + 3-star — fixed position above items zone, always visible */}
         <div style={{
           position: 'absolute',
-          bottom: Math.round(outerH * 0.06) + 28,  // items(24) + gap(8) ≈ above items
+          bottom: Math.round(hexH * 0.06) + 28,
           left: 0, right: 0,
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1,
           zIndex: 6, pointerEvents: 'none',
         }}>
           {slot.is_three_star && (
             <span style={{
-              fontSize: 9, color: '#fbbf24', lineHeight: 1,
-              textShadow: '0 0 6px rgba(251,191,36,1), 0 1px 3px rgba(0,0,0,1)',
+              fontSize: 16, color: '#fbbf24', lineHeight: 1,
+              textShadow: '0 0 8px rgba(251,191,36,1), 0 0 16px rgba(251,191,36,0.6), 0 1px 3px rgba(0,0,0,1)',
             }}>★★★</span>
           )}
           <span style={{
-            fontSize: '0.55rem', fontWeight: 700, color: '#fff',
-            lineHeight: 1, letterSpacing: 0.3,
+            fontSize: '0.72rem', fontWeight: 700, color: '#fff',
+            lineHeight: 1, letterSpacing: 0.2,
             textShadow: '0 1px 4px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,1)',
-            maxWidth: outerW - 8,
+            maxWidth: hexW - 8,
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
           }}>{champ.name}</span>
         </div>
@@ -488,15 +575,15 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
         {slot.items && slot.items.length > 0 && (
           <div style={{
             position: 'absolute',
-            bottom: Math.round(outerH * 0.06),
+            bottom: Math.round(hexH * 0.06),
             left: '50%',
             transform: 'translateX(-50%)',
             display: 'flex',
             gap: 2,
             zIndex: 5,
           }}>
-            {slot.items.map((item) => (
-              <div key={item.id} title={item.name} style={{
+            {slot.items.map((item, idx) => (
+              <div key={`${item.id}-${idx}`} title={item.name} style={{
                 width: 24, height: 24,
                 borderRadius: 4,
                 border: '1.5px solid rgba(255,255,255,0.4)',
@@ -517,8 +604,6 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
           </div>
         )}
       </div>
-
-
     </div>
   );
 }
@@ -570,7 +655,6 @@ function ChampionSlot({ slot }: { slot: CompBoardSlot }) {
     </div>
   );
 }
-
 
 // ── Trait Icon (mini) ────────────────────────────────────────────────────────
 

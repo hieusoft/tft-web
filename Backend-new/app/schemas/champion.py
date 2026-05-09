@@ -63,3 +63,38 @@ class ChampionDetailResponse(ChampionBase):
     best_builds: List[BuildResponse] = []
     best_items: List[ItemStatResponse] = []
     model_config = ConfigDict(from_attributes=True)
+
+# ── Write schemas ──────────────────────────────────────────────────────────────
+
+class ChampionCreate(BaseModel):
+    name: str
+    slug: str
+    cost: int
+    rank: Optional[str] = None
+    avg_placement: Optional[float] = None
+    win_rate: Optional[str] = None
+    games_played: Optional[str] = None
+    pick_rate: Optional[str] = None
+    icon_path: Optional[str] = None
+    splash_path: Optional[str] = None
+    skill_id: Optional[int] = None
+    base_stats: Optional[Dict[str, Any]] = None
+
+class ChampionUpdate(BaseModel):
+    name: Optional[str] = None
+    slug: Optional[str] = None
+    cost: Optional[int] = None
+    rank: Optional[str] = None
+    avg_placement: Optional[float] = None
+    win_rate: Optional[str] = None
+    games_played: Optional[str] = None
+    pick_rate: Optional[str] = None
+    icon_path: Optional[str] = None
+    splash_path: Optional[str] = None
+    skill_id: Optional[int] = None
+    base_stats: Optional[Dict[str, Any]] = None
+
+class ChampionBulkResponse(BaseModel):
+    status: str
+    message: str
+    inserted: int

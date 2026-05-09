@@ -33,7 +33,10 @@ def get_item_detail(slug: str, db: Session = Depends(get_db)):
         .joinedload(ChampionItemStats.champion)
     ).filter(Item.slug == slug).first()
     
+    if not item:
+        raise HTTPException(status_code=404, detail="Không tìm thấy Trang Bị")
     return item
+
 
 @router.post("/", response_model=ItemResponse)
 def create(body: ItemCreate, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis)):

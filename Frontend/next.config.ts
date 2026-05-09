@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   // =====================================================
   images: {
     formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 86400, // Cache ảnh 24h
+    minimumCacheTTL: 604800, // Cache ảnh 7 ngày — augment/item icons không đổi thường xuyên
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     qualities: [75, 85, 90],
@@ -67,7 +67,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "X-Robots-Tag",
-            value: "noindex, nofollow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+            value: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
           },
           // Security headers (bonus)
           { key: "X-Content-Type-Options", value: "nosniff" },

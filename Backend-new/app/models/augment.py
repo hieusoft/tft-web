@@ -6,7 +6,8 @@ class Augment(Base):
     __tablename__ = "augments"
     id           = Column(Integer, primary_key=True, index=True)
     name         = Column(String(150), unique=True, nullable=False)
+    slug         = Column(String(160), unique=True, index=True, nullable=True)
     description  = Column(Text, nullable=True)
     tier         = Column(Integer, nullable=True) 
     rank         = Column(String(10), nullable=True)
-    image        = Column(String(255), nullable=True)
+    image        = Column(String(255), nullable=True)

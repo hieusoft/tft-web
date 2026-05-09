@@ -8,7 +8,7 @@ from typing import List, Optional
 
 from app.core.database import get_db
 from app.models.trait import Trait
-from app.schemas.trait import TraitResponse, TraitCreate, TraitBulkResponse
+from app.schemas.trait import TraitResponse, TraitCreate, TraitUpdate, TraitBulkResponse
 from app.core.redis import get_redis
 from app.core.r2_storage import upload_images_to_r2
 
@@ -80,9 +80,28 @@ def get_trait_detail(slug: str, db: Session = Depends(get_db)):
     
     return trait
 
-@router.delete("/{id}")
-def delete_trait(id: int, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis)):
-    trait = db.query(Trait).filter(Trait.id == id).first()
+@router.patch("/{slug}", response_model=TraitResponse)
+def update_trait(
+    slug: str,
+    body: TraitUpdate,
+    db: Session = Depends(get_db),
+    r: redis.Redis = Depends(get_redis),
+):
+    trait = db.query(Trait).filter(Trait.slug == slug).first()
+    if not trait:
+        raise HTTPException(status_code=404, detail="Không tìm thấy Tộc/Hệ này")
+
+    for field, value in body.model_dump(exclude_none=True).items():
+        setattr(trait, field, value)
+
+    db.commit()
+    db.refresh(trait)
+    r.delete(TRAITS_CACHE_KEY)
+    return trait
+
+@router.delete("/{slug}")
+def delete_trait(slug: str, db: Session = Depends(get_db), r: redis.Redis = Depends(get_redis)):
+    trait = db.query(Trait).filter(Trait.slug == slug).first()
     if not trait: raise HTTPException(status_code=404, detail="Không tìm thấy")
     db.delete(trait)
     db.commit()

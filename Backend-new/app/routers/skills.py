@@ -30,6 +30,19 @@ def get_all(
     return result
 
 
+@router.get("/{id}", response_model=SkillResponse)
+def get_skill(
+    id: int,
+    db: Session = Depends(get_db),
+):
+    skill = db.query(Skill).filter(Skill.id == id).first()
+    if not skill:
+        raise HTTPException(status_code=404, detail="Kỹ năng không tồn tại")
+    return SkillResponse.from_orm_skill(skill)
+
+
+
+
 @router.post("/", response_model=SkillResponse)
 def create(
     body: SkillCreate,
