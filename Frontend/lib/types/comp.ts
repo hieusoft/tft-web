@@ -7,6 +7,15 @@ export interface CompChampion {
   cost: number;
   icon_path: string | null;
   splash_path: string | null;
+  skill?: {
+    name: string;
+    mana_start: number;
+    mana_max: number;
+    description: string;
+    icon_path: string | null;
+    ability_stats: any;
+  } | null;
+  traits?: { name: string; image: string | null }[];
 }
 
 export interface CompItem {
@@ -36,10 +45,18 @@ export interface CompActiveTrait {
   id: number;
   name: string;
   slug: string;
+  description?: string | null;
   image: string | null;
   count: number;
   current_style: number;   // 0 = chưa kích hoạt, 1+ = mốc đã đạt
   total_styles: number;
+  milestones?: any[];
+  champions?: {
+    id: number;
+    name: string;
+    cost: number;
+    icon_path: string | null;
+  }[];
 }
 
 export interface ApiComp {

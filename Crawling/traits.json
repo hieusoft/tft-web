@@ -1,47 +1,47 @@
 [
   {
     "name": "Ác Nữ",
-    "slug": "ac-nu",
+    "slug": "morganauniquetrait",
     "tier": "S",
     "placement": "3.72",
     "top4": "21.8%",
-    "pick_count": "1.116.485",
+    "pick_count": "1.116.927",
     "pick_percent": "11.2%",
     "description": "Đồng minh được giảm 5% sát thương nhận phải từ kỹ năng, tăng thành 10% khi Morgana ở Thể Hắc Ám.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/ac-nu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/morganauniquetrait.png"
   },
   {
     "name": "Hủy Diệt",
-    "slug": "huy-diet",
+    "slug": "jhinuniquetrait",
     "tier": "S",
     "placement": "3.80",
     "top4": "20.5%",
-    "pick_count": "1.680.223",
+    "pick_count": "1.679.801",
     "pick_percent": "16.9%",
     "description": "Kẻ địch bị giảm 10% Giáp và Kháng Phép.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/huy-diet.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/jhinuniquetrait.png"
   },
   {
     "name": "Chiến Lũy",
-    "slug": "chien-luy",
+    "slug": "shenuniquetrait",
     "tier": "S",
     "placement": "3.92",
     "top4": "19.4%",
-    "pick_count": "1.394.498",
+    "pick_count": "1.395.647",
     "pick_percent": "14.0%",
     "description": "Triệu hồi một di vật có thể đặt. Khi bắt đầu giao tranh, nó trao cho các đồng minh liền kề một lá chắn bằng 10% Máu tối đa và 10% Tốc Độ Đánh.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chien-luy.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/shenuniquetrait.png"
   },
   {
     "name": "Chuộc Tội",
-    "slug": "chuoc-toi",
+    "slug": "rhaastuniquetrait",
     "tier": "S",
     "placement": "3.96",
     "top4": "17.3%",
-    "pick_count": "1.734.868",
+    "pick_count": "1.735.713",
     "pick_percent": "17.4%",
     "description": "",
     "milestones": [
@@ -50,51 +50,51 @@
         "effect": "Với mỗi tộc/hệ không phải duy nhất bạn đang kích hoạt, đội của bạn nhận được 2%/2.5%/3% Tốc Độ Đánh, 2/2.5/3 Giáp và Kháng Phép. Tốc Độ Đánh Toàn Đội: X [AS] Chống Chịu Toàn Đội: X [Armor][MR]"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chuoc-toi.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/rhaastuniquetrait.png"
   },
   {
     "name": "Chỉ Huy",
-    "slug": "chi-huy",
+    "slug": "sonauniquetrait",
     "tier": "S",
     "placement": "3.99",
     "top4": "18.0%",
-    "pick_count": "953.955",
+    "pick_count": "954.893",
     "pick_percent": "9.6%",
     "description": "(1) Sona ban cho bạn một Lệnh Chỉ Huy ngẫu nhiên mỗi 2 vòng, giúp bạn thay đổi cách mà 1 đồng minh hành động trong giao tranh. Các Lệnh Chỉ Huy tồn tại trong 2 giao tranh người chơi ngay cả khi chúng không được trang bị.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chi-huy.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/sonauniquetrait.png"
   },
   {
     "name": "Song Đấu",
-    "slug": "song-dau",
+    "slug": "fiorauniquetrait",
     "tier": "S",
     "placement": "4.01",
     "top4": "18.6%",
-    "pick_count": "1.621.590",
+    "pick_count": "1.624.613",
     "pick_percent": "16.3%",
     "description": "Linh Thú của bạn hồi máu bằng 15% sát thương người chơi bạn gây ra khi chiến thắng. Fiora luôn giành chiến thắng trong trận đấu tay đôi.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/song-dau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/fiorauniquetrait.png"
   },
   {
     "name": "Tiệc Tùng",
-    "slug": "tiec-tung",
+    "slug": "blitzcrankuniquetrait",
     "tier": "S",
     "placement": "4.07",
     "top4": "18.2%",
-    "pick_count": "1.670.020",
+    "pick_count": "1.672.312",
     "pick_percent": "16.8%",
     "description": "Một lần mỗi giao tranh khi xuống dưới 45% Máu, trở nên không thể bị chọn mục tiêu và tự sửa chữa để hồi 15% Máu tối đa mỗi giây. Khi hồi đầy Máu, hoặc khi không còn đồng minh nào khác, quay trở lại giao tranh. Nếu được hồi đầy máu, trong phần còn lại của giao tranh, Blitzcrank sẽ ở trạng thái The Groove và nội tại của Kẻ Phá Tiệc sẽ bắn tia nhanh gấp bốn lần.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tiec-tung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/blitzcrankuniquetrait.png"
   },
   {
     "name": "Thách Đấu",
-    "slug": "thach-dau",
+    "slug": "astrait",
     "tier": "S",
     "placement": "4.16",
     "top4": "13.9%",
-    "pick_count": "1.826.546",
+    "pick_count": "1.829.423",
     "pick_percent": "18.4%",
     "description": "",
     "milestones": [
@@ -115,15 +115,15 @@
         "effect": "55% [AS]"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/thach-dau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/astrait.png"
   },
   {
     "name": "Chiêm Tinh - Cự Xà",
-    "slug": "chiem-tinh-cu-xa",
+    "slug": "stargazer",
     "tier": "S",
-    "placement": "4.18",
-    "top4": "15.1%",
-    "pick_count": "286.564",
+    "placement": "4.17",
+    "top4": "15.2%",
+    "pick_count": "286.728",
     "pick_percent": "2.9%",
     "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Cự Xà. Ô cường hóa cho thêm 5% Chống Chịu. Tướng Chiêm Tinh trên ô cường hóa nhận được nhiều hơn và áp dụng hiệu ứng độc lên kẻ địch, lặp lại một phần sát thương đã gây ra dưới dạng sát thương phép trong 3 giây.",
     "milestones": [
@@ -140,15 +140,15 @@
         "effect": "15% [DR], 60% sát thương độc"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-cu-xa.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/stargazer.png"
   },
   {
     "name": "Vô Pháp",
-    "slug": "vo-phap",
+    "slug": "assassintrait",
     "tier": "S",
     "placement": "4.18",
     "top4": "13.4%",
-    "pick_count": "2.495.155",
+    "pick_count": "2.496.982",
     "pick_percent": "25.1%",
     "description": "",
     "milestones": [
@@ -169,15 +169,15 @@
         "effect": "55% [AD] [AP]"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/vo-phap.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/assassintrait.png"
   },
   {
     "name": "N.O.V.A.",
-    "slug": "nova",
+    "slug": "drx",
     "tier": "S",
     "placement": "4.20",
     "top4": "14.1%",
-    "pick_count": "3.431.487",
+    "pick_count": "3.434.951",
     "pick_percent": "34.5%",
     "description": "",
     "milestones": [
@@ -186,15 +186,15 @@
         "effect": "Nhận 1 bộ chọn Tiến Công. Tướng N.O.V.A. được chọn sẽ kích hoạt Tiến Công của họ trong khi đột phá sức mạnh. Aatrox: Sát thương của đồng minh sẽ gây 30% Cào Xé và Phân Tách lên kẻ địchAatrox: Cào Xé và Phân Tách kẻ địch Caitlyn: Trao cho đồng minh 20% Tốc Độ ĐánhCaitlyn: Trao Tốc Độ Đánh Akali: Đồng minh nhận Chuẩn XácAkali: Đồng minh nhận Chuẩn Xác Maokai: Đồng minh hồi 12% Máu tối đaMaokai: Hồi máu cho đồng minh Kindred: Tạo 800 lá chắn cho tướng Đỡ Đòn mạnh nhấtKindred: Tạo lá chắn cho một đồng minh Ấn: Đồng minh gây thêm 10% sát thương chuẩn có cộng dồnẤn: Gây thêm sát thương chuẩn"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/nova.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/drx.png"
   },
   {
     "name": "Bắn Tỉa",
-    "slug": "ban-tia",
+    "slug": "rangedtrait",
     "tier": "S",
     "placement": "4.24",
     "top4": "18.2%",
-    "pick_count": "1.109.465",
+    "pick_count": "1.106.947",
     "pick_percent": "11.1%",
     "description": "",
     "milestones": [
@@ -211,16 +211,16 @@
         "effect": "28% [DA]; +4% [DA] mỗi ô"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/ban-tia.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/rangedtrait.png"
   },
   {
     "name": "Du Mục",
-    "slug": "du-muc",
+    "slug": "summontrait",
     "tier": "S",
     "placement": "4.24",
     "top4": "13.1%",
-    "pick_count": "1.807.963",
-    "pick_percent": "18.2%",
+    "pick_count": "1.805.118",
+    "pick_percent": "18.1%",
     "description": "",
     "milestones": [
       {
@@ -236,16 +236,16 @@
         "effect": "Liên kết giữa Bia và Bayin trở nên sâu sắc hơn Sức mạnh của Bia và Bayin sẽ tăng theo tổng cấp sao của tất cả tướng Du Mục."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/du-muc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/summontrait.png"
   },
   {
     "name": "Thời Không",
-    "slug": "thoi-khong",
+    "slug": "timebreaker",
     "tier": "A",
     "placement": "4.25",
     "top4": "14.5%",
-    "pick_count": "2.064.781",
-    "pick_percent": "20.7%",
+    "pick_count": "2.066.609",
+    "pick_percent": "20.8%",
     "description": "",
     "milestones": [
       {
@@ -261,15 +261,15 @@
         "effect": "VÀ Tướng Thời Không nhận thêm 50% Tốc Độ Đánh Lượt đổi khi Thua: 1 XP khi Thắng: 2"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/thoi-khong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/timebreaker.png"
   },
   {
     "name": "Toán Cướp",
-    "slug": "toan-cuop",
+    "slug": "meleetrait",
     "tier": "A",
     "placement": "4.25",
     "top4": "14.2%",
-    "pick_count": "2.724.424",
+    "pick_count": "2.726.053",
     "pick_percent": "27.4%",
     "description": "",
     "milestones": [
@@ -286,15 +286,15 @@
         "effect": "10% [SV], 60% [AD]."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/toan-cuop.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/meleetrait.png"
   },
   {
     "name": "Định Mệnh",
-    "slug": "dinh-menh",
+    "slug": "fateweaver",
     "tier": "A",
     "placement": "4.26",
     "top4": "12.9%",
-    "pick_count": "1.688.142",
+    "pick_count": "1.692.693",
     "pick_percent": "17.0%",
     "description": "",
     "milestones": [
@@ -307,16 +307,16 @@
         "effect": "Nhận 20% Tỉ Lệ Chí Mạng và 20% Sát Thương Chí Mạng. Đòn chí mạng cũng trở nên May Mắn. Precision: Ability damage can critically strike. Additional Precision grants 10% Critical Strike Damage. May Mắn: Tính toán hai lần, lấy kết quả tốt hơn."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/dinh-menh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/fateweaver.png"
   },
   {
     "name": "Hắc Tinh",
-    "slug": "hac-tinh",
+    "slug": "darkstar",
     "tier": "A",
     "placement": "4.28",
-    "top4": "14.2%",
-    "pick_count": "3.809.858",
-    "pick_percent": "38.3%",
+    "top4": "14.1%",
+    "pick_count": "3.808.280",
+    "pick_percent": "38.2%",
     "description": "",
     "milestones": [
       {
@@ -332,15 +332,15 @@
         "effect": "Tất cả tướng Hắc Tinh sẽ hóa siêu khổng lồ. Ở cấp 10, NUỐT CHỬNG TẤT CẢ."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/hac-tinh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/darkstar.png"
   },
   {
     "name": "Dẫn Truyền",
-    "slug": "dan-truyen",
+    "slug": "manatrait",
     "tier": "A",
     "placement": "4.28",
     "top4": "14.3%",
-    "pick_count": "1.715.323",
+    "pick_count": "1.714.192",
     "pick_percent": "17.2%",
     "description": "Đội của bạn được tăng Hồi Năng Lượng, tướng Dẫn Truyền nhận được nhiều hơn.",
     "milestones": [
@@ -361,15 +361,15 @@
         "effect": "3 [Mana Regen] | 9 [Mana Regen]"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/dan-truyen.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/manatrait.png"
   },
   {
     "name": "Siêu Linh",
-    "slug": "sieu-linh",
+    "slug": "psyops",
     "tier": "A",
     "placement": "4.30",
-    "top4": "12.7%",
-    "pick_count": "1.671.343",
+    "top4": "12.8%",
+    "pick_count": "1.673.856",
     "pick_percent": "16.8%",
     "description": "",
     "milestones": [
@@ -382,27 +382,27 @@
         "effect": "Nhận X, trang bị Siêu Linh sẽ có thêm hiệu ứng trên các tướng Siêu Linh"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/sieu-linh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/psyops.png"
   },
   {
     "name": "Thợ Săn Vũ Trụ",
-    "slug": "tho-san-vu-tru",
+    "slug": "zeduniquetrait",
     "tier": "A",
     "placement": "4.31",
     "top4": "19.0%",
-    "pick_count": "166.665",
+    "pick_count": "166.944",
     "pick_percent": "1.7%",
     "description": "Zed được nhận từ nâng cấp Zed Kẻ Xâm Lăng. Khi còn ít nhất một phân thân tồn tại, Zed nhận thêm 40% Sức Mạnh Công Kích.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tho-san-vu-tru.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/zeduniquetrait.png"
   },
   {
     "name": "Tộc Thượng Cổ",
-    "slug": "toc-thuong-co",
+    "slug": "primordian",
     "tier": "A",
     "placement": "4.32",
     "top4": "11.4%",
-    "pick_count": "908.626",
+    "pick_count": "909.180",
     "pick_percent": "9.1%",
     "description": "",
     "milestones": [
@@ -411,15 +411,15 @@
         "effect": "Sinh ra thêm 45% Bầy Đàn! Sau mỗi giao tranh người chơi, nhận 1 tướng 1 vàng hoặc 2 vàng ngẫu nhiên. 8% sát thương gánh chịu được tính vào sát thương gây ra."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/toc-thuong-co.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/primordian.png"
   },
   {
     "name": "Viễn Chinh",
-    "slug": "vien-chinh",
+    "slug": "flextrait",
     "tier": "A",
     "placement": "4.32",
     "top4": "14.0%",
-    "pick_count": "2.781.565",
+    "pick_count": "2.780.879",
     "pick_percent": "27.9%",
     "description": "Bắt đầu giao tranh: Tướng Đỡ Đòn của bạn nhận được Lá Chắn trong 15 giây. Các đồng minh khác của bạn nhận được Khuếch Đại Sát Thương. Tướng Viễn Chinh nhận gấp đôi.",
     "milestones": [
@@ -444,15 +444,15 @@
         "effect": "700 Lá Chắn; 27% [DA]"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/vien-chinh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/flextrait.png"
   },
   {
     "name": "Nhân Bản",
-    "slug": "nhan-ban",
+    "slug": "aptrait",
     "tier": "A",
     "placement": "4.34",
     "top4": "13.4%",
-    "pick_count": "1.524.270",
+    "pick_count": "1.525.342",
     "pick_percent": "15.3%",
     "description": "",
     "milestones": [
@@ -465,15 +465,15 @@
         "effect": "45% sức mạnh"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/nhan-ban.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/aptrait.png"
   },
   {
     "name": "Can Trường",
-    "slug": "can-truong",
+    "slug": "resisttank",
     "tier": "A",
     "placement": "4.35",
     "top4": "14.3%",
-    "pick_count": "3.417.377",
+    "pick_count": "3.420.219",
     "pick_percent": "34.3%",
     "description": "Đội của bạn nhận 15 Giáp và Kháng Phép. Tướng Can Trường nhận được nhiều hơn, và giá trị tăng gấp đôi trong 10 giây đầu của giao tranh.",
     "milestones": [
@@ -490,15 +490,15 @@
         "effect": "60 [Armor][MR]; Tướng không phải Can Trường nhận thêm 20 [Armor][MR]."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/can-truong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/resisttank.png"
   },
   {
     "name": "Đấu Sĩ",
-    "slug": "dau-si",
+    "slug": "hptank",
     "tier": "A",
     "placement": "4.37",
     "top4": "13.6%",
-    "pick_count": "4.599.446",
+    "pick_count": "4.603.457",
     "pick_percent": "46.2%",
     "description": "",
     "milestones": [
@@ -515,27 +515,27 @@
         "effect": "+65% Máu tối đa"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/dau-si.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/hptank.png"
   },
   {
     "name": "Tiên Tri",
-    "slug": "tien-tri",
+    "slug": "tahmkenchuniquetrait",
     "tier": "A",
     "placement": "4.37",
-    "top4": "14.5%",
-    "pick_count": "2.934.941",
+    "top4": "14.6%",
+    "pick_count": "2.939.815",
     "pick_percent": "29.5%",
     "description": "Mỗi @Rounds@ vòng, Tahm Kench sẽ cho 1 phần thưởng! Số Vòng Còn Lại: X Phần Thưởng Cuối:",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tien-tri.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tahmkenchuniquetrait.png"
   },
   {
     "name": "Chiêm Tinh - Heo Rừng",
-    "slug": "chiem-tinh-heo-rung",
+    "slug": "stargazer",
     "tier": "A",
     "placement": "4.39",
     "top4": "13.8%",
-    "pick_count": "255.586",
+    "pick_count": "255.755",
     "pick_percent": "2.6%",
     "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Heo Rừng. Nhận vàng khi thắng giao tranh người chơi. Đồng minh trên ô cường hóa nhận thêm 8% Máu, Sức Mạnh Công Kích và Sức Mạnh Phép Thuật. Tướng Chiêm Tinh nhận nhiều hơn. (Vàng Kiếm Được: X)",
     "milestones": [
@@ -556,15 +556,15 @@
         "effect": "6 vàng, 22% [Health], 30% [AD][AP]"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-heo-rung.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/stargazer.png"
   },
   {
     "name": "Tinh Linh Chuông",
-    "slug": "tinh-linh-chuong",
+    "slug": "astronaut",
     "tier": "A",
     "placement": "4.41",
     "top4": "13.2%",
-    "pick_count": "1.435.924",
+    "pick_count": "1.437.036",
     "pick_percent": "14.4%",
     "description": "",
     "milestones": [
@@ -585,27 +585,27 @@
         "effect": "6 [icon], 500 [Health]. TRIỆU HỒI TỨ ĐẠI MEEP CHÚA! Thời gian nhân bản = Giá tướng"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tinh-linh-chuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/astronaut.png"
   },
   {
     "name": "U Sầu",
-    "slug": "u-sau",
+    "slug": "vexuniquetrait",
     "tier": "A",
     "placement": "4.43",
     "top4": "16.8%",
-    "pick_count": "800.340",
+    "pick_count": "801.118",
     "pick_percent": "8.0%",
     "description": "Bắt đầu giao tranh: Đánh dấu Buồn Bực lên tất cả kẻ địch. Lần đầu tiên kẻ địch chịu sát thương mỗi giao tranh, Buồn Bực sẽ được tiêu thụ, đánh cắp 12% Sức Mạnh Công Kích và Sức Mạnh Phép Thuật từ chúng để trao cho Vex mạnh nhất của bạn.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/u-sau.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/vexuniquetrait.png"
   },
   {
     "name": "Chiêm Tinh - Ngọn Núi",
-    "slug": "chiem-tinh-ngon-nui",
+    "slug": "stargazer",
     "tier": "A",
     "placement": "4.45",
     "top4": "16.1%",
-    "pick_count": "367.813",
+    "pick_count": "367.966",
     "pick_percent": "3.7%",
     "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Ngọn Núi Mỗi 5 giao tranh người chơi, nhận 1 Ấn Chiêm Tinh. Tướng Chiêm Tinh trên ô cường hóa nhận thêm chỉ số. (Giao Tranh Còn Lại: 5)",
     "milestones": [
@@ -634,15 +634,15 @@
         "effect": "VÀ các chỉ số thưởng khác +10% Mỗi cấp người chơi sẽ mở thêm ô."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-ngon-nui.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/stargazer.png"
   },
   {
     "name": "Chiêm Tinh - Đền Thờ",
-    "slug": "chiem-tinh-den-tho",
+    "slug": "stargazer",
     "tier": "A",
     "placement": "4.45",
     "top4": "13.6%",
-    "pick_count": "256.496",
+    "pick_count": "257.139",
     "pick_percent": "2.6%",
     "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Đền Thờ.",
     "milestones": [
@@ -651,15 +651,15 @@
         "effect": "Khi BẤT KỲ tướng nào bị hạ gục, họ được hiến tế cho Đền Thờ. Đồng minh đứng trên ô cường hóa nhận thêm 8% Máu và 8% Tốc Độ Đánh. Sau 60 lần hiến tế, các tướng Chiêm Tinh ở ô cường hóa nhận thêm 20% [Health] và 18% [AS] Hiến tế: (X / 60) Mỗi cấp người chơi sẽ mở thêm ô."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-den-tho.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/stargazer.png"
   },
   {
     "name": "Hành Tinh",
-    "slug": "hanh-tinh",
+    "slug": "spacegroove",
     "tier": "A",
     "placement": "4.46",
     "top4": "13.0%",
-    "pick_count": "3.357.281",
+    "pick_count": "3.359.193",
     "pick_percent": "33.7%",
     "description": "",
     "milestones": [
@@ -680,15 +680,15 @@
         "effect": "Get your Groove on! The Groove: X [AS], X [HP Regen]"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/hanh-tinh.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/spacegroove.png"
   },
   {
     "name": "Tiên Phong",
-    "slug": "tien-phong",
+    "slug": "shieldtank",
     "tier": "A",
     "placement": "4.49",
     "top4": "13.5%",
-    "pick_count": "3.989.458",
+    "pick_count": "3.988.871",
     "pick_percent": "40.1%",
     "description": "Bắt đầu giao tranh và khi còn 50% Máu: Nhận một Lá Chắn theo Máu tối đa trong 10 giây.",
     "milestones": [
@@ -705,15 +705,15 @@
         "effect": "40% Máu tối đa; 8% [DR] khi có Lá Chắn"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/tien-phong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/shieldtank.png"
   },
   {
     "name": "Thần Phán",
-    "slug": "than-phan",
+    "slug": "admin",
     "tier": "B",
-    "placement": "4.59",
+    "placement": "4.60",
     "top4": "10.1%",
-    "pick_count": "1.213.283",
+    "pick_count": "1.214.092",
     "pick_percent": "12.2%",
     "description": "",
     "milestones": [
@@ -726,15 +726,15 @@
         "effect": "Hệ quả sẽ mạnh hơn."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/than-phan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/admin.png"
   },
   {
     "name": "Chiêm Tinh - Huy Chương",
-    "slug": "chiem-tinh-huy-chuong",
+    "slug": "stargazer",
     "tier": "B",
     "placement": "4.60",
     "top4": "14.1%",
-    "pick_count": "368.263",
+    "pick_count": "368.397",
     "pick_percent": "3.7%",
     "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Huy Chương.",
     "milestones": [
@@ -743,15 +743,15 @@
         "effect": "Đồng minh trên ô cường hóa nhận 12% Khuếch Đại Sát Thương, tăng thêm 5% với mỗi tướng 3 sao. (Thưởng Hiện Tại: X [DA]) Mỗi cấp người chơi sẽ mở thêm ô."
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-huy-chuong.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/stargazer.png"
   },
   {
     "name": "Chiêm Tinh - Nữ Thợ Săn",
-    "slug": "chiem-tinh-nu-tho-san",
+    "slug": "stargazer",
     "tier": "B",
     "placement": "4.60",
     "top4": "10.7%",
-    "pick_count": "224.103",
+    "pick_count": "224.558",
     "pick_percent": "2.3%",
     "description": "Trận này, tướng Chiêm Tinh dệt nên chòm sao: Nữ Thợ Săn. Bắt đầu giao tranh: Đánh dấu kẻ địch có lượng Máu cao nhất. Đồng minh trên ô cường hóa nhận thêm 15% Tốc Độ Đánh. Tướng Chiêm Tinh trên ô cường hóa nhận được nhiều hơn và hồi máu bằng 15% Máu tối đa của họ khi một kẻ địch bị đánh dấu tử trận.",
     "milestones": [
@@ -768,15 +768,15 @@
         "effect": "55% [AS], 7 đánh dấu Mỗi cấp người chơi sẽ mở thêm ô"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/chiem-tinh-nu-tho-san.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/stargazer.png"
   },
   {
     "name": "Máy Móc",
-    "slug": "may-moc",
+    "slug": "mecha",
     "tier": "B",
     "placement": "4.65",
-    "top4": "14.1%",
-    "pick_count": "490.757",
+    "top4": "14.2%",
+    "pick_count": "488.653",
     "pick_percent": "4.9%",
     "description": "",
     "milestones": [
@@ -793,39 +793,39 @@
         "effect": "Cơ Khí Chuẩn Xác: +1 số lượng tướng tối đa Sử dụng trang bị Máy Biến Hình để chuyển đổi dạng cho các tướng Máy Móc của bạn"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/may-moc.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/mecha.png"
   },
   {
     "name": "Tối Tân",
-    "slug": "toi-tan",
+    "slug": "gravestrait",
     "tier": "B",
     "placement": "4.66",
     "top4": "15.9%",
-    "pick_count": "678.190",
+    "pick_count": "679.780",
     "pick_percent": "6.8%",
     "description": "Sau khi tham gia giao tranh, mở 1 kho vũ khí để mua 1 nâng cấp vĩnh viễn cho Graves mạnh nhất của bạn. Cứ mỗi 3 nâng cấp, các nâng cấp trong tương lai sẽ lâu hơn một vòng. Nâng Cấp Tiếp Theo: X Vòng.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/toi-tan.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/gravestrait.png"
   },
   {
     "name": "Xạ Thần",
-    "slug": "xa-than",
+    "slug": "missfortuneuniquetrait",
     "tier": "C",
     "placement": "4.77",
     "top4": "9.5%",
-    "pick_count": "318.685",
+    "pick_count": "318.533",
     "pick_percent": "3.2%",
     "description": "Khi bạn triển khai Miss Fortune, chọn giữa Chế Độ Dẫn Truyền, Chế Độ Thách Đấu và Chế Độ Nhân Bản. Miss Fortune sẽ có kỹ năng riêng biệt tùy theo chế độ và nhận được tộc/hệ tương ứng.",
     "milestones": [],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/xa-than.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/missfortuneuniquetrait.png"
   },
   {
     "name": "Siêu Thú",
-    "slug": "sieu-thu",
+    "slug": "animasquad",
     "tier": "D",
     "placement": "5.54",
     "top4": "12.6%",
-    "pick_count": "339.450",
+    "pick_count": "340.644",
     "pick_percent": "3.4%",
     "description": "Mỗi khi tướng Siêu Thú tích đủ 100 Linh Kiện, họ sẽ thử nghiệm các Vũ Khí Siêu Thú mới. Bạn có thể nhận chúng ngay hoặc tích thêm Linh Kiện để nhận được những vũ khí mạnh mẽ hơn ở lần sau.",
     "milestones": [
@@ -838,6 +838,6 @@
         "effect": "Sau khi thắng 1 vòng giao tranh người chơi, nhận được báu vật!"
       }
     ],
-    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/sieu-thu.png"
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/traits/animasquad.png"
   }
 ]
