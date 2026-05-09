@@ -411,7 +411,7 @@ def delete_comp(
 @router.get("/{comp_id}/champion-items", summary="Gợi ý items cho từng tướng trong đội hình")
 def get_comp_champion_items(
     comp_id: int,
-    top: int = 3,
+    top: int = 5,
     db: Session = Depends(get_db),
 ):
     comp = _get_comp_or_404(comp_id, db)
