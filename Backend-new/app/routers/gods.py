@@ -38,15 +38,6 @@ def get_all_gods(
     
     return gods
 
-@router.get("/by-slug/{slug}", response_model=GodDetailResponse)
-def get_god_by_slug(
-    slug: str,
-    db: Session = Depends(get_db),
-):
-    god = db.query(God).options(joinedload(God.augment)).filter(God.slug == slug).first()
-    if not god:
-        raise HTTPException(status_code=404, detail="Không tìm thấy Thần")
-    return god
 
 @router.get("/{id}", response_model=GodDetailResponse)
 def get_god_details(

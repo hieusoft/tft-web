@@ -43,7 +43,7 @@ const rankValue: Record<string, number> = { S: 4, A: 3, B: 2, C: 1 };
 
 export default function ChampionsClient({ champions }: { champions: ApiChampionOverview[] }) {
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
-  
+
   // Mặc định sắp xếp theo Tier (Rank) giảm dần (S lên đầu)
   const [sortConfig, setSortConfig] = useState<SortConfig | null>({ key: "rank", direction: "desc" });
 
@@ -116,6 +116,15 @@ export default function ChampionsClient({ champions }: { champions: ApiChampionO
         fontFamily: "system-ui, sans-serif",
       }}
     >
+      <style>{`
+        .desktop-table { display: none; }
+        .mobile-view { display: block; }
+        .mobile-cards { display: flex; flex-direction: column; gap: 12px; }
+        @media (min-width: 768px) {
+          .desktop-table { display: block; }
+          .mobile-view { display: none; }
+        }
+      `}</style>
       <div style={{ maxWidth: 1400, width: "100%", margin: "0 auto" }}>
         <div style={{ marginBottom: 32 }}>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: "#fff", margin: "0 0 8px 0" }}>
@@ -126,15 +135,98 @@ export default function ChampionsClient({ champions }: { champions: ApiChampionO
           </p>
         </div>
 
-        <div
-          style={{
-            backgroundColor: "#1e1e1e",
-            border: "1px solid #2a2a2a",
-            borderRadius: 16,
-            overflowX: "auto",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
-          }}
-        >
+        {/* ── MOBILE VIEW (Sort Buttons + Cards) ── */}
+        <div className="mobile-view">
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 12, color: '#666', fontWeight: 800, textTransform: 'uppercase', marginBottom: 8, letterSpacing: '0.05em' }}>Sắp xếp theo</div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {(['rank', 'cost', 'avg_placement', 'win_rate', 'pick_rate'] as const).map(key => {
+                const labels: any = { rank: 'Tier', cost: 'Vàng', avg_placement: 'Hạng TB', win_rate: 'Win Rate', pick_rate: 'Pick Rate' };
+                const isActive = sortConfig?.key === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => requestSort(key)}
+                    style={{
+                      padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, border: 'none',
+                      backgroundColor: isActive ? '#f0b90b' : '#222', color: isActive ? '#111' : '#aaa',
+                      display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer'
+                    }}
+                  >
+                    {labels[key]} {getSortIndicator(key)}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          <div className="mobile-cards">
+            {sortedChampions.map((champ) => {
+              const costColor = COST_COLORS[champ.cost] || "#6b7280";
+              return (
+                <Link
+                  key={champ.id}
+                  href={`/champions/${champ.slug}`}
+                  style={{ display: 'block', backgroundColor: '#1a1a1e', border: '1px solid #2a2a2a', borderRadius: 12, padding: 14, textDecoration: 'none' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      <div style={{ width: 44, height: 44, position: 'relative', borderRadius: 8, overflow: 'hidden', border: `2px solid ${costColor}`, flexShrink: 0 }}>
+                        <Image src={champ.icon_path} alt={champ.name} fill style={{ objectFit: 'cover' }} />
+                      </div>
+                      <div>
+                        <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: '#fff' }}>{champ.name}</h3>
+                        <div style={{ fontSize: 11, fontWeight: 800, color: '#000', backgroundColor: costColor, padding: '2px 6px', borderRadius: 4, display: 'inline-block', marginTop: 4 }}>
+                          {champ.cost} Vàng
+                        </div>
+                      </div>
+                    </div>
+                    {champ.rank ? (
+                      <span style={{ backgroundColor: RANK_COLORS[champ.rank], color: '#fff', fontSize: 12, fontWeight: 900, padding: '4px 10px', borderRadius: 6 }}>
+                        {champ.rank}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 4, backgroundColor: '#111', borderRadius: 8, padding: 8, border: '1px solid #222' }}>
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Hạng TB</div>
+                      <div style={{ fontSize: 13, fontWeight: 900, color: champ.avg_placement < 4.5 ? "#10b981" : champ.avg_placement > 5 ? "#ef4444" : "#fbbf24", marginTop: 4 }}>
+                        {champ.avg_placement.toFixed(2)}
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'center', borderLeft: '1px solid #222' }}>
+                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Win</div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#e8e8e8', marginTop: 4 }}>{champ.win_rate}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', borderLeft: '1px solid #222' }}>
+                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Pick</div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#3b82f6', marginTop: 4 }}>{champ.pick_rate}</div>
+                    </div>
+                    <div style={{ textAlign: 'center', borderLeft: '1px solid #222' }}>
+                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Trận</div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: '#9ca3af', marginTop: 4 }}>
+                        {typeof champ.games_played === 'number' ? champ.games_played.toLocaleString() : champ.games_played}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── DESKTOP VIEW (Table) ── */}
+        <div className="desktop-table">
+          <div
+            style={{
+              backgroundColor: "#1e1e1e",
+              border: "1px solid #2a2a2a",
+              borderRadius: 16,
+              overflowX: "auto",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
+            }}
+          >
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 1000 }}>
             <thead style={{ backgroundColor: "#181818", borderBottom: "2px solid #2a2a2a" }}>
               <tr>
@@ -146,7 +238,7 @@ export default function ChampionsClient({ champions }: { champions: ApiChampionO
                 >
                   Tướng {getSortIndicator("name")}
                 </th>
-                
+
                 {/* ── CỘT TIER MỚI THÊM ── */}
                 <th
                   style={{ ...thStyle, textAlign: "center" }}
@@ -313,6 +405,7 @@ export default function ChampionsClient({ champions }: { champions: ApiChampionO
               })}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>

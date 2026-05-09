@@ -277,6 +277,9 @@
   flex-wrap: wrap;
 }
 
+
+
+
 /* ── Champion Slot (compact) ────────────────────────────────── */
 .comp-champ-slot {
   position: relative;
@@ -286,9 +289,9 @@
 }
 
 .comp-champ-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
   border: 2px solid;
   overflow: hidden;
   display: flex;
@@ -315,10 +318,13 @@
 }
 
 .comp-champ-item-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #f0b90b;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #1a1a1a;
+  flex-shrink: 0;
 }
 
 .comp-champ-slot--3star .comp-champ-icon {
