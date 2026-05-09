@@ -27,11 +27,11 @@ interface ChampionItemRec {
 
 const TIERS = ["Tất Cả", "S", "A", "B", "C"];
 
-const TIER_CONFIG: Record<string, { bg: string; glow: string; text: string }> = {
-  S: { bg: "linear-gradient(135deg, #ff4655 0%, #ff6b6b 100%)", glow: "0 0 12px rgba(255,70,85,0.4)", text: "#fff" },
-  A: { bg: "linear-gradient(135deg, #f0b90b 0%, #ffd700 100%)", glow: "0 0 12px rgba(240,185,11,0.4)", text: "#000" },
-  B: { bg: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)", glow: "0 0 12px rgba(59,130,246,0.3)", text: "#fff" },
-  C: { bg: "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)", glow: "0 0 12px rgba(139,92,246,0.3)", text: "#fff" },
+const TIER_CONFIG: Record<string, { bg: string; glow: string; text: string; borderColor: string }> = {
+  S: { bg: "rgb(255, 126, 131)", glow: "0 0 12px rgba(255,126,131,0.4)", text: "#000", borderColor: "rgb(255, 126, 131)" },
+  A: { bg: "rgb(255, 191, 127)", glow: "0 0 12px rgba(255,191,127,0.4)", text: "#000", borderColor: "rgb(255, 191, 127)" },
+  B: { bg: "rgb(255, 223, 128)", glow: "0 0 12px rgba(255,223,128,0.3)", text: "#000", borderColor: "rgb(255, 223, 128)" },
+  C: { bg: "rgb(254, 255, 127)", glow: "0 0 12px rgba(254,255,127,0.3)", text: "#000", borderColor: "rgb(254, 255, 127)" },
 };
 
 const COST_BORDER: Record<number, string> = {
@@ -87,6 +87,7 @@ export default function CompsClient({ initialComps }: { initialComps: ApiComp[] 
                     ? { background: TIER_CONFIG[tier]?.bg, color: TIER_CONFIG[tier]?.text }
                     : undefined
                 }
+                suppressHydrationWarning
               >
                 {tier}
               </button>
@@ -106,7 +107,7 @@ export default function CompsClient({ initialComps }: { initialComps: ApiComp[] 
       </div>
 
       {/* ── Comp Rows ── */}
-      <div className="comp-list">
+      <div className="comp-list" style={{ border: 'none' }}>
         {filtered.map((comp) => (
           <CompRow
             key={comp.id}
@@ -147,9 +148,9 @@ function CompRow({
   });
 
   return (
-    <div className={`comp-row ${isExpanded ? "comp-row--expanded" : ""}`} data-comp-row>
+    <div className={`comp-row ${isExpanded ? "comp-row--expanded" : ""}`} data-comp-row style={{ marginBottom: 4, borderRadius: 0, overflow: 'visible' }}>
       {/* Main row */}
-      <div className="comp-row__main" onClick={onToggle}>
+      <div className="comp-row__main" onClick={onToggle} style={{ borderLeft: `5px solid ${tierCfg.borderColor}`, borderRadius: 0 }}>
         <div className="comp-col comp-col--tier">
           <div
             className="comp-tier-badge"
@@ -161,7 +162,7 @@ function CompRow({
 
         <div className="comp-col comp-col--name">
           <div className="comp-name-group">
-            <span className="comp-name">{comp.name}</span>
+            <span className="comp-name" style={{ whiteSpace: 'normal', wordBreak: 'break-word', overflow: 'visible', fontFamily: "'Inter', sans-serif" }}>{comp.name}</span>
             {playstyle && (
               <span className="comp-playstyle-tag" style={{ color: playstyle.color, background: playstyle.bg }}>
                 {playstyle.label}
@@ -171,7 +172,7 @@ function CompRow({
         </div>
 
         <div className="comp-col comp-col--champs">
-          <div className="comp-champs">
+          <div className="comp-champs" style={{ gap: 10 }}>
             {comp.final_board?.map((slot, i) => (
               <ChampionSlot key={i} slot={slot} />
             ))}
@@ -207,7 +208,6 @@ function CompRow({
           </svg>
         </div>
       </div>
-
 
       {/* Mobile champion strip — inline tailwind styles to ensure it only shows on mobile, passing smaller size to ChampionSlot */}
       <div className="flex md:hidden flex-wrap gap-[4px] px-[12px] py-[6px] bg-[#1a1a1a] border-t border-[#222]" onClick={onToggle}>
@@ -523,10 +523,119 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
 }
 
 // ── Champion Items Tab ────────────────────────────────────────────────────────
+// ── Mobile detection hook ────────────────────────────────────────────────────
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
+// ── Item Pill ────────────────────────────────────────────────────────────────
+function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: boolean; isMobile: boolean }) {
+  const [showTip, setShowTip] = useState(false);
+  const tipRef = useRef<HTMLDivElement>(null);
+
+  // Close tooltip on outside click
+  useEffect(() => {
+    if (!showTip) return;
+    const handler = (e: MouseEvent) => {
+      if (tipRef.current && !tipRef.current.contains(e.target as Node)) setShowTip(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showTip]);
+
+  if (isMobile) {
+    // Mobile: icon-only + click tooltip
+    return (
+      <div ref={tipRef} style={{ position: 'relative', flexShrink: 0 }}>
+        <div
+          onClick={() => setShowTip(!showTip)}
+          style={{
+            width: 30, height: 30, borderRadius: 5, overflow: 'hidden',
+            border: isBest ? '1.5px solid rgba(240,185,11,0.5)' : '1.5px solid #2a2a30',
+            background: '#0a0a14', cursor: 'pointer',
+          }}
+        >
+          {item.image && (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img src={item.image} alt={item.name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          )}
+        </div>
+        {showTip && (
+          <div style={{
+            position: 'absolute', bottom: '110%', left: '50%', transform: 'translateX(-50%)',
+            background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+            padding: '8px 10px', minWidth: 140, zIndex: 100,
+            boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
+          }}>
+            <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#e8e8e8', marginBottom: 4 }}>
+              {item.name}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <span style={{ fontSize: '0.55rem', color: '#22c55e' }}>WR {item.win_rate}</span>
+              <span style={{ fontSize: '0.55rem', color: '#888' }}>Pick {item.pick_percent}</span>
+              <span style={{ fontSize: '0.55rem', color: '#888' }}>Pos {item.avg_placement}</span>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Desktop: full pill
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 5,
+      padding: '4px 8px 4px 4px',
+      borderRadius: 6,
+      background: isBest ? 'rgba(240,185,11,0.08)' : '#151518',
+      border: isBest ? '1px solid rgba(240,185,11,0.2)' : '1px solid #1e1e22',
+    }}>
+      <div style={{
+        width: 26, height: 26, borderRadius: 4, overflow: 'hidden',
+        flexShrink: 0, border: '1px solid #2a2a30', background: '#0a0a14',
+      }}>
+        {item.image && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img src={item.image} alt={item.name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        )}
+      </div>
+      <div style={{ minWidth: 60, flex: 1 }}>
+        <div style={{
+          fontSize: '0.62rem', fontWeight: 600,
+          color: isBest ? '#e8e8e8' : '#aaa',
+          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+        }}>
+          {item.name}
+        </div>
+        <div style={{ display: 'flex', gap: 6, marginTop: 1 }}>
+          <span style={{ fontSize: '0.5rem', color: '#22c55e', fontWeight: 600 }}>WR {item.win_rate}</span>
+          <span style={{ fontSize: '0.5rem', color: '#888' }}>Pick {item.pick_percent}</span>
+          <span style={{ fontSize: '0.5rem', color: '#888' }}>Pos {item.avg_placement}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Champion Items Tab — Responsive Table ──────────────────────────────────────
 function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null; loading: boolean }) {
+  const isMobile = useIsMobile();
+
   if (loading) return (
     <div style={{ padding: '40px 24px', textAlign: 'center', color: '#555', fontSize: '0.8rem' }}>
-      Đang tải...
+      <div style={{ display: 'inline-block', width: 20, height: 20, border: '2px solid #333', borderTopColor: '#f0b90b', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+      <div style={{ marginTop: 8 }}>Đang tải trang bị...</div>
     </div>
   );
   if (!items || items.length === 0) return (
@@ -534,71 +643,68 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
       Không có dữ liệu trang bị
     </div>
   );
+
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-      gap: 1,
-      background: '#111',
-    }}>
-      {items.map(champ => (
-        <div key={champ.champion_id} style={{
-          background: '#0f0f12',
-          padding: '14px 16px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 10,
-        }}>
-          {/* Champion header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+    <div style={{ background: '#0e0e10', width: '100%' }}>
+      {/* Table header */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: isMobile ? '90px 1fr' : '200px 1fr',
+        padding: isMobile ? '6px 10px' : '8px 14px',
+        borderBottom: '1px solid #1e1e1e',
+        background: '#0a0a0d',
+      }}>
+        <span style={{ fontSize: '0.6rem', fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: 'center', borderRight: '1px solid #1e1e1e', paddingRight: 14 }}>
+          Tướng
+        </span>
+        <span style={{ fontSize: '0.6rem', fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: 'center' }}>
+          Trang Bị Đề Xuất
+        </span>
+      </div>
+
+      {/* Champion rows */}
+      {items.map((champ, champIdx) => (
+        <div
+          key={champ.champion_id}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '90px 1fr' : '200px 1fr',
+            alignItems: 'center',
+            padding: isMobile ? '7px 10px' : '8px 14px',
+            borderBottom: '1px solid #1a1a1e',
+            background: champIdx % 2 === 0 ? '#0f0f12' : '#0c0c0f',
+            transition: 'background 0.15s',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = '#151518')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = champIdx % 2 === 0 ? '#0f0f12' : '#0c0c0f')}
+        >
+          {/* Champion info */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0, borderRight: '1px solid #1e1e1e', paddingRight: 14, paddingLeft: 60 }}>
             <div style={{
-              width: 36, height: 36, borderRadius: 6, overflow: 'hidden',
+              width: isMobile ? 28 : 32, height: isMobile ? 28 : 32, borderRadius: 6, overflow: 'hidden',
               border: `2px solid ${COST_BORDER[1] ?? '#6b7280'}`,
               flexShrink: 0, background: '#1a1a2e',
             }}>
               {champ.icon_path && (
-                // eslint-disable-next-line @next/next/no-img-element
+                /* eslint-disable-next-line @next/next/no-img-element */
                 <img src={champ.icon_path} alt={champ.champion_name}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               )}
             </div>
-            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#e8e8e8' }}>
+            <span style={{
+              fontSize: isMobile ? '0.6rem' : '0.72rem', fontWeight: 600, color: '#ddd',
+              overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            }}>
               {champ.champion_name}
             </span>
           </div>
-          {/* Recommended items */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+
+          {/* Items */}
+          <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
             {champ.recommended_items.length === 0 ? (
-              <span style={{ fontSize: '0.65rem', color: '#444' }}>Không có dữ liệu</span>
+              <span style={{ fontSize: '0.6rem', color: '#444' }}>—</span>
             ) : champ.recommended_items.map((item, idx) => (
-              <div key={item.id} style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                padding: '5px 8px', borderRadius: 6,
-                background: idx === 0 ? 'rgba(240,185,11,0.06)' : '#0a0a0d',
-                border: idx === 0 ? '1px solid rgba(240,185,11,0.2)' : '1px solid #1a1a1e',
-              }}>
-                <span style={{ fontSize: '0.58rem', fontWeight: 700, color: '#f0b90b', minWidth: 14 }}>#{idx + 1}</span>
-                <div style={{
-                  width: 28, height: 28, borderRadius: 5, overflow: 'hidden',
-                  flexShrink: 0, border: '1px solid #333', background: '#0a0a14',
-                }}>
-                  {item.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={item.image} alt={item.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  )}
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#ccc', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {item.name}
-                  </div>
-                  <div style={{ display: 'flex', gap: 8, marginTop: 2 }}>
-                    <span style={{ fontSize: '0.55rem', color: '#22c55e' }}>WR {item.win_rate}</span>
-                    <span style={{ fontSize: '0.55rem', color: '#888' }}>Pick {item.pick_percent}</span>
-                    <span style={{ fontSize: '0.55rem', color: '#888' }}>Pos {item.avg_placement}</span>
-                  </div>
-                </div>
-              </div>
+              <ItemPill key={item.id} item={item} isBest={idx === 0} isMobile={isMobile} />
             ))}
           </div>
         </div>
@@ -777,7 +883,7 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
 
 // ── Champion Slot (compact, row view) ────────────────────────────────────────
 
-function ChampionSlot({ slot, size = 64, itemSize = 20 }: { slot: CompBoardSlot, size?: number, itemSize?: number }) {
+function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot, size?: number, itemSize?: number }) {
   if (!slot.champion) return null;
   const champ = slot.champion;
   const borderColor = COST_BORDER[champ.cost] ?? "#6b7280";
