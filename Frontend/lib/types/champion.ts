@@ -8,6 +8,7 @@ export interface ApiSkill {
 export interface ApiChampion {
   id: number;
   name: string;
+  slug: string | null;
   cost: number;
   accent_color: string | null;
   icon_path: string | null;

@@ -83,13 +83,7 @@ def bulk_sync_augments(
         db.rollback()
         raise HTTPException(status_code=500, detail=f"Lỗi khi xóa/nạp dữ liệu: {str(e)}")
 
-@router.get("/{id}", response_model=AugmentResponse)
-def get_augment_details(id: int, db: Session = Depends(get_db)):
-    augment = db.query(Augment).filter(Augment.id == id).first()
-    if not augment:
-        raise HTTPException(status_code=404, detail="Không tìm thấy Lõi này")
-    return augment
-    
+
 @router.patch("/{id}", response_model=AugmentResponse)
 def update_augment(
     id: int,

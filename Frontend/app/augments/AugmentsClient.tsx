@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
 import type { ApiAugment } from "@/lib/api-client";
 
 const RANK_COLOR: Record<string, string> = {
@@ -44,6 +43,19 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
 
   return (
     <div style={{ background: "#111111", minHeight: "100vh" }}>
+      <style>{`
+        @keyframes shimmer {
+          0%   { background-position: -200% 0; }
+          100% { background-position:  200% 0; }
+        }
+        .aug-skeleton {
+          background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+          background-size: 200% 100%;
+          animation: shimmer 1.2s infinite;
+        }
+        .aug-img { opacity: 0; transition: opacity 0.18s ease; }
+        .aug-img.loaded { opacity: 1; }
+      `}</style>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 16px" }}>
 
         {/* Controls */}
@@ -71,7 +83,7 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
           <div style={{ position: "relative", marginLeft: "auto" }}>
             <input type="text" value={search} suppressHydrationWarning
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Tìmlõi..."
+              placeholder="Tìm lõi..."
               style={{
                 height: 32, width: 200, borderRadius: 6,
                 background: "#1e1e1e", border: "1px solid #2a2a2a",
@@ -91,7 +103,7 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
         {/* Rank Groups */}
         {groups.length === 0 ? (
           <div style={{ textAlign: "center", padding: "64px 0", color: "#4b5563", fontSize: 14 }}>
-            Không tìm thấylõi nào
+            Không tìm thấy lõi nào
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -132,32 +144,39 @@ function RankRow({ rank, color, items }: { rank: string; color: string; items: A
 
 function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string }) {
   const [imgErr, setImgErr] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [showTip, setShowTip] = useState(false);
-  const [tipPos, setTipPos] = useState({ top: 0, left: 0, above: true });
+  const [tipPos, setTipPos] = useState({ top: 0, left: 0 });
   const ref = useRef<HTMLDivElement>(null);
-  const tipRef = useRef<HTMLDivElement>(null);
   const tierMeta = TIER_META[aug.tier ?? 0];
 
-  useEffect(() => {
-    if (!showTip || !ref.current || !tipRef.current) return;
+  // Fix: ảnh cached không fire onLoad → kiểm tra img.complete ngay khi mount
+  const handleImgRef = useCallback((el: HTMLImageElement | null) => {
+    if (el && el.complete && el.naturalWidth > 0) {
+      setLoaded(true);
+    }
+  }, []);
+
+  // Tính position ngay khi hover — không dùng useEffect để tránh infinite loop
+  const handleMouseEnter = () => {
+    if (!ref.current) { setShowTip(true); return; }
     const rect = ref.current.getBoundingClientRect();
     const TIP_W = 240;
-    const TIP_H = tipRef.current.offsetHeight;
+    // Ước lượng chiều cao tooltip (không cần đo DOM)
+    const TIP_H = aug.description ? 120 : 70;
     const above = rect.top - TIP_H - 8 >= 0;
-
     let left = rect.left + rect.width / 2 - TIP_W / 2;
-    let top = above ? rect.top - TIP_H - 8 : rect.bottom + 8;
-
+    const top = above ? rect.top - TIP_H - 8 : rect.bottom + 8;
     if (left + TIP_W > window.innerWidth - 8) left = window.innerWidth - TIP_W - 8;
     if (left < 8) left = 8;
-
-    setTipPos({ top, left, above });
-  });
+    setTipPos({ top, left });
+    setShowTip(true);
+  };
 
   return (
     <div
       ref={ref}
-      onMouseEnter={() => setShowTip(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setShowTip(false)}
       style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, width: 60, cursor: "default" }}
     >
@@ -171,14 +190,36 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
         boxShadow: showTip ? `0 0 12px ${rankColor}55` : "none",
         transform: showTip ? "scale(1.08)" : "scale(1)",
       }}>
+        {/* Shimmer skeleton — hiện khi đang load */}
+        {!loaded && !imgErr && aug.image && (
+          <div className="aug-skeleton" style={{ position: "absolute", inset: 0, borderRadius: 8 }} />
+        )}
+
         {aug.image && !imgErr ? (
-          <Image src={aug.image} alt={aug.name} fill sizes="52px"
-            className="object-contain p-0.5"
-            onError={() => setImgErr(true)}
+          // ⚡ Native <img> + loading="lazy" + decoding="async"
+          // next/image không phù hợp cho 300+ icon nhỏ 52px — gây nhiều network round-trips
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            ref={handleImgRef}
+            src={aug.image}
+            alt={aug.name}
+            loading="lazy"
+            decoding="async"
+            width={52}
+            height={52}
+            onLoad={() => setLoaded(true)}
+            onError={() => { setImgErr(true); setLoaded(true); }}
+            style={{
+              width: "100%", height: "100%",
+              objectFit: "contain", padding: 2,
+              opacity: loaded ? 1 : 0,
+              transition: "opacity 0.18s ease",
+            }}
           />
         ) : (
           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>✨</div>
         )}
+
         {tierMeta && (
           <div style={{
             position: "absolute", bottom: 2, right: 2,
@@ -198,9 +239,9 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
         {aug.name}
       </span>
 
-      {/* Tooltip — dùng fixed để không bị overflow: hidden cắt mất */}
+      {/* Tooltip — render chỉ khi hover */}
       {showTip && (
-        <div ref={tipRef} style={{
+        <div style={{
           position: "fixed",
           top: tipPos.top,
           left: tipPos.left,
@@ -209,12 +250,20 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
           borderRadius: 10, padding: "12px 14px",
           boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
           pointerEvents: "none",
-          opacity: tipPos.top === 0 ? 0 : 1,
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <div style={{ width: 32, height: 32, borderRadius: 6, overflow: "hidden", position: "relative", flexShrink: 0, background: "#111" }}>
+            <div style={{ width: 32, height: 32, borderRadius: 6, overflow: "hidden", flexShrink: 0, background: "#111" }}>
               {aug.image && !imgErr ? (
-                <Image src={aug.image} alt={aug.name} fill sizes="32px" className="object-contain" />
+                // Ảnh tooltip: đã cached sẵn từ icon — không cần lazy
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={aug.image}
+                  alt={aug.name}
+                  decoding="async"
+                  width={32}
+                  height={32}
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                />
               ) : <span style={{ fontSize: 16 }}>✨</span>}
             </div>
             <div>

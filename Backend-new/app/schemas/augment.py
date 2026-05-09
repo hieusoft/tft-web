@@ -3,6 +3,7 @@ from typing import Optional, List
 
 class AugmentBase(BaseModel):
     name: str
+    slug: Optional[str] = None
     description: Optional[str] = None
     tier: Optional[int] = None
     rank: Optional[str] = None

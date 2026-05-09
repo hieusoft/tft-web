@@ -11,6 +11,7 @@ class AugmentBase(BaseModel):
 
 class GodBase(BaseModel):
     name: Optional[str] = None
+    slug: Optional[str] = None
     trait: Optional[str] = None
     rank: Optional[str] = None
     is_unique: Optional[int] = Field(default=None, alias="unique") 
@@ -18,6 +19,7 @@ class GodBase(BaseModel):
     image: Optional[str] = None
     boon_augment_id: Optional[int] = None
     model_config = ConfigDict(populate_by_name=True)
+
 
 class GodResponse(GodBase):
     id: int

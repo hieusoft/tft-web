@@ -78,8 +78,12 @@ class TftApiClient {
     return (await this.get<ApiTrait[]>("/api/v1/traits/", opts)) ?? [];
   }
 
-  async getTrait(id: number, opts?: FetchOptions): Promise<ApiTrait | null> {
-    return this.get<ApiTrait>(`/api/v1/traits/${id}`, opts);
+  async getTrait(slug: string, opts?: FetchOptions): Promise<ApiTrait | null> {
+    return this.get<ApiTrait>(`/api/v1/traits/${slug}`, opts);
+  }
+
+  async getTraitBySlug(slug: string, opts?: FetchOptions): Promise<ApiTrait | null> {
+    return this.get<ApiTrait>(`/api/v1/traits/${slug}`, opts);
   }
 
   async getChampions(opts?: FetchOptions): Promise<ApiChampion[]> {
@@ -113,6 +117,7 @@ class TftApiClient {
   }
 
   async getAugments(opts?: FetchOptions): Promise<ApiAugment[]> {
+    // TODO: đổi lại thành /api/v1/augments/ sau khi deploy backend mới
     return (await this.get<ApiAugment[]>("/api/v1/augemnts/", opts)) ?? [];
   }
 
@@ -123,12 +128,23 @@ class TftApiClient {
     return this.get<ApiAugment>(`/api/v1/augemnts/${id}`, opts);
   }
 
+  async getAugmentBySlug(
+    slug: string,
+    opts?: FetchOptions
+  ): Promise<ApiAugment | null> {
+    return this.get<ApiAugment>(`/api/v1/augemnts/${slug}`, opts);
+  }
+
   async getGods(opts?: FetchOptions): Promise<ApiGodListItem[]> {
     return (await this.get<ApiGodListItem[]>("/api/v1/gods/", opts)) ?? [];
   }
 
   async getGod(id: number, opts?: FetchOptions): Promise<ApiGodDetail | null> {
     return this.get<ApiGodDetail>(`/api/v1/gods/${id}`, opts);
+  }
+
+  async getGodBySlug(slug: string, opts?: FetchOptions): Promise<ApiGodDetail | null> {
+    return this.get<ApiGodDetail>(`/api/v1/gods/by-slug/${slug}`, opts);
   }
 
   // ── Comps ─────────────────────────────────────────────────────────────────

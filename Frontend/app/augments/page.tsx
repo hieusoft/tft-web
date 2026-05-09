@@ -6,11 +6,11 @@ import apiClient from "@/lib/api-client";
 import AugmentsClient from "./AugmentsClient";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Tier Listlõi TFT",
+  title: "Tier List Lõi TFT",
   description:
-    "Tier listlõi TFT đầy đủ xếp hạng theo tỷ lệ thắng và vị trí trung bình. Tìmlõi Bạc, Vàng và Huyền Thoại tốt nhất.",
+    "Tier list lõi TFT đầy đủ xếp hạng theo tỷ lệ thắng và vị trí trung bình. Tìm lõi Bạc, Vàng và Huyền Thoại tốt nhất.",
   path: "/augments",
-  keywords: ["Lõi TFT", "tier listlõi TFT", "Lõi huyền thoại TFT"],
+  keywords: ["Lõi TFT", "tier list lõi TFT", "Lõi huyền thoại TFT", "augment TFT"],
 });
 
 const jsonLd = [
