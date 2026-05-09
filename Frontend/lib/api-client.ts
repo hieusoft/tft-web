@@ -118,21 +118,21 @@ class TftApiClient {
 
   async getAugments(opts?: FetchOptions): Promise<ApiAugment[]> {
     // TODO: đổi lại thành /api/v1/augments/ sau khi deploy backend mới
-    return (await this.get<ApiAugment[]>("/api/v1/augemnts/", opts)) ?? [];
+    return (await this.get<ApiAugment[]>("/api/v1/augments/", opts)) ?? [];
   }
 
   async getAugment(
     id: number,
     opts?: FetchOptions
   ): Promise<ApiAugment | null> {
-    return this.get<ApiAugment>(`/api/v1/augemnts/${id}`, opts);
+    return this.get<ApiAugment>(`/api/v1/augments/${id}`, opts);
   }
 
   async getAugmentBySlug(
     slug: string,
     opts?: FetchOptions
   ): Promise<ApiAugment | null> {
-    return this.get<ApiAugment>(`/api/v1/augemnts/${slug}`, opts);
+    return this.get<ApiAugment>(`/api/v1/augments/${slug}`, opts);
   }
 
   async getGods(opts?: FetchOptions): Promise<ApiGodListItem[]> {
