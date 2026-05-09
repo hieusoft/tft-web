@@ -8,11 +8,10 @@ class God(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), index=True)
-    slug = Column(String(100), unique=True, index=True, nullable=True)
     trait = Column(String(100))
     rank = Column(String(10))
     is_unique = Column("unique", Integer, default=0) 
     stages = Column(JSONB) 
     image = Column(String(255))
     boon_augment_id = Column(Integer, ForeignKey("augments.id"), nullable=True)
-    augment = relationship("Augment", backref="gods")
+    augment = relationship("Augment", backref="gods")

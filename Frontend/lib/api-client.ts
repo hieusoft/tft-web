@@ -143,9 +143,7 @@ class TftApiClient {
     return this.get<ApiGodDetail>(`/api/v1/gods/${id}`, opts);
   }
 
-  async getGodBySlug(slug: string, opts?: FetchOptions): Promise<ApiGodDetail | null> {
-    return this.get<ApiGodDetail>(`/api/v1/gods/by-slug/${slug}`, opts);
-  }
+
 
   // ── Comps ─────────────────────────────────────────────────────────────────
 
