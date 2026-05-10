@@ -1,0 +1,667 @@
+[
+  {
+    "id": 1,
+    "champion_id": 1,
+    "trait_id": 1
+  },
+  {
+    "id": 2,
+    "champion_id": 2,
+    "trait_id": 17
+  },
+  {
+    "id": 3,
+    "champion_id": 2,
+    "trait_id": 2
+  },
+  {
+    "id": 4,
+    "champion_id": 2,
+    "trait_id": 12
+  },
+  {
+    "id": 5,
+    "champion_id": 3,
+    "trait_id": 3
+  },
+  {
+    "id": 6,
+    "champion_id": 3,
+    "trait_id": 24
+  },
+  {
+    "id": 7,
+    "champion_id": 4,
+    "trait_id": 4
+  },
+  {
+    "id": 8,
+    "champion_id": 5,
+    "trait_id": 5
+  },
+  {
+    "id": 9,
+    "champion_id": 5,
+    "trait_id": 20
+  },
+  {
+    "id": 10,
+    "champion_id": 5,
+    "trait_id": 14
+  },
+  {
+    "id": 11,
+    "champion_id": 6,
+    "trait_id": 6
+  },
+  {
+    "id": 12,
+    "champion_id": 6,
+    "trait_id": 40
+  },
+  {
+    "id": 13,
+    "champion_id": 6,
+    "trait_id": 15
+  },
+  {
+    "id": 14,
+    "champion_id": 7,
+    "trait_id": 28
+  },
+  {
+    "id": 15,
+    "champion_id": 7,
+    "trait_id": 18
+  },
+  {
+    "id": 16,
+    "champion_id": 8,
+    "trait_id": 7
+  },
+  {
+    "id": 17,
+    "champion_id": 8,
+    "trait_id": 32
+  },
+  {
+    "id": 18,
+    "champion_id": 8,
+    "trait_id": 33
+  },
+  {
+    "id": 19,
+    "champion_id": 9,
+    "trait_id": 11
+  },
+  {
+    "id": 20,
+    "champion_id": 9,
+    "trait_id": 8
+  },
+  {
+    "id": 21,
+    "champion_id": 10,
+    "trait_id": 13
+  },
+  {
+    "id": 22,
+    "champion_id": 10,
+    "trait_id": 10
+  },
+  {
+    "id": 23,
+    "champion_id": 11,
+    "trait_id": 19
+  },
+  {
+    "id": 24,
+    "champion_id": 12,
+    "trait_id": 28
+  },
+  {
+    "id": 25,
+    "champion_id": 12,
+    "trait_id": 16
+  },
+  {
+    "id": 26,
+    "champion_id": 13,
+    "trait_id": 22
+  },
+  {
+    "id": 27,
+    "champion_id": 13,
+    "trait_id": 8
+  },
+  {
+    "id": 28,
+    "champion_id": 13,
+    "trait_id": 15
+  },
+  {
+    "id": 29,
+    "champion_id": 14,
+    "trait_id": 32
+  },
+  {
+    "id": 30,
+    "champion_id": 14,
+    "trait_id": 23
+  },
+  {
+    "id": 31,
+    "champion_id": 15,
+    "trait_id": 20
+  },
+  {
+    "id": 32,
+    "champion_id": 15,
+    "trait_id": 15
+  },
+  {
+    "id": 33,
+    "champion_id": 16,
+    "trait_id": 17
+  },
+  {
+    "id": 34,
+    "champion_id": 16,
+    "trait_id": 10
+  },
+  {
+    "id": 35,
+    "champion_id": 17,
+    "trait_id": 13
+  },
+  {
+    "id": 36,
+    "champion_id": 17,
+    "trait_id": 16
+  },
+  {
+    "id": 37,
+    "champion_id": 18,
+    "trait_id": 17
+  },
+  {
+    "id": 38,
+    "champion_id": 18,
+    "trait_id": 21
+  },
+  {
+    "id": 39,
+    "champion_id": 19,
+    "trait_id": 37
+  },
+  {
+    "id": 40,
+    "champion_id": 19,
+    "trait_id": 21
+  },
+  {
+    "id": 41,
+    "champion_id": 20,
+    "trait_id": 11
+  },
+  {
+    "id": 42,
+    "champion_id": 20,
+    "trait_id": 25
+  },
+  {
+    "id": 43,
+    "champion_id": 21,
+    "trait_id": 26
+  },
+  {
+    "id": 44,
+    "champion_id": 21,
+    "trait_id": 25
+  },
+  {
+    "id": 45,
+    "champion_id": 22,
+    "trait_id": 11
+  },
+  {
+    "id": 46,
+    "champion_id": 22,
+    "trait_id": 15
+  },
+  {
+    "id": 47,
+    "champion_id": 23,
+    "trait_id": 22
+  },
+  {
+    "id": 48,
+    "champion_id": 23,
+    "trait_id": 25
+  },
+  {
+    "id": 49,
+    "champion_id": 24,
+    "trait_id": 20
+  },
+  {
+    "id": 50,
+    "champion_id": 24,
+    "trait_id": 25
+  },
+  {
+    "id": 51,
+    "champion_id": 25,
+    "trait_id": 11
+  },
+  {
+    "id": 52,
+    "champion_id": 25,
+    "trait_id": 24
+  },
+  {
+    "id": 53,
+    "champion_id": 26,
+    "trait_id": 29
+  },
+  {
+    "id": 54,
+    "champion_id": 27,
+    "trait_id": 17
+  },
+  {
+    "id": 55,
+    "champion_id": 27,
+    "trait_id": 25
+  },
+  {
+    "id": 56,
+    "champion_id": 28,
+    "trait_id": 37
+  },
+  {
+    "id": 57,
+    "champion_id": 28,
+    "trait_id": 25
+  },
+  {
+    "id": 58,
+    "champion_id": 28,
+    "trait_id": 15
+  },
+  {
+    "id": 59,
+    "champion_id": 29,
+    "trait_id": 27
+  },
+  {
+    "id": 60,
+    "champion_id": 29,
+    "trait_id": 16
+  },
+  {
+    "id": 61,
+    "champion_id": 30,
+    "trait_id": 17
+  },
+  {
+    "id": 62,
+    "champion_id": 30,
+    "trait_id": 14
+  },
+  {
+    "id": 63,
+    "champion_id": 30,
+    "trait_id": 23
+  },
+  {
+    "id": 64,
+    "champion_id": 31,
+    "trait_id": 11
+  },
+  {
+    "id": 65,
+    "champion_id": 31,
+    "trait_id": 16
+  },
+  {
+    "id": 66,
+    "champion_id": 32,
+    "trait_id": 28
+  },
+  {
+    "id": 67,
+    "champion_id": 32,
+    "trait_id": 10
+  },
+  {
+    "id": 68,
+    "champion_id": 33,
+    "trait_id": 32
+  },
+  {
+    "id": 69,
+    "champion_id": 33,
+    "trait_id": 14
+  },
+  {
+    "id": 70,
+    "champion_id": 34,
+    "trait_id": 28
+  },
+  {
+    "id": 71,
+    "champion_id": 34,
+    "trait_id": 14
+  },
+  {
+    "id": 72,
+    "champion_id": 34,
+    "trait_id": 21
+  },
+  {
+    "id": 73,
+    "champion_id": 35,
+    "trait_id": 36
+  },
+  {
+    "id": 74,
+    "champion_id": 35,
+    "trait_id": 14
+  },
+  {
+    "id": 75,
+    "champion_id": 36,
+    "trait_id": 27
+  },
+  {
+    "id": 76,
+    "champion_id": 36,
+    "trait_id": 23
+  },
+  {
+    "id": 77,
+    "champion_id": 37,
+    "trait_id": 17
+  },
+  {
+    "id": 78,
+    "champion_id": 37,
+    "trait_id": 18
+  },
+  {
+    "id": 79,
+    "champion_id": 37,
+    "trait_id": 33
+  },
+  {
+    "id": 80,
+    "champion_id": 38,
+    "trait_id": 27
+  },
+  {
+    "id": 81,
+    "champion_id": 38,
+    "trait_id": 24
+  },
+  {
+    "id": 82,
+    "champion_id": 39,
+    "trait_id": 27
+  },
+  {
+    "id": 83,
+    "champion_id": 39,
+    "trait_id": 33
+  },
+  {
+    "id": 84,
+    "champion_id": 40,
+    "trait_id": 28
+  },
+  {
+    "id": 85,
+    "champion_id": 40,
+    "trait_id": 24
+  },
+  {
+    "id": 86,
+    "champion_id": 41,
+    "trait_id": 27
+  },
+  {
+    "id": 87,
+    "champion_id": 41,
+    "trait_id": 10
+  },
+  {
+    "id": 88,
+    "champion_id": 42,
+    "trait_id": 27
+  },
+  {
+    "id": 89,
+    "champion_id": 42,
+    "trait_id": 12
+  },
+  {
+    "id": 90,
+    "champion_id": 43,
+    "trait_id": 36
+  },
+  {
+    "id": 91,
+    "champion_id": 43,
+    "trait_id": 18
+  },
+  {
+    "id": 92,
+    "champion_id": 44,
+    "trait_id": 13
+  },
+  {
+    "id": 93,
+    "champion_id": 44,
+    "trait_id": 25
+  },
+  {
+    "id": 94,
+    "champion_id": 44,
+    "trait_id": 23
+  },
+  {
+    "id": 95,
+    "champion_id": 45,
+    "trait_id": 32
+  },
+  {
+    "id": 96,
+    "champion_id": 45,
+    "trait_id": 10
+  },
+  {
+    "id": 97,
+    "champion_id": 46,
+    "trait_id": 28
+  },
+  {
+    "id": 98,
+    "champion_id": 46,
+    "trait_id": 24
+  },
+  {
+    "id": 99,
+    "champion_id": 47,
+    "trait_id": 20
+  },
+  {
+    "id": 100,
+    "champion_id": 47,
+    "trait_id": 21
+  },
+  {
+    "id": 101,
+    "champion_id": 48,
+    "trait_id": 38
+  },
+  {
+    "id": 102,
+    "champion_id": 49,
+    "trait_id": 32
+  },
+  {
+    "id": 103,
+    "champion_id": 49,
+    "trait_id": 33
+  },
+  {
+    "id": 104,
+    "champion_id": 50,
+    "trait_id": 40
+  },
+  {
+    "id": 105,
+    "champion_id": 50,
+    "trait_id": 33
+  },
+  {
+    "id": 106,
+    "champion_id": 50,
+    "trait_id": 14
+  },
+  {
+    "id": 107,
+    "champion_id": 51,
+    "trait_id": 40
+  },
+  {
+    "id": 108,
+    "champion_id": 51,
+    "trait_id": 22
+  },
+  {
+    "id": 109,
+    "champion_id": 51,
+    "trait_id": 10
+  },
+  {
+    "id": 110,
+    "champion_id": 52,
+    "trait_id": 36
+  },
+  {
+    "id": 111,
+    "champion_id": 52,
+    "trait_id": 33
+  },
+  {
+    "id": 112,
+    "champion_id": 53,
+    "trait_id": 32
+  },
+  {
+    "id": 113,
+    "champion_id": 53,
+    "trait_id": 12
+  },
+  {
+    "id": 114,
+    "champion_id": 54,
+    "trait_id": 37
+  },
+  {
+    "id": 115,
+    "champion_id": 54,
+    "trait_id": 18
+  },
+  {
+    "id": 116,
+    "champion_id": 55,
+    "trait_id": 20
+  },
+  {
+    "id": 117,
+    "champion_id": 55,
+    "trait_id": 18
+  },
+  {
+    "id": 118,
+    "champion_id": 56,
+    "trait_id": 39
+  },
+  {
+    "id": 119,
+    "champion_id": 56,
+    "trait_id": null
+  },
+  {
+    "id": 120,
+    "champion_id": 57,
+    "trait_id": 13
+  },
+  {
+    "id": 121,
+    "champion_id": 57,
+    "trait_id": 12
+  },
+  {
+    "id": 122,
+    "champion_id": 58,
+    "trait_id": 28
+  },
+  {
+    "id": 123,
+    "champion_id": 58,
+    "trait_id": 12
+  },
+  {
+    "id": 124,
+    "champion_id": 59,
+    "trait_id": 32
+  },
+  {
+    "id": 125,
+    "champion_id": 59,
+    "trait_id": 24
+  },
+  {
+    "id": 126,
+    "champion_id": 60,
+    "trait_id": 28
+  },
+  {
+    "id": 127,
+    "champion_id": 60,
+    "trait_id": 23
+  },
+  {
+    "id": 128,
+    "champion_id": 61,
+    "trait_id": 40
+  },
+  {
+    "id": 129,
+    "champion_id": 61,
+    "trait_id": 21
+  },
+  {
+    "id": 130,
+    "champion_id": 62,
+    "trait_id": 36
+  },
+  {
+    "id": 131,
+    "champion_id": 62,
+    "trait_id": 8
+  },
+  {
+    "id": 132,
+    "champion_id": 63,
+    "trait_id": 40
+  },
+  {
+    "id": 133,
+    "champion_id": 63,
+    "trait_id": 8
+  }
+]

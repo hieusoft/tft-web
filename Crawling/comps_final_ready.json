@@ -1,0 +1,7126 @@
+[
+    {
+        "name": "Briar Tộc Thượng Cổ",
+        "tier": "S",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.11,
+        "pick_rate": 0.48,
+        "win_rate": 12.1,
+        "top4_rate": 58.8,
+        "final_board": [
+            {
+                "champion": 51,
+                "is_three_star": true,
+                "items": [
+                    12,
+                    17,
+                    30
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 13,
+                "is_three_star": true,
+                "items": [
+                    1,
+                    27,
+                    32
+                ],
+                "position": {
+                    "hex": 7,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 23,
+                "is_three_star": true,
+                "items": [
+                    6,
+                    3,
+                    19
+                ],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 16,
+                "is_three_star": false,
+                "items": [
+                    8,
+                    13,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 9,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 22,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                16,
+                22,
+                9
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-2",
+            "level_6": "3-6",
+            "level_7": "4-3",
+            "level_8": "5-2",
+            "level_9": "6-3"
+        },
+        "carousel_priority": [
+            45,
+            43,
+            42,
+            40,
+            39,
+            41,
+            37,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            31,
+            112,
+            44,
+            113
+        ]
+    },
+    {
+        "name": "Master Yi Toán Cướp",
+        "tier": "S",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.11,
+        "pick_rate": 0.84,
+        "win_rate": 14.5,
+        "top4_rate": 57.5,
+        "final_board": [
+            {
+                "champion": 15,
+                "is_three_star": false,
+                "items": [
+                    149,
+                    14,
+                    1
+                ],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 9,
+                "is_three_star": false,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    3,
+                    7,
+                    19
+                ],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 6,
+                "is_three_star": false,
+                "items": [
+                    14,
+                    1,
+                    20
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 1,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 9,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 28,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 7,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 13,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 24,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                16,
+                57,
+                17,
+                44,
+                22,
+                24,
+                20,
+                28
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-1",
+            "level_9": "5-5",
+            "level_10": "7-1"
+        },
+        "carousel_priority": [
+            45,
+            42,
+            41,
+            43,
+            39,
+            40,
+            37,
+            38,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Karma Hắc Tinh",
+        "tier": "S",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.22,
+        "pick_rate": 0.32,
+        "win_rate": 14.7,
+        "top4_rate": 55.0,
+        "final_board": [
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    18,
+                    11,
+                    23
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    3,
+                    19
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 16,
+                "is_three_star": false,
+                "items": [
+                    29,
+                    8,
+                    13
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [
+                    8,
+                    1,
+                    13
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 8,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                27,
+                30,
+                37,
+                16,
+                44,
+                34,
+                50,
+                57,
+                17
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-3",
+            "level_10": "7-3"
+        },
+        "carousel_priority": [
+            45,
+            39,
+            43,
+            37,
+            41,
+            42,
+            38,
+            40,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            3,
+            10,
+            86,
+            98
+        ]
+    },
+    {
+        "name": "Corki Tinh Linh Chuông",
+        "tier": "S",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.24,
+        "pick_rate": 0.57,
+        "win_rate": 12.5,
+        "top4_rate": 55.5,
+        "final_board": [
+            {
+                "champion": 12,
+                "is_three_star": false,
+                "items": [
+                    127,
+                    21,
+                    16
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    22,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [
+                    12,
+                    17,
+                    30
+                ],
+                "position": {
+                    "hex": 20,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    6,
+                    3
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 32,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 46,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                46,
+                60,
+                58,
+                34,
+                32,
+                57,
+                17,
+                44,
+                12,
+                40
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "6-1",
+            "level_10": "7-5"
+        },
+        "carousel_priority": [
+            45,
+            41,
+            43,
+            39,
+            40,
+            37,
+            42,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Kai'Sa Hắc Tinh",
+        "tier": "S",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.24,
+        "pick_rate": 0.21,
+        "win_rate": 13.7,
+        "top4_rate": 54.4,
+        "final_board": [
+            {
+                "champion": 16,
+                "is_three_star": true,
+                "items": [
+                    29,
+                    8,
+                    13
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": true,
+                "items": [
+                    22,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    11,
+                    24,
+                    10
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                27,
+                30,
+                37,
+                16,
+                50,
+                34,
+                18
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "5-1",
+            "level_9": "6-2"
+        },
+        "carousel_priority": [
+            45,
+            39,
+            37,
+            43,
+            41,
+            40,
+            42,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            3,
+            10,
+            86,
+            98
+        ]
+    },
+    {
+        "name": "Milio Lulu Chiêm Tinh - Ngọn Núi",
+        "tier": "S",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.24,
+        "pick_rate": 0.43,
+        "win_rate": 16.0,
+        "top4_rate": 54.1,
+        "final_board": [
+            {
+                "champion": 36,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    28,
+                    28
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": true,
+                "items": [
+                    129,
+                    34,
+                    10
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": true,
+                "items": [
+                    22,
+                    2,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": true,
+                "items": [
+                    129,
+                    7,
+                    4
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 29,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 26,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                25,
+                41,
+                29,
+                38,
+                44,
+                36,
+                17,
+                20
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "6-1",
+            "level_9": "7-1"
+        },
+        "carousel_priority": [
+            38,
+            43,
+            41,
+            37,
+            42,
+            40,
+            39,
+            45,
+            46,
+            44
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Nunu & Willump Hắc Tinh",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.27,
+        "pick_rate": 0.16,
+        "win_rate": 14.0,
+        "top4_rate": 53.9,
+        "final_board": [
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    18,
+                    6,
+                    6
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 16,
+                "is_three_star": false,
+                "items": [
+                    29,
+                    8,
+                    13
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    11,
+                    13,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [
+                    21,
+                    8,
+                    13
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                16,
+                57,
+                30,
+                17,
+                37,
+                44
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-5",
+            "level_10": "7-3"
+        },
+        "carousel_priority": [
+            45,
+            39,
+            37,
+            43,
+            41,
+            42,
+            40,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            3,
+            10,
+            86,
+            98
+        ]
+    },
+    {
+        "name": "Twisted Fate Định Mệnh",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.29,
+        "pick_rate": 0.35,
+        "win_rate": 11.5,
+        "top4_rate": 54.6,
+        "final_board": [
+            {
+                "champion": 29,
+                "is_three_star": true,
+                "items": [
+                    28,
+                    28,
+                    24
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": true,
+                "items": [
+                    22,
+                    2,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 31,
+                "is_three_star": true,
+                "items": [
+                    21,
+                    5,
+                    1
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 41,
+                "is_three_star": true,
+                "items": [
+                    14,
+                    33,
+                    10
+                ],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 12,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 17,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 24,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                25,
+                41,
+                29,
+                38,
+                31,
+                45,
+                17,
+                12
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-2",
+            "level_6": "4-1",
+            "level_7": "4-6",
+            "level_8": "5-6",
+            "level_9": "6-6"
+        },
+        "carousel_priority": [
+            38,
+            41,
+            43,
+            42,
+            45,
+            39,
+            40,
+            37,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            44,
+            113,
+            36,
+            139
+        ]
+    },
+    {
+        "name": "Viktor Viễn Chinh",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.3,
+        "pick_rate": 0.09,
+        "win_rate": 9.4,
+        "top4_rate": 54.2,
+        "final_board": [
+            {
+                "champion": 55,
+                "is_three_star": true,
+                "items": [
+                    150,
+                    11,
+                    1
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": true,
+                "items": [
+                    15,
+                    2,
+                    7
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 14,
+                "is_three_star": false,
+                "items": [
+                    24,
+                    10,
+                    23
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": true,
+                "items": [
+                    2,
+                    25,
+                    3
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 47,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                30,
+                37,
+                47,
+                55,
+                34,
+                50,
+                4
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "5-3",
+            "level_9": "7-2"
+        },
+        "carousel_priority": [
+            38,
+            37,
+            41,
+            43,
+            39,
+            40,
+            42,
+            45,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            44,
+            33,
+            141,
+            113
+        ]
+    },
+    {
+        "name": "LeBlanc Du Mục",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.32,
+        "pick_rate": 0.08,
+        "win_rate": 11.8,
+        "top4_rate": 53.4,
+        "final_board": [
+            {
+                "champion": 35,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    11,
+                    24
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    134,
+                    34,
+                    23
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    35,
+                    3,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    35,
+                    3
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 5,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 52,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 33,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                33,
+                43,
+                30,
+                34,
+                50,
+                37
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-5",
+            "level_10": "7-2"
+        },
+        "carousel_priority": [
+            38,
+            37,
+            42,
+            43,
+            41,
+            40,
+            39,
+            45,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            3,
+            25,
+            14,
+            73
+        ]
+    },
+    {
+        "name": "Teemo Tiên Phong",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.33,
+        "pick_rate": 0.42,
+        "win_rate": 10.0,
+        "top4_rate": 54.2,
+        "final_board": [
+            {
+                "champion": 33,
+                "is_three_star": true,
+                "items": [
+                    5,
+                    1,
+                    24
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 52,
+                "is_three_star": true,
+                "items": [
+                    2,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 43,
+                "is_three_star": true,
+                "items": [
+                    34,
+                    10,
+                    23
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 49,
+                "is_three_star": true,
+                "items": [
+                    3,
+                    4
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 14,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 18,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 16,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                33,
+                43,
+                30,
+                37,
+                50
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-2",
+            "level_6": "4-1",
+            "level_7": "4-5",
+            "level_8": "5-3",
+            "level_9": "6-3"
+        },
+        "carousel_priority": [
+            38,
+            42,
+            41,
+            43,
+            40,
+            37,
+            39,
+            45,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            136,
+            141,
+            44,
+            7
+        ]
+    },
+    {
+        "name": "Xayah Hắc Tinh",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.42,
+        "pick_rate": 0.08,
+        "win_rate": 15.7,
+        "top4_rate": 50.7,
+        "final_board": [
+            {
+                "champion": 42,
+                "is_three_star": false,
+                "items": [
+                    124,
+                    1,
+                    31
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    6,
+                    7
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [
+                    8,
+                    16,
+                    13
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    141,
+                    11,
+                    10
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 16,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                57,
+                30,
+                17,
+                44,
+                37,
+                16
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-5",
+            "level_10": "7-2"
+        },
+        "carousel_priority": [
+            45,
+            42,
+            39,
+            41,
+            43,
+            38,
+            37,
+            40,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            3,
+            10,
+            86,
+            98
+        ]
+    },
+    {
+        "name": "Bel'Veth Tộc Thượng Cổ",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.44,
+        "pick_rate": 0.09,
+        "win_rate": 8.8,
+        "top4_rate": 52.5,
+        "final_board": [
+            {
+                "champion": 13,
+                "is_three_star": true,
+                "items": [
+                    127,
+                    27,
+                    32
+                ],
+                "position": {
+                    "hex": 7,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 23,
+                "is_three_star": true,
+                "items": [
+                    15,
+                    3,
+                    4
+                ],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 9,
+                "is_three_star": false,
+                "items": [
+                    21,
+                    5,
+                    31
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 51,
+                "is_three_star": true,
+                "items": [
+                    125,
+                    12,
+                    30
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 22,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 31,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                23,
+                22,
+                13,
+                20,
+                25,
+                9
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "1-4",
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-5",
+            "level_7": "4-3",
+            "level_8": "5-2",
+            "level_9": "6-2"
+        },
+        "carousel_priority": [
+            45,
+            39,
+            42,
+            43,
+            40,
+            41,
+            37,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            31,
+            112,
+            44,
+            113
+        ]
+    },
+    {
+        "name": "Xayah Bắn Tỉa",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.47,
+        "pick_rate": 0.24,
+        "win_rate": 18.3,
+        "top4_rate": 49.2,
+        "final_board": [
+            {
+                "champion": 42,
+                "is_three_star": false,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    6,
+                    7
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [
+                    21,
+                    8,
+                    1
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 7,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 58,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 26,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                25,
+                31,
+                41,
+                29,
+                38,
+                45,
+                4
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-5",
+            "level_10": "7-2"
+        },
+        "carousel_priority": [
+            42,
+            41,
+            43,
+            45,
+            38,
+            39,
+            40,
+            37,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            38,
+            34,
+            33,
+            141
+        ]
+    },
+    {
+        "name": "Nunu & Willump Tiên Phong",
+        "tier": "A",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.49,
+        "pick_rate": 0.2,
+        "win_rate": 16.2,
+        "top4_rate": 49.3,
+        "final_board": [
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    6,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 26,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    33,
+                    1
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 8,
+                "is_three_star": false,
+                "items": [
+                    11,
+                    13,
+                    20
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 7,
+                "is_three_star": false,
+                "items": [
+                    24,
+                    10,
+                    23
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 5,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 6,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                33,
+                43,
+                30,
+                34,
+                37,
+                50
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-5",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-1",
+            "level_10": "6-5"
+        },
+        "carousel_priority": [
+            38,
+            37,
+            42,
+            39,
+            41,
+            43,
+            40,
+            45,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Urgot Máy Móc",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.55,
+        "pick_rate": 0.14,
+        "win_rate": 11.6,
+        "top4_rate": 49.1,
+        "final_board": [
+            {
+                "champion": 28,
+                "is_three_star": true,
+                "items": [
+                    8,
+                    1,
+                    27
+                ],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 61,
+                "is_three_star": true,
+                "items": [
+                    24,
+                    31,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": true,
+                "items": [
+                    2,
+                    25,
+                    4
+                ],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": true,
+                "items": [
+                    6,
+                    2,
+                    7
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 22,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                23,
+                13,
+                28,
+                22,
+                20,
+                4,
+                61,
+                19
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "6-1",
+            "level_9": "7-3"
+        },
+        "carousel_priority": [
+            43,
+            39,
+            45,
+            40,
+            41,
+            37,
+            38,
+            42,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            125,
+            84,
+            16,
+            68
+        ]
+    },
+    {
+        "name": "LeBlanc Tiên Phong",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.65,
+        "pick_rate": 0.15,
+        "win_rate": 9.8,
+        "top4_rate": 46.6,
+        "final_board": [
+            {
+                "champion": 35,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    1,
+                    24
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    6,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    34,
+                    10,
+                    23
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    3,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 43,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 52,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 6,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                33,
+                43,
+                30,
+                37,
+                50
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-6",
+            "level_10": "7-3"
+        },
+        "carousel_priority": [
+            38,
+            37,
+            42,
+            41,
+            43,
+            40,
+            39,
+            45,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            38,
+            7
+        ]
+    },
+    {
+        "name": "Tahm Kench Xayah Bắn Tỉa",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.65,
+        "pick_rate": 0.03,
+        "win_rate": 16.4,
+        "top4_rate": 46.2,
+        "final_board": [
+            {
+                "champion": 42,
+                "is_three_star": false,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    4,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    18,
+                    22,
+                    6
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [
+                    129,
+                    8,
+                    13
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 57,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 41,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 12,
+                    "row": 1
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                61,
+                57,
+                23,
+                13,
+                17,
+                44,
+                41
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-3",
+            "level_10": "7-1"
+        },
+        "carousel_priority": [
+            42,
+            43,
+            45,
+            41,
+            39,
+            38,
+            40,
+            37,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            38,
+            34,
+            33,
+            141
+        ]
+    },
+    {
+        "name": "Nami Hành Tinh",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.69,
+        "pick_rate": 0.09,
+        "win_rate": 12.1,
+        "top4_rate": 45.8,
+        "final_board": [
+            {
+                "champion": 14,
+                "is_three_star": false,
+                "items": [
+                    11,
+                    28,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [
+                    142,
+                    14,
+                    11
+                ],
+                "position": {
+                    "hex": 14,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    25,
+                    3,
+                    7
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 8,
+                "is_three_star": false,
+                "items": [
+                    11,
+                    13,
+                    20
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 59,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 45,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 9,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                33,
+                45,
+                59,
+                51,
+                57,
+                23,
+                13,
+                17,
+                44,
+                30,
+                37,
+                43,
+                50
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-6"
+        },
+        "carousel_priority": [
+            37,
+            43,
+            41,
+            39,
+            38,
+            40,
+            42,
+            45,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            102,
+            3,
+            141,
+            44
+        ]
+    },
+    {
+        "name": "Ezreal Thời Không",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.69,
+        "pick_rate": 0.26,
+        "win_rate": 14.6,
+        "top4_rate": 44.9,
+        "final_board": [
+            {
+                "champion": 57,
+                "is_three_star": true,
+                "items": [
+                    21,
+                    8,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": true,
+                "items": [
+                    22,
+                    6,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [
+                    12,
+                    17,
+                    30
+                ],
+                "position": {
+                    "hex": 20,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": true,
+                "items": [
+                    6,
+                    3,
+                    19
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 16,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                27,
+                57,
+                17,
+                44,
+                30,
+                16,
+                20,
+                21
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-2",
+            "level_6": "4-1",
+            "level_7": "4-3",
+            "level_8": "5-1",
+            "level_9": "6-1",
+            "level_10": "7-3"
+        },
+        "carousel_priority": [
+            45,
+            43,
+            41,
+            39,
+            37,
+            40,
+            42,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            36
+        ]
+    },
+    {
+        "name": "Nami Viễn Chinh",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.7,
+        "pick_rate": 0.03,
+        "win_rate": 9.8,
+        "top4_rate": 45.8,
+        "final_board": [
+            {
+                "champion": 14,
+                "is_three_star": false,
+                "items": [
+                    29,
+                    11,
+                    10
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    6,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    33,
+                    11,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    3,
+                    7
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                30,
+                46,
+                60,
+                34,
+                27,
+                57,
+                17,
+                44,
+                52,
+                49,
+                33,
+                37,
+                50,
+                43
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            37,
+            38,
+            43,
+            41,
+            39,
+            42,
+            40,
+            45,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            3,
+            25,
+            14,
+            73
+        ]
+    },
+    {
+        "name": "Viktor Miss Fortune Dẫn Truyền",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.7,
+        "pick_rate": 0.04,
+        "win_rate": 7.0,
+        "top4_rate": 46.2,
+        "final_board": [
+            {
+                "champion": 56,
+                "is_three_star": true,
+                "items": [
+                    21,
+                    8,
+                    1
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 55,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    1,
+                    24
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 59,
+                "is_three_star": true,
+                "items": [
+                    26,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [
+                    3,
+                    7,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 24,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                24,
+                20,
+                56,
+                55,
+                25,
+                59,
+                4
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "6-1"
+        },
+        "carousel_priority": [
+            43,
+            41,
+            45,
+            39,
+            37,
+            38,
+            40,
+            42,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            102,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Veigar Tinh Linh Chuông",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.71,
+        "pick_rate": 0.06,
+        "win_rate": 9.9,
+        "top4_rate": 45.5,
+        "final_board": [
+            {
+                "champion": 60,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    1,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    2,
+                    25
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 46,
+                "is_three_star": true,
+                "items": [
+                    22,
+                    6,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    13,
+                    10
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 12,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 6,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                30,
+                46,
+                60,
+                34,
+                37,
+                50,
+                40
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-2",
+            "level_6": "3-5",
+            "level_7": "4-2",
+            "level_8": "5-1",
+            "level_9": "6-1",
+            "level_10": "7-3"
+        },
+        "carousel_priority": [
+            43,
+            38,
+            41,
+            37,
+            42,
+            39,
+            40,
+            45,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            38,
+            36,
+            7,
+            29
+        ]
+    },
+    {
+        "name": "Xayah Chiêm Tinh - Ngọn Núi",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.73,
+        "pick_rate": 0.09,
+        "win_rate": 14.9,
+        "top4_rate": 45.2,
+        "final_board": [
+            {
+                "champion": 42,
+                "is_three_star": false,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    176,
+                    15,
+                    6
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [
+                    129,
+                    12,
+                    17
+                ],
+                "position": {
+                    "hex": 12,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [
+                    129,
+                    8,
+                    13
+                ],
+                "position": {
+                    "hex": 26,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 3,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 36,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 41,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                25,
+                41,
+                29,
+                38,
+                31,
+                36,
+                37
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-3",
+            "level_10": "7-3"
+        },
+        "carousel_priority": [
+            38,
+            42,
+            45,
+            41,
+            43,
+            39,
+            40,
+            37,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            38,
+            34,
+            33,
+            141
+        ]
+    },
+    {
+        "name": "Cho'Gath Hắc Tinh",
+        "tier": "B",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.75,
+        "pick_rate": 0.14,
+        "win_rate": 11.1,
+        "top4_rate": 44.2,
+        "final_board": [
+            {
+                "champion": 27,
+                "is_three_star": true,
+                "items": [
+                    22,
+                    7,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 16,
+                "is_three_star": false,
+                "items": [
+                    29,
+                    8,
+                    13
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    28,
+                    28
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    11,
+                    34,
+                    23
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                27,
+                30,
+                37,
+                44,
+                16,
+                50,
+                34
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-3",
+            "level_7": "4-1",
+            "level_8": "4-6",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            45,
+            43,
+            39,
+            37,
+            41,
+            42,
+            40,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            3,
+            10,
+            86,
+            98
+        ]
+    },
+    {
+        "name": "Ornn Hành Tinh",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.76,
+        "pick_rate": 0.1,
+        "win_rate": 8.0,
+        "top4_rate": 44.5,
+        "final_board": [
+            {
+                "champion": 59,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 14,
+                "is_three_star": false,
+                "items": [
+                    141,
+                    11,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 53,
+                "is_three_star": false,
+                "items": [
+                    8,
+                    1,
+                    13
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 8,
+                "is_three_star": false,
+                "items": [
+                    35,
+                    11,
+                    20
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 45,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 9,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 49,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 33,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                33,
+                45,
+                59,
+                53,
+                14,
+                8
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "4-1",
+            "level_8": "4-5",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            37,
+            43,
+            39,
+            41,
+            38,
+            45,
+            40,
+            42,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            151,
+            7,
+            142,
+            139
+        ]
+    },
+    {
+        "name": "Samira Hành Tinh",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.77,
+        "pick_rate": 0.08,
+        "win_rate": 10.7,
+        "top4_rate": 44.1,
+        "final_board": [
+            {
+                "champion": 53,
+                "is_three_star": true,
+                "items": [
+                    21,
+                    8,
+                    10
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 53,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 59,
+                "is_three_star": true,
+                "items": [
+                    15,
+                    25,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 59,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 42,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    33,
+                    16
+                ],
+                "position": {
+                    "hex": 26,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    18,
+                    6,
+                    6
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                27,
+                57,
+                17,
+                44,
+                49,
+                33,
+                45,
+                59,
+                53,
+                46,
+                58,
+                38,
+                40,
+                39,
+                42
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "5-6",
+            "level_9": "7-1"
+        },
+        "carousel_priority": [
+            45,
+            43,
+            41,
+            39,
+            37,
+            42,
+            40,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            33,
+            44,
+            113,
+            139
+        ]
+    },
+    {
+        "name": "Pyke Thời Không",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.77,
+        "pick_rate": 0.02,
+        "win_rate": 4.7,
+        "top4_rate": 45.9,
+        "final_board": [
+            {
+                "champion": 47,
+                "is_three_star": true,
+                "items": [
+                    14,
+                    8,
+                    17
+                ],
+                "position": {
+                    "hex": 24,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 45,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    28,
+                    20
+                ],
+                "position": {
+                    "hex": 7,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": true,
+                "items": [
+                    36,
+                    10,
+                    23
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": true,
+                "items": [
+                    6,
+                    2,
+                    7
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 12,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 14,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 24,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                24,
+                17,
+                44,
+                47,
+                34,
+                45,
+                10
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "4-6",
+            "level_8": "5-6",
+            "level_9": "6-6"
+        },
+        "carousel_priority": [
+            39,
+            43,
+            41,
+            45,
+            37,
+            38,
+            40,
+            42,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            33,
+            44,
+            113,
+            122
+        ]
+    },
+    {
+        "name": "Corki Can Trường",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.78,
+        "pick_rate": 0.04,
+        "win_rate": 8.3,
+        "top4_rate": 44.8,
+        "final_board": [
+            {
+                "champion": 12,
+                "is_three_star": false,
+                "items": [
+                    21,
+                    21,
+                    13
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    22,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 31,
+                "is_three_star": true,
+                "items": [
+                    21,
+                    5,
+                    1
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 46,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 29,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 26,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                25,
+                31,
+                46,
+                29,
+                41,
+                38,
+                59
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-6"
+        },
+        "carousel_priority": [
+            45,
+            41,
+            43,
+            39,
+            42,
+            37,
+            38,
+            40,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Lulu Nhân Bản",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.78,
+        "pick_rate": 0.07,
+        "win_rate": 11.9,
+        "top4_rate": 43.9,
+        "final_board": [
+            {
+                "champion": 36,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    28,
+                    28
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 56,
+                "is_three_star": true,
+                "items": [
+                    129,
+                    21,
+                    10
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 59,
+                "is_three_star": true,
+                "items": [
+                    129,
+                    7,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    18,
+                    6,
+                    6
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                25,
+                41,
+                29,
+                38,
+                31,
+                50,
+                36,
+                56,
+                59,
+                4,
+                39
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "6-1"
+        },
+        "carousel_priority": [
+            43,
+            38,
+            41,
+            37,
+            39,
+            45,
+            42,
+            40,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            44,
+            113,
+            38,
+            7
+        ]
+    },
+    {
+        "name": "Master Yi Đấu Sĩ",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.8,
+        "pick_rate": 0.1,
+        "win_rate": 9.9,
+        "top4_rate": 44.6,
+        "final_board": [
+            {
+                "champion": 15,
+                "is_three_star": false,
+                "items": [
+                    21,
+                    14,
+                    1
+                ],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    3,
+                    19,
+                    4
+                ],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 6,
+                "is_three_star": false,
+                "items": [
+                    14,
+                    1,
+                    20
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 5,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 28,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 7,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 55,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 22,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 24,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                16,
+                57,
+                17,
+                44,
+                22,
+                24,
+                20,
+                28
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-5",
+            "level_10": "7-2"
+        },
+        "carousel_priority": [
+            45,
+            43,
+            41,
+            39,
+            42,
+            40,
+            37,
+            38,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            31,
+            43,
+            3,
+            141
+        ]
+    },
+    {
+        "name": "Tahm Kench N.O.V.A.",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.81,
+        "pick_rate": 0.08,
+        "win_rate": 11.3,
+        "top4_rate": 43.2,
+        "final_board": [
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    2,
+                    3
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 48,
+                "is_three_star": false,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    3,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 6,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 1,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 17,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 3,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 10,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 26,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 22,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                16,
+                22,
+                25,
+                31,
+                20
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-3"
+        },
+        "carousel_priority": [
+            45,
+            39,
+            41,
+            42,
+            43,
+            37,
+            40,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Miss Fortune Nhân Bản",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.82,
+        "pick_rate": 0.02,
+        "win_rate": 8.8,
+        "top4_rate": 43.7,
+        "final_board": [
+            {
+                "champion": 56,
+                "is_three_star": true,
+                "items": [
+                    21,
+                    13,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": true,
+                "items": [
+                    6,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 36,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    28,
+                    10
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 14,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                30,
+                60,
+                44,
+                56,
+                57,
+                17,
+                25,
+                38,
+                36,
+                20,
+                14
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "2-1",
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "5-6"
+        },
+        "carousel_priority": [
+            45,
+            43,
+            39,
+            41,
+            37,
+            40,
+            42,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            102,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Robot Máy Móc",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.83,
+        "pick_rate": 0.05,
+        "win_rate": 11.5,
+        "top4_rate": 42.7,
+        "final_board": [
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    153,
+                    2,
+                    17
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 54,
+                "is_three_star": false,
+                "items": [
+                    159,
+                    11,
+                    23
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 15,
+                "is_three_star": false,
+                "items": [
+                    12,
+                    14,
+                    1
+                ],
+                "position": {
+                    "hex": 16,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    35,
+                    3,
+                    7
+                ],
+                "position": {
+                    "hex": 18,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 28,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 17,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 55,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                61,
+                57,
+                23,
+                13,
+                17,
+                44,
+                28,
+                54,
+                19,
+                15,
+                21
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "1-4",
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-6"
+        },
+        "carousel_priority": [
+            41,
+            38,
+            43,
+            45,
+            39,
+            42,
+            40,
+            37,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            1,
+            44,
+            38,
+            7
+        ]
+    },
+    {
+        "name": "Aurelion Sol Máy Móc",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.84,
+        "pick_rate": 0.19,
+        "win_rate": 15.8,
+        "top4_rate": 43.0,
+        "final_board": [
+            {
+                "champion": 54,
+                "is_three_star": false,
+                "items": [
+                    162,
+                    11,
+                    24
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    153,
+                    154,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    18,
+                    34,
+                    23
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 28,
+                "is_three_star": false,
+                "items": [
+                    8,
+                    16,
+                    20
+                ],
+                "position": {
+                    "hex": 17,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 6,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 16,
+                    "row": 2
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                61,
+                57,
+                23,
+                13,
+                17,
+                44
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-1",
+            "level_9": "5-5"
+        },
+        "carousel_priority": [
+            38,
+            43,
+            41,
+            39,
+            45,
+            37,
+            42,
+            40,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            1,
+            44,
+            38,
+            7
+        ]
+    },
+    {
+        "name": "Karma Viễn Chinh",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.84,
+        "pick_rate": 0.02,
+        "win_rate": 11.0,
+        "top4_rate": 43.0,
+        "final_board": [
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [
+                    11,
+                    28,
+                    28
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    35,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 61,
+                "is_three_star": true,
+                "items": [
+                    162,
+                    11,
+                    28
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [
+                    6,
+                    2,
+                    35
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 5,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 47,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                23,
+                13,
+                47,
+                61,
+                24,
+                34,
+                19,
+                18,
+                37,
+                55
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "2-1",
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-3",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            38,
+            37,
+            43,
+            41,
+            39,
+            40,
+            45,
+            42,
+            44,
+            46
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Pyke Viễn Chinh",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.85,
+        "pick_rate": 0.06,
+        "win_rate": 6.7,
+        "top4_rate": 43.1,
+        "final_board": [
+            {
+                "champion": 47,
+                "is_three_star": true,
+                "items": [
+                    8,
+                    17,
+                    20
+                ],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 24,
+                "is_three_star": true,
+                "items": [
+                    6,
+                    7,
+                    19
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 15,
+                "is_three_star": false,
+                "items": [
+                    12,
+                    14,
+                    1
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 55,
+                "is_three_star": true,
+                "items": [
+                    34
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 30,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                27,
+                30,
+                24,
+                47,
+                34,
+                55,
+                15,
+                21,
+                18
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "4-3",
+            "level_8": "5-2",
+            "level_9": "6-2"
+        },
+        "carousel_priority": [
+            39,
+            45,
+            41,
+            43,
+            37,
+            40,
+            38,
+            42,
+            44,
+            46
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Rammus Can Trường",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.86,
+        "pick_rate": 0.09,
+        "win_rate": 13.2,
+        "top4_rate": 42.5,
+        "final_board": [
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [
+                    15,
+                    6,
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 26,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    33,
+                    1
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 7,
+                "is_three_star": false,
+                "items": [
+                    34,
+                    10,
+                    23
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 8,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 3,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                25,
+                31,
+                41,
+                29,
+                38,
+                57,
+                17,
+                44,
+                52,
+                30,
+                49,
+                33,
+                37,
+                43,
+                50
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "2-5",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "5-1",
+            "level_10": "7-1"
+        },
+        "carousel_priority": [
+            39,
+            38,
+            43,
+            41,
+            42,
+            37,
+            45,
+            40,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Riven Hắc Tinh",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.86,
+        "pick_rate": 0.03,
+        "win_rate": 7.0,
+        "top4_rate": 43.2,
+        "final_board": [
+            {
+                "champion": 16,
+                "is_three_star": false,
+                "items": [
+                    29,
+                    16,
+                    1
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [
+                    124,
+                    125,
+                    12
+                ],
+                "position": {
+                    "hex": 7,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    3,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 2,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                16,
+                45,
+                57,
+                30,
+                37,
+                44,
+                10
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            45,
+            39,
+            43,
+            41,
+            37,
+            42,
+            40,
+            38,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            3,
+            10,
+            86,
+            98
+        ]
+    },
+    {
+        "name": "Vex Hành Tinh",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.87,
+        "pick_rate": 0.43,
+        "win_rate": 14.4,
+        "top4_rate": 44.3,
+        "final_board": [
+            {
+                "champion": 26,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    24,
+                    31
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    22,
+                    6,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 48,
+                "is_three_star": false,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 16,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 8,
+                "is_three_star": false,
+                "items": [
+                    18
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 6,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 1,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 17,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 3,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 10,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 22,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                16,
+                57,
+                17,
+                44,
+                52,
+                30,
+                49,
+                33,
+                37,
+                43,
+                50
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-1",
+            "level_5": "2-5",
+            "level_6": "3-2",
+            "level_7": "3-5",
+            "level_8": "4-2",
+            "level_9": "4-6",
+            "level_10": "6-6"
+        },
+        "carousel_priority": [
+            39,
+            45,
+            42,
+            38,
+            41,
+            43,
+            37,
+            40,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            31,
+            44,
+            113,
+            38
+        ]
+    },
+    {
+        "name": "Illaoi Thần Phán",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.87,
+        "pick_rate": 0.12,
+        "win_rate": 14.9,
+        "top4_rate": 42.8,
+        "final_board": [
+            {
+                "champion": 50,
+                "is_three_star": true,
+                "items": [
+                    146,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 62,
+                "is_three_star": true,
+                "items": [
+                    161,
+                    12,
+                    30
+                ],
+                "position": {
+                    "hex": 6,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 61,
+                "is_three_star": true,
+                "items": [
+                    159,
+                    11,
+                    28
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 63,
+                "is_three_star": true,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 35,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 25,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 52,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                52,
+                61,
+                62,
+                34,
+                35
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "1-4",
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "5-5",
+            "level_9": "6-5"
+        },
+        "carousel_priority": [
+            42,
+            38,
+            41,
+            43,
+            40,
+            45,
+            39,
+            37,
+            44,
+            46
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Kai'Sa Vô Pháp",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.94,
+        "pick_rate": 0.03,
+        "win_rate": 6.6,
+        "top4_rate": 40.7,
+        "final_board": [
+            {
+                "champion": 16,
+                "is_three_star": true,
+                "items": [
+                    29,
+                    8,
+                    1
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 32,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    27,
+                    20
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 59,
+                "is_three_star": true,
+                "items": [
+                    6,
+                    2,
+                    19
+                ],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 4,
+                "is_three_star": true,
+                "items": [
+                    2
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                23,
+                13,
+                16,
+                27,
+                4,
+                34,
+                32,
+                59,
+                18,
+                40
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "6-1"
+        },
+        "carousel_priority": [
+            39,
+            45,
+            43,
+            37,
+            41,
+            40,
+            38,
+            42,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            44,
+            113,
+            38,
+            7
+        ]
+    },
+    {
+        "name": "Rammus Tinh Linh Chuông",
+        "tier": "C",
+        "playstyle": "Trung Bình",
+        "avg_placement": 4.97,
+        "pick_rate": 0.13,
+        "win_rate": 10.3,
+        "top4_rate": 39.1,
+        "final_board": [
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    2,
+                    25
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 60,
+                "is_three_star": true,
+                "items": [
+                    29,
+                    11,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 12,
+                "is_three_star": false,
+                "items": [
+                    21,
+                    8,
+                    1
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 14,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 32,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 58,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 46,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                30,
+                46,
+                60,
+                34,
+                58,
+                32,
+                37,
+                50,
+                12,
+                40
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-5"
+        },
+        "carousel_priority": [
+            41,
+            43,
+            39,
+            37,
+            45,
+            38,
+            42,
+            40,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            38,
+            36,
+            7,
+            29
+        ]
+    },
+    {
+        "name": "Zoe Tiên Phong",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.04,
+        "pick_rate": 0.08,
+        "win_rate": 7.7,
+        "top4_rate": 39.5,
+        "final_board": [
+            {
+                "champion": 43,
+                "is_three_star": true,
+                "items": [
+                    18,
+                    34,
+                    23
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 52,
+                "is_three_star": true,
+                "items": [
+                    2,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 35,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    1,
+                    24
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [
+                    41
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 16,
+                    "row": 2
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                33,
+                43,
+                30,
+                37,
+                50
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-3",
+            "level_7": "4-2",
+            "level_8": "5-2",
+            "level_9": "6-3"
+        },
+        "carousel_priority": [
+            38,
+            37,
+            41,
+            43,
+            42,
+            40,
+            39,
+            45,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            136,
+            141,
+            44,
+            7
+        ]
+    },
+    {
+        "name": "Pantheon Thời Không",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.17,
+        "pick_rate": 0.03,
+        "win_rate": 6.4,
+        "top4_rate": 37.7,
+        "final_board": [
+            {
+                "champion": 44,
+                "is_three_star": true,
+                "items": [
+                    15,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    24,
+                    10
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 10,
+                "is_three_star": false,
+                "items": [
+                    12,
+                    17,
+                    30
+                ],
+                "position": {
+                    "hex": 20,
+                    "row": 2
+                }
+            },
+            {
+                "champion": 57,
+                "is_three_star": true,
+                "items": [
+                    8,
+                    16,
+                    10
+                ],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 31,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                27,
+                57,
+                17,
+                44,
+                31,
+                20,
+                45,
+                10
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "2-1",
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "4-2",
+            "level_8": "5-2",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            43,
+            41,
+            39,
+            45,
+            37,
+            38,
+            40,
+            42,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            36
+        ]
+    },
+    {
+        "name": "Robot Viễn Chinh",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.27,
+        "pick_rate": 0.03,
+        "win_rate": 10.3,
+        "top4_rate": 36.5,
+        "final_board": [
+            {
+                "champion": 19,
+                "is_three_star": false,
+                "items": [
+                    154,
+                    2,
+                    17
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 26,
+                "is_three_star": false,
+                "items": [
+                    5,
+                    33,
+                    1
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 7,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 8,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 3,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 40,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 34,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": null,
+                    "row": null
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                61,
+                57,
+                23,
+                13,
+                17,
+                44,
+                22,
+                20,
+                4,
+                28,
+                19
+            ]
+        },
+        "leveling_guide": {
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-3"
+        },
+        "carousel_priority": [
+            41,
+            43,
+            45,
+            39,
+            38,
+            42,
+            37,
+            40,
+            44,
+            46
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Maokai Đấu Sĩ",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.29,
+        "pick_rate": 0.02,
+        "win_rate": 8.1,
+        "top4_rate": 35.0,
+        "final_board": [
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    3,
+                    7
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [
+                    6,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 27,
+                "is_three_star": true,
+                "items": [
+                    2,
+                    7,
+                    4
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 5,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 15,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 28,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 9,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 24,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 47,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 6,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                27,
+                23,
+                13,
+                30,
+                24,
+                44,
+                28,
+                47,
+                20,
+                21
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "1-4",
+            "level_4": "2-3",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "4-1",
+            "level_8": "4-6",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            43,
+            41,
+            39,
+            45,
+            37,
+            42,
+            40,
+            38,
+            44,
+            46
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Miss Fortune Dẫn Truyền",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.33,
+        "pick_rate": 0.01,
+        "win_rate": 3.7,
+        "top4_rate": 33.3,
+        "final_board": [
+            {
+                "champion": 56,
+                "is_three_star": true,
+                "items": [
+                    21,
+                    8,
+                    16
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 55,
+                "is_three_star": true,
+                "items": [
+                    150,
+                    11,
+                    24
+                ],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 50,
+                "is_three_star": true,
+                "items": [
+                    2,
+                    25,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 43,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    34,
+                    23
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 52,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                49,
+                43,
+                62,
+                37,
+                56,
+                50,
+                39
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "2-1",
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "6-1",
+            "level_9": "6-6"
+        },
+        "carousel_priority": [
+            39,
+            43,
+            41,
+            37,
+            45,
+            38,
+            40,
+            42,
+            46,
+            44
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Lulu Chiêm Tinh - Ngọn Núi",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.36,
+        "pick_rate": 0.04,
+        "win_rate": 5.6,
+        "top4_rate": 32.7,
+        "final_board": [
+            {
+                "champion": 36,
+                "is_three_star": true,
+                "items": [
+                    11,
+                    28,
+                    10
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 38,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    3,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 39,
+                "is_three_star": false,
+                "items": [
+                    6,
+                    6,
+                    2
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 42,
+                "is_three_star": false,
+                "items": [
+                    21,
+                    5,
+                    1
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 17,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 22,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 44,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 41,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 8,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 29,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 26,
+                    "row": 3
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                25,
+                41,
+                29,
+                38,
+                31,
+                36,
+                17,
+                44,
+                20
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "2-1",
+            "level_4": "2-2",
+            "level_5": "2-6",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-3",
+            "level_9": "6-1"
+        },
+        "carousel_priority": [
+            38,
+            43,
+            39,
+            42,
+            41,
+            37,
+            40,
+            45,
+            46,
+            44
+        ],
+        "recommended_augments": [
+            38,
+            34,
+            33,
+            141
+        ]
+    },
+    {
+        "name": "Viktor Siêu Linh",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.46,
+        "pick_rate": 0.04,
+        "win_rate": 3.1,
+        "top4_rate": 30.6,
+        "final_board": [
+            {
+                "champion": 15,
+                "is_three_star": false,
+                "items": [
+                    12,
+                    14,
+                    27
+                ],
+                "position": {
+                    "hex": 0,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 55,
+                "is_three_star": true,
+                "items": [
+                    24,
+                    31,
+                    23
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 24,
+                "is_three_star": true,
+                "items": [
+                    3,
+                    7,
+                    19
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 20,
+                "is_three_star": false,
+                "items": [
+                    35,
+                    3,
+                    7
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 21,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 28,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 9,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 22,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 47,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                23,
+                13,
+                24,
+                47,
+                20,
+                28,
+                55,
+                15,
+                22,
+                43,
+                62
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "2-1",
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "4-1",
+            "level_8": "5-1",
+            "level_9": "6-6"
+        },
+        "carousel_priority": [
+            43,
+            41,
+            39,
+            38,
+            45,
+            37,
+            40,
+            42,
+            44,
+            46
+        ],
+        "recommended_augments": [
+            31,
+            43,
+            3,
+            141
+        ]
+    },
+    {
+        "name": "Diana Thách Đấu",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 5.48,
+        "pick_rate": 0.04,
+        "win_rate": 3.9,
+        "top4_rate": 31.1,
+        "final_board": [
+            {
+                "champion": 62,
+                "is_three_star": true,
+                "items": [
+                    133,
+                    12,
+                    30
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 52,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    2,
+                    4
+                ],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 9,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 59,
+                "is_three_star": true,
+                "items": [],
+                "position": {
+                    "hex": 5,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 43,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 25,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                52,
+                43,
+                62,
+                56,
+                37,
+                49,
+                13,
+                63,
+                22,
+                50,
+                9
+            ]
+        },
+        "leveling_guide": {
+            "level_3": "2-1",
+            "level_4": "2-2",
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "4-1",
+            "level_8": "5-6"
+        },
+        "carousel_priority": [
+            42,
+            41,
+            45,
+            40,
+            43,
+            38,
+            39,
+            37,
+            44,
+            46
+        ],
+        "recommended_augments": []
+    },
+    {
+        "name": "Illaoi Siêu Thú",
+        "tier": "D",
+        "playstyle": "Trung Bình",
+        "avg_placement": 6.29,
+        "pick_rate": 0.07,
+        "win_rate": 8.9,
+        "top4_rate": 20.0,
+        "final_board": [
+            {
+                "champion": 50,
+                "is_three_star": false,
+                "items": [
+                    2,
+                    7,
+                    4
+                ],
+                "position": {
+                    "hex": 3,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 63,
+                "is_three_star": true,
+                "items": [
+                    151,
+                    5,
+                    8
+                ],
+                "position": {
+                    "hex": 21,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 6,
+                "is_three_star": false,
+                "items": [
+                    139,
+                    12,
+                    14
+                ],
+                "position": {
+                    "hex": 2,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 61,
+                "is_three_star": false,
+                "items": [
+                    159,
+                    11,
+                    10
+                ],
+                "position": {
+                    "hex": 27,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 18,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 23,
+                    "row": 3
+                }
+            },
+            {
+                "champion": 13,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 9,
+                    "row": 1
+                }
+            },
+            {
+                "champion": 37,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 4,
+                    "row": 0
+                }
+            },
+            {
+                "champion": 51,
+                "is_three_star": false,
+                "items": [],
+                "position": {
+                    "hex": 1,
+                    "row": 0
+                }
+            }
+        ],
+        "early_boards": {
+            "level_7": [
+                51,
+                63,
+                50,
+                61,
+                23,
+                13,
+                37,
+                18
+            ]
+        },
+        "leveling_guide": {
+            "level_5": "3-1",
+            "level_6": "3-2",
+            "level_7": "3-6",
+            "level_8": "4-2",
+            "level_9": "5-5",
+            "level_10": "6-6"
+        },
+        "carousel_priority": [
+            42,
+            43,
+            45,
+            39,
+            41,
+            38,
+            40,
+            37,
+            44,
+            46
+        ],
+        "recommended_augments": []
+    }
+]

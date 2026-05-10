@@ -1,0 +1,632 @@
+[
+  {
+    "id": 1,
+    "name": "Thể Hắc Ám",
+    "slug": "the-hac-am",
+    "mana_start": 20,
+    "mana_max": 60,
+    "description": "Nội tại: Hồi máu bằng 20% sát thương Kỹ Năng.\n\nKích hoạt: Hóa thân thành Thể Hắc Ám trong 5 giây, nhận 250/300/4000 () Lá Chắn trong thời gian này. Khi ở Thể Hắc Ám, kết nối với 3 kẻ địch gần nhất, gây 50/75/1500 () sát thương phép mỗi giây lên từng kẻ địch.\n\nKhi kết thúc biến hình, gây 240/360/4000 () sát thương phép lên tất cả kẻ địch bị kết nối.\nLá Chắn:\n250/300/4000 ()\nSát Thương Mỗi Giây:\n50/75/1500 ()\nSát Thương Trì Hoãn:\n240/360/4000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/fallenangel_empathize.png"
+  },
+  {
+    "id": 2,
+    "name": "Sử Thi Vũ Trụ",
+    "slug": "su-thi-vu-tru",
+    "mana_start": 0,
+    "mana_max": 44,
+    "description": "Nội tại: Jhin có tốc độ đánh cố định là 0.9/0.9/1.4 và chuyển đổi mỗi 1% tốc độ đánh cộng thêm thành 0.75 Sức Mạnh Công Kích cộng thêm.\n\nKích hoạt: Triệu hồi 4 bàn tay ma quái bắn cùng Jhin trong 4 đòn đánh tiếp theo. Mỗi bàn tay gây 45/68/688 () sát thương vật lý mỗi phát bắn. Phát bắn cuối cùng gây thêm 244% sát thương và đâm xuyên qua nhiều kẻ địch nhất theo một đường thẳng, gây 44% sát thương giảm dần cho mỗi mục tiêu trúng phải.\nĐòn Đánh Mỗi Giây:\n0.9/0.9/1.4\nSát Thương:\n4/6/44\nSát Thương:\n45/68/688\n41/62/644 ()\n+\n4/6/44 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_jhin_spell_icon.png"
+  },
+  {
+    "id": 3,
+    "name": "Xé Rách Thực Tại",
+    "slug": "xe-rach-thuc-tai",
+    "mana_start": 10,
+    "mana_max": 70,
+    "description": "Nội tại: Khi tung chiêu, đòn đánh nhận thêm 45/75/777 () sát thương phép cộng dồn. Bắt đầu từ lần tung chiêu thứ ba, thay vào đó nhận sát thương chuẩn.\n\nKích hoạt: Nhận 380/574/4039 () Lá Chắn trong 3 giây, sau đó xé mở một khe nứt tại nơi nhiều tướng nhất, gây sát thương cộng thêm của Nội Tại lên tất cả kẻ địch bên trong. Kẻ địch bị giảm 50/50/99% Tốc Độ Đánh trong khi đồng minh bên trong nhận thêm 80/80/999% Tốc Độ Đánh, cả hai hiệu ứng đều giảm dần nhanh chóng trong 3 giây.\nSát Thương Cộng Thêm:\n45/75/777 ()\nLá Chắn:\n380/574/4039\n15\n%\n+\n200/250/3456",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_shen_rshield.png"
+  },
+  {
+    "id": 4,
+    "name": "Lưỡi Hái Thánh Thần",
+    "slug": "luoi-hai-thanh-than",
+    "mana_start": 30,
+    "mana_max": 90,
+    "description": "Nhận 20% Chống Chịu trong 2 giây, hồi 500/550/650 () máu trong suốt thời gian hiệu lực. Sau đó, chém theo đường thẳng về phía trước, gây 120/180/300 () sát thương vật lý lên các kẻ địch trúng chiêu và hất tung chúng trong 1 giây.\nHồi Máu:\n500/550/650 ()\nSát Thương:\n120/180/300 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_kayn_passive_slay.png"
+  },
+  {
+    "id": 5,
+    "name": "Sức Mạnh Tâm Linh",
+    "slug": "suc-manh-tam-linh",
+    "mana_start": 0,
+    "mana_max": 25,
+    "description": "Ném một khối mảnh vỡ từ tính vào mục tiêu gần nhất chưa bị gắn mảnh vỡ, gây 280/420/999 () sát thương phép và gắn nó vào chúng. Nếu một kẻ địch mang mảnh vỡ bị hạ gục, nó sẽ truyền sang kẻ địch gần nhất chưa có mảnh vỡ.\n\nMỗi 5 lần tung chiêu, thay vào đó xé toạc tất cả mảnh vỡ gây 120/180/999 () sát thương phép, sau đó đè tất cả mảnh vỡ lên mục tiêu, gây 680/1050/9999 () sát thương phép và làm choáng chúng trong thoáng chốc.\nSát Thương:\n280/420/999 ()\nSát Thương Xé Toạc:\n120/180/999 ()\nSát Thương Nện:\n680/1050/9999 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_sona_e.png"
+  },
+  {
+    "id": 6,
+    "name": "Kiếm Thuật Hoàn Mỹ",
+    "slug": "kiem-thuat-hoan-my",
+    "mana_start": 0,
+    "mana_max": 70,
+    "description": "Nội tại: Mỗi 2 đòn đánh, lộ diện một Điểm Yếu trên mục tiêu. Nếu có một Điểm Yếu, lướt tới chém Điểm Yếu gây 40/60/777 () sát thương chuẩn cộng thêm và hồi máu bằng 15% sát thương gây ra.\n\nKích hoạt: Lộ diện 6 Điểm Yếu trên mục tiêu và nhanh chóng chém vào chúng. Nếu mục tiêu bị hạ gục, các Điểm Yếu còn lại sẽ chuyển sang kẻ địch gần nhất. Khi đánh vào Điểm Yếu cuối cùng, tạo ra một vùng hào quang 2 ô giúp hồi máu cho đồng minh bên trong tương đương 200/250/999 () trong 5 giây.\nSát Thương Điểm Yếu:\n40/60/777 ()\nHào Quang Hồi Máu:\n200/250/999 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_fiora_p.png"
+  },
+  {
+    "id": 7,
+    "name": "Vật Thể Siêu Thân Thiện",
+    "slug": "vat-the-sieu-than-thien",
+    "mana_start": 0,
+    "mana_max": 65,
+    "description": "Triệu hồi một đĩa bay phía trên mục tiêu hiện tại, tồn tại trong 4 giây. Mỗi giây, nó gây 220/330/3000 () sát thương phép lên mục tiêu, cộng thêm 135/205/1500 () sát thương phép chia đều cho tất cả kẻ địch trong 1 ô. Đĩa bay gây thêm 30% sát thương lên các Tướng Đỡ Đòn.\n\nNếu một kẻ địch bên dưới UFO bị hạ gục, Bard có 15/20/100%  cơ hội bắt cóc và tạo một bản sao 1 sao của tướng đó trên hàng chờ của bạn.\n\nThưởng Meep: Khi bắt đầu giao tranh, @ModifiedNumAllies@ () đồng minh Tinh Linh Chuông gần nhất nhận thêm 1 Meep.\n\nNgười bạn bị bắt cóc: X\nSát Thương Mỗi Giây:\n220/330/3000\n220/330/3000\nSát Thương Mỗi Giây:\n135/205/1500\n135/205/1500\nTỉ Lệ\\n Bắt Cóc:\n15/20/100%\nSố Meep nhận được:\n1 mỗi 1 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_bard_e.png"
+  },
+  {
+    "id": 8,
+    "name": "Kẻ Phá Tiệc",
+    "slug": "ke-pha-tiec",
+    "mana_start": 20,
+    "mana_max": 100,
+    "description": "Nội tại: Mỗi 2/2/0.5 giây, triệu hồi một tia sét giáng xuống kẻ địch ở gần có lượng Máu cao nhất, gây 60/90/150 () sát thương phép.\n\nKích hoạt: Triệu hồi một quả cầu disco tại nơi tập trung đông kẻ địch nhất, sau đó hất tung mục tiêu hiện tại vào đó, gây 150/225/999 () sát thương phép. Mục tiêu rơi xuống quả cầu disco, gây 175/265/5000 () sát thương phép trong bán kính 3 ô. Vào trạng thái The Groove trong 1 giây với mỗi kẻ địch trúng phải.\nSát Thương Tia Sét:\n60/90/150 ()\nSát Thương Đấm Móc:\n150/225/999 ()\nSát Thương Nổ:\n175/265/5000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_blitzcrankw.png"
+  },
+  {
+    "id": 9,
+    "name": "Truy Đuổi Vũ Trụ",
+    "slug": "truy-duoi-vu-tru",
+    "mana_start": 0,
+    "mana_max": 40,
+    "description": "Nội Tại: Đòn Đánh và Kỹ Năng sẽ đánh dấu mục tiêu. Khi kẻ địch đạt 3 dấu ấn, Sói sẽ tiêu thụ các dấu ấn đó, gây 125/190/1000 () sát thương vật lý.\n\nKích hoạt: Nhảy ra xa tối đa 1 ô và bắn tên vào 3/3/5 mục tiêu gần nhất, mỗi mục tiêu chịu 0.75/1.15/6 () sát thương vật lý.\n\nN.O.V.A Tiến Công: Nhận 5% Khuếch Đại Sát Thương. Ngay bây giờ và mỗi 5 giây sau đó, thêm một dấu ấn lên tất cả kẻ địch.\nSát Thương Của Sói:\n10/15/100\nSát Thương Của Sói:\n125/190/1000\n115/175/900 ()\n+\n10/15/100 ()\nMục Tiêu:\n3/3/5\nSát Thương Mũi Tên:\n0.75/1.15/6 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_kindred_q.png"
+  },
+  {
+    "id": 10,
+    "name": "Bẻ Cong Thời Gian",
+    "slug": "be-cong-thoi-gian",
+    "mana_start": 0,
+    "mana_max": 20,
+    "description": "Nội tại: Kỹ năng này thích ứng theo Sức Mạnh Công Kích hoặc Sức Mạnh Phép Thuật, tùy vào chỉ số nào cao hơn. Đòn đánh gây 75/115/300 () sát thương vật lý.\n\nKích hoạt: Lướt tới một ô gần đó, nhận 100/150/1200 Lá Chắn trong 2 giây và chém các kẻ địch liền kề gây 90/135/1000 () sát thương vật lý. Mỗi lần tung chiêu thứ ba, nhảy lên không trung và phóng ra một luồng sóng năng lượng gây 160/240/2000 () sát thương vật lý lên kẻ địch trên một đường thẳng.\nSức Mạnh Công Kích:\n75/115/300 () hoặc 75/115/300 ()\nLá Chắn:\n100/150/1200\nSát Thương:\n90/135/1000 () hoặc 90/135/1000 ()\nSát Thương Sóng Năng Lượng:\n160/240/2000 () hoặc 160/240/2000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_rivenpathoftheexile.png"
+  },
+  {
+    "id": 11,
+    "name": "Phân Thân Lượng Tử",
+    "slug": "phan-than-luong-tu",
+    "mana_start": 50,
+    "mana_max": 100,
+    "description": "Tạo một phân thân phía sau mục tiêu với Máu tối đa giảm 33% và tiêu hao Năng Lượng tăng 30. Phân thân sẽ kế thừa các trang bị, chỉ số và Máu hiện tại của bản thể tạo ra nó, và có thể tung chiêu Phân Thân Lượng Tử.",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/3.png"
+  },
+  {
+    "id": 12,
+    "name": "Súng Phá Thiên Thạch",
+    "slug": "sung-pha-thien-thach",
+    "mana_start": 0,
+    "mana_max": 60,
+    "description": "Lượn đến một vị trí gần bên, bắn ra 21 tên lửa chia đều lên mục tiêu và tất cả kẻ địch trong phạm vi 2 ô. Tên lửa gây 35/51/304 () sát thương vật lý với 20% tỉ lệ May Mắn bắn ra một siêu tên lửa gây 123/179/1064 ().\n\nThưởng Meep: Mỗi 8 () giây, phóng một Meep Nổ vào mục tiêu, gây 120/180/900 () sát thương vật lý trong bán kính 1 ô tại điểm va chạm.\n\nMay Mắn: Tính toán hai lần, lấy kết quả tốt hơn.\nSát Thương Tên Lửa:\n5/7/24\nSát Thương Tên Lửa:\n35/51/304\n30/44/280\n+\n5/7/24\nSát Thương Siêu Tên Lửa:\n123/179/1064\n350\n% /\n35/51/304\nHồi Chiêu Meep:\n8\n8\ngiảm đi\n10\n% với mỗi\nSát Thương Meep:\n120/180/900 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_corki_missilebarrage.png"
+  },
+  {
+    "id": 13,
+    "name": "Chém Sóng",
+    "slug": "chem-song",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Tung ra một loạt 12 () nhát chém vào mục tiêu hiện tại trong 2 giây, gây 23/35/52 () sát thương vật lý mỗi lần.\nSố Lần Chém:\n12\n12\n+ 1 mỗi\n25\n% cộng thêm\nSát Thương:\n3/5/7\nSát Thương:\n23/35/52\n20/30/45 ()\n+\n3/5/7 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_belvethe.png"
+  },
+  {
+    "id": 14,
+    "name": "Bong Bóng Nổ",
+    "slug": "bong-bong-no",
+    "mana_start": 25,
+    "mana_max": 70,
+    "description": "Ném một bong bóng disco vào mục tiêu, gây 410/615/5000 (), chia đều cho những kẻ địch trong bán kính 1 ô. Vụ nổ phóng 3 khối cầu về phía các kẻ địch gần đó, gây 110/165/1000 () sát thương phép. Khi tung chiêu, Nami vào trạng thái The Groove trong 3 giây.\nSát Thương:\n410/615/5000 ()\nSát Thương Nảy:\n110/165/1000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_namiq.png"
+  },
+  {
+    "id": 15,
+    "name": "Tâm Kích",
+    "slug": "tam-kich",
+    "mana_start": 30,
+    "mana_max": 70,
+    "description": "Nội tại: Mỗi đòn đánh thứ ba là một cú chém kép gây thêm 70/105/550 () sát thương vật lý.\n\nKích hoạt: Sau khi thiền định trong chốc lát, bước vào trạng thái Tâm Linh trong 5 giây, nhận 15% Hút Máu Toàn Phần, 70% Tốc Độ Đánh, và tăng tốc độ di chuyển. Hai lần mỗi giây, bắn một ảo ảnh tâm linh vào kẻ địch ngẫu nhiên gần đó, gây 70/105/800 () sát thương vật lý.\nSát Thương Nội Tại:\n70/105/550 ()\nSát Thương Ảo Ảnh:\n20/30/200\nSát Thương Ảo Ảnh:\n70/105/800\n50/75/600\n+\n20/30/200",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_masteryi_q.png"
+  },
+  {
+    "id": 16,
+    "name": "Chùm Đạn",
+    "slug": "chum-dan",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Nội tại: Khi tham gia hạ gục, nhận 10 năng lượng.\n\nKích hoạt: Bắn 16 tên lửa trong bán kính 2 ô quanh mục tiêu hiện tại, gây 35/53/84 () sát thương vật lý với mỗi tên lửa.\n\nSát Thương:\n35/53/84\n32/48/77 ()\n+\n3/5/7 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_kaisa_q2.png"
+  },
+  {
+    "id": 17,
+    "name": "Siêu Cước Thời Không",
+    "slug": "sieu-cuoc-thoi-khong",
+    "mana_start": 0,
+    "mana_max": 30,
+    "description": "Sút một quả cầu về phía mục tiêu hiện tại, gây 255/380/575 () sát thương phép. Khi va chạm, quả cầu có 100% cơ hội May Mắn nảy sang mục tiêu mới, gây 85/130/190 () sát thương phép. Những lần nảy này có thể kích hoạt thêm các lần nảy khác, nhưng xác suất sẽ giảm một nửa sau mỗi lần nảy.\n\nMay Mắn: Tính toán hai lần, lấy kết quả tốt hơn.\nSát Thương:\n255/380/575 ()\nSát Thương Nảy:\n85/130/190 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_milio_q.png"
+  },
+  {
+    "id": 18,
+    "name": "Hố Đen Kỳ Bí",
+    "slug": "ho-den-ky-bi",
+    "mana_start": 10,
+    "mana_max": 55,
+    "description": "Tập hợp sức mạnh của một hố đen, gây 570/855/5000 () sát thương phép, chia đều cho mục tiêu và 2/2/4 kẻ địch gần nhất. Mục tiêu chịu thêm 150/225/1000 () sát thương phép.\nSát Thương:\n570/855/5000 ()\nMục Tiêu:\n2/2/4\nSát Thương Cộng Thêm:\n150/225/1000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_karma_q1.png"
+  },
+  {
+    "id": 19,
+    "name": "Ma Trận Trọng Lực",
+    "slug": "ma-tran-trong-luc",
+    "mana_start": 40,
+    "mana_max": 100,
+    "description": "Vào thế phòng thủ trong 4 giây, nhận 20/20/60% Chống Chịu. Khi ở tư thế phòng thủ, hút đường đạn của kẻ địch gần đó và hồi lại 900/1300/3000 () Máu trong suốt thời gian hiệu lực. Khi hiệu ứng này kết thúc, giải phóng một sóng xung kích gây 96/144/3600 () sát thương vật lý trong phạm vi 2 ô.\nHồi Máu:\n900/1300/3000 ()\nSát Thương:\n96/144/3600\n80/120/3000\n%\n+\n80/120/3000\n%",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_galio_w.png"
+  },
+  {
+    "id": 20,
+    "name": "Bàn Tay Hội Tụ",
+    "slug": "ban-tay-hoi-tu",
+    "mana_start": 30,
+    "mana_max": 100,
+    "description": "Nội tại: Nhận thêm 50% Máu tối đa từ mọi nguồn.\n\nKích hoạt: Triệu hồi những dây leo tạo thành hình chữ X hội tụ vào mục tiêu, gây 100/150/225 () sát thương phép lên mỗi kẻ địch trúng phải và Làm Choáng chúng trong 1.5/1.5/1.75 giây.\n\nN.O.V.A. Tiến Công: Phóng ra một làn sóng rồng làm choáng tất cả kẻ địch trong 1.5/1.5/1.75 giây. Trong phần còn lại của giao tranh, các đòn đánh của Maokai gây thêm 88/158/285 () sát thương vật lý.\nSát Thương:\n100/150/225 ()\nThời Gian Choáng:\n1.5/1.5/1.75\nThời Gian Choáng N.O.V.A.:\n1.5/1.5/1.75\nSát Thương N.O.V.A.: 88/158/285\n8\n% (\n)",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_maokai_w.png"
+  },
+  {
+    "id": 21,
+    "name": "Roi Lưỡi",
+    "slug": "roi-luoi",
+    "mana_start": 50,
+    "mana_max": 110,
+    "description": "Nội tại: Một lần mỗi giao tranh khi xuống dưới 35% Máu, nhận Lá Chắn trong 4 giây bằng 40% lượng hồi máu đã nhận trong giao tranh này.\n\nKích hoạt: Hồi 411/559/1858 () máu, sau đó quật roi lưỡi vào tất cả kẻ địch trong vòng 2 ô, gây 71/107/1584 () sát thương phép.\nHồi Máu:\n411/559/1858\n9\n%\n+\n300/360/1500\nSát Thương\n71/107/1584\n45/60/1500\n+\n2\n%",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_tahmkenchq.png"
+  },
+  {
+    "id": 22,
+    "name": "Phi Đao Tinh Tú",
+    "slug": "phi-dao-tinh-tu",
+    "mana_start": 0,
+    "mana_max": 30,
+    "description": "Chuyển vị trí tới cạnh mục tiêu giúp tấn công được nhiều kẻ địch nhất. Sau đó ném 5 phi tiêu xuyên qua, mỗi chiếc gây 38/56/89 () sát thương vật lý lên kẻ địch đầu tiên trúng phải, giảm còn 15/22/36 () với mỗi mục tiêu tiếp theo. Phi tiêu loại bỏ 1 Giáp, 2 nếu chúng chí mạng.\n\nN.O.V.A. Tiến Công: Chém tất cả kẻ địch, gây Vết Thương Sâu và chảy máu, gây 10/14/18 () sát thương vật lý mỗi giây. Phi tiêu tăng sát thương của hiệu ứng chảy máu thêm 10%.\nSát Thương:\n4/6/9\nSát Thương:\n38/56/89 ()\n34/50/80\n+\n4/6/9\nSát Thương Phụ:\n15/22/36\n40\n% /\n38/56/89 ()\nSát Thương N.O.V.A.: 10/14/18 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_akali_q.png"
+  },
+  {
+    "id": 23,
+    "name": "Chấn Động",
+    "slug": "chan-dong",
+    "mana_start": 40,
+    "mana_max": 100,
+    "description": "Hồi 246/302/407 () máu, sau đó hất tung kẻ địch liền kề trong thoáng chốc và gây 80/120/180 () sát thương phép.\n\nSát Thương:\n80/120/180 ()\nHồi Máu:\n246/302/407\n7\n%\n+\n200/220/260 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_reksai_w2.png"
+  },
+  {
+    "id": 24,
+    "name": "Nộ Hóa Chất",
+    "slug": "no-hoa-chat",
+    "mana_start": 30,
+    "mana_max": 80,
+    "description": "Hồi lại 496/615/892 () trong vòng 2 giây. Sau đó, gây 200/300/450 () sát thương phép lên mục tiêu và kẻ địch liền kề, đồng thời áp dụng Tê Tái 30% lên chúng trong 2 giây.\n\n\nChill: Reduce Attack Speed\nHồi Máu:\n496/615/892\n9\n%\n+\n415/470/630\nSát Thương:\n200/300/450 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_gragasdrunkenrage.png"
+  },
+  {
+    "id": 25,
+    "name": "Liên Hoàn Tinh Tú",
+    "slug": "lien-hoan-tinh-tu",
+    "mana_start": 30,
+    "mana_max": 90,
+    "description": "Luân phiên giữa 3 kỹ năng:\nChém: Gây 140/210/315 () sát thương vật lý.\nQuét: Gây 100/150/225 () sát thương vật lý theo hình nón và loại bỏ 10 () Giáp.\nNện: Gây 160/240/360 () trong bán kính 1 ô quanh mục tiêu và hất tung kẻ địch trong thoáng chốc. Nếu kỹ năng này chỉ trúng một kẻ địch, gây 250% sát thương.\n\nN.O.V.A. Tiến Công: Chém xuyên chiến trường, hất tung tất cả kẻ địch trong thoáng chốc và gây 120/180/270 () sát thương vật lý.\nSát Thương Chém:\n140/210/315 ()\nSát Thương Quét:\n100/150/225 ()\nGiảm Giáp:\n10 ()\nSát Thương Nện:\n160/240/360 ()\nSát Thương N.O.V.A.: 120/180/270 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/eyeofthestorm.png"
+  },
+  {
+    "id": 26,
+    "name": "Giúp Ta Một Tay, Bóng Đen!",
+    "slug": "giup-ta-mot-tay-bong-den",
+    "mana_start": 0,
+    "mana_max": 60,
+    "description": "Nội tại: Mỗi khi Vex tấn công, Bóng Đen sẽ ra đòn vào một kẻ địch ở gần, gây 30/45/250 () sát thương phép. Mỗi khi kẻ địch bị Bóng Đen đánh trúng 5 lần, Bóng Đen sẽ ra đòn lên chúng thêm một lần nữa.\n\nKích hoạt: Bóng Đen tung ra 3 đòn đánh cường hóa, gây 130/195/1000 () sát thương phép.\nSát Thương Đòn Đánh:\n30/45/250 ()\nSát Thương Đòn Đánh Cường Hóa:\n130/195/1000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/icons_tft17_vex_e01.png"
+  },
+  {
+    "id": 27,
+    "name": "Tăng Trưởng",
+    "slug": "tang-truong",
+    "mana_start": 30,
+    "mana_max": 70,
+    "description": "Gây 266/391/601 ()  sát thương phép lên kẻ địch thấp Máu nhất trong tầm và vĩnh viễn nhận 12/18/33 Máu tối đa. Nếu kẻ địch này bị hạ gục, tăng vĩnh viễn 30/40/70 Máu tối đa.\n\n(Thưởng Hiện Tại: +X Máu)\nMáu Tăng Mỗi Lần Thi Triển:\n12/18/33\nMáu Tăng Khi Hạ Gục:\n30/40/70\nSát Thương:\n266/391/601\n8\n%\n+\n210/290/420%",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/greenterror_feast.png"
+  },
+  {
+    "id": 28,
+    "name": "Thiết Hạm Vô Song",
+    "slug": "thiet-ham-vo-song",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Nội tại - Súng Cảm Biến: Bất cứ khi nào một kẻ địch tiến vào bán kính 2 () ô, bắn một luồng đạn hình nón về phía ô liền kề gần nhất gây 85/125/200 () sát thương vật lý, giảm 30% sát thương theo mỗi ô khoảng cách. Mỗi ô liền kề có 5 giây thời gian hồi chiêu, và bắt đầu giao tranh trong trạng thái đang hồi chiêu.\n\nKích hoạt: Nhận 150/175/200 () Lá Chắn trong 3 giây và di chuyển tối đa 1 ô để tối đa hóa số mục tiêu trong bán kính của Súng Cảm Biến. Làm mới hồi chiêu của Súng Cảm Biến.\nSát Thương Đạn Ghém:\n85/125/200 ()\nLá Chắn:\n150/175/200 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_urgot_e.png"
+  },
+  {
+    "id": 29,
+    "name": "Canh Bạc Số Phận",
+    "slug": "canh-bac-so-phan",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Rút một lá bài có giá trị từ 1 đến 9 bằng cơ hội May Mắn, sau đó ném nó vào mục tiêu. Dựa trên lá bài rút được, gây từ 190/285/430 () đến 380/570/860 () sát thương phép. Sát thương kết liễu vượt trội sẽ được chuyển sang kẻ địch gần nhất.\n\nThưởng 3 Sao: Nếu ném ra số 9, tạo ra 1 vàng.\n\nMay mắn: Tung hai lần, lấy kết quả tốt hơn.\nSát Thương Tối Thiểu:\n190/285/430 ()\nSát Thương Tối Đa:\n380/570/860 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/cardmaster_fatesgambit.png"
+  },
+  {
+    "id": 30,
+    "name": "Thiên Thạch Đen",
+    "slug": "thien-thach-den",
+    "mana_start": 0,
+    "mana_max": 30,
+    "description": "Ném một mảnh băng về phía mục tiêu hiện tại, gây 250/375/600 () sát thương phép lên mục tiêu đầu tiên trúng phải. Sau khi trúng mục tiêu đầu tiên hoặc khi bay hết tầm, mảnh băng sẽ phát nổ, gây 50/75/115 () sát thương phép lên những mục tiêu ở gần.\nSát Thương:\n250/375/600 ()\nSát Thương Phụ:\n50/75/115 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_lissandra_q.png"
+  },
+  {
+    "id": 31,
+    "name": "Nhắm Thẳng Đầu",
+    "slug": "nham-thang-dau",
+    "mana_start": 0,
+    "mana_max": 0,
+    "description": "Nội tại: Đòn đánh có 15% tỉ lệ May Mắn bắn ra một cú Thiện Xạ cường hóa, gây 190/285/555 () sát thương vật lý.\n\nN.O.V.A. Tiến Công: Đánh dấu tất cả kẻ địch, tăng sát thương chúng nhận vào thêm 10%. Lần đầu tiên mục tiêu bị đánh dấu còn ít hơn 50% Máu, Thiện Xạ chúng để gây 76/114/222 () sát thương vật lý.\n\nMay Mắn: Tính toán hai lần, lấy kết quả tốt hơn.\nSát Thương Thiện Xạ:\n20/30/45\nSát Thương Thiện Xạ:\n190/285/555\n170/255/510 \n+\n20/30/45 \nSát Thương N.O.V.A.: 76/114/222\n40\n% x\n190/285/555 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_caitlyn_headshot.png"
+  },
+  {
+    "id": 32,
+    "name": "Mồi Nhử Meep",
+    "slug": "moi-nhu-meep",
+    "mana_start": 0,
+    "mana_max": 20,
+    "description": "Lướt xuyên qua mục tiêu hiện tại, gây 110/165/265 () sát thương phép. Mỗi lần tung chiêu thứ ba cũng sẽ triệu hồi một Meep Khổng Lồ sau một khoảng trễ, hất tung mục tiêu trong thoáng chốc và gây 260/395/625 () sát thương phép. Kẻ địch liền kề sẽ nhận 50% sát thương.\n\nThưởng Meep: Thêm 1 () Meep vào mồi nhử, tăng sát thương của Meep Khổng Lồ thêm 75/115/180 ().\nSát Thương Lướt:\n110/165/265 ()\nSát Thương Cắn:\n260/395/625 ()\nSát Thương Cộng Thêm:\n75/115/180 ()\n75/115/180\nmỗi",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_fizz_r.png"
+  },
+  {
+    "id": 33,
+    "name": "Gấp Đôi Sát Thương",
+    "slug": "gap-doi-sat-thuong",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Nội tại: Các đòn đánh gây thêm 30/45/100 () sát thương phép và thêm 70/105/190 () sát thương phép cộng dồn trong 6 giây. Khi một kẻ địch có từ 5 cộng dồn trở lên, Teemo vào trạng thái The Groove.\n\nKích hoạt: Tăng 150% Tốc Độ Đánh trong 3 đòn đánh.\nSát Thương Cộng Thêm:\n30/45/100 ()\nSát Thương Độc:\n70/105/190 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_teemow.png"
+  },
+  {
+    "id": 34,
+    "name": "Tác Động Meep",
+    "slug": "tac-dong-meep",
+    "mana_start": 50,
+    "mana_max": 100,
+    "description": "Hồi lại 456/567/846 () Máu trong 3 giây. Đập mạnh vào mục tiêu, gây 160/240/360 () sát thương phép và hất tung trong 1.5/1.75/2 giây. Tác động tạo ra sóng meep gây 50% hiệu ứng này lên hàng của mục tiêu.\n\nThưởng Meep: Các Meep tưới nước cho hoa của Meepsie, tăng tất cả Hồi Máu và Lá Chắn nhận vào thêm 12% ().\nHồi Máu:\n456/567/846\n8\n%\n+\n380/430/600\nSát Thương:\n160/240/360 ()\nThời Gian Choáng\n1.5/1.75/2\nHồi Máu và Tạo Lá Chắn:\n12%\n12\n% x",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_ivernminion_r.png"
+  },
+  {
+    "id": 35,
+    "name": "Phá Vỡ Thực Tại",
+    "slug": "pha-vo-thuc-tai",
+    "mana_start": 0,
+    "mana_max": 40,
+    "description": "Nội tại: Thay vào đó, đòn đánh gây 62/93/250 () sát thương phép.\n\nKích hoạt: Triệu hồi 5 phân thân cùng tấn công trong 5 đòn đánh, gây 25/25/150% sát thương. Trong đòn tấn công cuối cùng, các phân thân bắn ra một tia gây 70/105/750 () sát thương phép.\nSức Mạnh Công Kích:\n62/93/250 ()\nHệ Số Sát Thương Trên Phân Thân:\n25/25/150%\nSát Thương Tia Đạn:\n70/105/750 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_leblancw.png"
+  },
+  {
+    "id": 36,
+    "name": "Mưa Sao Rơi",
+    "slug": "mua-sao-roi",
+    "mana_start": 0,
+    "mana_max": 55,
+    "description": "Nội tại: Nhận một hiệu ứng phụ khác nhau mỗi trận dựa trên chòm sao Chiêm Tinh.\n\nKích hoạt: Triệu hồi một thứ gì đó từ trên trời rơi xuống, gây 150/225/360 () sát thương phép lên 3 kẻ địch xung quanh và tạo hiệu ứng đặc biệt dựa trên Chòm Sao Chiêm Tinh của trận này.\nSát Thương:\n150/225/360 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_lulu_glitterbolt.png"
+  },
+  {
+    "id": 37,
+    "name": "Giáp Bất Diệt",
+    "slug": "giap-bat-diet",
+    "mana_start": 40,
+    "mana_max": 100,
+    "description": "Nhận 300/375/500 () Lá Chắn. Mỗi giây trong 4 giây tiếp theo, nhận thêm 75/90/105 () Lá Chắn và gây 45/70/100 () sát thương phép lên kẻ địch liền kề. Khi kỹ năng này kết thúc, tiêu hao lượng Lá Chắn còn lại và hồi máu bằng 40% giá trị đó.\nLá Chắn Khởi Đầu:\n300/375/500 ()\nLá Chắn Khi Niệm:\n75/90/105 ()\nSát Thương Khi Niệm:\n45/70/100 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_mordekaiserw.png"
+  },
+  {
+    "id": 38,
+    "name": "Tinh Tú Phản Kích",
+    "slug": "tinh-tu-phan-kich",
+    "mana_start": 20,
+    "mana_max": 80,
+    "description": "Vào thế phòng thủ trong 3 giây, giảm sát thương nhận vào đi 15/25/35 () và nhận 400/470/550 () Lá Chắn. Khi xuống thế, tấn công tất cả những kẻ địch ở gần, gây 68/104/154 () sát thương phép và Làm Choáng chúng trong 1/1.25/1.5 giây.\nGiảm Sát Thương Cố Định:\n15/25/35 ()\nLá Chắn:\n400/470/550 ()\nSát Thương:\n68/104/154\n75/115/170% ()\n+\n75/115/170% ()\nThời Gian Choáng:\n1/1.25/1.5",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_jaxe.png"
+  },
+  {
+    "id": 39,
+    "name": "Thảm Họa",
+    "slug": "tham-hoa",
+    "mana_start": 40,
+    "mana_max": 155,
+    "description": "Nhận 475/575/2000 () Lá Chắn trong 4 giây. Triệu hồi một kính thiên văn rơi xuống một ô ở gần, gây 120/180/2000 () sát thương phép lên kẻ địch trong phạm vi 2 ô. Sau đó, đẩy kính thiên văn về phía cuối sân đấu, gây 100/150/2000 () sát thương phép. Tất cả kẻ địch trúng phải kính thiên văn sẽ bị hất tung trong 1.5/1.75/8 giây.\nGiá Trị Lá Chắn:\n475/575/2000 ()\nThời Gian Choáng:\n1.5/1.75/8\nSát Thương Khởi Đầu:\n120/180/2000 ()\nSát Thương Va Chạm:\n100/150/2000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_nunue.png"
+  },
+  {
+    "id": 40,
+    "name": "Vòng Xoáy Trọng Lực",
+    "slug": "vong-xoay-trong-luc",
+    "mana_start": 20,
+    "mana_max": 90,
+    "description": "Nhận 675/825/2000 () lá chắn trong 4 giây. Sau đó, tấn công kẻ địch trên một đường thẳng dài 3 ô, gây 80/120/1360 () sát thương phép.\n\nThưởng Meep: Giảm sát thương từ đòn tấn công nhận vào đi 4 (). Sau khi bị tấn công 20 lần, gây 12/18/300 () sát thương phép trong bán kính 2 ô.\nLá Chắn:\n675/825/2000 ()\nSát Thương:\n50/75/700\nSát Thương:\n80/120/1360\n50/75/700 \n+\n50/75/1100% \nGiảm Sát Thương:\n4\n4\nmỗi\nSát Thương Kích Hoạt:\n12/18/300\n20/30/500% \nmỗi",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/armordillo_powerball.png"
+  },
+  {
+    "id": 41,
+    "name": "Thần Linh Định Đoạt",
+    "slug": "than-linh-dinh-doat",
+    "mana_start": 0,
+    "mana_max": 30,
+    "description": "Đâm mục tiêu, khiến chúng bị chảy máu gây 490/735/1135 () sát thương vật lý trong 18 giây. Sau đòn tấn công, nhảy tới kẻ địch có phần trăm Máu cao nhất trong vòng 3 ô.\nSát Thương:\n60/90/135\nSát Thương:\n490/735/1135\n430/645/1000 ()\n+\n60/90/135 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_talone.png"
+  },
+  {
+    "id": 42,
+    "name": "Tinh Tú Nảy Bật",
+    "slug": "tinh-tu-nay-bat",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Nội tại: Các đòn đánh nảy bật để tấn công 3/3/5 lần, giảm 60/60/30% sát thương gây ra sau mỗi mục tiêu trúng đòn và để lại một Lông Vũ phía sau mục tiêu cuối cùng.\n\nKích hoạt: Tăng 75% Tốc Độ Đánh trong 4 giây. Khi kết thúc, thu hồi tất cả Lông Vũ chia đều lên 3 kẻ địch gần nhất, mỗi lông vũ gây 51/77/960 () sát thương vật lý.\nSố Đòn:\n3/3/5\nGiảm Sát Thương:\n60/60/30%\nSát Thương:\n6/9/60\nSát Thương:\n51/77/960\n45/68/900 ()\n+\n6/9/60 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_xayahw.png"
+  },
+  {
+    "id": 43,
+    "name": "Nghịch Sao",
+    "slug": "nghich-sao",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Bắn một ngôi sao nghịch ngợm vào mục tiêu hiện tại, gây 68/102/153 () sát thương phép lên mục tiêu đầu tiên trúng phải và 34/51/77 () sát thương lên những kẻ địch khác mà nó đi qua. Khi ngôi sao đến điểm đích, chuyển hướng nó về phía một kẻ địch ở xa, tăng tốc độ và lặp lại sát thương. Có thể chuyển hướng 4 lần.\nSát Thương:\n68/102/153 ()\nSát Thương Phụ:\n34/51/77 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_zoe_q2.png"
+  },
+  {
+    "id": 44,
+    "name": "Phòng Thủ Nâng Cao",
+    "slug": "phong-thu-nang-cao",
+    "mana_start": 20,
+    "mana_max": 80,
+    "description": "Nhận 54/97/175 () Lá Chắn và 15% Chống Chịu trong 4 giây. Trong thời gian tác dụng, gây 30/45/70 () sát thương vật lý mỗi giây lên kẻ địch theo hình nón.\nLá Chắn:\n54/97/175\n6\n%\n+\n275/300/500 ()\nSát Thương Mỗi Giây:\n30/45/70 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_pantheon_e1.png"
+  },
+  {
+    "id": 45,
+    "name": "Vũ Điệu Xúc Xắc",
+    "slug": "vu-dieu-xuc-xac",
+    "mana_start": 0,
+    "mana_max": 30,
+    "description": "Nội tại: Đòn đánh gây sát thương phép. Gwen vào trạng thái The Groove khi nhắm mục tiêu vào kẻ địch dưới 40% Máu.\n\nKích hoạt: Lướt đến một ô lân cận để cắt kẻ địch có phần trăm Máu thấp nhất, gây 145/220/380 () sát thương phép lên mục tiêu và 75/110/190 () sát thương phép lên mọi kẻ địch trong hình nón. Nếu chiêu này hạ gục, lướt và cắt thêm lần nữa với 65% sát thương!\nSát Thương:\n145/220/380 ()\nSát Thương Diện Rộng:\n75/110/190 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_gwen_e.png"
+  },
+  {
+    "id": 46,
+    "name": "Tập Hợp Lại!",
+    "slug": "tap-hop-lai",
+    "mana_start": 30,
+    "mana_max": 100,
+    "description": "Nhận 400/475/575 () Lá Chắn trong 4 giây. Trong thời gian tác dụng, đồng minh trong phạm vi 2 ô nhận được 15/25/60 () Giáp và Kháng Phép.\n\nThưởng Meep: Meep trao 125/160/210 () Lá Chắn cho 1 () đồng minh gần nhất trong 4 giây.\nLá Chắn:\n400/475/575 ()\nPhòng Thủ:\n15/25/60 ()\nLá Chắn Meep:\n125/160/210 ()\nĐồng Minh Được Tạo Lá Chắn:\n1\n1\nmỗi",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_poppy_w.png"
+  },
+  {
+    "id": 47,
+    "name": "Dấu Ấn Tử Thần",
+    "slug": "dau-an-tu-than",
+    "mana_start": 0,
+    "mana_max": 40,
+    "description": "Di chuyển tối đa 1 ô để phóng lao vào kẻ địch xa nhất. Cây lao móc kéo kẻ địch đầu tiên trúng phải tiến lên 1 ô và gây 60/90/135 () sát thương vật lý. Sau đó, dịch chuyển ra phía sau kẻ địch và chém lan, gây 210/315/720 () sát thương vật lý lên mục tiêu và 120/180/360 () sát thương vật lý lên các kẻ địch ở gần.\nSát Thương:\n60/90/135 ()\nSát Thương Lan Trên Mục Tiêu:\n210/315/720 ()\nSát Thương Diện Rộng:\n120/180/360 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_pykeq.png"
+  },
+  {
+    "id": 48,
+    "name": "Đạn Nổ Thần Công",
+    "slug": "dan-no-than-cong",
+    "mana_start": 0,
+    "mana_max": 60,
+    "description": "Nội tại: Đòn đánh thường bắn ra 5 đường đạn theo hình nón, mỗi đường đạn gây 20/30/45 () sát thương vật lý.\n\nKích hoạt: Bắn ra một quả đạn nổ gây 390/585/5555 () sát thương vật lý lên mục tiêu, và 165/245/4110 () sát thương vật lý lên những kẻ địch liền kề.\nSát Thương Nội Tại:\n20/30/45\n33\n% /\n60\nSát Thương:\n390/585/5555 ()\nSát Thương Phụ:\n30/45/777\nSát Thương Phụ:\n165/245/4110\n135/200/3333 \n+\n30/45/777",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_gravesr.png"
+  },
+  {
+    "id": 49,
+    "name": "Susan Phiêu Nhạc",
+    "slug": "susan-phieu-nhac",
+    "mana_start": 60,
+    "mana_max": 120,
+    "description": "Biến hình trong 6 giây, tạm thời nhận thêm 250/350/550 Máu tối đa, tiến vào trạng thái The Groove và gây 44/70/115 () sát thương phép mỗi giây lên những kẻ địch liền kề.\nMáu Cộng Thêm\n250/350/550\nSát Thương:\n44/70/115\n2%  tối đa\n+\n30/45/70",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_nasus_r.png"
+  },
+  {
+    "id": 50,
+    "name": "Thử Thách Linh Hồn",
+    "slug": "thu-thach-linh-hon",
+    "mana_start": 40,
+    "mana_max": 100,
+    "description": "Nhận 450/525/650 () Lá Chắn trong 3 giây. Trong thời gian này, hút 55/85/130 () Máu từ 3 kẻ địch gần nhất. Sau đó dậm xuống mặt đất, gây 80/120/180 () sát thương phép lên tất kẻ địch trong phạm vi 2 ô.\nLá Chắn:\n450/525/650\nHút Máu:\n55/85/130 ()\nSát Thương:\n80/120/180 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_illaoi_e_debuff.png"
+  },
+  {
+    "id": 51,
+    "name": "Cá Càn Quét",
+    "slug": "ca-can-quet",
+    "mana_start": 0,
+    "mana_max": 40,
+    "description": "Nội tại: Với mỗi 1% Máu đã mất, nhận 2/2/2.5% () Tốc Độ Đánh\n\nKích hoạt: Gây 120/180/285 () sát thương vật lý lên mục tiêu, tăng thêm 50% nếu chúng là tướng Đỡ Đòn.\nTốc Độ Đánh:\n2/2/2.5\nSát Thương:\n120/180/285 ()\nSát Thương Cộng Thêm Với Đỡ Đòn\n50\n% /\n120/180/285 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_briarq.png"
+  },
+  {
+    "id": 52,
+    "name": "Khiên Mặt Trời",
+    "slug": "khien-mat-troi",
+    "mana_start": 50,
+    "mana_max": 110,
+    "description": "Nhận () Lá Chắn trong 420/480/6204 giây. Nện vào mục tiêu hiện tại, gây 100/150/225 () sát thương phép và làm choáng chúng trong 1.75/1.75/2 giây.\nLá Chắn:\n420/480/620 ()\nSát Thương Cơ Bản:\n100/150/225\nSát Thương:\n100/150/225\n100/150/225\n+\n140/210/315\n%\n+\n140/210/315\n%\nThời Gian Choáng\n1.75/1.75/2",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_leonaq.png"
+  },
+  {
+    "id": 53,
+    "name": "Nhảy Múa",
+    "slug": "nhay-mua",
+    "mana_start": 0,
+    "mana_max": 60,
+    "description": "Nội tại: Bất cứ khi nào một kẻ địch bị hất tung, bắn chúng, gây 65/95/155 () sát thương vật lý và vào trạng thái The Groove trong 3 giây.\n\nKích hoạt: Phóng một loạt đạn vào mục tiêu, gây 360/540/860 () sát thương vật lý và hất tung trong 1.25 giây.\nSát Thương Nội Tại:\n10/15/25\nSát Thương Nội Tại:\n65/95/155\n55/80/130 ()\n+\n10/15/25 ()\nSát Thương:\n360/540/860 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_samirae.png"
+  },
+  {
+    "id": 54,
+    "name": "Tia Tử Thần",
+    "slug": "tia-tu-than",
+    "mana_start": 15,
+    "mana_max": 75,
+    "description": "Tụ năng lượng để bắn một tia tử thần theo đường thẳng về phía mục tiêu hiện tại trong 3 giây. Nó gây 185/280/2000 () sát thương phép mỗi giây, giảm đi 60% với mỗi kẻ địch mà nó xuyên qua. Tia Tử Thần bỏ qua 30% Kháng Phép của kẻ địch.\nSát Thương:\n185/280/2000 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_aurelionsolq.png"
+  },
+  {
+    "id": 55,
+    "name": "Bão Tâm Linh",
+    "slug": "bao-tam-linh",
+    "mana_start": 20,
+    "mana_max": 80,
+    "description": "Niệm chú tạo ra một cơn bão tâm linh rộng 1 ô đuổi theo kẻ địch trong 4 giây. Mỗi giây, nó lớn dần và gây 185/275/475 () sát thương phép lên kẻ địch bên trong, giảm 60% theo mỗi ô tính từ tâm bão.\nSát Thương:\n185/275/475 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_viktor_r1.png"
+  },
+  {
+    "id": 56,
+    "name": "Kho Vũ Khí Xạ Thần",
+    "slug": "kho-vu-khi-xa-than",
+    "mana_start": 0,
+    "mana_max": 100,
+    "description": "Triển khai Miss Fortune để chọn kích hoạt Chế Độ Dẫn Truyền, Chế Độ Thách Đấu hoặc Chế Độ Nhân Bản. Chế độ được chọn sẽ quyết định kỹ năng và tộc/hệ của cô ấy.",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_missfortune_w.png"
+  },
+  {
+    "id": 57,
+    "name": "Phát Bắn Thời Gian",
+    "slug": "phat-ban-thoi-gian",
+    "mana_start": 0,
+    "mana_max": 30,
+    "description": "Kích hoạt: Bắn ra một phát đạn về phía mục tiêu hiện tại gây 174/261/397 () sát thương vật lý. Cứ mỗi 8 hạ gục, nhận một drone gây 8/12/18 () sát thương vật lý lên mục tiêu hiện tại khi kích hoạt.\n(Tổng Số Hạ Gục: X)\nSát Thương:\n14/21/32\nSát Thương:\n174/261/397\n160/240/365 ()\n+\n14/21/32 ()\nSát Thương Drone:\n8/12/18 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_ezreal_passive.png"
+  },
+  {
+    "id": 58,
+    "name": "Ná Đàn Hồi",
+    "slug": "na-dan-hoi",
+    "mana_start": 0,
+    "mana_max": 5,
+    "description": "Nội tại: Mỗi đòn đánh thứ 5, phóng một chiếc boomerang vào mục tiêu, bay thêm 2 ô sau kẻ địch đầu tiên trúng phải rồi quay trở lại. Nó gây 245/370/605 () sát thương vật lý, giảm đi 75% với mỗi lần trúng.\n\nThưởng Meep: 1 () Meep tấn công cùng Gnar, gây 13/20/29 () sát thương vật lý mỗi giây.\nSát Thương:\n20/30/45\nSát Thương:\n245/370/605\n225/340/560\n+\n20/30/45\nMeep:\n1\n1\nmỗi\nSát Thương Meep:\n13/20/29\n23\n% /\n45\nx\n40\n%\nCộng Thêm",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_gnar_q.png"
+  },
+  {
+    "id": 59,
+    "name": "Địa Ngục Disco",
+    "slug": "dia-nguc-disco",
+    "mana_start": 40,
+    "mana_max": 100,
+    "description": "Nội tại: Khi bắt đầu giao tranh, rèn một trang bị hoàn chỉnh tạm thời. Nếu đã mang 3 trang bị, thay vào đó, 1 trang bị hoàn chỉnh ngẫu nhiên sẽ trở thành dạng Ánh Sáng trong giao tranh này.\n\nKích hoạt: Nhận 100/150/500 () Lá Chắn trong 3 giây, sau đó khạc lửa theo hình nón gây 180/270/430 () sát thương phép. Sau khi Lá Chắn bất kỳ trên Ornn hết hiệu lực, Ornn vào trạng thái The Groove trong 3 giây.\nLá Chắn:\n100/150/500 ()\nSát Thương:\n180/270/430 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_ornnw.png"
+  },
+  {
+    "id": 60,
+    "name": "Meep Thiên Thạch",
+    "slug": "meep-thien-thach",
+    "mana_start": 10,
+    "mana_max": 50,
+    "description": "Gọi một Meep Thiên Thạch rơi xuống mục tiêu gây 310/465/700 () sát thương phép.\n\nThưởng Meep: 2 () Meep Thiên Thạch tí hon bổ sung sẽ rơi xuống các mục tiêu lân cận, mỗi Meep gây 31/47/70 () sát thương phép.\nSát Thương:\n310/465/700 ()\nMeep Tí Hon:\n2\n2\nmỗi\nSát Thương Phụ:\n31/47/70 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_veigardarkmatter.png"
+  },
+  {
+    "id": 61,
+    "name": "Hack Cường Hóa",
+    "slug": "hack-cuong-hoa",
+    "mana_start": 20,
+    "mana_max": 80,
+    "description": "Mở một khe nứt 2 ô gồm cả mục tiêu, Hack các kẻ địch bên trong trong 4 giây và gây 80/120/190 () sát thương phép lên từng kẻ địch, cộng thêm 370/555/890 () sát thương phép chia đều cho tất cả kẻ địch trúng phải.\n\nKẻ địch bị hack sẽ tích trữ 10% tổng sát thương chúng nhận vào. Khi Hack kết thúc, chúng sẽ chịu sát thương chuẩn bằng với lượng sát thương đã tích trữ. Hack sẽ kết thúc sớm nếu nó hạ gục mục tiêu.\nSát Thương:\n80/120/190 \nSát Thương Phân Chia:\n370/555/890",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_aurorae.png"
+  },
+  {
+    "id": 62,
+    "name": "Thác Bạc",
+    "slug": "thac-bac",
+    "mana_start": 0,
+    "mana_max": 50,
+    "description": "Nội Tại: Đòn đánh gây thêm 52/78/135 () sát thương phép.\n\nKích hoạt: Nhận 250/290/375 () Lá Chắn và triệu hồi 3 quả cầu bay quanh trong 3 giây. Các quả cầu gây 50/75/120 () sát thương phép lên kẻ địch mà chúng đi qua, và quay nhanh hơn dựa trên Tốc Độ Đánh.\nSát Thương Trên Đòn Đánh:\n52/78/135 ()\nLá Chắn:\n250/290/375 ()\nSát Thương Quả Cầu:\n50/75/120 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_diana_w_lunarshower.png"
+  },
+  {
+    "id": 63,
+    "name": "Thái Độ Bùng Nổ",
+    "slug": "thai-do-bung-no",
+    "mana_start": 20,
+    "mana_max": 80,
+    "description": "Bắn một loạt 16 () tên lửa theo hình nón, mỗi tên lửa gây 32/49/72 () sát thương vật lý lên mục tiêu đầu tiên trúng phải.\nTên lửa:\n16 + 1 mỗi 35% \nSát Thương %i:\nscaleAP%3/5/7\nSát Thương:\n32/49/72\n29/44/65\n+\n3/5/7",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_jinx_q1.png"
+  }
+]

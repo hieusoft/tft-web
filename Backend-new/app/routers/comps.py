@@ -29,10 +29,10 @@ _MAPS_CACHE_TIME: float = 0
 _MAPS_CACHE_TTL: float = 300
 
 
-def _get_comp_or_404(comp_id: int, db: Session) -> Comp:
-    comp = db.query(Comp).filter(Comp.id == comp_id).first()
+def _get_comp_or_404(slug: str, db: Session) -> Comp:
+    comp = db.query(Comp).filter(Comp.slug == slug).first()
     if not comp:
-        raise HTTPException(status_code=404, detail=f"Không tìm thấy đội hình id={comp_id}")
+        raise HTTPException(status_code=404, detail=f"Không tìm thấy đội hình '{slug}'")
     return comp
 
 
@@ -251,6 +251,7 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
     return {
         "id": comp.id,
         "name": comp.name,
+        "slug": comp.slug,
         "tier": comp.tier,
         "playstyle": comp.playstyle,
         "avg_placement": comp.avg_placement,
@@ -315,13 +316,13 @@ def get_all_comps(
     return result
 
 
-@router.get("/{comp_id}", summary="Lấy chi tiết đội hình")
+@router.get("/{slug}", summary="Lấy chi tiết đội hình")
 def get_comp(
-    comp_id: int,
+    slug: str,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
 ):
-    cache_key = f"{COMP_CACHE_KEY_PREFIX}{comp_id}"
+    cache_key = f"{COMP_CACHE_KEY_PREFIX}{slug}"
 
     try:
         cached = r.get(cache_key)
@@ -330,7 +331,7 @@ def get_comp(
     except Exception:
         pass
 
-    comp = _get_comp_or_404(comp_id, db)
+    comp = _get_comp_or_404(slug, db)
     maps = _build_lookup_maps(db)
     result = _enrich_comp(comp, maps)
 
@@ -391,14 +392,14 @@ def bulk_sync_comps(
     )
 
 
-@router.patch("/{comp_id}", response_model=CompResponse, summary="Cập nhật đội hình")
+@router.patch("/{slug}", response_model=CompResponse, summary="Cập nhật đội hình")
 def update_comp(
-    comp_id: int,
+    slug: str,
     body: CompUpdate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
 ):
-    comp = _get_comp_or_404(comp_id, db)
+    comp = _get_comp_or_404(slug, db)
     update_data = body.model_dump(exclude_none=True)
 
     if "name" in update_data and update_data["name"] != comp.name:
@@ -416,17 +417,17 @@ def update_comp(
         raise HTTPException(status_code=500, detail="Lỗi cập nhật đội hình") from exc
 
     _invalidate_list_cache(r)
-    r.delete(f"{COMP_CACHE_KEY_PREFIX}{comp_id}")
+    r.delete(f"{COMP_CACHE_KEY_PREFIX}{slug}")
     return comp
 
 
-@router.delete("/{comp_id}", status_code=200, summary="Xoá đội hình")
+@router.delete("/{slug}", status_code=200, summary="Xoá đội hình")
 def delete_comp(
-    comp_id: int,
+    slug: str,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
 ):
-    comp = _get_comp_or_404(comp_id, db)
+    comp = _get_comp_or_404(slug, db)
 
     try:
         db.delete(comp)
@@ -436,17 +437,17 @@ def delete_comp(
         raise HTTPException(status_code=500, detail="Lỗi xoá đội hình") from exc
 
     _invalidate_list_cache(r)
-    r.delete(f"{COMP_CACHE_KEY_PREFIX}{comp_id}")
-    return {"message": f"Đã xoá đội hình id={comp_id}"}
+    r.delete(f"{COMP_CACHE_KEY_PREFIX}{slug}")
+    return {"message": f"Đã xoá đội hình '{slug}'"}
 
 
-@router.get("/{comp_id}/champion-items", summary="Gợi ý items cho từng tướng trong đội hình")
+@router.get("/{slug}/champion-items", summary="Gợi ý items cho từng tướng trong đội hình")
 def get_comp_champion_items(
-    comp_id: int,
+    slug: str,
     top: int = 5,
     db: Session = Depends(get_db),
 ):
-    comp = _get_comp_or_404(comp_id, db)
+    comp = _get_comp_or_404(slug, db)
     maps = _build_lookup_maps(db)
     cbi, cbn = maps["champ_by_id"], maps["champ_by_name"]
 

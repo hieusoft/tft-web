@@ -30,12 +30,12 @@ def get_all(
     return result
 
 
-@router.get("/{id}", response_model=SkillResponse)
+@router.get("/{slug}", response_model=SkillResponse)
 def get_skill(
-    id: int,
+    slug: str,
     db: Session = Depends(get_db),
 ):
-    skill = db.query(Skill).filter(Skill.id == id).first()
+    skill = db.query(Skill).filter(Skill.slug == slug).first()
     if not skill:
         raise HTTPException(status_code=404, detail="Kỹ năng không tồn tại")
     return SkillResponse.from_orm_skill(skill)
@@ -61,14 +61,14 @@ def create(
     return SkillResponse.from_orm_skill(skill)  # ✅
 
 
-@router.patch("/{id}", response_model=SkillResponse)
+@router.patch("/{slug}", response_model=SkillResponse)
 def update_skill(
-    id: int,
+    slug: str,
     body: SkillUpdate,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
 ):
-    skill = db.query(Skill).filter(Skill.id == id).first()
+    skill = db.query(Skill).filter(Skill.slug == slug).first()
     if not skill:
         raise HTTPException(status_code=404, detail="Kỹ năng không tồn tại")
 
@@ -81,13 +81,13 @@ def update_skill(
     return SkillResponse.from_orm_skill(skill)  # ✅
 
 
-@router.delete("/{id}")
+@router.delete("/{slug}")
 def delete(
-    id: int,
+    slug: str,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
 ):
-    skill = db.query(Skill).filter(Skill.id == id).first()
+    skill = db.query(Skill).filter(Skill.slug == slug).first()
     if not skill:
         raise HTTPException(status_code=404, detail="Kỹ năng không tồn tại")
     try:
@@ -98,5 +98,5 @@ def delete(
         raise HTTPException(status_code=400, detail="Không thể xóa! Đang có Tướng sử dụng Kỹ năng này.")
 
     r.delete(SKILLS_CACHE_KEY)
-    return {"message": f"Đã xóa thành công kỹ năng ID {id}"}
+    return {"message": f"Đã xóa thành công kỹ năng {slug}"}
 

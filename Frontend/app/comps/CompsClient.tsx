@@ -1061,8 +1061,36 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
 
 // ── Trait Icon (mini) ────────────────────────────────────────────────────────
 
+function getTraitStyle(trait: CompActiveTrait) {
+  const isMax = trait.current_style >= trait.total_styles && trait.total_styles > 0;
+  if (trait.current_style === 0) {
+    return {
+      bg: "linear-gradient(135deg, #4b5563, #374151)",
+      color: "#9ca3af"
+    };
+  }
+  if (isMax) {
+    return {
+      bg: "linear-gradient(135deg, #c084fc, #06b6d4)",
+      color: "#fff"
+    };
+  }
+  return {
+    bg: "linear-gradient(135deg, #fbbf24, #d97706)",
+    color: "#fff"
+  };
+}
+
+function getTraitStyleColor(trait: CompActiveTrait) {
+  const isMax = trait.current_style >= trait.total_styles && trait.total_styles > 0;
+  if (trait.current_style === 0) return "#9ca3af";
+  if (isMax) return "#06b6d4";
+  return "#f59e0b";
+}
+
 function TraitIcon({ trait }: { trait: CompActiveTrait }) {
-  const styleColor = TRAIT_STYLE_COLORS[trait.current_style] ?? TRAIT_STYLE_COLORS[0];
+  const { bg, color } = getTraitStyle(trait);
+  const styleColor = getTraitStyleColor(trait);
   const isActive = trait.current_style > 0;
   const [showTip, setShowTip] = useState(false);
   const tipRef = useRef<HTMLDivElement>(null);
@@ -1080,7 +1108,13 @@ function TraitIcon({ trait }: { trait: CompActiveTrait }) {
     <div ref={tipRef} style={{ position: 'relative' }}>
       <div
         className={`comp-trait-icon ${isActive ? "comp-trait-icon--active" : ""}`}
-        style={{ borderColor: styleColor, cursor: 'pointer' }}
+        style={{ 
+          cursor: 'pointer',
+          background: bg,
+          border: 'none',
+          clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+          width: 24, height: 26,
+        }}
         onMouseEnter={() => setShowTip(true)}
         onMouseLeave={() => setShowTip(false)}
         onClick={() => setShowTip(!showTip)}
@@ -1090,11 +1124,10 @@ function TraitIcon({ trait }: { trait: CompActiveTrait }) {
           <img
             src={trait.image}
             alt={trait.name}
-            className="comp-trait-icon__img"
-            style={{ width: 22, height: 22, objectFit: "contain", ...(isActive ? {} : { filter: "grayscale(0.6) opacity(0.5)" }) }}
+            style={{ width: 14, height: 14, objectFit: "contain", filter: isActive ? "drop-shadow(0 1px 2px rgba(0,0,0,0.5))" : "grayscale(0.8) opacity(0.5)", zIndex: 1 }}
           />
         ) : (
-          <span className="comp-trait-icon__text">{trait.name[0]}</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color, zIndex: 1 }}>{trait.name[0]}</span>
         )}
       </div>
 
@@ -1170,7 +1203,8 @@ function TraitIcon({ trait }: { trait: CompActiveTrait }) {
 // ── Trait Card (expanded detail) ─────────────────────────────────────────────
 
 function TraitCard({ trait }: { trait: CompActiveTrait }) {
-  const styleColor = TRAIT_STYLE_COLORS[trait.current_style] ?? TRAIT_STYLE_COLORS[0];
+  const { bg, color } = getTraitStyle(trait);
+  const styleColor = getTraitStyleColor(trait);
   const isActive = trait.current_style > 0;
   const [showTip, setShowTip] = useState(false);
   const tipRef = useRef<HTMLDivElement>(null);
@@ -1195,18 +1229,23 @@ function TraitCard({ trait }: { trait: CompActiveTrait }) {
       >
         <div
           className="comp-trait-card__icon"
-          style={{ borderColor: styleColor, background: isActive ? `${styleColor}15` : "transparent" }}
+          style={{ 
+            background: bg,
+            border: 'none',
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+            width: 26, height: 28,
+            display: 'flex', alignItems: 'center', justifyContent: 'center'
+          }}
         >
           {trait.image ? (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={trait.image}
               alt={trait.name}
-              className="comp-trait-card__img"
-              style={{ width: 24, height: 24, objectFit: "contain", ...(isActive ? {} : { filter: "grayscale(0.6) opacity(0.5)" }) }}
+              style={{ width: 14, height: 14, objectFit: "contain", filter: isActive ? "drop-shadow(0 1px 2px rgba(0,0,0,0.5))" : "grayscale(0.8) opacity(0.5)", zIndex: 1 }}
             />
           ) : (
-            <span>{trait.name[0]}</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color, zIndex: 1 }}>{trait.name[0]}</span>
           )}
         </div>
         <div className="comp-trait-card__info">

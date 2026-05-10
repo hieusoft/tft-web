@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import Base, engine
-from app.routers import traits, augments, items, skills, champions, images, gods, comps
+from app.routers import traits, augments, items, skills, champions, gods, comps
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -36,6 +36,5 @@ app.include_router(augments.router, prefix="/api/v1/augments", tags=["Lõi công
 app.include_router(items.router, prefix="/api/v1/items", tags=["Trang Bị (Items)"])
 app.include_router(skills.router, prefix="/api/v1/skills", tags=["Kỹ Năng (Skills)"])
 app.include_router(champions.router, prefix="/api/v1/champions", tags=["Tướng (Champions)"])
-app.include_router(images.router, prefix="/api/v1/images", tags=["Ảnh (Images)"])
 app.include_router(gods.router, prefix="/api/v1/gods", tags=["Thần (Gods)"])
 app.include_router(comps.router, prefix="/api/v1/comps", tags=["Đội Hình (Comps)"])

@@ -1,292 +1,256 @@
-import sys, io, re, html, json, time, os, mimetypes
-import unicodedata
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import os
+import sys
+import io
+import json
+import time
+from concurrent.futures import ThreadPoolExecutor
+
 import requests
-import boto3
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+import boto3
 from dotenv import load_dotenv
 
-load_dotenv()
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-
-_DIR        = os.path.dirname(os.path.abspath(__file__))
-URL         = "https://www.metatft.com/traits"
-JSON_OUT    = os.path.join(_DIR, "traits.json")
-R2_FOLDER   = "traits"
-MAX_WORKERS = 20
-
-R2_ACCESS_KEY  = os.getenv("R2_ACCESS_KEY")
-R2_SECRET_KEY  = os.getenv("R2_SECRET_KEY")
-R2_ENDPOINT    = os.getenv("R2_ENDPOINT")
-R2_BUCKET_NAME = os.getenv("R2_BUCKET_NAME")
-R2_PUBLIC_URL  = os.getenv("R2_PUBLIC_URL")
-
-s3 = boto3.client(
-    "s3",
-    endpoint_url=R2_ENDPOINT,
-    aws_access_key_id=R2_ACCESS_KEY,
-    aws_secret_access_key=R2_SECRET_KEY,
-    region_name="auto",
-)
-
-http = requests.Session()
-http.headers.update({"User-Agent": "Mozilla/5.0"})
-
-
-def setup_driver():
-    opts = Options()
-    for arg in ["--headless", "--no-sandbox", "--disable-dev-shm-usage",
-                "--window-size=1920,1080", "--lang=vi"]:
-        opts.add_argument(arg)
-    opts.add_experimental_option("prefs", {"intl.accept_languages": "vi,vi-VN"})
-    opts.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
-    return webdriver.Chrome(options=opts)
-
-
-def vn_to_slug(text: str) -> str:
-    if not text:
-        return "unknown"
-    text = unicodedata.normalize("NFD", text)
-    text = "".join(c for c in text if unicodedata.category(c) != "Mn")
-    text = text.replace("đ", "d").replace("Đ", "D")
-    text = text.lower().strip()
-    text = re.sub(r"[^a-z0-9\s-]", "", text)
-    text = re.sub(r"[\s-]+", "-", text)
-    return text.strip("-")
-
+from augment import vn_to_slug
 
 def get_ext_from_url(url: str) -> str:
     ext = url.split(".")[-1].split("?")[0].lower()
-    return ext if ext in {"png", "jpg", "jpeg", "webp", "svg"} else "png"
+    return ext if ext in {"png", "jpg", "jpeg", "webp"} else "png"
 
+load_dotenv()
 
-def raw_html_to_text(raw: str) -> str:
-    def img_alt(m):
-        a = re.search(r'alt="([^"]+)"', m.group(0))
-        return f"[{a.group(1)}]" if a else "[icon]"
-    text = re.sub(r"</div>|</p>|</li>|<br\s*/?>", "\n", raw)
-    text = re.sub(r"<img[^>]+>", img_alt, text)
-    text = re.sub(r"<[^>]+>", "", text)
-    return html.unescape(text).strip()
+URL = "https://www.metatft.com/traits"
+R2_FOLDER = "traits"
 
+s3 = boto3.client(
+    "s3",
+    endpoint_url=os.environ.get("R2_ENDPOINT"),
+    aws_access_key_id=os.environ.get("R2_ACCESS_KEY"),
+    aws_secret_access_key=os.environ.get("R2_SECRET_KEY"),
+    region_name="auto",
+)
+BUCKET_NAME = os.environ.get("R2_BUCKET_NAME")
 
-def parse_tooltip(text: str, trait_name: str) -> tuple[str, list]:
-    lines = [l.strip() for l in text.splitlines() if l.strip()]
-    if lines and trait_name.lower() in lines[0].lower():
-        lines = lines[1:]
-    desc_parts, milestones, in_ms = [], [], False
-    for line in lines:
-        hits = list(re.finditer(r"\((\d+)\)\s*(.*?)(?=\(\d+\)|$)", line))
-        if hits:
-            prefix = line[:hits[0].start()].strip()
-            if prefix and not in_ms:
-                desc_parts.append(prefix)
-            in_ms = True
-            for h in hits:
-                effect = re.sub(r"Tướng\s*:.*", "", h.group(2)).strip().rstrip("|").strip()
-                milestones.append({"unit": int(h.group(1)), "effect": effect})
-        else:
-            clean = re.sub(r"Tướng\s*:.*", "", line).strip()
-            if not in_ms:
-                desc_parts.append(clean)
-            elif milestones:
-                milestones[-1]["effect"] = (milestones[-1]["effect"] + " " + clean).strip()
-    return " ".join(desc_parts).strip(), milestones
+session = requests.Session()
+retries = Retry(total=5, backoff_factor=0.5, status_forcelist=[500, 502, 503, 504])
+session.mount('https://', HTTPAdapter(max_retries=retries))
 
+def r2_delete_folder(prefix: str):
+    paginator = s3.get_paginator('list_objects_v2')
+    pages = paginator.paginate(Bucket=BUCKET_NAME, Prefix=prefix)
+    
+    delete_us = dict(Objects=[])
+    for item in pages.search('Contents'):
+        if item:
+            delete_us['Objects'].append({'Key': item['Key']})
+            if len(delete_us['Objects']) >= 1000:
+                s3.delete_objects(Bucket=BUCKET_NAME, Delete=delete_us)
+                delete_us = dict(Objects=[])
+    
+    if len(delete_us['Objects']):
+        s3.delete_objects(Bucket=BUCKET_NAME, Delete=delete_us)
 
-def r2_delete_folder(folder: str):
-    print(f"Xoa folder cu R2: {folder}/")
-    try:
-        all_keys = []
-        paginator = s3.get_paginator("list_objects_v2")
-        for page in paginator.paginate(Bucket=R2_BUCKET_NAME, Prefix=f"{folder}/"):
-            all_keys.extend(obj["Key"] for obj in page.get("Contents", []))
-        if not all_keys:
-            print("  Folder da trong.")
-            return
-        batches = [all_keys[i:i+1000] for i in range(0, len(all_keys), 1000)]
-        def delete_batch(keys):
-            s3.delete_objects(
-                Bucket=R2_BUCKET_NAME,
-                Delete={"Objects": [{"Key": k} for k in keys]},
-            )
-        with ThreadPoolExecutor(max_workers=5) as ex:
-            list(ex.map(delete_batch, batches))
-        print(f"  Da xoa {len(all_keys)} file cu.")
-    except Exception as e:
-        print(f"  Khong the xoa folder R2: {e}")
-        print("  Tiep tuc upload de len file cu...")
-
-
-def r2_put(data: bytes, r2_key: str, ext: str) -> str:
-    mime_type = mimetypes.types_map.get(f".{ext}", "image/png")
+def r2_put(content: bytes, key: str, content_type: str = "") -> str:
+    if not content_type:
+        content_type = "image/png" if key.endswith(".png") else "image/svg+xml"
+        
     s3.put_object(
-        Bucket=R2_BUCKET_NAME,
-        Key=r2_key,
-        Body=data,
-        ContentType=mime_type,
+        Bucket=BUCKET_NAME,
+        Key=key,
+        Body=content,
+        ContentType=content_type,
     )
-    return f"{R2_PUBLIC_URL}/{r2_key}"
+    public_url = os.environ.get("R2_PUBLIC_URL", "").rstrip("/")
+    if public_url:
+        return f"{public_url}/{key}"
+    return f"s3://{BUCKET_NAME}/{key}"
 
+def download_and_upload_image(slug: str, image_url: str) -> str:
+    if not image_url:
+        return ""
+    
+    ext = get_ext_from_url(image_url) or "png"
+    r2_key = f"{R2_FOLDER}/{slug}.{ext}"
+    
+    try:
+        res = session.get(image_url, timeout=10)
+        if res.status_code == 200:
+            return r2_put(res.content, r2_key, ext)
+    except Exception:
+        pass
+    return image_url
 
-_JS_SCRAPE = r"""
-function getFiberProps(el, maxDepth) {
+def setup_driver():
+    opts = Options()
+    opts.add_argument("--headless")
+    opts.add_argument("--window-size=1920,1080")
+    opts.add_argument("--disable-gpu")
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--lang=vi")
+    opts.add_experimental_option("prefs", {"intl.accept_languages": "vi,vi-VN"})
+    return webdriver.Chrome(options=opts)
+
+_JS_GET_FIBER_DATA = r"""
+function getFiberProps(el) {
     const rk = Object.keys(el).find(k => k.startsWith('__reactFiber'));
-    if (!rk) return [];
-    let fiber = el[rk], results = [], depth = 0;
-    while (fiber && depth < maxDepth) {
-        if (fiber.memoizedProps && typeof fiber.memoizedProps === 'object')
-            results.push(fiber.memoizedProps);
+    if (!rk) return null;
+    let fiber = el[rk];
+    const results = [];
+    let d = 0;
+    while (fiber && d < 10) {
+        if (fiber.memoizedProps) results.push(fiber.memoizedProps);
         fiber = fiber.return;
-        depth++;
+        d++;
     }
     return results;
 }
 
-function findTooltip(propsArr) {
-    const keys = ['tooltip','content','tooltipContent','description','desc','data','trait'];
-    for (const props of propsArr) {
-        for (const key of keys) {
-            const val = props[key];
-            if (typeof val === 'string' && val.length > 5) return val;
-            if (val && typeof val === 'object' && val.description) return val.description;
-        }
-        if (props.trait) {
-            const t = props.trait;
-            if (t.description) return t.description;
-            if (t.tooltip)     return t.tooltip;
+let allTraits = [];
+const rows = document.querySelectorAll('tr[role="row"]');
+for (const row of rows) {
+    const props = getFiberProps(row);
+    if (!props) continue;
+    let found = false;
+    for (const p of props) {
+        if (p.data && Array.isArray(p.data) && p.data.length > 0 && p.data[0].trait_details) {
+            allTraits = p.data;
+            found = true;
+            break;
         }
     }
-    return "";
+    if (found) break;
 }
 
-return [...document.querySelectorAll("tr[role='row']")].map(row => {
-    const qt  = sel => (row.querySelector(sel) || {}).textContent || "";
-    const qts = sel => [...row.querySelectorAll(sel)].map(n => n.textContent.trim());
-    const icon = row.querySelector(".TraitIcon");
-    const tooltipData = icon ? findTooltip(getFiberProps(icon, 20)) : "";
-    const pickRight = qt(".TableNumRight").trim().split(/\s+/);
+const domTraits = [...document.querySelectorAll('tr[role="row"]')].map(row => {
+    const img = row.querySelector('.TraitIcon');
+    const nameEl = row.querySelector('.StatLink');
+    if (!img || !nameEl) return null;
     return {
-        name:         qt(".StatLink").trim(),
-        tier:         qt(".StatTierBadge").trim(),
-        placement:    qt(".TablePlacement").trim(),
-        top4:         qts(".TableNum")[0] || "",
-        pick_count:   pickRight[0] || "",
-        pick_percent: pickRight[1] || "",
-        image:        icon ? icon.src : "",
-        tooltip_data: tooltipData,
+        name: nameEl.textContent.trim(),
+        image_url: img.src
     };
-}).filter(r => r.name);
+}).filter(r => r);
+
+allTraits.forEach(trait => {
+    if (trait.trait_details && trait.trait_details.trait_name) {
+        const domMatch = domTraits.find(d => d.name === trait.trait_details.trait_name);
+        if (domMatch) {
+            trait.image_url = domMatch.image_url;
+        }
+    }
+});
+
+const cache = new Set();
+return JSON.stringify(allTraits, (key, value) => {
+    if (typeof value === 'object' && value !== null) {
+        if (value instanceof Node) return undefined;
+        if (cache.has(value)) return;
+        cache.add(value);
+    }
+    return value;
+});
 """
 
+def clean_description(desc: str) -> str:
+    if not desc: return ""
+    import re
+    desc = re.sub(r'<[^>]+>', ' ', desc)
+    desc = re.sub(r'\s+', ' ', desc).strip()
+    return desc
 
-def process_item(item: dict) -> dict | None:
-    name = item["name"].strip()
-    if not name:
-        return None
-
-    image_url = item.get("image", "")
-    slug = ""
-    if image_url:
-        import urllib.parse
-        parsed = urllib.parse.urlparse(image_url)
-        path = urllib.parse.unquote(parsed.path)
-        slug = path.split("/")[-1].split(".")[0]
-        slug = slug.replace("_", "").lower()
-        
-    if not slug:
+def process_trait(t: dict) -> dict | None:
+    try:
+        details = t.get("trait_details", {})
+        name = details.get("trait_name", "").strip()
+        if not name:
+            return None
+            
         slug = vn_to_slug(name)
-
-    ext       = get_ext_from_url(image_url) if image_url else "png"
-    r2_key    = f"{R2_FOLDER}/{slug}.{ext}"
-    r2_url    = image_url
-
-    if image_url:
-        try:
-            res = http.get(image_url, timeout=10)
-            if res.status_code == 200:
-                r2_url = r2_put(res.content, r2_key, ext)
-            else:
-                print(f"  HTTP {res.status_code}: {name}")
-        except Exception as e:
-            print(f"  Loi [{name}]: {e}")
-
-    td = item.get("tooltip_data", "")
-    desc, milestones = "", []
-    if td:
-        if "<" in td:
-            desc, milestones = parse_tooltip(raw_html_to_text(td), name)
-        else:
-            desc = td
-
-    return {
-        "name":         name,
-        "slug":         slug,
-        "tier":         item.get("tier", ""),
-        "placement":    item.get("placement", ""),
-        "top4":         item.get("top4", ""),
-        "pick_count":   item.get("pick_count", ""),
-        "pick_percent": item.get("pick_percent", ""),
-        "description":  desc,
-        "milestones":   milestones,
-        "image":        r2_url,
-    }
-
+        
+        tier = t.get("tier", {}).get("letter", "")
+        avg_place = str(round(t.get("avg_place", 0), 2)) if t.get("avg_place") else ""
+        top4 = str(round(t.get("top_4", 0) * 100, 1)) + "%" if t.get("top_4") else ""
+        
+        freq = t.get("frequency", {})
+        pick_count = str(freq.get("count", ""))
+        pick_percent = str(round(freq.get("percent", 0) * 100, 1)) + "%" if freq.get("percent") else ""
+        
+        image_url = t.get("image_url", "")
+        description = clean_description(details.get("description", ""))
+        
+        milestones = []
+        for mt in details.get("traits", []):
+            milestones.append({
+                "level": mt.get("trait_num", ""),
+                "min": mt.get("minUnits", ""),
+                "max": mt.get("maxUnits", ""),
+                "style": mt.get("style", ""),
+            })
+            
+        return {
+            "name": name,
+            "slug": slug,
+            "tier": tier,
+            "placement": avg_place,
+            "top4": top4,
+            "pick_count": pick_count,
+            "pick_percent": pick_percent,
+            "description": description,
+            "milestones": milestones,
+            "image_url": image_url,
+        }
+    except Exception:
+        return None
 
 def main():
     start = time.time()
-
+    
+    r2_delete_folder(R2_FOLDER)
     driver = setup_driver()
     try:
         driver.get(URL)
         w = WebDriverWait(driver, 15)
+        
         btn = w.until(EC.element_to_be_clickable(
             (By.XPATH, "//button[contains(text(),'Tổng Quan') or contains(text(),'Overview')]")
         ))
         driver.execute_script("arguments[0].click();", btn)
         w.until(EC.presence_of_element_located((By.CSS_SELECTOR, "tr[role='row']")))
-        time.sleep(1.5)
-        raw_rows = driver.execute_script(_JS_SCRAPE)
+        time.sleep(2)
+        
+        raw_json = driver.execute_script(_JS_GET_FIBER_DATA)
+        raw_data = json.loads(raw_json)
+        
     finally:
         driver.quit()
 
-    seen, unique_items = set(), []
-    for r in raw_rows:
-        name = r.get("name", "").strip()
-        if name and name not in seen:
-            seen.add(name)
-            unique_items.append(r)
+    if not raw_data:
+        return
 
-    print(f"{len(unique_items)} traits (tho: {len(raw_rows)})")
+    processed_traits = []
+    for t in raw_data:
+        pt = process_trait(t)
+        if pt:
+            processed_traits.append(pt)
 
-    r2_delete_folder(R2_FOLDER)
+    def _upload_for_trait(pt):
+        pt["image"] = download_and_upload_image(pt["slug"], pt.pop("image_url", ""))
+        return pt
 
-    print(f"Upload {len(unique_items)} anh ({MAX_WORKERS} luong)...")
-    results = []
-    done = 0
+    final_traits = []
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        for res in executor.map(_upload_for_trait, processed_traits):
+            final_traits.append(res)
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = {executor.submit(process_item, item): item for item in unique_items}
-        for future in as_completed(futures):
-            result = future.result()
-            if result:
-                results.append(result)
-            done += 1
-            if done % 10 == 0 or done == len(unique_items):
-                print(f"  {done}/{len(unique_items)}  ({time.time() - start:.1f}s)")
-
-    order = {item["name"].strip(): i for i, item in enumerate(unique_items)}
-    results.sort(key=lambda r: order.get(r["name"], 9999))
-
-    with open(JSON_OUT, "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-
-    print(f"Xong! {len(results)} traits -> {JSON_OUT}  ({time.time() - start:.1f}s)")
-
+    out_file = os.path.join(os.path.dirname(__file__), "traits.json")
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(final_traits, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
     main()

@@ -39,12 +39,12 @@ def get_all_gods(
     return gods
 
 
-@router.get("/{id}", response_model=GodDetailResponse)
+@router.get("/{slug}", response_model=GodDetailResponse)
 def get_god_details(
-    id: int, 
+    slug: str, 
     db: Session = Depends(get_db),
 ):
-    god = db.query(God).options(joinedload(God.augment)).filter(God.id == id).first()
+    god = db.query(God).options(joinedload(God.augment)).filter(God.slug == slug).first()
     if not god:
         raise HTTPException(status_code=404, detail="Không tìm thấy Thần")
     return god
@@ -91,14 +91,14 @@ def bulk_sync_gods(
         db.rollback()
         raise HTTPException(status_code=500, detail=f"Lỗi khi xóa/nạp dữ liệu Thần: {str(e)}")
         
-@router.patch("/{id}", response_model=GodResponse)
+@router.patch("/{slug}", response_model=GodResponse)
 def update_god(
-    id: int,
+    slug: str,
     body: GodBase,
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
 ):
-    god = db.query(God).filter(God.id == id).first()
+    god = db.query(God).filter(God.slug == slug).first()
     if not god:
         raise HTTPException(status_code=404, detail="Không tìm thấy Thần")
         
@@ -111,13 +111,13 @@ def update_god(
     r.delete(GODS_CACHE_KEY)
     return god
 
-@router.delete("/{id}")
+@router.delete("/{slug}")
 def delete_god(
-    id: int, 
+    slug: str, 
     db: Session = Depends(get_db),
     r: redis.Redis = Depends(get_redis),
 ):
-    god = db.query(God).filter(God.id == id).first()
+    god = db.query(God).filter(God.slug == slug).first()
     if not god:
         raise HTTPException(status_code=404, detail="Không tìm thấy Thần")
     
