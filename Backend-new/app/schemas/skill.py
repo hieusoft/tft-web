@@ -88,6 +88,7 @@ class AbilityStat(BaseModel):
 
 class SkillBase(BaseModel):
     name: str
+    slug: str
     mana_start: Optional[int] = 0
     mana_max: Optional[int] = 0
     description: Optional[str] = None
@@ -100,6 +101,7 @@ class SkillCreate(SkillBase):
 
 class SkillUpdate(BaseModel):
     name: Optional[str] = None
+    slug: Optional[str] = None
     mana_start: Optional[int] = None
     mana_max: Optional[int] = None
     description: Optional[str] = None
@@ -115,6 +117,7 @@ class AbilityStatDisplay(BaseModel):
 class SkillResponse(BaseModel):
     id: int
     name: str
+    slug: str
     mana_start: int
     mana_max: int
     icon_path: Optional[str] = None
@@ -138,6 +141,7 @@ class SkillResponse(BaseModel):
         return cls(
             id=skill.id,
             name=skill.name,
+            slug=skill.slug,
             mana_start=skill.mana_start or 0,
             mana_max=skill.mana_max or 0,
             icon_path=skill.icon_path,

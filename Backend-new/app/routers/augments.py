@@ -33,12 +33,12 @@ def get_all_augments(
     
     return augments
 
-@router.get("/{id}", response_model=AugmentResponse)
-def get_augment(
-    id: int, 
+@router.get("/{slug}", response_model=AugmentResponse)
+def get_augment_by_slug(
+    slug: str, 
     db: Session = Depends(get_db),
 ):
-    augment = db.query(Augment).filter(Augment.id == id).first()
+    augment = db.query(Augment).filter(Augment.slug == slug).first()
     if not augment:
         raise HTTPException(status_code=404, detail="Không tìm thấy Lõi Công Nghệ")
     return augment

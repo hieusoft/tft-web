@@ -76,9 +76,10 @@ class CompBase(BaseModel):
     """Các field cơ bản của một đội hình TFT."""
 
     name: str = Field(..., min_length=1, max_length=255, description="Tên đội hình, phải là duy nhất")
+    slug: str = Field(..., description="Slug của đội hình")
     tier: str = Field(..., description="Tier đánh giá: S | A | B | C | D")
     playstyle: Optional[str] = Field(None, max_length=100, description="Cách chơi, e.g. 'Fast 8', 'Reroll 3'")
-    avg_placement: Optional[float] = Field(None, ge=1.0, le=8.0, description="Hạng trung bình từ 1.0 đến 8.0")
+    avg_placement: Optional[str] = Field(None, description="Hạng trung bình")
 
     # JSONB fields — client gửi object Python thuần
     final_board: Optional[Any] = Field(None, description="Board cuối game (JSONB)")
@@ -128,9 +129,10 @@ class CompUpdate(BaseModel):
     """
 
     name: Optional[str] = Field(None, min_length=1, max_length=255)
+    slug: Optional[str] = None
     tier: Optional[str] = None
     playstyle: Optional[str] = Field(None, max_length=100)
-    avg_placement: Optional[float] = Field(None, ge=1.0, le=8.0)
+    avg_placement: Optional[str] = None
     final_board: Optional[Any] = None
     early_boards: Optional[Any] = None
     carousel_priority: Optional[List[str]] = None
@@ -173,9 +175,10 @@ class CompDetailResponse(BaseModel):
 
     id: int
     name: str
+    slug: str
     tier: str
     playstyle: Optional[str] = None
-    avg_placement: Optional[float] = None
+    avg_placement: Optional[str] = None
 
     # Enriched fields
     final_board: Optional[List[BoardSlotEnriched]] = None

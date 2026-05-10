@@ -13,7 +13,7 @@ class GodBase(BaseModel):
     name: Optional[str] = None
     trait: Optional[str] = None
     rank: Optional[str] = None
-    is_unique: Optional[int] = Field(default=None, alias="unique") 
+    slug: Optional[str] = None 
     stages: Optional[List[Dict[str, Any]]] = None 
     image: Optional[str] = None
     boon_augment_id: Optional[int] = None

@@ -18,10 +18,7 @@ def clear_cache(r: redis.Redis):
 
 @router.get("/", response_model=List[ItemResponse])
 def get_items(db: Session = Depends(get_db)):
-    items = db.query(Item).options(
-        joinedload(Item.component_1),
-        joinedload(Item.component_2)
-    ).all()
+    items = db.query(Item).all()
     return items
 
 from sqlalchemy.orm import joinedload

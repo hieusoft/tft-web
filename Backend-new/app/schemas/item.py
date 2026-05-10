@@ -7,14 +7,13 @@ class ItemBase(BaseModel):
     slug: str
     category: Optional[str] = None
     rank: Optional[str] = None
-    avg_placement: Optional[float] = 0.0
+    avg_placement: Optional[str] = None
     win_rate: Optional[str] = None
-    games_played: Optional[str] = None
-    pick_rate: Optional[str] = None
+    frequency: Optional[str] = None
     description: Optional[str] = None
     stats: Optional[Dict[str, Any]] = None
-    component_1: Optional[int] = None
-    component_2: Optional[int] = None
+    component_1: Optional[str] = None
+    component_2: Optional[str] = None
     image: Optional[str] = None
 
 class ItemSimpleResponse(BaseModel):
@@ -37,15 +36,15 @@ class ChampionSimple(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 class ChampionUsageResponse(BaseModel):
-    avg_placement: float
+    avg_placement: str
     pick_percent: str
     champion: Optional[ChampionSimple] = None 
     model_config = ConfigDict(from_attributes=True)
 
 class ItemResponse(ItemBase):
     id: int
-    component_1: Optional[ItemSimpleResponse] = None
-    component_2: Optional[ItemSimpleResponse] = None
+    component_1: Optional[str] = None
+    component_2: Optional[str] = None
     model_config = ConfigDict(from_attributes=True)
     best_users: List[ChampionUsageResponse] = []
     model_config = ConfigDict(from_attributes=True)

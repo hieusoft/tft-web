@@ -1,4 +1,4 @@
-import sys, io, re, html, json, time, os, mimetypes
+import sys, io, re, html, json, os, mimetypes
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
@@ -73,14 +73,12 @@ def get_ext_from_url(url: str) -> str:
 
 
 def r2_delete_folder(folder: str):
-    print(f"Xoa folder cu R2: {folder}/")
     try:
         all_keys = []
         paginator = s3.get_paginator("list_objects_v2")
         for page in paginator.paginate(Bucket=R2_BUCKET_NAME, Prefix=f"{folder}/"):
             all_keys.extend(obj["Key"] for obj in page.get("Contents", []))
         if not all_keys:
-            print("  Folder da trong.")
             return
         batches = [all_keys[i:i+1000] for i in range(0, len(all_keys), 1000)]
         def delete_batch(keys):
@@ -90,10 +88,8 @@ def r2_delete_folder(folder: str):
             )
         with ThreadPoolExecutor(max_workers=5) as ex:
             list(ex.map(delete_batch, batches))
-        print(f"  Da xoa {len(all_keys)} file cu.")
-    except Exception as e:
-        print(f"  Khong the xoa folder R2: {e}")
-        print("  Tiep tuc upload de len file cu...")
+    except Exception:
+        pass
 
 
 def r2_put(data: bytes, r2_key: str, ext: str) -> str:
@@ -113,9 +109,11 @@ function getFiberProps(el) {
     if (!rk) return [];
     let fiber = el[rk];
     const results = [];
-    while (fiber) {
+    let d = 0;
+    while (fiber && d < 10) {
         if (fiber.memoizedProps) results.push(fiber.memoizedProps);
         fiber = fiber.return;
+        d++;
     }
     return results;
 }
@@ -161,16 +159,7 @@ def process_item(item: dict) -> dict | None:
     if not name:
         return None
     image_url = item.get("image", "")
-    slug = ""
-    if image_url:
-        import urllib.parse
-        parsed = urllib.parse.urlparse(image_url)
-        path = urllib.parse.unquote(parsed.path)
-        slug = path.split("/")[-1].split(".")[0]
-        slug = slug.replace("_", "").lower()
-        
-    if not slug:
-        slug = vn_to_slug(name)
+    slug = vn_to_slug(name)
 
     ext       = get_ext_from_url(image_url)
     r2_key    = f"{R2_FOLDER}/{slug}.{ext}"
@@ -180,10 +169,8 @@ def process_item(item: dict) -> dict | None:
             res = http.get(image_url, timeout=10)
             if res.status_code == 200:
                 r2_url = r2_put(res.content, r2_key, ext)
-            else:
-                print(f"  HTTP {res.status_code}: {name}")
-        except Exception as e:
-            print(f"  Loi [{name}]: {e}")
+        except Exception:
+            pass
     return {
         "name":        name,
         "slug":        slug,
@@ -195,9 +182,6 @@ def process_item(item: dict) -> dict | None:
 
 
 def main():
-    start = time.time()
-
-    print(f"Dang ket noi toi {URL}...")
     driver = setup_driver()
     try:
         driver.get(URL)
@@ -215,32 +199,21 @@ def main():
             seen.add(name)
             unique_items.append(item)
 
-    print(f"{len(unique_items)} augments (tho: {len(raw_data)})")
-
     r2_delete_folder(R2_FOLDER)
 
-    print(f"Upload {len(unique_items)} anh ({MAX_WORKERS} luong)...")
     results = []
-    done = 0
-
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(process_item, item): item for item in unique_items}
         for future in as_completed(futures):
             result = future.result()
             if result:
                 results.append(result)
-            done += 1
-            if done % 20 == 0 or done == len(unique_items):
-                print(f"  {done}/{len(unique_items)}  ({time.time() - start:.1f}s)")
 
     order = {item["name"].strip(): i for i, item in enumerate(unique_items)}
     results.sort(key=lambda r: order.get(r["name"], 9999))
 
     with open(JSON_OUT, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
-
-    print(f"Xong! {len(results)} augments -> {JSON_OUT}  ({time.time() - start:.1f}s)")
-
 
 if __name__ == "__main__":
     main()

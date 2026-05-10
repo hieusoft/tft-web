@@ -11,13 +11,13 @@ class BuildResponse(BaseModel):
     item_1: Optional[ItemSimple]
     item_2: Optional[ItemSimple]
     item_3: Optional[ItemSimple]
-    avg_placement: float
+    avg_placement: str
     win_rate: str
     model_config = ConfigDict(from_attributes=True)
 
 class ItemStatResponse(BaseModel):
     item: Optional[ItemSimple]
-    avg_placement: float
+    avg_placement: str
     win_rate: str
     pick_percent: str
     model_config = ConfigDict(from_attributes=True)
@@ -42,7 +42,7 @@ class ChampionBase(BaseModel):
     slug: str
     cost: int
     rank: str
-    avg_placement: float
+    avg_placement: str
     win_rate: str
     games_played: str
     pick_rate: str
@@ -71,7 +71,7 @@ class ChampionCreate(BaseModel):
     slug: str
     cost: int
     rank: Optional[str] = None
-    avg_placement: Optional[float] = None
+    avg_placement: Optional[str] = None
     win_rate: Optional[str] = None
     games_played: Optional[str] = None
     pick_rate: Optional[str] = None
@@ -85,7 +85,7 @@ class ChampionUpdate(BaseModel):
     slug: Optional[str] = None
     cost: Optional[int] = None
     rank: Optional[str] = None
-    avg_placement: Optional[float] = None
+    avg_placement: Optional[str] = None
     win_rate: Optional[str] = None
     games_played: Optional[str] = None
     pick_rate: Optional[str] = None

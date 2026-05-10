@@ -1,0 +1,760 @@
+[
+  {
+    "id": 1,
+    "name": "Varus",
+    "slug": "varus",
+    "trait": "Thần Tình Yêu",
+    "rank": "S",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-3c.png",
+            "text": "Tướng 3 vàng đã sở hữu: Nhận 1 bản sao của một tướng 3 vàng mà bạn sở hữu và 2 vàng.Nếu bạn không sở hữu bất kỳ tướng 3 vàng nào, nhận 1 tướng ngẫu nhiên"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-lovers.png",
+            "text": "Tình Nhân: Nhận 1 tướng 3 vàng và 1 tướng 2 vàng có chung một tộc/hệ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-consumable-championduplicator-i.png",
+            "text": "2 Máy Sao Chép Tí Hon: Dùng lên tướng 1 vàng để nhận bản sao 1 sao của chúng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-allthreecostshop.png",
+            "text": "Cửa Hàng 3 Vàng: Cửa hàng tiếp theo của bạn chứa toàn tướng 3 vàng. Tướng đầu tiên bạn mua sẽ miễn phí."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-pengupairs.png",
+            "text": "Quà Chia Tay Siêu Đỉnh: Lần tiếp theo bạn chọn món quà của Thần Pengu, nhận thêm 1 bản sao của tướng và 2 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-starlight.png",
+            "text": "Nâng Cấp Đen Đủi: Tướng 2 Vàng tiếp theo bạn thấy trong cửa hàng sẽ là 2 Sao."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-consumable-championduplicator-iii.png",
+            "text": "Máy Sao Chép Tướng Cỡ Nhỏ: Nhận 1 Máy Sao Chép Tướng Cỡ Nhỏ và 3 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-3c.png",
+            "text": "Tướng 3 vàng đã sở hữu: Nhận 1 bản sao của một tướng 3 vàng mà bạn sở hữu và 2 vàng.Nếu bạn không sở hữu bất kỳ tướng 3 vàng nào, nhận 1 tướng ngẫu nhiên"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-lovers.png",
+            "text": "Tình Nhân +: Nhận 1 tướng 4 vàng và 1 tướng 3 vàng có chung một tộc/hệ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-allfourcostshop.png",
+            "text": "Cửa Hàng 4 Vàng: Cửa hàng tiếp theo của bạn chứa toàn tướng 4 vàng. Tướng đầu tiên bạn mua sẽ miễn phí."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-consumable-championduplicator-iii.png",
+            "text": "Máy Sao Chép Tướng Cỡ Nhỏ: Nhận 1 Máy Sao Chép Tướng Cỡ Nhỏ và 3 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-ephemeralrerolls.png",
+            "text": "Lượt Đổi Tạm Thời: Khi bắt đầu mỗi vòng đấu, nếu bạn không có lượt đổi miễn phí, nhận 1 lượt đổi miễn phí."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-pengupairs.png",
+            "text": "Quà Chia Tay Siêu Đỉnh: Lần tiếp theo bạn chọn món quà của Thần Pengu, nhận thêm 1 bản sao của tướng và 2 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-starlight.png",
+            "text": "Nâng Cấp Đen Đủi +: Tướng 3 Vàng tiếp theo bạn thấy trong cửa hàng sẽ là 2 Sao."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-lovers.png",
+            "text": "Tình Nhân ++: Nhận 1 tướng 5 vàng và 1 tướng 4 vàng có chung một tộc/hệ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-3c.png",
+            "text": "Tướng 4 vàng đã sở hữu: Nhận 1 bản sao của một tướng 4 vàng mà bạn sở hữu và 3 vàng.Nếu bạn không sở hữu bất kỳ tướng 4 vàng nào, nhận 1 tướng ngẫu nhiên"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-consumable-championduplicator-iii.png",
+            "text": "Máy Sao Chép Tướng Cỡ Nhỏ: Hãy dùng lên 1 tướng 3 vàng hoặc thấp hơn để tạo 1 bản sao 1 sao vào đội dự bị của bạn.[Tiêu Thụ - Vật phẩm sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-consumable-championduplicator-iii.png",
+            "text": "Gói Nhân Bản: Nhận 5 Máy Sao Chép Tướng Tí Hon và 1 Máy Sao Chép Tướng Cỡ Nhỏ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-pengupairs.png",
+            "text": "Quà Chia Tay Siêu Đỉnh: Lần tiếp theo bạn chọn món quà của Thần Pengu, nhận thêm 1 bản sao của tướng và 2 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-starlight.png",
+            "text": "Nâng Cấp Đen Đủi ++: Tướng 4 Vàng tiếp theo bạn thấy trong cửa hàng sẽ là 2 Sao."
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/varus.png",
+    "boon_augment_id": 8
+  },
+  {
+    "id": 2,
+    "name": "Ahri",
+    "slug": "ahri",
+    "trait": "Thần Phồn Hoa",
+    "rank": "S",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistgivegold.png",
+            "text": "6 vàng: Mưa vàng!"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-xp.png",
+            "text": "6 XP.: Tập trung thăng cấp"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sharedwealth.png",
+            "text": "Cùng Hưởng Phú Quý: Nhận 6 vàng. Nếu có ít nhất 5 người chơi chọn nâng cấp này, nhận thêm 1 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-rerolls.png",
+            "text": "4 lượt đổi miễn phí: Roll không ngừng"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-maxinterest.png",
+            "text": "Đầu Tư Theo Ý Trời: Lợi tức tối đa của bạn được tăng thêm 1. Nhận 4 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-splitgold.png",
+            "text": "Rương Tham Lam: Nhận 2 vàng, cộng thêm 12 vàng được chia đều cho tất cả người chơi chọn lựa chọn này (làm tròn xuống)."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistgivegold.png",
+            "text": "8 vàng: Mưa vàng!"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-rerolls.png",
+            "text": "5 lượt đổi miễn phí: Roll không ngừng"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sharedwealth.png",
+            "text": "Cùng Hưởng Phú Quý +: Nhận 8 vàng. Nếu có ít nhất 5 người chơi chọn nâng cấp này, nhận thêm 2 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-xp.png",
+            "text": "8 XP.: Tập trung thăng cấp"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistgivegold.png",
+            "text": "Vàng Mỗi Lượt: Nhận 1 vàng mỗi vòng cho đến hết trận đấu."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-maxinterest.png",
+            "text": "Đầu Tư Theo Ý Trời: Lợi tức tối đa của bạn được tăng thêm 1. Nhận 6 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-splitgold.png",
+            "text": "Rương Tham Lam: Nhận 3 vàng, cộng thêm 16 vàng được chia đều cho tất cả người chơi chọn lựa chọn này (làm tròn xuống)."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistgivegold.png",
+            "text": "10 vàng: Mưa vàng!"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sharedwealth.png",
+            "text": "Cùng Hưởng Phú Quý +: Nhận 10 vàng. Nếu có ít nhất 5 người chơi chọn nâng cấp này, nhận thêm 2 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-rerolls.png",
+            "text": "7 lượt đổi miễn phí: Roll không ngừng"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-splitgold.png",
+            "text": "Rương Tham Lam: Nhận 4 vàng, cộng thêm 25 vàng được chia đều cho tất cả người chơi chọn lựa chọn này (làm tròn xuống)."
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/ahri.png",
+    "boon_augment_id": 48
+  },
+  {
+    "id": 3,
+    "name": "Ekko",
+    "slug": "ekko",
+    "trait": "Thần Thời Gian",
+    "rank": "S",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft9-slime-crab-square.png",
+            "text": "Tiệc Cua: Vòng PVE tiếp theo của bạn sẽ được thay thế bằng một vòng Cua Kỳ Cục với rất nhiều báu vật thưởng!"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-randomitem-ornn.png",
+            "text": "Trang Bị Tạo Tác: Sau 8 vòng, nhận 1 Tạo Tác ngẫu nhiên."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-4c.png",
+            "text": "Tướng 4 vàng: Sau 3 vòng, nhận 1 tướng 4 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-stimmy.png",
+            "text": "Thần Linh Ban Phước: Sau khi máu người chơi còn 30, nhận 1 hộp vật phẩm đặc biệt."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft14-consumable-speedup.png",
+            "text": "Phước Lành: Tốc Độ: Tăng vĩnh viễn cho 1 tướng 20% Tốc Độ Đánh và giảm 20% kích cỡ.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft9-slime-crab-square.png",
+            "text": "Tiệc Cua: Vòng PVE tiếp theo của bạn sẽ được thay thế bằng một vòng Cua Kỳ Cục với rất nhiều báu vật thưởng!"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-5c.png",
+            "text": "2 tướng 5 vàng.: Sau 4 vòng, nhận 2 tướng 5 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-armorykeycomponent-square.png",
+            "text": "Gói Trang Bị Thành Phần: Kéo vào Cửa Hàng để mở ra Kho Vũ Khí chứa toàn các trang bị thành phần! Bạn có 30 giây để lựa chọn."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft14-consumable-speedup.png",
+            "text": "Phước Lành: Tốc Độ: Tăng vĩnh viễn cho 1 tướng 20% Tốc Độ Đánh và giảm 20% kích cỡ.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-randomitem-ornn.png",
+            "text": "Trang Bị Tạo Tác: Sau 5 vòng, nhận 1 Tạo Tác ngẫu nhiên."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-delayed5costshop.png",
+            "text": "Cửa hàng 5 vàng: Sau 3 vòng, nhận một lượt làm mới cửa hàng miễn phí và cửa hàng tiếp theo của bạn sẽ cho ra toàn tướng 5 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistgivegold.png",
+            "text": "Dòng tiền: Nhận 2 vàng mỗi vòng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-armorykeycompleted-square.png",
+            "text": "Gói Trang Bị Hoàn Chỉnh: Sau 5 vòng, nhận 1 Gói Trang Bị Hoàn Chỉnh."
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/ekko.png",
+    "boon_augment_id": 49
+  },
+  {
+    "id": 4,
+    "name": "Yasuo",
+    "slug": "yasuo",
+    "trait": "Thần Vực Thẳm",
+    "rank": "A",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Mặt Trời: Đặt ô lên một tướng. Đồng minh trong ô này gây thêm 15% sát thương phép trong 5 giây. Sát thương này gây 33% Vết Thương Sâu và 1% Thiêu Đốt trong suốt thời gian hiệu lực.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]Thiêu Đốt: Gây sát thương chuẩn mỗi giây theo phần trăm Máu tối đa của mục tiêuVết Thương Sâu: Giảm hồi máu"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Băng Giá: Đặt ô lên một tướng. Lần đầu tiên một đồng minh trong ô này xuống dưới 40% Máu, họ sẽ đóng băng trong 1 giây và hồi lại 30% Máu tối đa.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Ánh Sao: Đặt ô lên một tướng. Đồng minh trong ô này nhận 3 Hồi Năng Lượng.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Tăng Tốc: Đặt ô lên một tướng. Đồng minh trong ô này nhận 30% Tốc Độ Đánh.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Vũ Trụ: Đặt ô lên một tướng. Đồng minh trong ô này được tăng 10% Máu tối đa và nhận vĩnh viễn 35 Máu mỗi vòng.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Bão Tố: Đặt ô lên một tướng. Lần đầu tiên một đồng minh trong ô này đánh trúng kẻ địch bằng một Kỹ Năng, kẻ địch đó sẽ Bị Choáng trong 1.8 giây.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Mặt Trời: Đặt ô lên một tướng. Đồng minh trong ô này gây thêm 15% sát thương phép trong 5 giây. Sát thương này gây 33% Vết Thương Sâu và 1% Thiêu Đốt trong suốt thời gian hiệu lực.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]Thiêu Đốt: Gây sát thương chuẩn mỗi giây theo phần trăm Máu tối đa của mục tiêuVết Thương Sâu: Giảm hồi máu"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Băng Giá: Đặt ô lên một tướng. Lần đầu tiên một đồng minh trong ô này xuống dưới 40% Máu, họ sẽ đóng băng trong 1 giây và hồi lại 30% Máu tối đa.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Ánh Sao: Đặt ô lên một tướng. Đồng minh trong ô này nhận 3 Hồi Năng Lượng.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Tăng Tốc: Đặt ô lên một tướng. Đồng minh trong ô này nhận 30% Tốc Độ Đánh.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Bão Tố: Đặt ô lên một tướng. Lần đầu tiên một đồng minh trong ô này đánh trúng kẻ địch bằng một Kỹ Năng, kẻ địch đó sẽ Bị Choáng trong 1.8 giây.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Mặt Trời: Đặt ô lên một tướng. Đồng minh trong ô này gây thêm 15% sát thương phép trong 5 giây. Sát thương này gây 33% Vết Thương Sâu và 1% Thiêu Đốt trong suốt thời gian hiệu lực.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]Thiêu Đốt: Gây sát thương chuẩn mỗi giây theo phần trăm Máu tối đa của mục tiêuVết Thương Sâu: Giảm hồi máu"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Băng Giá: Đặt ô lên một tướng. Lần đầu tiên một đồng minh trong ô này xuống dưới 40% Máu, họ sẽ đóng băng trong 1 giây và hồi lại 30% Máu tối đa.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Ánh Sao: Đặt ô lên một tướng. Đồng minh trong ô này nhận 3 Hồi Năng Lượng.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Tăng Tốc: Đặt ô lên một tướng. Đồng minh trong ô này nhận 30% Tốc Độ Đánh.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-hexpaintbrush.png",
+            "text": "Ô Bão Tố: Đặt ô lên một tướng. Lần đầu tiên một đồng minh trong ô này đánh trúng kẻ địch bằng một Kỹ Năng, kẻ địch đó sẽ Bị Choáng trong 1.8 giây.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/yasuo.png",
+    "boon_augment_id": 51
+  },
+  {
+    "id": 5,
+    "name": "Evelynn",
+    "slug": "evelynn",
+    "trait": "Thần Cám Dỗ",
+    "rank": "A",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-2c.png",
+            "text": "2 vàng 2 sao: Nhận 1 tướng 2 vàng 2 sao. Mất 3 Máu Người Chơi."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-bloodpact.png",
+            "text": "Huyết Thệ: Nhận 8 vàng. Với mỗi người chơi khác chọn nâng cấp này, mất 2 Máu Linh Thú."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-2c.png",
+            "text": "Áp Đảo: Nhận ngẫu nhiên 1 tướng 2 vàng ngay bây giờ và sau mỗi lượt giao tranh cho đến khi bạn thua giao tranh."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-4c.png",
+            "text": "4 vàng: Nhận 1 tướng 4 vàng 1 sao ngẫu nhiên. Mất 4 Máu Người Chơi."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-finalistgambit.png",
+            "text": "Màn Cược Cuối Cùng: Nhận 3 vàng. Nếu bạn lọt vào top 4, nhận thêm 30 vàng."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sacrifice.png",
+            "text": "Ấn Ngẫu Nhiên: Nhận 1 Ấn ngẫu nhiên. Mất 3 Máu Người Chơi."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-bloodpact.png",
+            "text": "Huyết Thệ +: Nhận 10 vàng. Với mỗi người chơi khác chọn nâng cấp này, mất 2 Máu Linh Thú."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-3c.png",
+            "text": "Áp Đảo+: Nhận ngẫu nhiên 1 tướng 3 vàng ngay bây giờ và sau mỗi lượt giao tranh cho đến khi bạn thua giao tranh."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-3c.png",
+            "text": "3 vàng 2 sao: Nhận 1 tướng 3 vàng 2 sao ngẫu nhiên. Mất 3 Máu Người Chơi."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-1c.png",
+            "text": "1 vàng 3 sao: Nhận 1 tướng 1 vàng 3 sao ngẫu nhiên. Mất 3 Máu Người Chơi."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistgivegold.png",
+            "text": "12 vàng: Nhận 12 vàng. Bạn không thể mua tướng trong 2 vòng đấu."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-bloodpact.png",
+            "text": "Huyết Thệ ++: Nhận 13 vàng. Với mỗi người chơi khác chọn nâng cấp này, mất 1 Máu Linh Thú."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-4c.png",
+            "text": "4 vàng 2 sao: Nhận 1 tướng 4 vàng 2 sao ngẫu nhiên. Mất 3 Máu Người Chơi."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistgivegold.png",
+            "text": "18 vàng: Nhận 18 vàng. Bạn không thể mua tướng trong 2 vòng đấu."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistrandomcomponent.png",
+            "text": "Trang Bị Hoàn Chỉnh: Nhận 1 trang bị hoàn chỉnh ngẫu nhiên. Mất 5 Máu Người Chơi."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/doubleup-assistarmory-champ-5c.png",
+            "text": "2 5 vàng: Nhận 2 tướng 5 vàng 1 sao ngẫu nhiên. Mất 1 Máu Người Chơi."
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/evelynn.png",
+    "boon_augment_id": 145
+  },
+  {
+    "id": 6,
+    "name": "Kayle",
+    "slug": "kayle",
+    "trait": "Thần Trật Tự",
+    "rank": "B",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistrandomcomponent.png",
+            "text": "Trang Bị Thành Phần Ngẫu Nhiên: Nhận 1 trang bị thành phần ngẫu nhiên"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-sparringgloves.png",
+            "text": "Găng Đấu Tập: Nhận 1 Găng Đấu Tập."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-recurvebow.png",
+            "text": "Cung Gỗ: Nhận 1 Cung Gỗ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-tearofthegoddess.png",
+            "text": "Nước Mắt Nữ Thần: Nhận 1 Nước Mắt Nữ Thần."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-craftsmanship.png",
+            "text": "Tay Nghề: Nhận 2 Búa Rèn ngay bây giờ và thêm 1 Búa Rèn nữa vào đầu mỗi giai đoạn. Mỗi khi bạn sử dụng Búa Rèn, nhận 2 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-anviltransformation.png",
+            "text": "Gói Trang Bị Biến Đổi: Mỗi khi nhận 1 trang bị thành phần, nó biến đổi thành Gói Trang Bị Thành Phần. Nhận 2 vàng."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistrandomcomponent.png",
+            "text": "Trang Bị Thành Phần Ngẫu Nhiên: Nhận 1 trang bị thành phần ngẫu nhiên"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-bfsword.png",
+            "text": "Kiếm B.F.: Nhận 1 Kiếm B.F."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-needlesslylargerod.png",
+            "text": "Gậy Quá Khổ: Nhận 1 Gậy Quá Khổ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-chainvest.png",
+            "text": "Giáp Lưới: Nhận 1 Giáp Lưới."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-negatroncloak.png",
+            "text": "Áo Choàng Bạc: Nhận 1 Áo Choàng Bạc."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-divinerefund.png",
+            "text": "Đền Bù Từ Thần Linh: Nhận 2 vàng. Lần tiếp theo bạn tạo một trang bị, nhận ngẫu nhiên một bản sao của một trong các thành phần."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/assistrandomcomponent.png",
+            "text": "Trang Bị Thành Phần Ngẫu Nhiên: Nhận 1 trang bị thành phần ngẫu nhiên"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-sparringgloves.png",
+            "text": "Găng Đấu Tập: Nhận 1 Găng Đấu Tập."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-recurvebow.png",
+            "text": "Cung Gỗ: Nhận 1 Cung Gỗ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-tearofthegoddess.png",
+            "text": "Nước Mắt Nữ Thần: Nhận 1 Nước Mắt Nữ Thần."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-bfsword.png",
+            "text": "Kiếm B.F.: Nhận 1 Kiếm B.F."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-needlesslylargerod.png",
+            "text": "Gậy Quá Khổ: Nhận 1 Gậy Quá Khổ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-chainvest.png",
+            "text": "Giáp Lưới: Nhận 1 Giáp Lưới."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-negatroncloak.png",
+            "text": "Áo Choàng Bạc: Nhận 1 Áo Choàng Bạc."
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/kayle.png",
+    "boon_augment_id": 50
+  },
+  {
+    "id": 7,
+    "name": "Thresh",
+    "slug": "thresh",
+    "trait": "Thần Khế Ước",
+    "rank": "B",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-threshloot.png",
+            "text": "Báu Vật Kỳ Bí: Đó có thể là gì nhỉ?"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-threshrandomboon.png",
+            "text": "Ân Huệ Ngẫu Nhiên: Nhận 1 ân huệ ngẫu nhiên từ BẤT KỲ vị thần nào và 2 vàng.Ân Huệ Đã Chọn: tft10_headliner_defaulttft10_headliner_default"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-recombobulator.png",
+            "text": "Xoay Bài Tí Hon: Biến tất cả tướng 1 và 2 Vàng trên sân đấu của bạn thành các tướng ngẫu nhiên có giá cao hơn."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-threshloot.png",
+            "text": "Báu Vật Kỳ Bí: Đó có thể là gì nhỉ?"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-threshrandomboon.png",
+            "text": "Ân Huệ Ngẫu Nhiên: Nhận 1 ân huệ ngẫu nhiên từ BẤT KỲ vị thần nào và 3 vàng.Ân Huệ Đã Chọn: tft10_headliner_defaulttft10_headliner_default"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-pandorasseat.png",
+            "text": "Ghế Chờ Pandora: Ở đầu mỗi vòng đấu, các tướng ở 2 ô ngoài cùng bên phải hàng chờ sẽ được chuyển đổi thành tướng ngẫu nhiên cùng giá tiền."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-threshloot.png",
+            "text": "Báu Vật Kỳ Bí: Đó có thể là gì nhỉ?"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-rollthebones.png",
+            "text": "Đánh Cược: Đổ 3 xúc xắc. Nhận lượng vàng bằng với tổng kết quả đổ xúc xắc."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-threshrandomboon.png",
+            "text": "Ân Huệ Ngẫu Nhiên: Nhận 1 ân huệ ngẫu nhiên từ BẤT KỲ vị thần nào và 5 vàng.Ân Huệ Đã Chọn: tft10_headliner_defaulttft10_headliner_default"
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/thresh.png",
+    "boon_augment_id": 147
+  },
+  {
+    "id": 8,
+    "name": "Aurelion Sol",
+    "slug": "aurelion-sol",
+    "trait": "Thần Kỳ Quan",
+    "rank": "C",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-delayedgold.png",
+            "text": "Nhiệm Vụ Phú Quý: Khi có 50 vàng, nhận thêm 1 gói trang bị thành phần và 4 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sampler.png",
+            "text": "Nhiệm Vụ Tộc/Hệ: Sau khi triển khai 6 tộc/hệ không độc nhất trong một giao tranh người chơi, nhận 1 Ấn ngẫu nhiên và 1 Búa Rèn."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-starquest.png",
+            "text": "Nhiệm Vụ Hệ Sao: Lần tiếp theo bạn nâng sao cho một tướng, nhận 10 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sampler.png",
+            "text": "Nhiệm Vụ Tộc/Hệ: Sau khi triển khai 6 tộc/hệ không độc nhất trong một giao tranh người chơi, nhận 1 Ấn ngẫu nhiên và 1 Búa Rèn."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-levelquest.png",
+            "text": "Nhiệm Vụ Theo Cấp: Khi bạn đạt cấp 9, nhận 20 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-lowhpquest.png",
+            "text": "Nhiệm Vụ Khi Thấp Máu: Lần đầu tiên bạn còn 30 máu, nhận 18 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-rerollquest.png",
+            "text": "Nhiệm Vụ Reroll: Sau khi làm mới cửa hàng 15 lần, nhận 2 gói trang bị thành phần."
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/aurelion-sol.png",
+    "boon_augment_id": 144
+  },
+  {
+    "id": 9,
+    "name": "Soraka",
+    "slug": "soraka",
+    "trait": "Thần Tinh Tú",
+    "rank": "D",
+    "stages": [
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-giantsbelt.png",
+            "text": "Đai Khổng Lồ: Nhận 1 Đai Khổng Lồ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-grouphug.png",
+            "text": "Sức Mạnh Đoàn Kết: Nhận 6 Máu Người Chơi. Nếu có ít nhất 5 người chơi chọn nâng cấp này, nhận 2 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sorakasembrace.png",
+            "text": "Soraka Ban Phước: Khi bắt đầu giao tranh, trao cho đồng minh bị hạ gục đầu tiên ở giao tranh trước 450 - 800 Lá Chắn, dựa trên Giai Đoạn hiện tại."
+          }
+        ],
+        "stage": "Stage 2"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-playerhealth.png",
+            "text": "12 Máu Người Chơi: 12 Máu Người Chơi"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-giantsbelt.png",
+            "text": "Đai Khổng Lồ: Nhận 1 Đai Khổng Lồ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft14-consumable-sizeup.png",
+            "text": "Phước Lành: Kích Cỡ: Tăng vĩnh viễn cho 1 tướng 350 Máu và 20% kích cỡ.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-grouphug.png",
+            "text": "Sức Mạnh Đoàn Kết +: Nhận 6 Máu Người Chơi. Nếu có ít nhất 5 người chơi chọn nâng cấp này, nhận 3 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sorakasembrace.png",
+            "text": "Soraka Ban Phước: Khi bắt đầu giao tranh, trao cho đồng minh bị hạ gục đầu tiên ở giao tranh trước 450 - 800 Lá Chắn, dựa trên Giai Đoạn hiện tại."
+          }
+        ],
+        "stage": "Stage 3"
+      },
+      {
+        "rewards": [
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-playerhealth.png",
+            "text": "12 Máu Người Chơi: 12 Máu Người Chơi"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft-item-giantsbelt.png",
+            "text": "Đai Khổng Lồ: Nhận 1 Đai Khổng Lồ."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft14-consumable-sizeup.png",
+            "text": "Phước Lành: Kích Cỡ: Tăng vĩnh viễn cho 1 tướng 350 Máu và 20% kích cỡ.[Tiêu Thụ - Trang bị này sẽ biến mất sau khi sử dụng.]"
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-grouphug.png",
+            "text": "Sức Mạnh Đoàn Kết +: Nhận 6 Máu Người Chơi. Nếu có ít nhất 5 người chơi chọn nâng cấp này, nhận 3 vàng."
+          },
+          {
+            "icon": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods_items/tft17-carouselmarket-sorakasembrace.png",
+            "text": "Soraka Ban Phước: Khi bắt đầu giao tranh, trao cho đồng minh bị hạ gục đầu tiên ở giao tranh trước 450 - 800 Lá Chắn, dựa trên Giai Đoạn hiện tại."
+          }
+        ],
+        "stage": "Stage 4"
+      }
+    ],
+    "image": "https://pub-4ca9b263aabc47338081a76c5a3a687c.r2.dev/gods/soraka.png",
+    "boon_augment_id": 146
+  }
+]
