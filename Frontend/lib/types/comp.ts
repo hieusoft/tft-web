@@ -61,6 +61,7 @@ export interface CompActiveTrait {
 
 export interface ApiComp {
   id: number;
+  slug?: string;
   name: string;
   tier: string;                         // "S" | "A" | "B" | "C"
   playstyle: string | null;

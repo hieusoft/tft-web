@@ -110,3 +110,5 @@ header {
   min-height: 108px; /* 48px top bar + 44px main nav + 40px sub-nav */
   contain: layout;
 }
+
+.comp-row { position: relative; z-index: 1; transition: z-index 0s; }
