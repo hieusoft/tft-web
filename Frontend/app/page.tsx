@@ -286,16 +286,16 @@ export default function HomePage() {
 
                 {/* Stats */}
                 <div className="hidden sm:block text-right">
-                  <span className="text-sm font-semibold text-white">{comp.avgPlacement.toFixed(2)}</span>
+                  <span className="text-sm font-semibold text-white">{Number(comp.avgPlacement).toFixed(2)}</span>
                 </div>
                 <div className="hidden sm:block text-right">
-                  <span className="text-sm text-gray-400">{comp.pickRate.toFixed(2)}</span>
+                  <span className="text-sm text-gray-400">{Number(comp.pickRate).toFixed(2)}</span>
                 </div>
                 <div className="hidden sm:block text-right">
-                  <span className="text-sm font-semibold text-[#f0b90b]">{comp.winRate.toFixed(1)}%</span>
+                  <span className="text-sm font-semibold text-[#f0b90b]">{Number(comp.winRate).toFixed(1)}%</span>
                 </div>
                 <div className="hidden sm:block text-right">
-                  <span className="text-sm font-semibold text-gray-300">{comp.top4Rate.toFixed(1)}%</span>
+                  <span className="text-sm font-semibold text-gray-300">{Number(comp.top4Rate).toFixed(1)}%</span>
                 </div>
               </Link>
             ))}

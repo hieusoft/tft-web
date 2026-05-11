@@ -122,7 +122,7 @@ function ChampionRow({ user, idx }: { user: any, idx: number }) {
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: "#e5e7eb", marginBottom: 4 }}>{user.champion.name}</div>
         <div style={{ fontSize: 12, color: "#9ca3af" }}>
-          Hạng TB: <strong style={{ color: user.avg_placement <= 4 ? "#4ade80" : "#facc15" }}>{user.avg_placement.toFixed(2)}</strong>
+          Hạng TB: <strong style={{ color: user.avg_placement <= 4 ? "#4ade80" : "#facc15" }}>{Number(user.avg_placement).toFixed(2)}</strong>
         </div>
       </div>
 
@@ -321,7 +321,7 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
             {/* Stats */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               {[
-                { label: "Hạng Trung Bình", value: item.avg_placement?.toFixed(2) || "—", color: item.avg_placement && item.avg_placement <= 4 ? "#4ade80" : "#facc15" },
+                { label: "Hạng Trung Bình", value: item.avg_placement ? Number(item.avg_placement).toFixed(2) : "—", color: item.avg_placement && item.avg_placement <= 4 ? "#4ade80" : "#facc15" },
                 { label: "Tỷ Lệ Thắng", value: item.win_rate || "—", color: "#f3f4f6" },
                 { label: "Tần Suất", value: item.pick_rate || "—", color: "#60a5fa" },
                 { label: "Số Ván Chơi", value: item.games_played ? Number(item.games_played).toLocaleString("vi-VN") : "—", color: "#9ca3af" }

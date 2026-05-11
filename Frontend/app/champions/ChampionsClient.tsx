@@ -192,7 +192,7 @@ export default function ChampionsClient({ champions }: { champions: ApiChampionO
                     <div style={{ textAlign: 'center' }}>
                       <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Hạng TB</div>
                       <div style={{ fontSize: 13, fontWeight: 900, color: champ.avg_placement < 4.5 ? "#10b981" : champ.avg_placement > 5 ? "#ef4444" : "#fbbf24", marginTop: 4 }}>
-                        {champ.avg_placement.toFixed(2)}
+                        {Number(champ.avg_placement).toFixed(2)}
                       </div>
                     </div>
                     <div style={{ textAlign: 'center', borderLeft: '1px solid #222' }}>

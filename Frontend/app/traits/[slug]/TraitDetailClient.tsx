@@ -44,7 +44,7 @@ export default function TraitDetailClient({ trait }: { trait: ApiTrait }) {
   const stats = [
     {
       label: "Avg Placement",
-      value: trait.placement != null ? trait.placement.toFixed(2) : "—",
+      value: trait.placement != null ? Number(trait.placement).toFixed(2) : "—",
       color: getPlacementColor(trait.placement),
     },
     { label: "Top 4 Rate", value: trait.top4 ?? "—", color: "#e5e7eb" },
@@ -338,7 +338,7 @@ function BarRow({ label, value, max, color }: { label: string; value: number; ma
           {label}
         </span>
         <span style={{ fontSize: 14, fontWeight: 800, color: "#fff" }}>
-          {value > 0 ? `${value.toFixed(1)}%` : "—"}
+          {value > 0 ? `${Number(value).toFixed(1)}%` : "—"}
         </span>
       </div>
       <div style={{ height: 8, width: "100%", backgroundColor: "#111", borderRadius: 99, overflow: "hidden", border: "1px solid #222" }}>
