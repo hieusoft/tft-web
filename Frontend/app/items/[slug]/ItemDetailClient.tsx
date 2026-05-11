@@ -134,8 +134,13 @@ function ChampionRow({ user, idx }: { user: any, idx: number }) {
   );
 }
 
-// ── 4. MAIN COMPONENT ────────────────────────────────────────────────────────
-export default function ItemDetailClient({ item }: { item: ApiItem }) {
+export default function ItemDetailClient({ 
+  item, 
+  buildsInto = [] 
+}: { 
+  item: ApiItem;
+  buildsInto?: { id: number; name: string; slug: string; image: string }[];
+}) {
   const [imgErr, setImgErr] = useState(false);
 
   const rank = item.rank ?? "D";
@@ -169,19 +174,31 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
   }
 
   // Des
-  let desc = item.description ? String(item.description).replace(/\[.*?\]/g, "") : null;
+  let desc = item.description ? String(item.description) : null;
   let isUncraftable = isRadiant || isArtifact || isSupport;
 
   if (desc) {
+    // 1. Convert <br> to newline
+    desc = desc.replace(/<br\s*\/?>/gi, "\n");
+    // 2. Remove bracketed text
+    desc = desc.replace(/\[.*?\]/g, "");
+    // 3. Remove item name at start
     const escapedName = item.name.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
     desc = desc.replace(new RegExp('^' + escapedName, 'i'), "").trim();
+    // 4. Remove leading stats
     desc = desc.replace(/^\+?\s*\d+%?\s*/, "").trim();
+    // 5. Uncraftable check
     const uncraftableRegex = /không thể ghép\.?/i;
     if (uncraftableRegex.test(desc)) {
       isUncraftable = true;
       desc = desc.replace(uncraftableRegex, "").trim();
     }
-    desc = desc.replace(/^[^a-zA-ZÀ-ỹ0-9]*/, "").replace(/\s+/g, " ").trim();
+    // 6. Remove leading non-alphanumeric
+    desc = desc.replace(/^[^a-zA-ZÀ-ỹ0-9]*/, "");
+    // 7. Strip tft_ strings
+    desc = desc.replace(/tft_[a-zA-Z0-9_]+/gi, "");
+    // 8. Normalize spaces but KEEP newlines
+    desc = desc.replace(/[ \t]+/g, " ").trim();
   }
 
   // Parse components chuẩn chỉ theo ItemsClient
@@ -308,23 +325,33 @@ export default function ItemDetailClient({ item }: { item: ApiItem }) {
 
           {/* Left*/}
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            {/* Base item builds into... */}
-            {isBaseComponent && (
+            {isBaseComponent && buildsInto.length > 0 && (
               <div style={{ background: "#181a20", border: "1px solid #2a2d35", borderRadius: 16, padding: "24px" }}>
                 <h3 style={{ fontSize: 14, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 700, margin: "0 0 16px 0" }}>Có thể ghép thành</h3>
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                  <div style={{ color: "#6b7280", fontSize: 13 }}>Đang cập nhật...</div>
+                  {buildsInto.map((bItem, i) => (
+                    <Link key={i} href={`/items/${bItem.slug || bItem.id}`} title={bItem.name}>
+                      <div style={{
+                        width: 44, height: 44, borderRadius: 8, overflow: "hidden", position: "relative",
+                        border: "1px solid #3a3d45", background: "#111", transition: "transform 0.2s, borderColor 0.2s"
+                      }}
+                        onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.1)"; e.currentTarget.style.borderColor = "#60a5fa"; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.borderColor = "#3a3d45"; }}
+                      >
+                        <Image src={bItem.image} alt={bItem.name} fill sizes="44px" style={{ objectFit: "contain", imageRendering: "pixelated" }} unoptimized />
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             )}
 
             {/* Stats */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
               {[
                 { label: "Hạng Trung Bình", value: item.avg_placement ? Number(item.avg_placement).toFixed(2) : "—", color: item.avg_placement && item.avg_placement <= 4 ? "#4ade80" : "#facc15" },
                 { label: "Tỷ Lệ Thắng", value: item.win_rate || "—", color: "#f3f4f6" },
-                { label: "Tần Suất", value: item.pick_rate || "—", color: "#60a5fa" },
-                { label: "Số Ván Chơi", value: item.games_played ? Number(item.games_played).toLocaleString("vi-VN") : "—", color: "#9ca3af" }
+                { label: "Tần Suất", value: item.pick_rate || item.frequency || "—", color: "#60a5fa" }
               ].map((stat, i) => (
                 <div key={i} style={{ background: "#181a20", border: "1px solid #2a2d35", borderRadius: 16, padding: "20px", textAlign: "center" }}>
                   <div style={{ fontSize: 24, fontWeight: 800, color: stat.color, marginBottom: 4 }}>{stat.value}</div>

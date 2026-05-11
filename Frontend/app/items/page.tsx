@@ -50,7 +50,7 @@ function normaliseItem(raw: any) {
     description: raw.description ?? null,
     avg_placement: raw.avg_placement ?? null,
     win_rate: pct(raw.win_rate),
-    pick_rate: pct(raw.pick_rate),
+    pick_rate: pct(raw.pick_rate ?? raw.frequency),
     top_4_rate: pct(raw.top_4_rate),
     games_played: raw.games_played ?? 0,
     stats: raw.stats ?? {},
@@ -63,8 +63,32 @@ function normaliseItem(raw: any) {
 
 export default async function ItemsPage() {
   const rawItems = await apiClient.getItems();
+  
+  // Create a map for fast lookup of component items
+  const itemMap = new Map();
+  for (const it of rawItems) {
+    itemMap.set(it.id, {
+      id: it.id,
+      name: it.name,
+      slug: it.slug,
+      image: it.image ?? it.icon_path
+    });
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const items = (rawItems as any[]).map(normaliseItem);
+  const items = (rawItems as any[]).map((raw) => {
+    const normalised = normaliseItem(raw);
+    
+    // Replace component IDs with full objects for tooltip recipe
+    if (typeof raw.component_1 === "number" || typeof raw.component_1 === "string") {
+      normalised.component_1 = itemMap.get(Number(raw.component_1)) ?? null;
+    }
+    if (typeof raw.component_2 === "number" || typeof raw.component_2 === "string") {
+      normalised.component_2 = itemMap.get(Number(raw.component_2)) ?? null;
+    }
+    
+    return normalised;
+  });
 
   return (
     <>

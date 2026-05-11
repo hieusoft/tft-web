@@ -339,7 +339,7 @@ function ItemTooltip({ item, anchorEl, imgErr }: {
         {[
           { label: "Hạng TB", value: fPlace(item.avg_placement), color: placeColor(item.avg_placement) },
           { label: "Tỷ Lệ Thắng", value: f(item.win_rate), color: "#f3f4f6" },
-          { label: "Tần Suất", value: f(item.pick_rate ?? item.top_4_rate), color: "#9ca3af" },
+          { label: "Tần Suất", value: f(item.pick_rate ?? item.frequency ?? item.top_4_rate), color: "#9ca3af" },
         ].map(({ label, value, color }) => (
           <div key={label} style={{ textAlign: "center", flex: 1 }}>
             <div style={{ fontSize: 15, fontWeight: 800, color }}>{value}</div>
@@ -500,7 +500,7 @@ export default function ItemsClient({ items }: { items: ApiItem[] }) {
               display: "grid",
               gridTemplateColumns: isTablet
                 ? "2fr 60px 110px 110px 110px"
-                : "2fr 60px 110px 110px 110px 110px",
+                : "2fr 60px 110px 110px 110px",
               padding: "10px 16px", background: "#1a1a1a", borderBottom: "1px solid #222",
             }}>
               {[
@@ -509,7 +509,6 @@ export default function ItemsClient({ items }: { items: ApiItem[] }) {
                 { label: "Hạng TB", align: "center" as const },
                 { label: "Tỷ Lệ Thắng", align: "center" as const },
                 { label: "Tần Suất", align: "center" as const },
-                ...(!isTablet ? [{ label: "Số Ván", align: "center" as const }] : []),
               ].map(({ label, align }) => (
                 <div key={label} style={{
                   fontSize: 10, fontWeight: 700, color: "#4b5563",
@@ -563,7 +562,7 @@ function DesktopRow({ item, idx, isTablet }: { item: ApiItem; idx: number; isTab
 
   const cols = isTablet
     ? "2fr 60px 110px 110px 110px"
-    : "2fr 60px 110px 110px 110px 110px";
+    : "2fr 60px 110px 110px 110px";
 
   return (
     <div
@@ -626,13 +625,8 @@ function DesktopRow({ item, idx, isTablet }: { item: ApiItem; idx: number; isTab
         {f(item.win_rate)}
       </div>
       <div style={{ textAlign: "center", fontSize: 13, color: "#9ca3af" }}>
-        {f(item.pick_rate)}
+        {f(item.pick_rate ?? item.frequency)}
       </div>
-      {!isTablet && (
-        <div style={{ textAlign: "center", fontSize: 12, color: "#6b7280" }}>
-          {fGames(item.games_played)}
-        </div>
-      )}
     </div>
   );
 }
@@ -687,17 +681,11 @@ function MobileCard({ item, idx }: { item: ApiItem; idx: number }) {
           <div style={{ display: "flex", gap: 16 }}>
             <MiniStat label="Hạng TB" value={fPlace(item.avg_placement)} color={placeColor(item.avg_placement)} />
             <MiniStat label="Tỷ Lệ Thắng" value={f(item.win_rate)} color="#d1d5db" />
-            <MiniStat label="Tần Suất" value={f(item.pick_rate)} color="#9ca3af" />
+            <MiniStat label="Tần Suất" value={f(item.pick_rate ?? item.frequency)} color="#9ca3af" />
           </div>
         </div>
 
-        {/* Games */}
-        {item.games_played ? (
-          <div style={{ textAlign: "right", flexShrink: 0 }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: "#6b7280" }}>{fGames(item.games_played)}</div>
-            <div style={{ fontSize: 9, color: "#374151", marginTop: 2 }}>ván</div>
-          </div>
-        ) : null}
+        {/* Games removed because items don't have games_played data */}
       </div>
     </Link>
   );

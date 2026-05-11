@@ -30,10 +30,48 @@ export default async function ItemDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const itemData = await apiClient.getItemBySlug(slug);
+  
+  // Fetch detailed item AND all items list for component mapping
+  const [itemData, allItems] = await Promise.all([
+    apiClient.getItemBySlug(slug),
+    apiClient.getItems()
+  ]);
+
   if (!itemData) {
     notFound();
   }
 
-  return <ItemDetailClient item={itemData} />;
+  // Create a map for fast lookup
+  const itemMap = new Map();
+  for (const it of allItems) {
+    itemMap.set(it.id, {
+      id: it.id,
+      name: it.name,
+      slug: it.slug,
+      image: it.image ?? it.icon_path
+    });
+  }
+
+  // Map components to full objects instead of IDs
+  if (typeof itemData.component_1 === "number" || typeof itemData.component_1 === "string") {
+    itemData.component_1 = itemMap.get(Number(itemData.component_1)) ?? null;
+  }
+  if (typeof itemData.component_2 === "number" || typeof itemData.component_2 === "string") {
+    itemData.component_2 = itemMap.get(Number(itemData.component_2)) ?? null;
+  }
+
+  // Find what this item builds into
+  const buildsInto = [];
+  for (const it of allItems) {
+    if (it.component_1 === itemData.id || it.component_2 === itemData.id) {
+      buildsInto.push({
+        id: it.id,
+        name: it.name,
+        slug: it.slug ?? String(it.id),
+        image: it.image ?? it.icon_path ?? ""
+      });
+    }
+  }
+
+  return <ItemDetailClient item={itemData} buildsInto={buildsInto} />;
 }

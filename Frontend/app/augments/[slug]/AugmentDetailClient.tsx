@@ -27,7 +27,11 @@ export default function AugmentDetailClient({ augment }: { augment: ApiAugment }
   const glowColor = rankColor + "40";
 
   const cleanedDesc = augment.description
-    ? augment.description.replace(/TFT_Augment_Template_Blank/g, "").trim()
+    ? augment.description
+        .replace(/TFT_Augment_Template_Blank/g, "")
+        .replace(/tft10_headliner_default/g, "")
+        .replace(/ĐTCL Vegas Open, 2023/g, "")
+        .trim()
     : null;
 
   return (

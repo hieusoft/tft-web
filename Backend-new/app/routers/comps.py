@@ -234,8 +234,17 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
             if isinstance(milestones, list):
                 total_styles = len(milestones)
                 for i, ms in enumerate(milestones):
-                    min_units = ms if isinstance(ms, int) else ms.get("min_units", 0) if isinstance(ms, dict) else 0
-                    if count >= min_units:
+                    min_units = 0
+                    if isinstance(ms, int):
+                        min_units = ms
+                    elif isinstance(ms, dict):
+                        val = ms.get("level") or ms.get("count") or ms.get("min_units") or 0
+                        try:
+                            min_units = int(val)
+                        except (ValueError, TypeError):
+                            min_units = 0
+                            
+                    if count >= min_units and min_units > 0:
                         current_style = i + 1
 
             active_traits.append({

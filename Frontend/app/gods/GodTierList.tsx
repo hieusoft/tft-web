@@ -12,11 +12,11 @@ const RANK_COLORS: Record<string, string> = {
   D: "bg-[#4ade80] text-[#144723]", 
 };
 
-const GodCard = ({ god, onClick }: { god: ApiGodListItem; onClick: (id: number) => void }) => {
+const GodCard = ({ god, onClick }: { god: ApiGodListItem; onClick: (slug: string) => void }) => {
   return (
     <div 
       className="flex flex-col items-center justify-start w-[80px] cursor-pointer group"
-      onClick={() => onClick(god.id)}
+      onClick={() => onClick(god.slug ?? String(god.id))}
     >
       <div className="relative mb-2 transition-transform duration-200 group-hover:-translate-y-1">
         <img 
@@ -36,7 +36,7 @@ const GodCard = ({ god, onClick }: { god: ApiGodListItem; onClick: (id: number) 
 };
 
 export default function GodTierList({ initialGods }: { initialGods: ApiGodListItem[] }) {
-  const [selectedGodId, setSelectedGodId] = useState<number | null>(null);
+  const [selectedGodSlug, setSelectedGodSlug] = useState<string | null>(null);
 
   const tiers = ['S', 'A', 'B', 'C', 'D'];
   const groupedData = tiers.map(tier => ({
@@ -65,7 +65,7 @@ export default function GodTierList({ initialGods }: { initialGods: ApiGodListIt
               <div className="flex-1 p-4 flex flex-wrap gap-x-6 gap-y-4 items-center bg-[#252527]">
                 {row.gods.length > 0 ? (
                   row.gods.map(god => (
-                    <GodCard key={god.id} god={god} onClick={setSelectedGodId} />
+                    <GodCard key={god.id} god={god} onClick={setSelectedGodSlug} />
                   ))
                 ) : (
                   <span className="text-gray-600 italic text-sm">Chưa có dữ liệu</span>
@@ -76,10 +76,10 @@ export default function GodTierList({ initialGods }: { initialGods: ApiGodListIt
         </div>
       </div>
 
-      {selectedGodId && (
+      {selectedGodSlug && (
         <GodDetailModal 
-          godId={selectedGodId} 
-          onClose={() => setSelectedGodId(null)} 
+          godSlug={selectedGodSlug} 
+          onClose={() => setSelectedGodSlug(null)} 
         />
       )}
     </div>

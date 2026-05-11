@@ -4,19 +4,19 @@ import React, { useEffect, useState } from 'react';
 import { fetchGodDetailAction } from './actions'; 
 import type { ApiGodDetail } from '@/lib/api-client';
 
-export default function GodDetailModal({ godId, onClose }: { godId: number; onClose: () => void }) {
+export default function GodDetailModal({ godSlug, onClose }: { godSlug: string; onClose: () => void }) {
   const [god, setGod] = useState<ApiGodDetail | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDetail = async () => {
       setLoading(true);
-      const data = await fetchGodDetailAction(godId); 
+      const data = await fetchGodDetailAction(godSlug); 
       setGod(data);
       setLoading(false);
     };
     fetchDetail();
-  }, [godId]);
+  }, [godSlug]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
