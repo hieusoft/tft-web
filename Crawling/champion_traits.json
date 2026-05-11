@@ -492,17 +492,17 @@
   {
     "id": 99,
     "champion_id": 47,
-    "trait_id": 20
+    "trait_id": 38
   },
   {
     "id": 100,
-    "champion_id": 47,
-    "trait_id": 21
+    "champion_id": 48,
+    "trait_id": 20
   },
   {
     "id": 101,
     "champion_id": 48,
-    "trait_id": 38
+    "trait_id": 21
   },
   {
     "id": 102,
@@ -577,22 +577,22 @@
   {
     "id": 116,
     "champion_id": 55,
-    "trait_id": 20
+    "trait_id": 39
   },
   {
     "id": 117,
     "champion_id": 55,
-    "trait_id": 18
+    "trait_id": null
   },
   {
     "id": 118,
     "champion_id": 56,
-    "trait_id": 39
+    "trait_id": 20
   },
   {
     "id": 119,
     "champion_id": 56,
-    "trait_id": null
+    "trait_id": 18
   },
   {
     "id": 120,

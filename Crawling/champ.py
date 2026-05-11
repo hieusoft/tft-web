@@ -137,7 +137,7 @@ def clean_img_url(url: str) -> str:
     if "cdn-cgi/image" in url:
         idx = url.find("http", url.find("cdn-cgi/image"))
         if idx != -1:
-            return url[idx:]
+            return f"https://cdn.metatft.com/cdn-cgi/image/width=1920,height=1080,format=auto/{url[idx:]}"
     return url
 
 def get_r2_client():
@@ -152,6 +152,9 @@ def get_r2_client():
 def upload_image_to_r2(image_url, folder, s3_client, bucket, cdn_url):
     if not image_url:
         return ""
+    if not bucket:
+        print(f"  [⚠] Lỗi: Không tìm thấy R2_BUCKET_NAME trong file .env hoặc biến môi trường!")
+        return image_url
         
     en_name = image_url.split('/')[-1].split('.')[0].split('?')[0]
     ext = image_url.split('.')[-1].split('?')[0] or "png"

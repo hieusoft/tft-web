@@ -35,13 +35,23 @@ const championsJsonLd = [
 export const dynamic = "force-dynamic";
 
 export default async function ChampionsPage() {
-  const champions = await apiClient.getChampions();
+  const [champions, traits] = await Promise.all([
+    apiClient.getChampions(),
+    apiClient.getTraits(),
+  ]);
+
+  const traitImages: Record<string, string> = {};
+  traits.forEach(t => {
+    if (t.slug && t.image) {
+      traitImages[t.slug] = t.image;
+    }
+  });
 
   return (
     <>
       <JsonLd data={championsJsonLd} />
 
-      <ChampionsClient champions={champions as any} />
+      <ChampionsClient champions={champions as any} traitImages={traitImages} />
     </>
   );
 }

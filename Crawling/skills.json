@@ -461,16 +461,6 @@
   },
   {
     "id": 47,
-    "name": "Dấu Ấn Tử Thần",
-    "slug": "dau-an-tu-than",
-    "mana_start": 0,
-    "mana_max": 40,
-    "description": "Di chuyển tối đa 1 ô để phóng lao vào kẻ địch xa nhất. Cây lao móc kéo kẻ địch đầu tiên trúng phải tiến lên 1 ô và gây 60/90/135 () sát thương vật lý. Sau đó, dịch chuyển ra phía sau kẻ địch và chém lan, gây 210/315/720 () sát thương vật lý lên mục tiêu và 120/180/360 () sát thương vật lý lên các kẻ địch ở gần.\nSát Thương:\n60/90/135 ()\nSát Thương Lan Trên Mục Tiêu:\n210/315/720 ()\nSát Thương Diện Rộng:\n120/180/360 ()",
-    "ability_stats": {},
-    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_pykeq.png"
-  },
-  {
-    "id": 48,
     "name": "Đạn Nổ Thần Công",
     "slug": "dan-no-than-cong",
     "mana_start": 0,
@@ -478,6 +468,16 @@
     "description": "Nội tại: Đòn đánh thường bắn ra 5 đường đạn theo hình nón, mỗi đường đạn gây 20/30/45 () sát thương vật lý.\n\nKích hoạt: Bắn ra một quả đạn nổ gây 390/585/5555 () sát thương vật lý lên mục tiêu, và 165/245/4110 () sát thương vật lý lên những kẻ địch liền kề.\nSát Thương Nội Tại:\n20/30/45\n33\n% /\n60\nSát Thương:\n390/585/5555 ()\nSát Thương Phụ:\n30/45/777\nSát Thương Phụ:\n165/245/4110\n135/200/3333 \n+\n30/45/777",
     "ability_stats": {},
     "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_gravesr.png"
+  },
+  {
+    "id": 48,
+    "name": "Dấu Ấn Tử Thần",
+    "slug": "dau-an-tu-than",
+    "mana_start": 0,
+    "mana_max": 40,
+    "description": "Di chuyển tối đa 1 ô để phóng lao vào kẻ địch xa nhất. Cây lao móc kéo kẻ địch đầu tiên trúng phải tiến lên 1 ô và gây 60/90/135 () sát thương vật lý. Sau đó, dịch chuyển ra phía sau kẻ địch và chém lan, gây 210/315/720 () sát thương vật lý lên mục tiêu và 120/180/360 () sát thương vật lý lên các kẻ địch ở gần.\nSát Thương:\n60/90/135 ()\nSát Thương Lan Trên Mục Tiêu:\n210/315/720 ()\nSát Thương Diện Rộng:\n120/180/360 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_pykeq.png"
   },
   {
     "id": 49,
@@ -541,16 +541,6 @@
   },
   {
     "id": 55,
-    "name": "Bão Tâm Linh",
-    "slug": "bao-tam-linh",
-    "mana_start": 20,
-    "mana_max": 80,
-    "description": "Niệm chú tạo ra một cơn bão tâm linh rộng 1 ô đuổi theo kẻ địch trong 4 giây. Mỗi giây, nó lớn dần và gây 185/275/475 () sát thương phép lên kẻ địch bên trong, giảm 60% theo mỗi ô tính từ tâm bão.\nSát Thương:\n185/275/475 ()",
-    "ability_stats": {},
-    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_viktor_r1.png"
-  },
-  {
-    "id": 56,
     "name": "Kho Vũ Khí Xạ Thần",
     "slug": "kho-vu-khi-xa-than",
     "mana_start": 0,
@@ -558,6 +548,16 @@
     "description": "Triển khai Miss Fortune để chọn kích hoạt Chế Độ Dẫn Truyền, Chế Độ Thách Đấu hoặc Chế Độ Nhân Bản. Chế độ được chọn sẽ quyết định kỹ năng và tộc/hệ của cô ấy.",
     "ability_stats": {},
     "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_missfortune_w.png"
+  },
+  {
+    "id": 56,
+    "name": "Bão Tâm Linh",
+    "slug": "bao-tam-linh",
+    "mana_start": 20,
+    "mana_max": 80,
+    "description": "Niệm chú tạo ra một cơn bão tâm linh rộng 1 ô đuổi theo kẻ địch trong 4 giây. Mỗi giây, nó lớn dần và gây 185/275/475 () sát thương phép lên kẻ địch bên trong, giảm 60% theo mỗi ô tính từ tâm bão.\nSát Thương:\n185/275/475 ()",
+    "ability_stats": {},
+    "icon_path": "https://cdn.tftmeta.gg/skills/icons/tft17_viktor_r1.png"
   },
   {
     "id": 57,
