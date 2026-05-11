@@ -238,14 +238,14 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
                     if isinstance(ms, int):
                         min_units = ms
                     elif isinstance(ms, dict):
-                        val = ms.get("level") or ms.get("count") or ms.get("min_units") or 0
+                        val = ms.get("level") or ms.get("count") or ms.get("min_units") or ms.get("unit") or ms.get("min") or 0
                         try:
                             min_units = int(val)
                         except (ValueError, TypeError):
                             min_units = 0
                             
                     if count >= min_units and min_units > 0:
-                        current_style = i + 1
+                        current_style = ms.get("style", i + 1) if isinstance(ms, dict) else i + 1
 
             active_traits.append({
                 "id": trait.id, "name": trait.name,

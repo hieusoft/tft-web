@@ -66,6 +66,15 @@ export default function CompsClient({ initialComps }: { initialComps: ApiComp[] 
 
   return (
     <div suppressHydrationWarning>
+      <style>{`
+        .comp-row { position: relative; z-index: 1; transition: z-index 0s; overflow: visible !important; }
+        .comp-row:hover { z-index: 50 !important; }
+        .comp-row__main { position: relative; z-index: 2; overflow: visible !important; }
+        .comp-col--champs { overflow: visible !important; }
+        .comp-champs { overflow: visible !important; }
+        .comp-champ-slot { overflow: visible !important; }
+        .comp-champ-slot:hover { z-index: 999 !important; }
+      `}</style>
       {/* ── Page Header ── */}
       <div className="comp-page-header">
         <div className="comp-page-header__left">
@@ -143,7 +152,9 @@ function CompRow({
   const playstyle = comp.playstyle ? PLAYSTYLE_CONFIG[comp.playstyle] : null;
 
   const sortedTraits = [...(comp.active_traits || [])].sort((a, b) => {
-    if (a.current_style !== b.current_style) return b.current_style - a.current_style;
+    const styleA = getActualTraitStyle(a);
+    const styleB = getActualTraitStyle(b);
+    if (styleA !== styleB) return styleB - styleA;
     return b.count - a.count;
   });
 
@@ -182,7 +193,7 @@ function CompRow({
         <div className="comp-col comp-col--traits">
           <div className="comp-traits-mini">
             {sortedTraits.slice(0, 5).map((t) => (
-              <TraitIcon key={t.id} trait={t} />
+              <TraitIcon key={t.id} trait={t} comp={comp} />
             ))}
             {sortedTraits.length > 5 && (
               <span className="comp-traits-more">+{sortedTraits.length - 5}</span>
@@ -257,13 +268,14 @@ function HexBoard({ slots, availW }: { slots: CompBoardSlot[]; availW: number })
   const grid = buildGrid(slots);
   return (
     <div style={{ width: B_NAT_W * scale, height: B_NAT_H * scale, flexShrink: 0, overflow: 'visible' }}>
+      <style>{`.hex-wrapper:hover { z-index: 999 !important; }`}</style>
       <div style={{ position: 'relative', width: B_NAT_W, height: B_NAT_H, transform: `scale(${scale})`, transformOrigin: 'top left' }}>
         {Array.from({ length: B_ROWS }, (_, ri) =>
           Array.from({ length: B_COLS }, (_, ci) => {
             const x = ci * (B_HW + B_GAP) + (ri % 2 === 1 ? Math.round(B_HW / 2 + B_GAP / 2) : 0);
             const y = ri * B_STEP;
             return (
-              <div key={`${ri}-${ci}`} style={{ position: 'absolute', left: x, top: y, zIndex: B_ROWS - ri }}>
+              <div key={`${ri}-${ci}`} className="hex-wrapper" style={{ position: 'absolute', left: x, top: y, zIndex: B_ROWS - ri }}>
                 <HexCell slot={grid[ri][ci]} hexW={B_HW} hexH={B_HH} />
               </div>
             );
@@ -383,12 +395,12 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
     setLoadingItems(true);
     try {
       const apiBase = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000';
-      const res = await fetch(`${apiBase}/api/v1/comps/${comp.id}/champion-items?top=5`);
+      const res = await fetch(`${apiBase}/api/v1/comps/${comp.slug}/champion-items?top=5`);
       if (res.ok) setChampItems(await res.json());
     } catch {/* ignore */ } finally {
       setLoadingItems(false);
     }
-  }, [comp.id, champItems]);
+  }, [comp.slug, champItems]);
 
   const handleTabChange = (tab: 'board' | 'items') => {
     setActiveTab(tab);
@@ -445,7 +457,7 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
             <div style={{ padding: '10px 12px', borderBottom: '1px solid #1a1a1a', overflowX: 'auto' }}>
               <div style={PANEL_LABEL}>Tộc / Hệ</div>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-                {sortedTraits.map(t => <TraitCard key={t.id} trait={t} />)}
+                {sortedTraits.map(t => <TraitCard key={t.id} trait={t} comp={comp} />)}
               </div>
             </div>
           )}
@@ -473,7 +485,7 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
                 <div style={{ flex: 1 }}>
                   <div style={PANEL_LABEL}>Tộc / Hệ</div>
                   <div className="detail-traits-list">
-                    {sortedTraits.map(t => <TraitCard key={t.id} trait={t} />)}
+                    {sortedTraits.map(t => <TraitCard key={t.id} trait={t} comp={comp} />)}
                   </div>
                 </div>
               )}
@@ -504,7 +516,7 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
             {sortedTraits.length > 0 && (
               <div style={{ flex: 1 }}>
                 <h3 style={{ fontSize: '0.62rem', fontWeight: 700, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 6px 0' }}>Tộc / Hệ</h3>
-                <div className="detail-traits-list">{sortedTraits.map(t => <TraitCard key={t.id} trait={t} />)}</div>
+                <div className="detail-traits-list">{sortedTraits.map(t => <TraitCard key={t.id} trait={t} comp={comp} />)}</div>
               </div>
             )}
           </div>
@@ -599,6 +611,7 @@ function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: b
       borderRadius: 6,
       background: isBest ? 'rgba(240,185,11,0.08)' : '#151518',
       border: isBest ? '1px solid rgba(240,185,11,0.2)' : '1px solid #1e1e22',
+      width: '100%', boxSizing: 'border-box'
     }}>
       <div style={{
         width: 26, height: 26, borderRadius: 4, overflow: 'hidden',
@@ -680,7 +693,7 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
           onMouseLeave={(e) => (e.currentTarget.style.background = champIdx % 2 === 0 ? '#0f0f12' : '#0c0c0f')}
         >
           {/* Champion info */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0, borderRight: '1px solid #1e1e1e', paddingRight: 14, paddingLeft: 60 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0, borderRight: '1px solid #1e1e1e', paddingRight: 14, paddingLeft: isMobile ? 10 : 20 }}>
             <div style={{
               width: isMobile ? 28 : 32, height: isMobile ? 28 : 32, borderRadius: 6, overflow: 'hidden',
               border: `2px solid ${COST_BORDER[1] ?? '#6b7280'}`,
@@ -701,9 +714,15 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
           </div>
 
           {/* Items */}
-          <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(5, 1fr)', 
+            gap: isMobile ? 5 : 8, 
+            alignItems: 'center', 
+            justifyItems: isMobile ? 'center' : 'stretch'
+          }}>
             {champ.recommended_items.length === 0 ? (
-              <span style={{ fontSize: '0.6rem', color: '#444' }}>—</span>
+              <span style={{ fontSize: '0.6rem', color: '#444', gridColumn: '1 / -1', textAlign: 'center' }}>—</span>
             ) : champ.recommended_items.map((item, idx) => (
               <ItemPill key={item.id} item={item} isBest={idx === 0} isMobile={isMobile} />
             ))}
@@ -730,12 +749,15 @@ const COST_GLOW: Record<number, string> = {
 
 // ── Champion Tooltip ─────────────────────────────────────────────────────────
 
-function ChampTooltip({ champ }: { champ: any }) {
+function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top' | 'bottom' }) {
   const borderColor = COST_BORDER[champ.cost] ?? '#6b7280';
   
   return (
     <div style={{
-      position: 'absolute', bottom: '100%', left: '50%', transform: 'translate(-50%, -10px)',
+      position: 'absolute', 
+      ...(position === 'top' 
+        ? { bottom: '100%', left: '50%', transform: 'translate(-50%, -10px)' }
+        : { top: '100%', left: '50%', transform: 'translate(-50%, 10px)' }),
       background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
       padding: '10px 12px', minWidth: 260, zIndex: 100,
       boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
@@ -784,7 +806,7 @@ function ChampTooltip({ champ }: { champ: any }) {
             </div>
           </div>
           {champ.skill.description && (
-            <div style={{ fontSize: '0.6rem', color: '#aaa', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: champ.skill.description }} />
+            <div style={{ fontSize: '0.6rem', color: '#aaa', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: champ.skill.description.replace(/\s*\(\s*\)/g, '') }} />
           )}
         </div>
       )}
@@ -993,7 +1015,7 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
       className={`comp-champ-slot ${slot.is_three_star ? "comp-champ-slot--3star" : ""}`}
       style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, position: 'relative', cursor: 'pointer' }}
     >
-      {showTip && <ChampTooltip champ={champ} />}
+      {showTip && <ChampTooltip champ={champ} position="bottom" />}
       {/* Champion icon — square, items overlaid at bottom */}
       <div style={{ position: 'relative', width: size, height: size, flexShrink: 0 }}>
         {/* Image clip box */}
@@ -1062,16 +1084,64 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
 
 // ── Trait Icon (mini) ────────────────────────────────────────────────────────
 
+function getActualTraitStyle(trait: CompActiveTrait): number {
+  if (!trait.milestones || trait.milestones.length === 0) return trait.current_style;
+  
+  const reqs = trait.milestones.map(ms => typeof ms === 'number' ? ms : (ms.min_units || ms.unit || ms.min || 0)).filter(u => u > 0);
+  if (reqs.length === 0) return trait.current_style;
+  
+  reqs.sort((a, b) => a - b);
+  
+  let activeIndex = -1;
+  for (let i = reqs.length - 1; i >= 0; i--) {
+    if (trait.count >= reqs[i]) {
+      activeIndex = i;
+      break;
+    }
+  }
+  
+  if (activeIndex === -1) return 0;
+
+  // Calculate dynamically based on TFT rules
+  const totalChamps = trait.champions ? trait.champions.length : 0;
+  const maxReq = reqs[reqs.length - 1];
+  const requiresEmblem = totalChamps > 0 && maxReq > totalChamps;
+  const N = reqs.length;
+  
+  // Max milestone
+  if (activeIndex === N - 1) {
+    return requiresEmblem ? 4 : 3; // Kim Cương (Prismatic) or Vàng (Gold)
+  }
+  
+  // Lowest milestone
+  if (activeIndex === 0) {
+    return 1; // Đồng (Bronze)
+  }
+  
+  // Middle milestones
+  if (N === 4) {
+    if (activeIndex === 1) return 2; // Bạc (Silver)
+    if (activeIndex === 2) return 3; // Vàng (Gold)
+  }
+  
+  if (N === 5) {
+    if (activeIndex === 1) return 1; // Đồng
+    if (activeIndex === 2) return 2; // Bạc
+    if (activeIndex === 3) return 3; // Vàng
+  }
+  
+  return 2; // Default cho giữa là Bạc (Silver)
+}
+
 function getTraitStyle(trait: CompActiveTrait) {
-  const style = trait.current_style;
-  const isMax = style >= trait.total_styles && trait.total_styles > 0;
+  const style = getActualTraitStyle(trait);
   
   if (style === 0) {
     return { bg: "linear-gradient(135deg, #2b2b36, #1e1e26)", color: "#6b7280" }; // Inactive (Dark Gray)
   }
   
-  if (isMax || style >= 4) {
-    return { bg: "linear-gradient(135deg, #a855f7, #06b6d4)", color: "#fff" }; // Prismatic/Max
+  if (style >= 4) {
+    return { bg: "linear-gradient(135deg, #a855f7, #06b6d4)", color: "#fff" }; // Prismatic
   }
   
   if (style === 3) {
@@ -1087,22 +1157,83 @@ function getTraitStyle(trait: CompActiveTrait) {
 }
 
 function getTraitStyleColor(trait: CompActiveTrait) {
-  const style = trait.current_style;
-  const isMax = style >= trait.total_styles && trait.total_styles > 0;
+  const style = getActualTraitStyle(trait);
   
   if (style === 0) return "#6b7280";
-  if (isMax || style >= 4) return "#06b6d4";
+  if (style >= 4) return "#06b6d4";
   if (style === 3) return "#fbbf24";
   if (style === 2) return "#9ca3af";
   return "#b45309";
 }
 
-function TraitIcon({ trait }: { trait: CompActiveTrait }) {
+function parseTraitDescription(description: string | null | undefined, milestones: any[]) {
+  let desc = description || "";
+  const effects: Record<number, string> = {};
+  
+  if (!desc || !milestones || milestones.length === 0) return { desc, effects };
+  
+  // If milestones already have effects, just return as is
+  const hasEffects = milestones.some(ms => ms.effect);
+  if (hasEffects) {
+     milestones.forEach(ms => {
+       const u = typeof ms === 'number' ? ms : (ms.min_units || ms.unit || ms.min || 0);
+       effects[u] = ms.effect || "";
+     });
+     return { desc, effects };
+  }
+  
+  const reqUnits = milestones.map(ms => typeof ms === 'number' ? ms : (ms.min_units || ms.unit || ms.min || 0)).filter(u => u > 0);
+  if (reqUnits.length === 0) return { desc, effects };
+
+  let regexStr = "";
+  reqUnits.forEach(u => {
+    regexStr += `\\(${u}\\)(.*?)`;
+  });
+  regexStr = regexStr.slice(0, -5) + "(.*)$";
+  
+  try {
+    const regex = new RegExp(regexStr, "s");
+    const match = desc.match(regex);
+    if (match) {
+      const startIndex = desc.lastIndexOf(match[0]);
+      if (startIndex !== -1) {
+        const mainDesc = desc.substring(0, startIndex).trim();
+        
+        reqUnits.forEach((u, i) => {
+          let text = match[i + 1].trim();
+          if (i === reqUnits.length - 1) {
+              text = text.replace(/^[,.]+|[,.]+$/g, '').trim(); 
+          }
+          effects[u] = text;
+        });
+        
+        return { desc: mainDesc, effects };
+      }
+    }
+  } catch (e) {
+  }
+  
+  return { desc, effects };
+}
+
+function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
   const { bg, color } = getTraitStyle(trait);
   const styleColor = getTraitStyleColor(trait);
   const isActive = trait.current_style > 0;
   const [showTip, setShowTip] = useState(false);
   const tipRef = useRef<HTMLDivElement>(null);
+
+  const compChampIds = useMemo(() => {
+    return new Set(
+      comp.final_board
+        ?.filter(slot => slot.champion != null)
+        .map(slot => slot.champion!.id) || []
+    );
+  }, [comp.final_board]);
+
+  const parsedTrait = useMemo(() => {
+    return parseTraitDescription(trait.description, trait.milestones || []);
+  }, [trait.description, trait.milestones]);
 
   useEffect(() => {
     if (!showTip) return;
@@ -1156,23 +1287,23 @@ function TraitIcon({ trait }: { trait: CompActiveTrait }) {
             </span>
           </div>
           
-          {trait.description && (
-            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: trait.description }} />
+          {parsedTrait.desc && (
+            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
           )}
 
           {trait.milestones && trait.milestones.length > 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
               {trait.milestones.map((ms: any, i: number) => {
-                const reqUnit = typeof ms === 'number' ? ms : (ms.min_units || ms.unit || 0);
-                const effect = ms.effect || "";
-                const isActive = trait.count >= reqUnit;
+                const reqUnit = typeof ms === 'number' ? ms : (ms.min_units || ms.unit || ms.min || 0);
+                const effect = parsedTrait.effects[reqUnit] || "";
+                const isMilestoneActive = trait.count >= reqUnit;
                 return (
-                  <div key={i} style={{ display: 'flex', gap: 6, opacity: isActive ? 1 : 0.4 }}>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
+                  <div key={i} style={{ display: 'flex', gap: 6, opacity: isMilestoneActive ? 1 : 0.4 }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isMilestoneActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
                       ({reqUnit})
                     </span>
                     {effect && (
-                      <span style={{ fontSize: '0.65rem', color: isActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
+                      <span style={{ fontSize: '0.65rem', color: isMilestoneActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
                     )}
                   </div>
                 );
@@ -1186,9 +1317,11 @@ function TraitIcon({ trait }: { trait: CompActiveTrait }) {
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                 {trait.champions.map((c: any) => {
                   const borderColor = COST_BORDER[c.cost] || '#666';
+                  const inComp = compChampIds.has(c.id);
                   return (
                     <div key={c.id} style={{ 
-                      width: 24, height: 24, borderRadius: 3, border: `1px solid ${borderColor}`, overflow: 'hidden'
+                      width: 24, height: 24, borderRadius: 3, border: `1px solid ${borderColor}`, overflow: 'hidden',
+                      opacity: inComp ? 1 : 0.25, filter: inComp ? 'none' : 'grayscale(100%)'
                     }}>
                       {c.icon_path ? (
                         <img src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -1211,12 +1344,24 @@ function TraitIcon({ trait }: { trait: CompActiveTrait }) {
 
 // ── Trait Card (expanded detail) ─────────────────────────────────────────────
 
-function TraitCard({ trait }: { trait: CompActiveTrait }) {
+function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
   const { bg, color } = getTraitStyle(trait);
   const styleColor = getTraitStyleColor(trait);
   const isActive = trait.current_style > 0;
   const [showTip, setShowTip] = useState(false);
   const tipRef = useRef<HTMLDivElement>(null);
+
+  const compChampIds = useMemo(() => {
+    return new Set(
+      comp.final_board
+        ?.filter(slot => slot.champion != null)
+        .map(slot => slot.champion!.id) || []
+    );
+  }, [comp.final_board]);
+
+  const parsedTrait = useMemo(() => {
+    return parseTraitDescription(trait.description, trait.milestones || []);
+  }, [trait.description, trait.milestones]);
 
   useEffect(() => {
     if (!showTip) return;
@@ -1285,23 +1430,23 @@ function TraitCard({ trait }: { trait: CompActiveTrait }) {
             </span>
           </div>
 
-          {trait.description && (
-            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: trait.description }} />
+          {parsedTrait.desc && (
+            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
           )}
 
           {trait.milestones && trait.milestones.length > 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
               {trait.milestones.map((ms: any, i: number) => {
-                const reqUnit = typeof ms === 'number' ? ms : (ms.min_units || ms.unit || 0);
-                const effect = ms.effect || "";
-                const isActive = trait.count >= reqUnit;
+                const reqUnit = typeof ms === 'number' ? ms : (ms.min_units || ms.unit || ms.min || 0);
+                const effect = parsedTrait.effects[reqUnit] || "";
+                const isMilestoneActive = trait.count >= reqUnit;
                 return (
-                  <div key={i} style={{ display: 'flex', gap: 6, opacity: isActive ? 1 : 0.4 }}>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
+                  <div key={i} style={{ display: 'flex', gap: 6, opacity: isMilestoneActive ? 1 : 0.4 }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isMilestoneActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
                       ({reqUnit})
                     </span>
                     {effect && (
-                      <span style={{ fontSize: '0.65rem', color: isActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
+                      <span style={{ fontSize: '0.65rem', color: isMilestoneActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
                     )}
                   </div>
                 );
@@ -1315,9 +1460,11 @@ function TraitCard({ trait }: { trait: CompActiveTrait }) {
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                 {trait.champions.map((c: any) => {
                   const borderColor = COST_BORDER[c.cost] || '#666';
+                  const inComp = compChampIds.has(c.id);
                   return (
                     <div key={c.id} style={{ 
-                      width: 24, height: 24, borderRadius: 3, border: `1px solid ${borderColor}`, overflow: 'hidden'
+                      width: 24, height: 24, borderRadius: 3, border: `1px solid ${borderColor}`, overflow: 'hidden',
+                      opacity: inComp ? 1 : 0.25, filter: inComp ? 'none' : 'grayscale(100%)'
                     }}>
                       {c.icon_path ? (
                         <img src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
