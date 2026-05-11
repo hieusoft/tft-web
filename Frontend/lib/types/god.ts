@@ -1,5 +1,6 @@
 export interface ApiGodListItem {
     id: number;
+    slug?: string;
     name: string;
     trait: string;
     rank: string;
