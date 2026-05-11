@@ -139,8 +139,8 @@ class TftApiClient {
     return (await this.get<ApiGodListItem[]>("/api/v1/gods/", opts)) ?? [];
   }
 
-  async getGod(id: number, opts?: FetchOptions): Promise<ApiGodDetail | null> {
-    return this.get<ApiGodDetail>(`/api/v1/gods/${id}`, opts);
+  async getGod(slug: string, opts?: FetchOptions): Promise<ApiGodDetail | null> {
+    return this.get<ApiGodDetail>(`/api/v1/gods/${encodeURIComponent(slug)}`, opts);
   }
 
 

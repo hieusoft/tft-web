@@ -42,7 +42,7 @@ interface SortConfig {
 const rankValue: Record<string, number> = { S: 4, A: 3, B: 2, C: 1 };
 
 export default function ChampionsClient({ champions }: { champions: ApiChampionOverview[] }) {
-  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+
 
   // Mặc định sắp xếp theo Tier (Rank) giảm dần (S lên đầu)
   const [sortConfig, setSortConfig] = useState<SortConfig | null>({ key: "rank", direction: "desc" });
@@ -94,318 +94,169 @@ export default function ChampionsClient({ champions }: { champions: ApiChampionO
     return sortConfig.direction === "asc" ? <span style={{ color: "#f0b90b", marginLeft: 4 }}>▲</span> : <span style={{ color: "#f0b90b", marginLeft: 4 }}>▼</span>;
   };
 
-  const thStyle = {
-    padding: "20px 24px",
-    fontSize: 12,
-    fontWeight: 800,
-    color: "#666",
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.1em",
-    cursor: "pointer",
-    userSelect: "none" as const,
-    transition: "color 0.2s",
-  };
+
 
   return (
     <div
       style={{
-        backgroundColor: "#111111",
+        backgroundColor: "#0a0a0c",
         color: "#e8e8e8",
         minHeight: "100vh",
         padding: "40px 16px 80px",
         fontFamily: "system-ui, sans-serif",
       }}
     >
-      <style>{`
-        .desktop-table { display: none; }
-        .mobile-view { display: block; }
-        .mobile-cards { display: flex; flex-direction: column; gap: 12px; }
-        @media (min-width: 768px) {
-          .desktop-table { display: block; }
-          .mobile-view { display: none; }
-        }
-      `}</style>
       <div style={{ maxWidth: 1400, width: "100%", margin: "0 auto" }}>
-        <div style={{ marginBottom: 32 }}>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: "#fff", margin: "0 0 8px 0" }}>
-            Danh Sách Tướng
+        <div style={{ marginBottom: 40, textAlign: "center" }}>
+          <h1 style={{ fontSize: 36, fontWeight: 900, color: "#fff", margin: "0 0 12px 0", letterSpacing: "-0.02em" }}>
+            Danh Sách Tướng TFT
           </h1>
-          <p style={{ color: "#9a9a9a", fontSize: 14, margin: 0 }}>
-            Thống kê chi tiết tỷ lệ thắng, tần suất chọn, hạng trung bình và số trận của các vị tướng. Nhấn vào tiêu đề cột để sắp xếp.
+          <p style={{ color: "#9ca3af", fontSize: 15, margin: 0, maxWidth: 600, marginLeft: "auto", marginRight: "auto", lineHeight: 1.6 }}>
+            Khám phá sức mạnh của các vị tướng trong meta hiện tại. Dữ liệu được tổng hợp từ hàng triệu trận đấu, cập nhật liên tục.
           </p>
         </div>
 
-        {/* ── MOBILE VIEW (Sort Buttons + Cards) ── */}
-        <div className="mobile-view">
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 12, color: '#666', fontWeight: 800, textTransform: 'uppercase', marginBottom: 8, letterSpacing: '0.05em' }}>Sắp xếp theo</div>
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              {(['rank', 'cost', 'avg_placement', 'win_rate', 'pick_rate'] as const).map(key => {
-                const labels: any = { rank: 'Tier', cost: 'Vàng', avg_placement: 'Hạng TB', win_rate: 'Win Rate', pick_rate: 'Pick Rate' };
-                const isActive = sortConfig?.key === key;
-                return (
-                  <button
-                    key={key}
-                    onClick={() => requestSort(key)}
-                    style={{
-                      padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, border: 'none',
-                      backgroundColor: isActive ? '#f0b90b' : '#222', color: isActive ? '#111' : '#aaa',
-                      display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer'
-                    }}
-                  >
-                    {labels[key]} {getSortIndicator(key)}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          <div className="mobile-cards">
-            {sortedChampions.map((champ) => {
-              const costColor = COST_COLORS[champ.cost] || "#6b7280";
-              return (
-                <Link
-                  key={champ.id}
-                  href={`/champions/${champ.slug}`}
-                  style={{ display: 'block', backgroundColor: '#1a1a1e', border: '1px solid #2a2a2a', borderRadius: 12, padding: 14, textDecoration: 'none' }}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                      <div style={{ width: 44, height: 44, position: 'relative', borderRadius: 8, overflow: 'hidden', border: `2px solid ${costColor}`, flexShrink: 0 }}>
-                        <Image src={champ.icon_path} alt={champ.name} fill style={{ objectFit: 'cover' }} />
-                      </div>
-                      <div>
-                        <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: '#fff' }}>{champ.name}</h3>
-                        <div style={{ fontSize: 11, fontWeight: 800, color: '#000', backgroundColor: costColor, padding: '2px 6px', borderRadius: 4, display: 'inline-block', marginTop: 4 }}>
-                          {champ.cost} Vàng
-                        </div>
-                      </div>
-                    </div>
-                    {champ.rank ? (
-                      <span style={{ backgroundColor: RANK_COLORS[champ.rank], color: '#fff', fontSize: 12, fontWeight: 900, padding: '4px 10px', borderRadius: 6 }}>
-                        {champ.rank}
-                      </span>
-                    ) : null}
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 4, backgroundColor: '#111', borderRadius: 8, padding: 8, border: '1px solid #222' }}>
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Hạng TB</div>
-                      <div style={{ fontSize: 13, fontWeight: 900, color: champ.avg_placement < 4.5 ? "#10b981" : champ.avg_placement > 5 ? "#ef4444" : "#fbbf24", marginTop: 4 }}>
-                        {Number(champ.avg_placement).toFixed(2)}
-                      </div>
-                    </div>
-                    <div style={{ textAlign: 'center', borderLeft: '1px solid #222' }}>
-                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Win</div>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: '#e8e8e8', marginTop: 4 }}>{champ.win_rate}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', borderLeft: '1px solid #222' }}>
-                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Pick</div>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: '#3b82f6', marginTop: 4 }}>{champ.pick_rate}</div>
-                    </div>
-                    <div style={{ textAlign: 'center', borderLeft: '1px solid #222' }}>
-                      <div style={{ fontSize: 10, color: '#666', fontWeight: 800, textTransform: 'uppercase' }}>Trận</div>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: '#9ca3af', marginTop: 4 }}>
-                        {typeof champ.games_played === 'number' ? champ.games_played.toLocaleString() : champ.games_played}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+        {/* Sort Controls */}
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 40 }}>
+          {(['rank', 'cost', 'avg_placement', 'win_rate', 'pick_rate'] as const).map(key => {
+            const labels: any = { rank: 'Tier', cost: 'Giá Vàng', avg_placement: 'Hạng TB', win_rate: 'Tỉ Lệ Thắng', pick_rate: 'Tỉ Lệ Chọn' };
+            const isActive = sortConfig?.key === key;
+            return (
+              <button
+                key={key}
+                onClick={() => requestSort(key)}
+                style={{
+                  padding: '8px 16px', borderRadius: 99, fontSize: 13, fontWeight: 700, border: '1px solid',
+                  backgroundColor: isActive ? 'rgba(234, 179, 8, 0.15)' : '#181a20',
+                  borderColor: isActive ? 'rgba(234, 179, 8, 0.5)' : '#2a2d35',
+                  color: isActive ? '#fde047' : '#9ca3af',
+                  display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  boxShadow: isActive ? '0 0 12px rgba(234, 179, 8, 0.15)' : 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.backgroundColor = '#22252e';
+                    e.currentTarget.style.color = '#d1d5db';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.backgroundColor = '#181a20';
+                    e.currentTarget.style.color = '#9ca3af';
+                  }
+                }}
+              >
+                {labels[key]} {getSortIndicator(key)}
+              </button>
+            )
+          })}
         </div>
 
-        {/* ── DESKTOP VIEW (Table) ── */}
-        <div className="desktop-table">
-          <div
-            style={{
-              backgroundColor: "#1e1e1e",
-              border: "1px solid #2a2a2a",
-              borderRadius: 16,
-              overflowX: "auto",
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
-            }}
-          >
-          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 1000 }}>
-            <thead style={{ backgroundColor: "#181818", borderBottom: "2px solid #2a2a2a" }}>
-              <tr>
-                <th
-                  style={{ ...thStyle, textAlign: "left" }}
-                  onClick={() => requestSort("name")}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#666")}
-                >
-                  Tướng {getSortIndicator("name")}
-                </th>
-
-                {/* ── CỘT TIER MỚI THÊM ── */}
-                <th
-                  style={{ ...thStyle, textAlign: "center" }}
-                  onClick={() => requestSort("rank")}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#666")}
-                >
-                  Tier {getSortIndicator("rank")}
-                </th>
-
-                <th
-                  style={{ ...thStyle, textAlign: "center" }}
-                  onClick={() => requestSort("cost")}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#666")}
-                >
-                  Bậc (Vàng) {getSortIndicator("cost")}
-                </th>
-                <th
-                  style={{ ...thStyle, textAlign: "center" }}
-                  onClick={() => requestSort("avg_placement")}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#666")}
-                >
-                  Hạng TB {getSortIndicator("avg_placement")}
-                </th>
-                <th
-                  style={{ ...thStyle, textAlign: "center" }}
-                  onClick={() => requestSort("win_rate")}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#666")}
-                >
-                  Tỷ Lệ Thắng {getSortIndicator("win_rate")}
-                </th>
-                <th
-                  style={{ ...thStyle, textAlign: "center" }}
-                  onClick={() => requestSort("pick_rate")}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#666")}
-                >
-                  Tần Suất {getSortIndicator("pick_rate")}
-                </th>
-                <th
-                  style={{ ...thStyle, textAlign: "center" }}
-                  onClick={() => requestSort("games_played")}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#666")}
-                >
-                  Số Trận {getSortIndicator("games_played")}
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {sortedChampions.map((champ) => {
-                const isHovered = hoveredRow === champ.id;
-                const costColor = COST_COLORS[champ.cost] || "#6b7280";
-
-                return (
-                  <tr
-                    key={champ.id}
-                    onMouseEnter={() => setHoveredRow(champ.id)}
-                    onMouseLeave={() => setHoveredRow(null)}
-                    style={{
-                      backgroundColor: isHovered ? "#242424" : "transparent",
-                      borderBottom: "1px solid #2a2a2a",
-                      transition: "background-color 0.2s ease",
-                    }}
-                  >
-                    {/* Cột Tướng */}
-                    <td style={{ padding: "16px 24px" }}>
-                      <Link
-                        href={`/champions/${champ.slug}`}
-                        style={{ display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}
-                      >
-                        <div
-                          style={{
-                            position: "relative",
-                            width: 48,
-                            height: 48,
-                            borderRadius: 8,
-                            overflow: "hidden",
-                            border: `2px solid ${costColor}`,
-                            boxShadow: isHovered ? `0 0 12px ${costColor}80` : "none",
-                            transition: "box-shadow 0.2s",
-                            flexShrink: 0,
-                          }}
-                        >
-                          <Image src={champ.icon_path} alt={champ.name} fill style={{ objectFit: "cover" }} />
-                        </div>
-                        <span style={{ fontSize: 16, fontWeight: 700, color: isHovered ? "#fff" : "#e8e8e8", transition: "color 0.2s" }}>
-                          {champ.name}
-                        </span>
-                      </Link>
-                    </td>
-
-                    {/* ── CỘT TIER MỚI THÊM ── */}
-                    <td style={{ padding: "16px 24px", textAlign: "center" }}>
-                      {champ.rank ? (
-                        <span
-                          style={{
-                            display: "inline-block",
-                            backgroundColor: RANK_COLORS[champ.rank] || "#6b7280",
-                            color: "#fff",
-                            fontSize: 13,
-                            fontWeight: 900,
-                            padding: "6px 14px",
-                            borderRadius: 8,
-                            boxShadow: "0 2px 4px rgba(0,0,0,0.3)"
-                          }}
-                        >
-                          {champ.rank}
-                        </span>
-                      ) : (
-                        <span style={{ color: "#666" }}>—</span>
+        {/* Grid of Cards */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+          gap: 20
+        }}>
+          {sortedChampions.map((champ) => {
+            const costColor = COST_COLORS[champ.cost] || "#6b7280";
+            const rankColor = champ.rank ? RANK_COLORS[champ.rank] : "#374151";
+            
+            return (
+              <Link
+                key={champ.id}
+                href={`/champions/${champ.slug}`}
+                style={{
+                  display: "flex", flexDirection: "column",
+                  background: "linear-gradient(145deg, #181a20 0%, #111216 100%)",
+                  border: "1px solid #2a2d35",
+                  borderRadius: 16,
+                  textDecoration: "none",
+                  overflow: "hidden",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  position: "relative",
+                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.borderColor = costColor;
+                  e.currentTarget.style.boxShadow = `0 12px 20px -8px ${costColor}40`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.borderColor = "#2a2d35";
+                  e.currentTarget.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1)";
+                }}
+              >
+                {/* Header Section */}
+                <div style={{ display: "flex", gap: 16, padding: "20px 20px 16px", borderBottom: "1px solid rgba(255,255,255,0.03)" }}>
+                  <div style={{ 
+                    width: 64, height: 64, borderRadius: 12, overflow: "hidden", 
+                    border: `2px solid ${costColor}`, position: "relative", flexShrink: 0,
+                    boxShadow: `0 0 12px ${costColor}40`
+                  }}>
+                    <Image src={champ.icon_path} alt={champ.name} fill sizes="64px" style={{ objectFit: "cover", transform: "scale(1.15)" }} />
+                  </div>
+                  
+                  <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                    <h3 style={{ margin: "0 0 6px 0", fontSize: 18, fontWeight: 800, color: "#f3f4f6", letterSpacing: "-0.01em" }}>
+                      {champ.name}
+                    </h3>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{
+                        fontSize: 11, fontWeight: 800, color: "#111", backgroundColor: costColor,
+                        padding: "2px 8px", borderRadius: 4, textTransform: "uppercase", letterSpacing: "0.05em"
+                      }}>
+                        {champ.cost} Vàng
+                      </span>
+                      {champ.rank && (
+                         <span style={{
+                           fontSize: 11, fontWeight: 800, color: "#fff", backgroundColor: rankColor,
+                           padding: "2px 8px", borderRadius: 4, boxShadow: `0 0 8px ${rankColor}40`
+                         }}>
+                           Tier {champ.rank}
+                         </span>
                       )}
-                    </td>
+                    </div>
+                  </div>
+                </div>
 
-                    {/* Cột Bậc (Cost) */}
-                    <td style={{ padding: "16px 24px", textAlign: "center" }}>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          width: 28,
-                          height: 28,
-                          lineHeight: "28px",
-                          borderRadius: "50%",
-                          backgroundColor: costColor,
-                          color: "#111",
-                          fontSize: 14,
-                          fontWeight: 900,
-                          boxShadow: "0 2px 4px rgba(0,0,0,0.5)",
-                        }}
-                      >
-                        {champ.cost}
-                      </span>
-                    </td>
+                {/* Stats Grid */}
+                <div style={{ 
+                  display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, 
+                  backgroundColor: "rgba(255,255,255,0.02)", padding: "16px 20px" 
+                }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingRight: 8 }}>
+                    <span style={{ fontSize: 11, color: "#9ca3af", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Hạng TB</span>
+                    <span style={{ fontSize: 16, fontWeight: 800, color: champ.avg_placement < 4.5 ? "#4ade80" : champ.avg_placement > 5 ? "#f87171" : "#fbbf24" }}>
+                      {Number(champ.avg_placement).toFixed(2)}
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingLeft: 16, borderLeft: "1px solid rgba(255,255,255,0.05)" }}>
+                    <span style={{ fontSize: 11, color: "#9ca3af", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Tỷ lệ thắng</span>
+                    <span style={{ fontSize: 16, fontWeight: 800, color: "#e5e7eb" }}>{champ.win_rate}</span>
+                  </div>
+                </div>
 
-                    <td style={{ padding: "16px 24px", textAlign: "center" }}>
-                      <span
-                        style={{
-                          fontSize: 16,
-                          fontWeight: 800,
-                          color: champ.avg_placement < 4.5 ? "#10b981" : champ.avg_placement > 5 ? "#ef4444" : "#fbbf24",
-                        }}
-                      >
-                        {champ.avg_placement}
-                      </span>
-                    </td>
-
-                    <td style={{ padding: "16px 24px", textAlign: "center", fontSize: 15, fontWeight: 600, color: "#ccc" }}>
-                      {champ.win_rate}
-                    </td>
-
-                    <td style={{ padding: "16px 24px", textAlign: "center", fontSize: 15, fontWeight: 600, color: "#3b82f6" }}>
-                      {champ.pick_rate}
-                    </td>
-
-                    <td style={{ padding: "16px 24px", textAlign: "center", fontSize: 15, fontWeight: 600, color: "#9ca3af" }}>
-                      {typeof champ.games_played === 'number' ? champ.games_played.toLocaleString() : champ.games_played}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          </div>
+                <div style={{ 
+                  display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, 
+                  backgroundColor: "rgba(255,255,255,0.02)", padding: "0 20px 20px" 
+                }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingRight: 8 }}>
+                    <span style={{ fontSize: 11, color: "#9ca3af", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Tần suất</span>
+                    <span style={{ fontSize: 16, fontWeight: 800, color: "#60a5fa" }}>{champ.pick_rate}</span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingLeft: 16, borderLeft: "1px solid rgba(255,255,255,0.05)" }}>
+                    <span style={{ fontSize: 11, color: "#9ca3af", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Số trận</span>
+                    <span style={{ fontSize: 16, fontWeight: 700, color: "#d1d5db" }}>
+                      {typeof champ.games_played === 'number' ? champ.games_played.toLocaleString("vi-VN") : champ.games_played}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

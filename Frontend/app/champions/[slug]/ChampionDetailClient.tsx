@@ -38,8 +38,9 @@ const formatSkillDescription = (desc: string) => {
     return `<br/><span style="color: #e8e8e8; font-weight: 700;">${match}</span>`;
   });
   
-  // Clean up extra line breaks
+  // Clean up extra line breaks and unparsed @ variables
   html = html.replace(/^(<br\/>)+/, '').replace(/^(<br>)+/, '');
+  html = html.replace(/\s*@[a-zA-Z0-9_]+@\s*/g, ' ');
   
   // Highlight numeric values
   html = html.replace(/(\d+(?:\.\d+)?%?(?:\/\d+(?:\.\d+)?%?)+)/g, '<span style="color:rgb(255, 42, 0); font-weight: 800; letter-spacing: 0.5px;">$1</span>');
@@ -59,6 +60,7 @@ const formatSkillDescription = (desc: string) => {
 export default function ChampionDetailClient({ champion }: { champion: ApiChampionDetail }) {
   // STATE & VARIABLES
   const [activeTab, setActiveTab] = useState<"skill" | "stats">("skill");
+  const [activeItemTab, setActiveItemTab] = useState<"combo" | "priority">("combo");
   const costColor = COST_COLORS[champion.cost] || "#6b7280";
 
   const topBuild = champion.best_builds?.[0];
@@ -76,7 +78,7 @@ export default function ChampionDetailClient({ champion }: { champion: ApiChampi
         fontFamily: "system-ui, sans-serif",
       }}
     >
-      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1100, width: "100%", margin: "0 auto" }}>
         
         {/* NAVIGATION BREADCRUMB */}
         <div style={{ marginBottom: 16 }}>
@@ -93,16 +95,32 @@ export default function ChampionDetailClient({ champion }: { champion: ApiChampi
           </Link>
         </div>
 
-        {/* MAIN 3-COLUMN GRID LAYOUT */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "20px",
-            alignItems: "start"
-          }}
-        >
-          {/* COLUMN 1: CHAMPION INFO & SKILLS */}
+        {/* RESPONSIVE GRID STYLE */}
+        <style>{`
+          .champ-main-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            align-items: start;
+          }
+          .items-top-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+          @media (min-width: 1024px) {
+            .champ-main-layout {
+              grid-template-columns: 360px 1fr;
+            }
+            .items-top-grid {
+              grid-template-columns: 1fr 1fr;
+            }
+          }
+        `}</style>
+
+        {/* MAIN LAYOUT */}
+        <div className="champ-main-layout">
+          {/* LEFT COLUMN: CHAMPION INFO & SKILLS */}
           <div style={{ backgroundColor: "#1e1e24", borderRadius: 8, overflow: "hidden", border: "1px solid #2a2a2e" }}>
             
             {/* Champion Splash & Header */}
@@ -210,118 +228,179 @@ export default function ChampionDetailClient({ champion }: { champion: ApiChampi
                  </div>
                </div>
             </div>
-
           </div>
 
-          {/* COLUMN 2: BEST BUILDS */}
-          <div style={{ flex: "1.5", display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* RIGHT COLUMN: ITEMS CONTENT */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             
-            {/* Recommended Build Summary */}
-            <div style={{ backgroundColor: "#1e1e24", borderRadius: 8, padding: "20px", border: "1px solid #2a2a2e" }}>
-              <h2 style={{ fontSize: 16, fontWeight: 800, color: "#fff", margin: "0 0 12px 0" }}>Lối Chơi Đề Xuất</h2>
-              <p style={{ fontSize: 13, color: "#aaa", lineHeight: 1.5, marginBottom: 20 }}>
-                Chúng tôi đề xuất <strong style={{ color: "#e8e8e8" }}>{topItemsText}</strong> là lối chơi tốt nhất cho {champion.name} trong meta hiện tại.
-              </p>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <div style={{ display: "flex", fontSize: 11, color: "#666", textTransform: "uppercase", fontWeight: 700, paddingBottom: 8, borderBottom: "1px solid #2a2a2e" }}>
-                  <div style={{ flex: 1 }}>Combo Trang Bị</div>
-                  <div style={{ width: 80, textAlign: "center" }}>Hạng TB</div>
-                  <div style={{ width: 80, textAlign: "center" }}>Win Rate</div>
-                </div>
-                
-                {champion.best_builds?.slice(0, 5).map((build, idx) => (
-                  <div key={idx} style={{ display: "flex", alignItems: "center", paddingBottom: 8 }}>
-                    <div style={{ flex: 1, display: "flex", gap: 4 }}>
-                      {[build.item_1, build.item_2, build.item_3].map((itm, i) => (
-                        <div key={i} title={itm.name} style={{ position: "relative", width: 28, height: 28, borderRadius: 4, overflow: "hidden", border: "1px solid #444" }}>
-                          <Image src={itm.image} alt={itm.name} fill style={{ objectFit: "cover" }} unoptimized />
-                        </div>
-                      ))}
-                    </div>
-                    <div style={{ width: 80, textAlign: "center", fontSize: 14, fontWeight: 700, color: "#10b981" }}>
-                      {build.avg_placement}
-                    </div>
-                    <div style={{ width: 80, textAlign: "center", fontSize: 13, fontWeight: 600, color: "#ccc" }}>
-                      {build.win_rate}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Detailed Build Table */}
-            <div style={{ backgroundColor: "#1e1e24", borderRadius: 8, border: "1px solid #2a2a2e", overflow: "hidden" }}>
-               <div style={{ padding: "16px 20px", borderBottom: "1px solid #2a2a2e", backgroundColor: "#25252b" }}>
-                  <h3 style={{ fontSize: 14, fontWeight: 700, color: "#f0b90b", margin: 0, textTransform: "uppercase" }}>Chi Tiết Build</h3>
-               </div>
-               <div style={{ overflowX: "auto" }}>
-                  <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 400 }}>
-                    <thead style={{ backgroundColor: "#1c1c21" }}>
-                      <tr>
-                        <th style={{ padding: "12px 20px", textAlign: "left", fontSize: 11, color: "#666", fontWeight: 700 }}>BUILD</th>
-                        <th style={{ padding: "12px 20px", textAlign: "center", fontSize: 11, color: "#666", fontWeight: 700 }}>HẠNG TB</th>
-                        <th style={{ padding: "12px 20px", textAlign: "right", fontSize: 11, color: "#666", fontWeight: 700 }}>TỶ LỆ THẮNG</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {champion.best_builds?.map((build, idx) => (
-                        <tr key={idx} style={{ borderTop: "1px solid #2a2a2e", backgroundColor: idx % 2 === 0 ? "transparent" : "#1a1a1f" }}>
-                          <td style={{ padding: "12px 20px", display: "flex", gap: 6 }}>
-                            {[build.item_1, build.item_2, build.item_3].map((itm, i) => (
-                              <div key={i} title={itm.name} style={{ position: "relative", width: 36, height: 36, borderRadius: 4, overflow: "hidden", border: "1px solid #444" }}>
-                                <Image src={itm.image} alt={itm.name} fill style={{ objectFit: "cover" }} unoptimized />
-                              </div>
-                            ))}
-                          </td>
-                          <td style={{ padding: "12px 20px", textAlign: "center", fontSize: 14, fontWeight: 700, color: "#fff" }}>
-                            {build.avg_placement}
-                          </td>
-                          <td style={{ padding: "12px 20px", textAlign: "right", fontSize: 13, fontWeight: 600, color: "#9ca3af" }}>
-                            {build.win_rate}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-               </div>
-            </div>
-          </div>
-
-          {/* COLUMN 3: BEST INDIVIDUAL ITEMS */}
-          <div style={{ backgroundColor: "#1e1e24", borderRadius: 8, padding: "20px", border: "1px solid #2a2a2e" }}>
-            <h2 style={{ fontSize: 16, fontWeight: 800, color: "#fff", margin: "0 0 12px 0" }}>Trang Bị Hàng Đầu</h2>
+            {/* TOP SECTION: SUMMARIES */}
+            <div className="items-top-grid">
+              
+              {/* LỐI CHƠI ĐỀ XUẤT (Top 5) */}
+          <div style={{ backgroundColor: "#1e1e24", borderRadius: 8, padding: "20px", border: "1px solid #2a2a2e", display: "flex", flexDirection: "column" }}>
+            <h2 style={{ fontSize: 16, fontWeight: 800, color: "#fff", margin: "0 0 8px 0" }}>Lối Chơi Đề Xuất</h2>
             <p style={{ fontSize: 13, color: "#aaa", lineHeight: 1.5, marginBottom: 20 }}>
-              Các trang bị đơn lẻ hoạt động hiệu quả nhất trên {champion.name}.
+              Chúng tôi đề xuất <strong style={{ color: "#f0b90b" }}>{topItemsText}</strong> là lối chơi tốt nhất cho {champion.name}.
             </p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <div style={{ display: "flex", fontSize: 11, color: "#666", textTransform: "uppercase", fontWeight: 700, paddingBottom: 8, borderBottom: "1px solid #2a2a2e" }}>
-                <div style={{ flex: 1 }}>Trang bị</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+              <div style={{ display: "flex", fontSize: 11, color: "#666", textTransform: "uppercase", fontWeight: 800, paddingBottom: 8, borderBottom: "1px solid #2a2a2e", letterSpacing: "0.05em" }}>
+                <div style={{ flex: 1 }}>Combo</div>
                 <div style={{ width: 60, textAlign: "center" }}>Hạng TB</div>
-                <div style={{ width: 60, textAlign: "right" }}>Tần suất</div>
+                <div style={{ width: 60, textAlign: "right" }}>Win Rate</div>
               </div>
               
-              {champion.best_items?.map((b_item, idx) => (
+              {champion.best_builds?.slice(0, 5).map((build, idx) => (
                 <div key={idx} style={{ display: "flex", alignItems: "center", paddingBottom: 8 }}>
-                  <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{ position: "relative", width: 32, height: 32, borderRadius: 4, overflow: "hidden", border: "1px solid #444" }}>
-                      <Image src={b_item.item.image} alt={b_item.item.name} fill style={{ objectFit: "cover" }} unoptimized />
-                    </div>
+                  <div style={{ flex: 1, display: "flex", gap: 4 }}>
+                    {[build.item_1, build.item_2, build.item_3].map((itm, i) => (
+                      <div key={i} title={itm.name} style={{ position: "relative", width: 32, height: 32, borderRadius: 6, overflow: "hidden", border: "1px solid #3a3d45" }}>
+                        <Image src={itm.image} alt={itm.name} fill style={{ objectFit: "cover" }} unoptimized />
+                      </div>
+                    ))}
                   </div>
-                  <div style={{ width: 60, textAlign: "center", fontSize: 13, fontWeight: 700, color: "#10b981" }}>
-                    {b_item.avg_placement}
+                  <div style={{ width: 60, textAlign: "center", fontSize: 15, fontWeight: 800, color: "#10b981" }}>
+                    {build.avg_placement}
                   </div>
-                  <div style={{ width: 60, textAlign: "right", fontSize: 12, fontWeight: 600, color: "#ccc" }}>
-                    {b_item.pick_percent}
+                  <div style={{ width: 60, textAlign: "right", fontSize: 14, fontWeight: 700, color: "#e8e8e8" }}>
+                    {build.win_rate}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* COLUMN 3: TRANG BỊ HÀNG ĐẦU (Top 5) */}
+          <div style={{ backgroundColor: "#1e1e24", borderRadius: 8, padding: "20px", border: "1px solid #2a2a2e", display: "flex", flexDirection: "column" }}>
+            <h2 style={{ fontSize: 16, fontWeight: 800, color: "#fff", margin: "0 0 8px 0" }}>Trang Bị Hàng Đầu</h2>
+            <p style={{ fontSize: 13, color: "#aaa", lineHeight: 1.5, marginBottom: 20 }}>
+              Các trang bị đơn lẻ hoạt động hiệu quả nhất trên {champion.name}.
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+              <div style={{ display: "flex", fontSize: 11, color: "#666", textTransform: "uppercase", fontWeight: 800, paddingBottom: 8, borderBottom: "1px solid #2a2a2e", letterSpacing: "0.05em" }}>
+                <div style={{ flex: 1 }}>Trang Bị</div>
+                <div style={{ width: 60, textAlign: "center" }}>Hạng TB</div>
+                <div style={{ width: 60, textAlign: "right" }}>Tần Suất</div>
+              </div>
+              
+              {champion.best_items?.slice(0, 5).map((b_item, idx) => (
+                <div key={idx} style={{ display: "flex", alignItems: "center", paddingBottom: 8 }}>
+                  <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ position: "relative", width: 32, height: 32, borderRadius: 6, overflow: "hidden", border: "1px solid #3a3d45" }}>
+                      <Image src={b_item.item.image} alt={b_item.item.name} fill style={{ objectFit: "cover" }} unoptimized />
+                    </div>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: "#e8e8e8", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 90 }}>
+                      {b_item.item.name}
+                    </span>
+                  </div>
+                  <div style={{ width: 60, textAlign: "center", fontSize: 15, fontWeight: 800, color: b_item.avg_placement < 4.5 ? "#10b981" : "#fbbf24" }}>
+                    {b_item.avg_placement}
+                  </div>
+                  <div style={{ width: 60, textAlign: "right", fontSize: 14, fontWeight: 700, color: "#9ca3af" }}>
+                    {b_item.pick_percent}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM SECTION: DETAILED TABS */}
+        <div style={{ backgroundColor: "#1e1e24", borderRadius: 8, border: "1px solid #2a2a2e", overflow: "hidden" }}>
+          <div style={{ display: "flex", borderBottom: "1px solid #2a2a2e", backgroundColor: "#18181c" }}>
+            <button
+              onClick={() => setActiveItemTab("combo")}
+              style={{
+                padding: "16px 24px", background: activeItemTab === "combo" ? "#1e1e24" : "transparent",
+                border: "none", borderBottom: activeItemTab === "combo" ? "2px solid #f0b90b" : "2px solid transparent",
+                color: activeItemTab === "combo" ? "#f0b90b" : "#9ca3af",
+                fontSize: 14, fontWeight: 800, cursor: "pointer", textTransform: "uppercase", letterSpacing: "0.05em",
+                transition: "all 0.2s"
+              }}
+            >
+              Chi Tiết Lối Chơi
+            </button>
+            <button
+              onClick={() => setActiveItemTab("priority")}
+              style={{
+                padding: "16px 24px", background: activeItemTab === "priority" ? "#1e1e24" : "transparent",
+                border: "none", borderBottom: activeItemTab === "priority" ? "2px solid #f0b90b" : "2px solid transparent",
+                color: activeItemTab === "priority" ? "#f0b90b" : "#9ca3af",
+                fontSize: 14, fontWeight: 800, cursor: "pointer", textTransform: "uppercase", letterSpacing: "0.05em",
+                transition: "all 0.2s"
+              }}
+            >
+              Chi Tiết Trang Bị
+            </button>
+          </div>
+
+          <div style={{ overflowX: "auto" }}>
+            {activeItemTab === "combo" && (
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 500 }}>
+                <thead style={{ backgroundColor: "#1c1c21", borderBottom: "1px solid #2a2a2e" }}>
+                  <tr>
+                    <th style={{ padding: "16px 24px", textAlign: "left", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Combo Trang Bị</th>
+                    <th style={{ padding: "16px 24px", textAlign: "center", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Hạng TB</th>
+                    <th style={{ padding: "16px 24px", textAlign: "right", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Tỷ Lệ Thắng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {champion.best_builds?.map((build, idx) => (
+                    <tr key={idx} style={{ borderBottom: "1px solid #2a2a2e", backgroundColor: idx % 2 === 0 ? "transparent" : "#1a1a1f", transition: "background 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#24242a"} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = idx % 2 === 0 ? "transparent" : "#1a1a1f"}>
+                      <td style={{ padding: "16px 24px", display: "flex", gap: 8 }}>
+                        {[build.item_1, build.item_2, build.item_3].map((itm, i) => (
+                          <div key={i} title={itm.name} style={{ position: "relative", width: 40, height: 40, borderRadius: 6, overflow: "hidden", border: "1px solid #3a3d45" }}>
+                            <Image src={itm.image} alt={itm.name} fill style={{ objectFit: "cover" }} unoptimized />
+                          </div>
+                        ))}
+                      </td>
+                      <td style={{ padding: "16px 24px", textAlign: "center", fontSize: 16, fontWeight: 800, color: "#fff" }}>
+                        {build.avg_placement}
+                      </td>
+                      <td style={{ padding: "16px 24px", textAlign: "right", fontSize: 15, fontWeight: 700, color: "#9ca3af" }}>
+                        {build.win_rate}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+
+            {activeItemTab === "priority" && (
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 500 }}>
+                <thead style={{ backgroundColor: "#1c1c21", borderBottom: "1px solid #2a2a2e" }}>
+                  <tr>
+                    <th style={{ padding: "16px 24px", textAlign: "left", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Trang Bị</th>
+                    <th style={{ padding: "16px 24px", textAlign: "center", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Hạng TB</th>
+                    <th style={{ padding: "16px 24px", textAlign: "right", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Tần Suất</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {champion.best_items?.map((b_item, idx) => (
+                    <tr key={idx} style={{ borderBottom: "1px solid #2a2a2e", backgroundColor: idx % 2 === 0 ? "transparent" : "#1a1a1f", transition: "background 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#24242a"} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = idx % 2 === 0 ? "transparent" : "#1a1a1f"}>
+                      <td style={{ padding: "16px 24px", display: "flex", alignItems: "center", gap: 16 }}>
+                        <div style={{ position: "relative", width: 40, height: 40, borderRadius: 6, overflow: "hidden", border: "1px solid #3a3d45" }}>
+                          <Image src={b_item.item.image} alt={b_item.item.name} fill style={{ objectFit: "cover" }} unoptimized />
+                        </div>
+                        <span style={{ fontSize: 15, fontWeight: 700, color: "#e8e8e8" }}>{b_item.item.name}</span>
+                      </td>
+                      <td style={{ padding: "16px 24px", textAlign: "center", fontSize: 16, fontWeight: 800, color: "#fff" }}>
+                        {b_item.avg_placement}
+                      </td>
+                      <td style={{ padding: "16px 24px", textAlign: "right", fontSize: 15, fontWeight: 700, color: "#9ca3af" }}>
+                        {b_item.pick_percent}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
   );
 }

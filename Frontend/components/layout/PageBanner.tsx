@@ -189,6 +189,10 @@ export default function PageBanner() {
 
   if (pathname === "/") return null;
 
+  // Không hiển thị banner dùng chung trên các trang chi tiết để tránh trùng lặp breadcrumbs
+  const segments = pathname.split("/").filter(Boolean);
+  if (segments.length > 1) return null;
+
   let config = BANNER_MAP[pathname];
   if (!config) {
     const prefix = Object.keys(BANNER_MAP).find((k) => pathname.startsWith(k));

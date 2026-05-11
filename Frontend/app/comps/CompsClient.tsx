@@ -1063,30 +1063,38 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
 // ── Trait Icon (mini) ────────────────────────────────────────────────────────
 
 function getTraitStyle(trait: CompActiveTrait) {
-  const isMax = trait.current_style >= trait.total_styles && trait.total_styles > 0;
-  if (trait.current_style === 0) {
-    return {
-      bg: "linear-gradient(135deg, #4b5563, #374151)",
-      color: "#9ca3af"
-    };
+  const style = trait.current_style;
+  const isMax = style >= trait.total_styles && trait.total_styles > 0;
+  
+  if (style === 0) {
+    return { bg: "linear-gradient(135deg, #2b2b36, #1e1e26)", color: "#6b7280" }; // Inactive (Dark Gray)
   }
-  if (isMax) {
-    return {
-      bg: "linear-gradient(135deg, #c084fc, #06b6d4)",
-      color: "#fff"
-    };
+  
+  if (isMax || style >= 4) {
+    return { bg: "linear-gradient(135deg, #a855f7, #06b6d4)", color: "#fff" }; // Prismatic/Max
   }
-  return {
-    bg: "linear-gradient(135deg, #fbbf24, #d97706)",
-    color: "#fff"
-  };
+  
+  if (style === 3) {
+    return { bg: "linear-gradient(135deg, #fbbf24, #d97706)", color: "#fff" }; // Gold
+  }
+  
+  if (style === 2) {
+    return { bg: "linear-gradient(135deg, #9ca3af, #6b7280)", color: "#fff" }; // Silver
+  }
+  
+  // style === 1
+  return { bg: "linear-gradient(135deg, #b45309, #78350f)", color: "#fff" }; // Bronze
 }
 
 function getTraitStyleColor(trait: CompActiveTrait) {
-  const isMax = trait.current_style >= trait.total_styles && trait.total_styles > 0;
-  if (trait.current_style === 0) return "#9ca3af";
-  if (isMax) return "#06b6d4";
-  return "#f59e0b";
+  const style = trait.current_style;
+  const isMax = style >= trait.total_styles && trait.total_styles > 0;
+  
+  if (style === 0) return "#6b7280";
+  if (isMax || style >= 4) return "#06b6d4";
+  if (style === 3) return "#fbbf24";
+  if (style === 2) return "#9ca3af";
+  return "#b45309";
 }
 
 function TraitIcon({ trait }: { trait: CompActiveTrait }) {

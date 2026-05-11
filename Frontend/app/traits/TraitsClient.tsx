@@ -315,7 +315,43 @@ export default function TraitsClient({ traits }: { traits: ApiTrait[] }) {
 function TraitHex({ trait, size = 40 }: { trait: ApiTrait; size?: number }) {
   const hex = "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)";
   const [hovered, setHovered] = useState(false);
-  const milestones = (trait.milestones ?? []) as Record<string, unknown>[];
+  const rawMilestones = (trait.milestones ?? []) as Record<string, any>[];
+
+  function getMilestoneBg(style?: number): string {
+    switch (style) {
+      case 1: return "linear-gradient(180deg, #b46b41, #703816)"; // Bronze
+      case 2: return "linear-gradient(180deg, #a4adb5, #626c75)"; // Silver
+      case 3: return "linear-gradient(180deg, #ffd769, #bf8120)"; // Gold
+      case 4: return "linear-gradient(180deg, #fdba74, #c2410c)"; // Unique
+      case 5: return "linear-gradient(135deg, #81e2b6, #6bade2, #b76deb, #ee76ad)"; // Prismatic
+      case 6: return "linear-gradient(135deg, #fef08a, #fb923c, #ec4899, #a855f7)"; // Ultimate
+      default: return "#4b5563";
+    }
+  }
+
+  // Parse milestones from description
+  let cleanDesc = (trait.description || "").replace(/&nbsp;/g, " ");
+  const extractedDesc = new Map<number, string>();
+  const regex = /(?:^|\s|<br>)\((\d+)\)\s*(.*?)(?=(?:\s|<br>)*\(\d+\)|$)/gi;
+  
+  cleanDesc = cleanDesc.replace(regex, (fullMatch, minStr, text) => {
+    extractedDesc.set(parseInt(minStr, 10), text.trim());
+    return "";
+  }).trim();
+
+  // Process milestones
+  const displayMilestones = rawMilestones.map(m => {
+    const count = m.min ?? m.count ?? m.num ?? m.units ?? m.n ?? m.level;
+    let desc = m.desc ?? m.description ?? m.effect ?? m.bonus ?? m.text;
+    if (count !== undefined && extractedDesc.has(Number(count))) {
+      desc = extractedDesc.get(Number(count));
+    }
+    return { ...m, displayCount: count, displayDesc: desc, style: m.style as number | undefined };
+  }).filter(m => {
+     // Hide meaningless breakpoints (e.g. just "[ 1 ]" with no text if main desc exists)
+     if (rawMilestones.length === 1 && !m.displayDesc && cleanDesc) return false;
+     return true;
+  });
 
   return (
     <div
@@ -330,7 +366,7 @@ function TraitHex({ trait, size = 40 }: { trait: ApiTrait; size?: number }) {
         filter: hovered ? "brightness(1.4)" : "brightness(1)",
       }} />
       {trait.image ? (
-        <Image src={trait.image} alt={trait.name} fill sizes={`${size}px`} className="object-contain p-1" style={{ clipPath: hex }} />
+        <Image src={trait.image} alt={trait.name} fill sizes={`${size}px`} className="object-contain p-1" style={{ clipPath: hex }} unoptimized />
       ) : (
         <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", clipPath: hex, fontSize: 11, fontWeight: 700, color: "#9ca3af" }}>
           {trait.name.substring(0, 2).toUpperCase()}
@@ -340,38 +376,41 @@ function TraitHex({ trait, size = 40 }: { trait: ApiTrait; size?: number }) {
       {/* Tooltip */}
       {hovered && (
         <div className="tr-tooltip">
-          <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: trait.description ? 6 : 0 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: cleanDesc ? 6 : 0 }}>
             {trait.name}
           </div>
-          {trait.description && (
-            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5, marginBottom: milestones.length > 0 ? 10 : 0 }}>
-              {trait.description}
+          {cleanDesc && (
+            <div style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.5, marginBottom: displayMilestones.length > 0 ? 10 : 0 }}>
+              {cleanDesc}
             </div>
           )}
-          {milestones.length > 0 && (
+          {displayMilestones.length > 0 && (
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               <div style={{ fontSize: 10, fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 2 }}>Breakpoints</div>
-              {milestones.map((m, i) => {
-                const count = m.count ?? m.num ?? m.units ?? m.n ?? m.level;
-                const desc  = m.desc ?? m.description ?? m.effect ?? m.bonus ?? m.text;
-                return (
-                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    {count !== undefined && (
-                      <span style={{ flexShrink: 0, minWidth: 22, height: 22, borderRadius: 4, background: "#c8972a", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#fff" }}>
-                        {String(count)}
-                      </span>
-                    )}
-                    {desc !== undefined && (
-                      <span style={{ fontSize: 11, color: "#d1d5db", lineHeight: 1.5 }}>{String(desc)}</span>
-                    )}
-                    {count === undefined && desc === undefined && (
-                      <span style={{ fontSize: 11, color: "#6b7280" }}>
-                        {Object.entries(m).map(([k, v]) => `${k}: ${v}`).join(" · ")}
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
+              {displayMilestones.map((m, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+                  {m.displayCount !== undefined && (
+                    <span style={{ 
+                      flexShrink: 0, minWidth: 22, height: 22, borderRadius: 4, 
+                      background: getMilestoneBg(m.style as number | undefined), 
+                      display: "inline-flex", alignItems: "center", justifyContent: "center", 
+                      fontSize: 11, fontWeight: 800, color: "#fff", 
+                      textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+                      border: "1px solid rgba(255,255,255,0.15)"
+                    }}>
+                      {String(m.displayCount)}
+                    </span>
+                  )}
+                  {m.displayDesc !== undefined && (
+                    <div style={{ fontSize: 11, color: "#d1d5db", lineHeight: 1.5 }}><FormatDesc text={String(m.displayDesc)} /></div>
+                  )}
+                  {m.displayCount === undefined && m.displayDesc === undefined && (
+                    <span style={{ fontSize: 11, color: "#6b7280" }}>
+                      {Object.entries(m).filter(([k]) => !['displayCount', 'displayDesc'].includes(k)).map(([k, v]) => `${k}: ${v}`).join(" · ")}
+                    </span>
+                  )}
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -389,7 +428,7 @@ function DesktopRow({ trait, idx }: { trait: ApiTrait; idx: number }) {
 
   return (
     <Link
-      href={`/traits/${toSlug(trait.name)}`}
+      href={`/traits/${trait.slug || toSlug(trait.name)}`}
       className="tr-row"
       style={{ background: idx % 2 === 1 ? "#131313" : "#111" }}
     >
@@ -442,7 +481,7 @@ function MobileCard({ trait, idx }: { trait: ApiTrait; idx: number }) {
 
   return (
     <Link
-      href={`/traits/${toSlug(trait.name)}`}
+      href={`/traits/${trait.slug || toSlug(trait.name)}`}
       className={`tr-card${idx % 2 === 1 ? " tr-card-odd" : ""}`}
     >
       <TraitHex trait={trait} size={44} />
@@ -484,5 +523,27 @@ function MobileCard({ trait, idx }: { trait: ApiTrait; idx: number }) {
         </span>
       </div>
     </Link>
+  );
+}
+
+function FormatDesc({ text }: { text: string }) {
+  if (!text) return null;
+  const parts = text.split(/(?=\s+\p{Lu}\p{Ll}+:)/gu);
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      {parts.map((part, index) => {
+        const trimmed = part.trim();
+        const match = trimmed.match(/^(\p{Lu}\p{Ll}+:)(.*)/u);
+        if (match) {
+          return (
+            <div key={index} style={{ display: "flex", gap: 4, alignItems: "baseline" }}>
+              <strong style={{ color: "#fbbf24", whiteSpace: "nowrap" }}>{match[1]}</strong>
+              <span>{match[2]}</span>
+            </div>
+          );
+        }
+        return <div key={index}>{trimmed}</div>;
+      })}
+    </div>
   );
 }

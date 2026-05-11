@@ -27,6 +27,8 @@ export interface ApiItem {
   win_rate?: string | null;
   /** e.g. "0.8%" – already a percentage string */
   pick_rate?: string | null;
+  /** Backwards compatibility for the API which still sends 'frequency' instead of 'pick_rate' */
+  frequency?: string | null;
   /** e.g. "66.2%" */
   top_4_rate?: string | null;
   /** May be a number or a string from the API */

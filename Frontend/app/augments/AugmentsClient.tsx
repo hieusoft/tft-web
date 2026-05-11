@@ -285,7 +285,11 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
           </div>
           {aug.description && (
             <p style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.55, margin: 0 }}>
-              {aug.description.replace(/TFT_Augment_Template_Blank/g, "").trim()}
+              {aug.description
+                .replace(/TFT_Augment_Template_Blank/g, "")
+                .replace(/tft10_headliner_default/g, "")
+                .replace(/ĐTCL Vegas Open, 2023/g, "")
+                .trim()}
             </p>
           )}
         </div>
