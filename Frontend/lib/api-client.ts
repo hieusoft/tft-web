@@ -83,7 +83,7 @@ class TftApiClient {
   }
 
   async getTraitBySlug(slug: string, opts?: FetchOptions): Promise<ApiTrait | null> {
-    return this.get<ApiTrait>(`/api/v1/traits/${slug}`, opts);
+    return this.get<ApiTrait>(`/api/v1/traits/${encodeURIComponent(slug)}`, opts);
   }
 
   async getChampions(opts?: FetchOptions): Promise<ApiChampion[]> {
@@ -101,7 +101,7 @@ class TftApiClient {
     slug: string,
     opts?: FetchOptions
   ): Promise<ApiChampion | null> {
-    return this.get<ApiChampion>(`/api/v1/champions/${slug}`, opts);
+    return this.get<ApiChampion>(`/api/v1/champions/${encodeURIComponent(slug)}`, opts);
   }
 
   async getItems(opts?: FetchOptions): Promise<ApiItem[]> {
@@ -113,7 +113,7 @@ class TftApiClient {
   }
 
   async getItemBySlug(slug: string, opts?: FetchOptions): Promise<ApiItem | null> {
-    return this.get<ApiItem>(`/api/v1/items/${slug}`, opts);
+    return this.get<ApiItem>(`/api/v1/items/${encodeURIComponent(slug)}`, opts);
   }
 
   async getAugments(opts?: FetchOptions): Promise<ApiAugment[]> {
@@ -132,7 +132,7 @@ class TftApiClient {
     slug: string,
     opts?: FetchOptions
   ): Promise<ApiAugment | null> {
-    return this.get<ApiAugment>(`/api/v1/augments/${slug}`, opts);
+    return this.get<ApiAugment>(`/api/v1/augments/${encodeURIComponent(slug)}`, opts);
   }
 
   async getGods(opts?: FetchOptions): Promise<ApiGodListItem[]> {

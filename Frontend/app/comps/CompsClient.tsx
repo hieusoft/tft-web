@@ -192,7 +192,7 @@ function CompRow({
 
         <div className="comp-col comp-col--stat">
           <span className="comp-avg-place">
-            {comp.avg_placement != null ? comp.avg_placement.toFixed(2) : "—"}
+            {comp.avg_placement != null ? Number(comp.avg_placement).toFixed(2) : "—"}
           </span>
         </div>
 
@@ -278,10 +278,11 @@ function HexBoard({ slots, availW }: { slots: CompBoardSlot[]; availW: number })
 const PANEL_LABEL: React.CSSProperties = { fontSize: '0.58rem', fontWeight: 700, color: '#444', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 };
 
 function StatStrip({ comp, horizontal }: { comp: ApiComp; horizontal?: boolean }) {
+  const avgPlace = comp.avg_placement != null ? Number(comp.avg_placement) : null;
   const stats = [
-    { label: 'Vị Trí TB', value: comp.avg_placement != null ? comp.avg_placement.toFixed(2) : '—', color: '#e8e8e8' },
-    { label: 'Top 4', value: comp.avg_placement != null ? `${Math.max(0, Math.round((4.5 - comp.avg_placement) * 22))}%` : '—', color: '#22c55e' },
-    { label: 'Win%', value: comp.avg_placement != null ? `${Math.max(0, Math.round((4.5 - comp.avg_placement) * 10))}%` : '—', color: '#f0b90b' },
+    { label: 'Vị Trí TB', value: avgPlace != null ? avgPlace.toFixed(2) : '—', color: '#e8e8e8' },
+    { label: 'Top 4', value: avgPlace != null ? `${Math.max(0, Math.round((4.5 - avgPlace) * 22))}%` : '—', color: '#22c55e' },
+    { label: 'Win%', value: avgPlace != null ? `${Math.max(0, Math.round((4.5 - avgPlace) * 10))}%` : '—', color: '#f0b90b' },
   ];
   if (horizontal) return (
     <div style={{ display: 'flex' }}>

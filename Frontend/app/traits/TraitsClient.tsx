@@ -410,7 +410,7 @@ function DesktopRow({ trait, idx }: { trait: ApiTrait; idx: number }) {
 
       {/* Avg place */}
       <div className="tr-cell" style={{ fontSize: 14, fontWeight: 700, color: placementColor(trait.placement) }}>
-        {trait.placement != null ? trait.placement.toFixed(2) : "—"}
+        {trait.placement != null ? Number(trait.placement).toFixed(2) : "—"}
       </div>
 
       {/* Top 4 */}
@@ -455,7 +455,7 @@ function MobileCard({ trait, idx }: { trait: ApiTrait; idx: number }) {
           <div className="tr-card-stat">
             <span className="tr-card-stat-label">Avg Place</span>
             <span className="tr-card-stat-val" style={{ color: placementColor(trait.placement) }}>
-              {trait.placement != null ? trait.placement.toFixed(2) : "—"}
+        {trait.placement != null ? Number(trait.placement).toFixed(2) : "—"}
             </span>
           </div>
           {/* Top 4 */}

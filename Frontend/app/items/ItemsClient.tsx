@@ -140,7 +140,7 @@ const fGames = (v: number | string | undefined): string => {
   const n = typeof v === "string" ? parseInt(v, 10) : v;
   return isNaN(n) || n === 0 ? "—" : n.toLocaleString("vi-VN");
 };
-const fPlace = (v: number | null | undefined): string => v == null ? "—" : v.toFixed(2);
+const fPlace = (v: number | string | null | undefined): string => v == null ? "—" : Number(v).toFixed(2);
 const placeColor = (v: number | null | undefined): string =>
   v == null ? "#6b7280" : v <= 3.5 ? "#4ade80" : v <= 4.2 ? "#facc15" : "#f87171";
 

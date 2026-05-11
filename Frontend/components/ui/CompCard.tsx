@@ -78,13 +78,13 @@ export default function CompCard({
 
       {/* Stats */}
       <div className="flex items-center justify-between rounded-lg bg-white/5 px-4 py-3">
-        <StatBadge label="Avg Place" value={avgPlacement.toFixed(2)} />
+        <StatBadge label="Avg Place" value={Number(avgPlacement).toFixed(2)} />
         <div className="h-4 w-px bg-white/10" />
-        <StatBadge label="Top 4" value={top4Rate.toFixed(1)} suffix="%" highlight />
+        <StatBadge label="Top 4" value={Number(top4Rate).toFixed(1)} suffix="%" highlight />
         <div className="h-4 w-px bg-white/10" />
-        <StatBadge label="Win Rate" value={winRate.toFixed(1)} suffix="%" />
+        <StatBadge label="Win Rate" value={Number(winRate).toFixed(1)} suffix="%" />
         <div className="h-4 w-px bg-white/10" />
-        <StatBadge label="Play Rate" value={playRate.toFixed(1)} suffix="%" />
+        <StatBadge label="Play Rate" value={Number(playRate).toFixed(1)} suffix="%" />
       </div>
     </Link>
   );

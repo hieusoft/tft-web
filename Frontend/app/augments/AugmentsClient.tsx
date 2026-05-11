@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useMemo, useRef, useCallback } from "react";
 import type { ApiAugment } from "@/lib/api-client";
 
@@ -30,7 +31,8 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
       list = list.filter((a) => a.name.toLowerCase().includes(search.toLowerCase()));
     list.sort((a, b) => {
       const ro = (RANK_ORDER[a.rank ?? ""] ?? 9) - (RANK_ORDER[b.rank ?? ""] ?? 9);
-      return ro !== 0 ? ro : a.name.localeCompare(b.name);
+      if (ro !== 0) return ro;
+      return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
     });
     return list;
   }, [augments, rankFilter, search]);
@@ -174,12 +176,13 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
   };
 
   return (
-    <div
-      ref={ref}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={() => setShowTip(false)}
-      style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, width: 60, cursor: "default" }}
-    >
+    <Link href={`/augments/${aug.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+      <div
+        ref={ref}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={() => setShowTip(false)}
+        style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, width: 60, cursor: "pointer" }}
+      >
       {/* Icon box */}
       <div style={{
         width: 52, height: 52, borderRadius: 8, overflow: "hidden",
@@ -287,6 +290,7 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
           )}
         </div>
       )}
-    </div>
+      </div>
+    </Link>
   );
 }
