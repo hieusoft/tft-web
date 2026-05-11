@@ -276,7 +276,7 @@ function HexBoard({ slots, availW }: { slots: CompBoardSlot[]; availW: number })
             const y = ri * B_STEP;
             return (
               <div key={`${ri}-${ci}`} className="hex-wrapper" style={{ position: 'absolute', left: x, top: y, zIndex: B_ROWS - ri }}>
-                <HexCell slot={grid[ri][ci]} hexW={B_HW} hexH={B_HH} />
+                <HexCell slot={grid[ri][ci]} hexW={B_HW} hexH={B_HH} ri={ri} />
               </div>
             );
           })
@@ -328,7 +328,7 @@ function AugmentList({ comp }: { comp: ApiComp }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
         {comp.recommended_augments.map(aug => (
           <div key={aug.id} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '5px 7px', borderRadius: 6, background: '#1a1a1e', border: '1px solid #252530' }}>
-            {aug.image && <img src={aug.image} alt={aug.name} style={{ width: 28, height: 28, objectFit: 'cover', borderRadius: 5, flexShrink: 0, border: '1px solid #333' }} />}
+            {aug.image && <img loading="lazy" src={aug.image} alt={aug.name} style={{ width: 28, height: 28, objectFit: 'cover', borderRadius: 5, flexShrink: 0, border: '1px solid #333' }} />}
             <div style={{ minWidth: 0 }}>
               <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#ddd' }}>{aug.name}</div>
               {aug.tier != null && (
@@ -357,7 +357,7 @@ function CarouselList({ comp }: { comp: ApiComp }) {
         {comp.carousel_priority.map((item, i) => (
           <div key={`${item.id}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 8px', borderRadius: 5, background: '#1a1a1e', border: '1px solid #252530' }}>
             <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#f0b90b', minWidth: 18 }}>#{i + 1}</span>
-            {item.image && <img src={item.image} alt={item.name} style={{ width: 22, height: 22, objectFit: 'cover', borderRadius: 3, flexShrink: 0, border: '1px solid #333' }} />}
+            {item.image && <img loading="lazy" src={item.image} alt={item.name} style={{ width: 22, height: 22, objectFit: 'cover', borderRadius: 3, flexShrink: 0, border: '1px solid #333' }} />}
             <span style={{ fontSize: '0.65rem', color: '#ccc', fontWeight: 500 }}>{item.name}</span>
           </div>
         ))}
@@ -578,7 +578,7 @@ function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: b
         >
           {item.image && (
             /* eslint-disable-next-line @next/next/no-img-element */
-            <img src={item.image} alt={item.name}
+            <img loading="lazy" src={item.image} alt={item.name}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           )}
         </div>
@@ -619,7 +619,7 @@ function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: b
       }}>
         {item.image && (
           /* eslint-disable-next-line @next/next/no-img-element */
-          <img src={item.image} alt={item.name}
+          <img loading="lazy" src={item.image} alt={item.name}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         )}
       </div>
@@ -701,7 +701,7 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
             }}>
               {champ.icon_path && (
                 /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={champ.icon_path} alt={champ.champion_name}
+                <img loading="lazy" src={champ.icon_path} alt={champ.champion_name}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               )}
             </div>
@@ -749,6 +749,50 @@ const COST_GLOW: Record<number, string> = {
 
 // ── Champion Tooltip ─────────────────────────────────────────────────────────
 
+function formatSkillDescription(desc: string) {
+  if (!desc) return '';
+  let formatted = desc.replace(/\s*\(\s*\)/g, '');
+  
+  // 1. Numbers placeholder (handle numbers, fractions, percentages)
+  formatted = formatted.replace(/(\d+(?:\.\d+)?(?:%\s*)?(?:\/\d+(?:\.\d+)?(?:%\s*)?)*)/g, '[[NUM:$1]]');
+  
+  // 2. Sentences (break lines after a period/exclamation/question mark followed by space and an uppercase letter)
+  formatted = formatted.replace(/([\.!?])\s+(?=\p{Lu})/gu, '$1<br/><br/>');
+  
+  // 3. Key-Value pairs (e.g. "Sát Thương Chém: 140/210/315")
+  formatted = formatted.replace(/(?:Sát Thương|Giảm|Hồi|Tốc|Thời|Sát thương|Năng lượng|Máu)(?:\s+[\p{L}\s\.]+?)?:/gu, match => `<br/><span style="color: #f0b90b; font-weight: 600;">${match}</span>`);
+
+  // Fix consecutive line breaks if the key-value matched immediately after a sentence
+  formatted = formatted.replace(/(<br\/>\s*){3,}/g, '<br/><br/>');
+
+  // 4. Terms
+  const terms = [
+    { regex: /(sát thương vật lý)/gi, color: '#f97316' },
+    { regex: /(sát thương phép thuật|sát thương phép)/gi, color: '#3b82f6' },
+    { regex: /(sát thương chuẩn)/gi, color: '#e2e8f0' },
+    { regex: /(hồi máu|hồi phục)/gi, color: '#22c55e' },
+    { regex: /(giáp)/gi, color: '#eab308' },
+    { regex: /(kháng phép)/gi, color: '#06b6d4' },
+    { regex: /(lá chắn|khiên)/gi, color: '#fbbf24' },
+    { regex: /(tốc độ đánh|tốc đánh)/gi, color: '#fb923c' },
+    { regex: /(năng lượng)/gi, color: '#60a5fa' },
+    { regex: /(máu)/gi, color: '#ef4444' },
+    { regex: /(sức mạnh phép thuật|smpt)/gi, color: '#8b5cf6' },
+    { regex: /(làm choáng|hất tung|hoảng sợ)/gi, color: '#a8a29e' },
+  ];
+  terms.forEach(({ regex, color }) => {
+    formatted = formatted.replace(regex, `<span style="color: ${color}; font-weight: 600;">$1</span>`);
+  });
+
+  // 5. Restore numbers
+  formatted = formatted.replace(/\[\[NUM:(.*?)\]\]/g, '<span style="color: #fff; font-weight: 700;">$1</span>');
+
+  // Remove leading breaks
+  formatted = formatted.replace(/^(<br\/>\s*)+/, '');
+
+  return formatted;
+}
+
 function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top' | 'bottom' }) {
   const borderColor = COST_BORDER[champ.cost] ?? '#6b7280';
   
@@ -759,7 +803,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
         ? { bottom: '100%', left: '50%', transform: 'translate(-50%, -10px)' }
         : { top: '100%', left: '50%', transform: 'translate(-50%, 10px)' }),
       background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
-      padding: '10px 12px', minWidth: 260, zIndex: 100,
+      padding: '10px 12px', minWidth: 260, maxWidth: 320, zIndex: 100,
       boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
       pointerEvents: 'none',
       display: 'flex', flexDirection: 'column', gap: 6,
@@ -768,7 +812,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <div style={{ width: 32, height: 32, borderRadius: 4, border: `2px solid ${borderColor}`, overflow: 'hidden' }}>
           {champ.icon_path ? (
-            <img src={champ.icon_path} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img loading="lazy" src={champ.icon_path} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : (
             <div style={{ width: '100%', height: '100%', background: '#222' }} />
           )}
@@ -784,7 +828,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 2 }}>
           {champ.traits.map((t: any, i: number) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              {t.image && <img src={t.image} alt="" style={{ width: 14, height: 14 }} />}
+              {t.image && <img loading="lazy" src={t.image} alt="" style={{ width: 14, height: 14 }} />}
               <span style={{ fontSize: '0.6rem', color: '#ccc' }}>{t.name}</span>
             </div>
           ))}
@@ -796,17 +840,19 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
         <div style={{ marginTop: 4, paddingTop: 6, borderTop: '1px solid #333' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
             {champ.skill.icon_path && (
-              <img src={champ.skill.icon_path} alt="" style={{ width: 24, height: 24, borderRadius: 4, border: '1px solid #444' }} />
+              <img loading="lazy" src={champ.skill.icon_path} alt="" style={{ width: 24, height: 24, borderRadius: 4, border: '1px solid #444' }} />
             )}
             <div>
               <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#f0b90b' }}>{champ.skill.name}</div>
-              <div style={{ fontSize: '0.55rem', color: '#66abff' }}>
-                Năng lượng: {champ.skill.mana_start} / {champ.skill.mana_max}
-              </div>
+              {(champ.skill.mana_start !== undefined && champ.skill.mana_max !== undefined) && (
+                <div style={{ fontSize: '0.55rem', color: '#66abff' }}>
+                  Năng lượng: {champ.skill.mana_start} / {champ.skill.mana_max}
+                </div>
+              )}
             </div>
           </div>
           {champ.skill.description && (
-            <div style={{ fontSize: '0.6rem', color: '#aaa', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: champ.skill.description.replace(/\s*\(\s*\)/g, '') }} />
+            <div style={{ fontSize: '0.6rem', color: '#aaa', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: formatSkillDescription(champ.skill.description) }} />
           )}
         </div>
       )}
@@ -814,7 +860,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
   );
 }
 
-function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: number; hexH: number }) {
+function HexCell({ slot, hexW, hexH, ri = 0 }: { slot: CompBoardSlot | null; hexW: number; hexH: number; ri?: number }) {
   const BORDER_PX = 4;
   const innerW = hexW - BORDER_PX * 2;
   const innerH = hexH - BORDER_PX * 2;
@@ -866,7 +912,7 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
       onClick={() => setShowTip(!showTip)}
       style={{ width: hexW, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', cursor: 'pointer' }}
     >
-      {showTip && <ChampTooltip champ={champ} />}
+      {showTip && <ChampTooltip champ={champ} position={ri < 2 ? 'bottom' : 'top'} />}
 
       {/* Hex wrapper — glow + border + art + items overlay */}
       <div style={{
@@ -895,8 +941,7 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
                 ?? champ.icon_path!.replace('/icons/', '/splashes/');
               return (
                 /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src={splashSrc}
+                <img loading="lazy" src={splashSrc}
                   alt={champ.name}
                   onError={(e) => {
                     const img = e.currentTarget as HTMLImageElement;
@@ -973,7 +1018,7 @@ function HexCell({ slot, hexW, hexH }: { slot: CompBoardSlot | null; hexW: numbe
               }}>
                 {item.image ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={item.image} alt={item.name}
+                  <img loading="lazy" src={item.image} alt={item.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 ) : (
                   <div style={{ width: '100%', height: '100%', background: '#2a2a3a' }} />
@@ -1028,7 +1073,7 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
         }}>
           {champ.icon_path ? (
             /* eslint-disable-next-line @next/next/no-img-element */
-            <img src={champ.icon_path} alt={champ.name}
+            <img loading="lazy" src={champ.icon_path} alt={champ.name}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
           ) : (
             <span style={{ fontSize: size > 45 ? 14 : 10, fontWeight: 700, color: 'rgba(255,255,255,0.7)' }}>
@@ -1056,7 +1101,7 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
             {slot.items.map((item, i) => (
               item.image
                 ? /* eslint-disable-next-line @next/next/no-img-element */
-                <img key={i} src={item.image} alt={item.name} title={item.name}
+                <img loading="lazy" key={i} src={item.image} alt={item.name} title={item.name}
                   style={{
                     width: itemSize, height: itemSize, objectFit: 'cover',
                     borderRadius: 3, border: '1px solid rgba(0,0,0,0.5)',
@@ -1261,8 +1306,7 @@ function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
       >
         {trait.image ? (
           /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={trait.image}
+          <img loading="lazy" src={trait.image}
             alt={trait.name}
             style={{ width: 14, height: 14, objectFit: "contain", filter: isActive ? "drop-shadow(0 1px 2px rgba(0,0,0,0.5))" : "grayscale(0.8) opacity(0.5)", zIndex: 1 }}
           />
@@ -1280,7 +1324,7 @@ function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
           pointerEvents: 'none',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-            {trait.image && <img src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
+            {trait.image && <img loading="lazy" src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8' }}>{trait.name}</span>
             <span style={{ fontSize: '0.65rem', color: styleColor, marginLeft: 'auto', fontWeight: 600 }}>
               Bậc {trait.current_style} ({trait.count})
@@ -1324,7 +1368,7 @@ function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
                       opacity: inComp ? 1 : 0.25, filter: inComp ? 'none' : 'grayscale(100%)'
                     }}>
                       {c.icon_path ? (
-                        <img src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img loading="lazy" src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       ) : (
                         <div style={{ width: '100%', height: '100%', background: '#222', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {c.name.substring(0, 2)}
@@ -1393,8 +1437,7 @@ function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
         >
           {trait.image ? (
             /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={trait.image}
+            <img loading="lazy" src={trait.image}
               alt={trait.name}
               style={{ width: 14, height: 14, objectFit: "contain", filter: isActive ? "drop-shadow(0 1px 2px rgba(0,0,0,0.5))" : "grayscale(0.8) opacity(0.5)", zIndex: 1 }}
             />
@@ -1423,7 +1466,7 @@ function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
           pointerEvents: 'none',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-            {trait.image && <img src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
+            {trait.image && <img loading="lazy" src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8' }}>{trait.name}</span>
             <span style={{ fontSize: '0.65rem', color: styleColor, marginLeft: 'auto', fontWeight: 600 }}>
               Bậc {trait.current_style} ({trait.count})
@@ -1467,7 +1510,7 @@ function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
                       opacity: inComp ? 1 : 0.25, filter: inComp ? 'none' : 'grayscale(100%)'
                     }}>
                       {c.icon_path ? (
-                        <img src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img loading="lazy" src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       ) : (
                         <div style={{ width: '100%', height: '100%', background: '#222', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {c.name.substring(0, 2)}

@@ -57,7 +57,13 @@ const formatSkillDescription = (desc: string) => {
 };
 
 // --- MAIN COMPONENT ---
-export default function ChampionDetailClient({ champion }: { champion: ApiChampionDetail }) {
+export default function ChampionDetailClient({ 
+  champion,
+  traitImages = {}
+}: { 
+  champion: ApiChampionDetail;
+  traitImages?: Record<string, string>;
+}) {
   // STATE & VARIABLES
   const [activeTab, setActiveTab] = useState<"skill" | "stats">("skill");
   const [activeItemTab, setActiveItemTab] = useState<"combo" | "priority">("combo");
@@ -143,12 +149,21 @@ export default function ChampionDetailClient({ champion }: { champion: ApiChampi
                 </h1>
                 
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  {champion.traits.map((trait) => (
-                    <div key={trait.slug} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <div style={{ width: 14, height: 14, backgroundColor: "#333", clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }} />
-                      <span style={{ fontSize: 13, fontWeight: 600, color: "#ccc", textShadow: "0 1px 2px rgba(0,0,0,0.8)" }}>{trait.name}</span>
-                    </div>
-                  ))}
+                  {champion.traits.map((trait) => {
+                    const tImage = traitImages[trait.slug];
+                    return (
+                      <div key={trait.slug} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        {tImage ? (
+                          <div style={{ width: 14, height: 14, position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                             <img src={tImage} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'drop-shadow(0px 1px 2px rgba(0,0,0,1))' }} />
+                          </div>
+                        ) : (
+                          <div style={{ width: 14, height: 14, backgroundColor: "#333", clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }} />
+                        )}
+                        <span style={{ fontSize: 13, fontWeight: 600, color: "#ccc", textShadow: "0 1px 2px rgba(0,0,0,0.8)" }}>{trait.name}</span>
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div style={{ position: "absolute", bottom: 0, right: 0, display: "flex", gap: 8 }}>

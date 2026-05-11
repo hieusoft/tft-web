@@ -31,7 +31,7 @@ export default function GodDetailModal({ godSlug, onClose }: { godSlug: string; 
             {/* Header */}
             <div className="flex justify-between items-center p-6 border-b border-gray-800 bg-[#1a1a1c]">
               <div className="flex items-center gap-4">
-                <img src={god.image} alt={god.name} className="w-14 h-14 rounded-full border border-gray-500" />
+                <img loading="lazy" src={god.image} alt={god.name} className="w-14 h-14 rounded-full border border-gray-500" />
                 <div>
                   <h2 className="text-xl font-bold text-white flex items-center gap-2">
                     {god.name}
@@ -49,7 +49,7 @@ export default function GodDetailModal({ godSlug, onClose }: { godSlug: string; 
               
               {god.augment && (
                 <div className="mb-6 bg-[#252527] p-4 rounded-lg border border-gray-700/50 flex gap-4 items-start">
-                  <img src={god.augment.image} alt="Augment" className="w-12 h-12 rounded border border-gray-600" />
+                  <img loading="lazy" src={god.augment.image} alt="Augment" className="w-12 h-12 rounded border border-gray-600" />
                   <div>
                     <h4 className="text-yellow-500 font-bold text-xs uppercase tracking-wider mb-1">Lõi Ân Huệ</h4>
                     <p className="text-white font-semibold text-sm mb-1">{god.augment.name}</p>
@@ -72,7 +72,7 @@ export default function GodDetailModal({ godSlug, onClose }: { godSlug: string; 
                         
                         return (
                           <div key={rIdx} className="flex gap-3 items-center">
-                            <img src={reward.icon} alt="Reward" className="w-8 h-8 rounded border border-gray-700" />
+                            <img loading="lazy" src={reward.icon} alt="Reward" className="w-8 h-8 rounded border border-gray-700" />
                             <div className="text-xs text-gray-300">
                                {hasTitle ? (
                                  <>

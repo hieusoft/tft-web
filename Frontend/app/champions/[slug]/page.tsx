@@ -30,11 +30,21 @@ export default async function ChampionDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const champion = await apiClient.getChampionBySlug(slug);
+  const [champion, traits] = await Promise.all([
+    apiClient.getChampionBySlug(slug),
+    apiClient.getTraits(),
+  ]);
 
   if (!champion) {
     notFound();
   }
 
-  return <ChampionDetailClient champion={champion as any} />;
+  const traitImages: Record<string, string> = {};
+  traits.forEach(t => {
+    if (t.slug && t.image) {
+      traitImages[t.slug] = t.image;
+    }
+  });
+
+  return <ChampionDetailClient champion={champion as any} traitImages={traitImages} />;
 }

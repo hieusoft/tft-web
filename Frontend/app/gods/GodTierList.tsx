@@ -19,7 +19,7 @@ const GodCard = ({ god, onClick }: { god: ApiGodListItem; onClick: (slug: string
       onClick={() => onClick(god.slug ?? String(god.id))}
     >
       <div className="relative mb-2 transition-transform duration-200 group-hover:-translate-y-1">
-        <img 
+        <img loading="lazy" 
           src={god.image} 
           alt={god.name} 
           className="w-14 h-14 rounded-full object-cover border-2 border-transparent group-hover:border-yellow-400 shadow-md"
