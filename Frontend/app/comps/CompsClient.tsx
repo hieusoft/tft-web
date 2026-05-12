@@ -343,11 +343,11 @@ function HexBoard({ slots, availW }: { slots: CompBoardSlot[]; availW: number })
 const PANEL_LABEL: React.CSSProperties = { fontSize: '0.58rem', fontWeight: 700, color: '#444', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 };
 
 function StatStrip({ comp, horizontal }: { comp: ApiComp; horizontal?: boolean }) {
-  const avgPlace = comp.avg_placement != null ? Number(comp.avg_placement) : null;
   const stats = [
-    { label: 'Vị Trí TB', value: avgPlace != null ? avgPlace.toFixed(2) : '—', color: '#e8e8e8' },
-    { label: 'Top 4', value: avgPlace != null ? `${Math.max(0, Math.round((4.5 - avgPlace) * 22))}%` : '—', color: '#22c55e' },
-    { label: 'Win%', value: avgPlace != null ? `${Math.max(0, Math.round((4.5 - avgPlace) * 10))}%` : '—', color: '#f0b90b' },
+    { label: 'Vị Trí TB', value: formatPlacement(comp.avg_placement), color: '#e8e8e8' },
+    { label: 'Pick%', value: formatPercent(comp.pick_rate), color: '#60a5fa' },
+    { label: 'Top 4', value: formatPercent(comp.top4_rate), color: '#22c55e' },
+    { label: 'Win%', value: formatPercent(comp.win_rate), color: '#f0b90b' },
   ];
   if (horizontal) return (
     <div style={{ display: 'flex' }}>
