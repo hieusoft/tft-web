@@ -2,6 +2,9 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import type { ApiComp, CompBoardSlot, CompActiveTrait } from "@/lib/types/comp";
+import { TIER_HEX } from "@/lib/constants";
+import { TFT, TFT_FONT } from "@/lib/tft-theme";
+import { COST_COLOR, COST_COLOR_DIM } from "@/components/tft/ChampionFrame";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface RecommendedItem {
@@ -28,30 +31,35 @@ interface ChampionItemRec {
 const TIERS = ["Tất Cả", "S", "A", "B", "C"];
 
 const TIER_CONFIG: Record<string, { bg: string; glow: string; text: string; borderColor: string }> = {
-  S: { bg: "#ef4444", glow: "0 0 12px rgba(239,68,68,0.4)",  text: "#fff", borderColor: "#ef4444" },
-  A: { bg: "#f97316", glow: "0 0 12px rgba(249,115,22,0.4)", text: "#fff", borderColor: "#f97316" },
-  B: { bg: "#f0b90b", glow: "0 0 12px rgba(240,185,11,0.4)", text: "#000", borderColor: "#f0b90b" },
-  C: { bg: "#10b981", glow: "0 0 12px rgba(16,185,129,0.4)", text: "#fff", borderColor: "#10b981" },
-  D: { bg: "#6b7280", glow: "0 0 12px rgba(107,114,128,0.4)", text: "#fff", borderColor: "#6b7280" },
+  S: { bg: TIER_HEX.S, glow: `0 0 12px ${TIER_HEX.S}66`, text: "#000", borderColor: TIER_HEX.S },
+  A: { bg: TIER_HEX.A, glow: `0 0 12px ${TIER_HEX.A}66`, text: "#000", borderColor: TIER_HEX.A },
+  B: { bg: TIER_HEX.B, glow: `0 0 12px ${TIER_HEX.B}66`, text: "#000", borderColor: TIER_HEX.B },
+  C: { bg: TIER_HEX.C, glow: `0 0 12px ${TIER_HEX.C}66`, text: "#000", borderColor: TIER_HEX.C },
+  D: { bg: TIER_HEX.D ?? "#6b7280", glow: "0 0 12px rgba(107,114,128,0.4)", text: "#000", borderColor: TIER_HEX.D ?? "#6b7280" },
 };
 
 const COST_BORDER: Record<number, string> = {
-  1: "#6b7280", 2: "#22c55e", 3: "#3b82f6", 4: "#a855f7", 5: "#f59e0b",
+  1: COST_COLOR[1], 2: COST_COLOR[2], 3: COST_COLOR[3], 4: COST_COLOR[4], 5: COST_COLOR[5],
 };
 
 const COST_BG: Record<number, string> = {
-  1: "#374151", 2: "#14532d", 3: "#1e3a5f", 4: "#3b1764", 5: "#713f12",
+  1: COST_COLOR_DIM[1], 2: COST_COLOR_DIM[2], 3: COST_COLOR_DIM[3], 4: COST_COLOR_DIM[4], 5: COST_COLOR_DIM[5],
 };
 
+/** Trait activation tier colors (in-game style: bronze → silver → gold → prismatic). */
 const TRAIT_STYLE_COLORS: Record<number, string> = {
-  0: "#4b5563", 1: "#a16207", 2: "#9ca3af", 3: "#f59e0b", 4: "#7c3aed",
+  0: "#4b5563", // unique / inactive
+  1: "#a3704a", // bronze
+  2: "#c0c8cc", // silver
+  3: TFT.gold,  // gold
+  4: "#c084fc", // prismatic / chromatic
 };
 
 const PLAYSTYLE_CONFIG: Record<string, { label: string; color: string; bg: string }> = {
-  Fast: { label: "Nhanh", color: "#22c55e", bg: "rgba(34,197,94,0.1)" },
-  Default: { label: "Chuẩn", color: "#3b82f6", bg: "rgba(59,130,246,0.1)" },
-  Slow: { label: "Chậm", color: "#f59e0b", bg: "rgba(245,158,11,0.1)" },
-  "Flex": { label: "Linh Hoạt", color: "#a855f7", bg: "rgba(168,85,247,0.1)" },
+  Fast: { label: "Nhanh", color: TFT.good, bg: "rgba(74,222,128,0.1)" },
+  Default: { label: "Chuẩn", color: TFT.blueBright, bg: "rgba(10,200,185,0.1)" },
+  Slow: { label: "Chậm", color: TFT.gold, bg: `${TFT.gold}22` },
+  "Flex": { label: "Linh Hoạt", color: "#c084fc", bg: "rgba(192,132,252,0.1)" },
 };
 // ── Root Component ───────────────────────────────────────────────────────────
 export default function CompsClient({ initialComps }: { initialComps: ApiComp[] }) {
@@ -66,18 +74,19 @@ export default function CompsClient({ initialComps }: { initialComps: ApiComp[] 
   }, [initialComps, selectedTier]);
 
   return (
-    <div suppressHydrationWarning>
+    <div className="tft-page" suppressHydrationWarning style={{ fontFamily: TFT_FONT.body }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "24px 0 60px" }}>
       <style>{`
         .comp-row { position: relative; z-index: 1; transition: z-index 0s; overflow: visible !important; }
-        .comp-row:hover { z-index: 50 !important; }
+        .comp-row:hover { z-index: 20 !important; }
         .comp-row__main { position: relative; z-index: 2; overflow: visible !important; }
         .comp-col--champs { overflow: visible !important; }
         .comp-champs { overflow: visible !important; }
         .comp-champ-slot { overflow: visible !important; }
-        .comp-champ-slot:hover { z-index: 999 !important; }
+        .comp-champ-slot:hover { z-index: 40 !important; }
       `}</style>
       {/* ── Page Header ── */}
-      <div className="comp-page-header">
+      <div className="comp-page-header" style={{ padding: "0 3rem 1.25rem" }}>
         <div className="comp-page-header__left">
           <h1 className="comp-page-title">Đội Hình Meta</h1>
           <p className="comp-page-subtitle">
@@ -134,6 +143,7 @@ export default function CompsClient({ initialComps }: { initialComps: ApiComp[] 
           </div>
         )}
       </div>
+      </div>
     </div>
   );
 }
@@ -174,7 +184,7 @@ function CompRow({
 
         <div className="comp-col comp-col--name">
           <div className="comp-name-group">
-            <span className="comp-name" style={{ whiteSpace: 'normal', wordBreak: 'break-word', overflow: 'visible', fontFamily: "'Inter', sans-serif" }}>{comp.name}</span>
+            <span className="comp-name" style={{ whiteSpace: 'normal', wordBreak: 'break-word', overflow: 'visible' }}>{comp.name}</span>
             {playstyle && (
               <span className="comp-playstyle-tag" style={{ color: playstyle.color, background: playstyle.bg }}>
                 {playstyle.label}
@@ -341,27 +351,37 @@ function HexBoard({ slots, availW }: { slots: CompBoardSlot[]; availW: number })
 }
 
 // ── Shared sub-pieces ────────────────────────────────────────────────────────
-const PANEL_LABEL: React.CSSProperties = { fontSize: '0.58rem', fontWeight: 700, color: '#444', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 };
+const PANEL_LABEL: React.CSSProperties = {
+  fontFamily: "var(--font-geist), 'Segoe UI', sans-serif",
+  fontSize: '0.68rem',
+  fontWeight: 700,
+  color: 'var(--tft-gold)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.14em',
+  marginBottom: 8,
+  paddingBottom: 4,
+  borderBottom: '1px solid var(--tft-gold-dim)',
+};
 
 function StatStrip({ comp, horizontal }: { comp: ApiComp; horizontal?: boolean }) {
   const stats = [
-    { label: 'Vị Trí TB', value: formatPlacement(comp.avg_placement), color: '#e8e8e8' },
-    { label: 'Pick%', value: formatPercent(comp.pick_rate), color: '#60a5fa' },
-    { label: 'Top 4', value: formatPercent(comp.top4_rate), color: '#22c55e' },
-    { label: 'Win%', value: formatPercent(comp.win_rate), color: '#f0b90b' },
+    { label: 'Vị Trí TB', value: formatPlacement(comp.avg_placement), color: 'var(--tft-text)' },
+    { label: 'Pick%', value: formatPercent(comp.pick_rate), color: 'var(--tft-blue-bright)' },
+    { label: 'Top 4', value: formatPercent(comp.top4_rate), color: 'var(--tft-good)' },
+    { label: 'Win%', value: formatPercent(comp.win_rate), color: 'var(--tft-gold)' },
   ];
   if (horizontal) return (
     <div style={{ display: 'flex' }}>
       {stats.map(s => (
         <div key={s.label} style={{ flex: 1, textAlign: 'center', padding: '8px 4px', borderRight: '1px solid #1a1a1a' }}>
-          <div style={{ fontSize: '0.58rem', color: '#555', marginBottom: 2 }}>{s.label}</div>
+          <div style={{ fontSize: '0.58rem', color: 'var(--tft-text-mute)', marginBottom: 2 }}>{s.label}</div>
           <div style={{ fontSize: '0.85rem', fontWeight: 700, color: s.color }}>{s.value}</div>
         </div>
       ))}
     </div>
   );
   return (
-    <div style={{ background: 'linear-gradient(135deg,#1a1a2e,#16213e)', border: '1px solid #2a2a4a', borderRadius: 10, padding: 10 }}>
+    <div style={{ background: 'var(--tft-panel)', border: '1px solid var(--tft-gold-dim)', borderRadius: 0, padding: 10 }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
         {stats.map(s => (
           <div key={s.label} className="detail-stat-item">
@@ -376,27 +396,51 @@ function StatStrip({ comp, horizontal }: { comp: ApiComp; horizontal?: boolean }
 
 function AugmentList({ comp }: { comp: ApiComp }) {
   if (!comp.recommended_augments?.length) return null;
+  // In-game TFT augment tiers: 1=Silver, 2=Gold, 3=Prismatic
+  const AUG_TIER: Record<number, { label: string; color: string; bg: string; border: string }> = {
+    1: { label: 'Bạc', color: '#c0c8cc', bg: 'rgba(192,200,204,0.10)', border: 'rgba(192,200,204,0.35)' },
+    2: { label: 'Vàng', color: TFT.gold, bg: `${TFT.gold}1a`, border: TFT.goldDim },
+    3: { label: 'Kim Cương', color: '#c084fc', bg: 'rgba(192,132,252,0.12)', border: 'rgba(192,132,252,0.4)' },
+  };
   return (
     <div>
       <div style={PANEL_LABEL}>Lõi Đề Xuất</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-        {comp.recommended_augments.map(aug => (
-          <div key={aug.id} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '5px 7px', borderRadius: 6, background: '#1a1a1e', border: '1px solid #252530' }}>
-            {aug.image && <img loading="lazy" src={aug.image} alt={aug.name} style={{ width: 28, height: 28, objectFit: 'cover', borderRadius: 5, flexShrink: 0, border: '1px solid #333' }} />}
-            <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#ddd' }}>{aug.name}</div>
-              {aug.tier != null && (
-                <span style={{
-                  fontSize: '0.52rem', fontWeight: 600, padding: '1px 4px', borderRadius: 3,
-                  color: aug.tier === 1 ? '#9ca3af' : aug.tier === 2 ? '#f59e0b' : '#a855f7',
-                  background: aug.tier === 1 ? 'rgba(156,163,175,0.12)' : aug.tier === 2 ? 'rgba(245,158,11,0.12)' : 'rgba(168,85,247,0.12)'
-                }}>
-                  {aug.tier === 1 ? 'Bạc' : aug.tier === 2 ? 'Vàng' : 'Kim Cương'}
-                </span>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {comp.recommended_augments.map(aug => {
+          const t = aug.tier != null ? AUG_TIER[aug.tier] : null;
+          return (
+            <div key={aug.id} style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              padding: '6px 8px', borderRadius: 0,
+              background: 'var(--tft-panel-soft)',
+              border: '1px solid var(--tft-gold-dim)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02)',
+            }}>
+              {aug.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img loading="lazy" src={aug.image} alt={aug.name} style={{
+                  width: 30, height: 30, objectFit: 'cover', borderRadius: 0, flexShrink: 0,
+                  border: `1px solid ${t?.color ?? 'var(--tft-gold-dim)'}`,
+                }} />
               )}
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--tft-text)', lineHeight: 1.2 }}>{aug.name}</div>
+                {t && (
+                  <span style={{
+                    display: 'inline-block', marginTop: 2,
+                    fontFamily: "var(--font-geist), 'Segoe UI', sans-serif",
+                    fontSize: '0.56rem', fontWeight: 700,
+                    padding: '1px 6px', letterSpacing: '0.1em', textTransform: 'uppercase',
+                    color: t.color, background: t.bg,
+                    border: `1px solid ${t.border}`,
+                  }}>
+                    {t.label}
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -407,12 +451,28 @@ function CarouselList({ comp }: { comp: ApiComp }) {
   return (
     <div>
       <div style={PANEL_LABEL}>Ưu Tiên Vòng Quay</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         {comp.carousel_priority.map((item, i) => (
-          <div key={`${item.id}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 8px', borderRadius: 5, background: '#1a1a1e', border: '1px solid #252530' }}>
-            <span style={{ fontSize: '0.6rem', fontWeight: 700, color: '#f0b90b', minWidth: 18 }}>#{i + 1}</span>
-            {item.image && <img loading="lazy" src={item.image} alt={item.name} style={{ width: 22, height: 22, objectFit: 'cover', borderRadius: 3, flexShrink: 0, border: '1px solid #333' }} />}
-            <span style={{ fontSize: '0.65rem', color: '#ccc', fontWeight: 500 }}>{item.name}</span>
+          <div key={`${item.id}-${i}`} style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            padding: '5px 8px', borderRadius: 0,
+            background: 'var(--tft-panel-soft)',
+            border: '1px solid var(--tft-line-soft)',
+          }}>
+            <span style={{
+              fontFamily: "var(--font-geist), 'Segoe UI', sans-serif",
+              fontSize: '0.62rem', fontWeight: 700,
+              color: 'var(--tft-gold)', minWidth: 20,
+              fontVariantNumeric: 'tabular-nums',
+            }}>#{i + 1}</span>
+            {item.image && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img loading="lazy" src={item.image} alt={item.name} style={{
+                width: 24, height: 24, objectFit: 'cover', borderRadius: 0, flexShrink: 0,
+                border: '1px solid var(--tft-gold-dim)',
+              }} />
+            )}
+            <span style={{ fontSize: '0.7rem', color: 'var(--tft-text-dim)', fontWeight: 500 }}>{item.name}</span>
           </div>
         ))}
       </div>
@@ -463,29 +523,32 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
 
   const slots = comp.final_board ?? [];
   const BOARD_BG: React.CSSProperties = {
-    background: 'radial-gradient(ellipse at 50% 30%, #1e1e3f 0%, #0d0d1a 60%, #060610 100%)',
+    background: 'var(--tft-panel)',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
     overflow: 'hidden',
+    borderTop: '1px solid var(--tft-gold-dim)',
+    borderBottom: '1px solid var(--tft-gold-dim)',
   };
 
   // Tab bar
   const TabBar = (
     <div style={{
       display: 'flex', borderBottom: '1px solid #1e1e1e',
-      background: '#0a0a0d',
+      background: 'var(--tft-bg)',
     }}>
       {([['board', 'Sắp Xếp Đội Hình'], ['items', 'Trang Bị Khuyên Dùng']] as const).map(([tab, label]) => (
         <button
           key={tab}
           onClick={() => handleTabChange(tab)}
           style={{
-            flex: 1, padding: '10px 16px',
-            fontSize: '0.72rem', fontWeight: 700,
-            letterSpacing: '0.04em', textTransform: 'uppercase',
+            flex: 1, padding: '12px 16px',
+            fontFamily: "var(--font-geist), 'Segoe UI', sans-serif",
+            fontSize: '0.74rem', fontWeight: 700,
+            letterSpacing: '0.14em', textTransform: 'uppercase',
             border: 'none', cursor: 'pointer',
-            background: activeTab === tab ? '#0e0e10' : 'transparent',
-            color: activeTab === tab ? '#f0b90b' : '#555',
-            borderBottom: activeTab === tab ? '2px solid #f0b90b' : '2px solid transparent',
+            background: activeTab === tab ? 'var(--tft-bg)' : 'transparent',
+            color: activeTab === tab ? 'var(--tft-gold-bright)' : 'var(--tft-text-mute)',
+            borderBottom: activeTab === tab ? '2px solid var(--tft-gold)' : '2px solid transparent',
             transition: 'all 0.2s',
           }}
         >
@@ -497,7 +560,7 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
 
   // ── MOBILE ──────────────────────────────────────────────────────────────────
   if (vp === 'mobile') return (
-    <div style={{ background: '#0e0e10', borderTop: '1px solid #1e1e1e' }}>
+    <div style={{ background: 'var(--tft-bg)', borderTop: '1px solid #1e1e1e' }}>
       {TabBar}
       {activeTab === 'board' ? (
         <>
@@ -528,12 +591,12 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
 
   // ── TABLET ──────────────────────────────────────────────────────────────────
   if (vp === 'tablet') return (
-    <div style={{ background: '#0e0e10', borderTop: '1px solid #1e1e1e' }}>
+    <div style={{ background: 'var(--tft-bg)', borderTop: '1px solid #1e1e1e' }}>
       {TabBar}
       {activeTab === 'board' ? (
         <>
           <div style={{ display: 'grid', gridTemplateColumns: '210px 1fr' }}>
-            <div style={{ padding: '14px 12px', borderRight: '1px solid #1e1e1e', background: '#0f0f12', display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={{ padding: '14px 12px', borderRight: '1px solid #1e1e1e', background: 'var(--tft-panel-soft)', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <StatStrip comp={comp} />
               {sortedTraits.length > 0 && (
                 <div style={{ flex: 1 }}>
@@ -548,7 +611,7 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
               <HexBoard slots={slots} availW={availW - 32} />
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: '1px solid #1e1e1e', background: '#0f0f12' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: '1px solid #1e1e1e', background: 'var(--tft-panel-soft)' }}>
             <div style={{ padding: '14px 16px', borderRight: '1px solid #1e1e1e' }}><AugmentList comp={comp} /></div>
             <div style={{ padding: '14px 16px' }}><CarouselList comp={comp} /></div>
           </div>
@@ -561,23 +624,23 @@ function CompDetail({ comp, sortedTraits }: { comp: ApiComp; sortedTraits: CompA
 
   // ── DESKTOP ──────────────────────────────────────────────────────────────────
   return (
-    <div className="comp-detail" style={{ padding: 0, background: '#0e0e10' }}>
+    <div className="comp-detail" style={{ padding: 0, background: 'var(--tft-bg)' }}>
       {TabBar}
       {activeTab === 'board' ? (
         <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr 185px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '14px 12px', borderRight: '1px solid #1e1e1e', background: '#0f0f12' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '14px 12px', borderRight: '1px solid #1e1e1e', background: 'var(--tft-panel-soft)' }}>
             <StatStrip comp={comp} />
             {sortedTraits.length > 0 && (
               <div style={{ flex: 1 }}>
-                <h3 style={{ fontSize: '0.62rem', fontWeight: 700, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 6px 0' }}>Tộc / Hệ</h3>
+                <h3 style={{ ...PANEL_LABEL, margin: '0 0 8px 0' }}>Tộc / Hệ</h3>
                 <div className="detail-traits-list">{sortedTraits.map(t => <TraitCard key={t.id} trait={t} comp={comp} />)}</div>
               </div>
             )}
           </div>
-          <div ref={boardRef} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 16px', background: 'radial-gradient(ellipse at 50% 30%, #1e1e3f 0%, #0d0d1a 60%, #060610 100%)' }}>
+          <div ref={boardRef} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 16px', background: 'var(--tft-panel)', borderTop: '1px solid var(--tft-line)', borderBottom: '1px solid var(--tft-line)' }}>
             <HexBoard slots={slots} availW={availW - 32} />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '14px 12px', borderLeft: '1px solid #1e1e1e', background: '#0f0f12', overflowY: 'auto' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '14px 12px', borderLeft: '1px solid #1e1e1e', background: 'var(--tft-panel-soft)', overflowY: 'auto' }}>
             <AugmentList comp={comp} />
             <CarouselList comp={comp} />
           </div>
@@ -627,7 +690,7 @@ function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: b
           style={{
             width: 30, height: 30, borderRadius: 5, overflow: 'hidden',
             border: isBest ? '1.5px solid rgba(240,185,11,0.5)' : '1.5px solid #2a2a30',
-            background: '#0a0a14', cursor: 'pointer',
+            background: 'var(--tft-bg)', cursor: 'pointer',
           }}
         >
           {item.image && (
@@ -639,17 +702,17 @@ function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: b
         {showTip && (
           <div style={{
             position: 'absolute', bottom: '110%', left: '50%', transform: 'translateX(-50%)',
-            background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+            background: 'var(--tft-panel-alt)', border: '1px solid #333', borderRadius: 8,
             padding: '8px 10px', minWidth: 140, zIndex: 100,
             boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
           }}>
-            <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#e8e8e8', marginBottom: 4 }}>
+            <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--tft-text)', marginBottom: 4 }}>
               {item.name}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <span style={{ fontSize: '0.55rem', color: '#22c55e' }}>WR {item.win_rate}</span>
-              <span style={{ fontSize: '0.55rem', color: '#888' }}>Pick {item.pick_percent}</span>
-              <span style={{ fontSize: '0.55rem', color: '#888' }}>Pos {item.avg_placement}</span>
+              <span style={{ fontSize: '0.55rem', color: 'var(--tft-text-mute)' }}>Pick {item.pick_percent}</span>
+              <span style={{ fontSize: '0.55rem', color: 'var(--tft-text-mute)' }}>Pos {item.avg_placement}</span>
             </div>
           </div>
         )}
@@ -663,13 +726,13 @@ function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: b
       display: 'flex', alignItems: 'center', gap: 5,
       padding: '4px 8px 4px 4px',
       borderRadius: 6,
-      background: isBest ? 'rgba(240,185,11,0.08)' : '#151518',
+      background: isBest ? 'rgba(240,185,11,0.08)' : 'var(--tft-panel)',
       border: isBest ? '1px solid rgba(240,185,11,0.2)' : '1px solid #1e1e22',
       width: '100%', boxSizing: 'border-box'
     }}>
       <div style={{
         width: 26, height: 26, borderRadius: 4, overflow: 'hidden',
-        flexShrink: 0, border: '1px solid #2a2a30', background: '#0a0a14',
+        flexShrink: 0, border: '1px solid #2a2a30', background: 'var(--tft-bg)',
       }}>
         {item.image && (
           /* eslint-disable-next-line @next/next/no-img-element */
@@ -680,15 +743,15 @@ function ItemPill({ item, isBest, isMobile }: { item: RecommendedItem; isBest: b
       <div style={{ minWidth: 60, flex: 1 }}>
         <div style={{
           fontSize: '0.62rem', fontWeight: 600,
-          color: isBest ? '#e8e8e8' : '#aaa',
+          color: isBest ? 'var(--tft-text)' : 'var(--tft-text-dim)',
           overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
         }}>
           {item.name}
         </div>
         <div style={{ display: 'flex', gap: 6, marginTop: 1 }}>
           <span style={{ fontSize: '0.5rem', color: '#22c55e', fontWeight: 600 }}>WR {item.win_rate}</span>
-          <span style={{ fontSize: '0.5rem', color: '#888' }}>Pick {item.pick_percent}</span>
-          <span style={{ fontSize: '0.5rem', color: '#888' }}>Pos {item.avg_placement}</span>
+          <span style={{ fontSize: '0.5rem', color: 'var(--tft-text-mute)' }}>Pick {item.pick_percent}</span>
+          <span style={{ fontSize: '0.5rem', color: 'var(--tft-text-mute)' }}>Pos {item.avg_placement}</span>
         </div>
       </div>
     </div>
@@ -700,32 +763,32 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
   const isMobile = useIsMobile();
 
   if (loading) return (
-    <div style={{ padding: '40px 24px', textAlign: 'center', color: '#555', fontSize: '0.8rem' }}>
-      <div style={{ display: 'inline-block', width: 20, height: 20, border: '2px solid #333', borderTopColor: '#f0b90b', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+    <div style={{ padding: '40px 24px', textAlign: 'center', color: 'var(--tft-text-mute)', fontSize: '0.8rem' }}>
+      <div style={{ display: 'inline-block', width: 20, height: 20, border: '2px solid #333', borderTopColor: 'var(--tft-gold)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
       <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
       <div style={{ marginTop: 8 }}>Đang tải trang bị...</div>
     </div>
   );
   if (!items || items.length === 0) return (
-    <div style={{ padding: '40px 24px', textAlign: 'center', color: '#444', fontSize: '0.8rem' }}>
+    <div style={{ padding: '40px 24px', textAlign: 'center', color: 'var(--tft-text-mute)', fontSize: '0.8rem' }}>
       Không có dữ liệu trang bị
     </div>
   );
 
   return (
-    <div style={{ background: '#0e0e10', width: '100%' }}>
+    <div style={{ background: 'var(--tft-bg)', width: '100%' }}>
       {/* Table header */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: isMobile ? '90px 1fr' : '200px 1fr',
         padding: isMobile ? '6px 10px' : '8px 14px',
         borderBottom: '1px solid #1e1e1e',
-        background: '#0a0a0d',
+        background: 'var(--tft-bg)',
       }}>
-        <span style={{ fontSize: '0.6rem', fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: 'center', borderRight: '1px solid #1e1e1e', paddingRight: 14 }}>
+        <span style={{ fontSize: '0.6rem', fontWeight: 600, color: 'var(--tft-text-mute)', textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: 'center', borderRight: '1px solid #1e1e1e', paddingRight: 14 }}>
           Tướng
         </span>
-        <span style={{ fontSize: '0.6rem', fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: 'center' }}>
+        <span style={{ fontSize: '0.6rem', fontWeight: 600, color: 'var(--tft-text-mute)', textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: 'center' }}>
           Trang Bị Đề Xuất
         </span>
       </div>
@@ -740,18 +803,18 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
             alignItems: 'center',
             padding: isMobile ? '7px 10px' : '8px 14px',
             borderBottom: '1px solid #1a1a1e',
-            background: champIdx % 2 === 0 ? '#0f0f12' : '#0c0c0f',
+            background: champIdx % 2 === 0 ? 'var(--tft-panel-soft)' : 'var(--tft-bg)',
             transition: 'background 0.15s',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = '#151518')}
-          onMouseLeave={(e) => (e.currentTarget.style.background = champIdx % 2 === 0 ? '#0f0f12' : '#0c0c0f')}
+          onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--tft-panel)')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = champIdx % 2 === 0 ? 'var(--tft-panel-soft)' : 'var(--tft-bg)')}
         >
           {/* Champion info */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0, borderRight: '1px solid #1e1e1e', paddingRight: 14, paddingLeft: isMobile ? 10 : 20 }}>
             <div style={{
               width: isMobile ? 28 : 32, height: isMobile ? 28 : 32, borderRadius: 6, overflow: 'hidden',
               border: `2px solid ${COST_BORDER[1] ?? '#6b7280'}`,
-              flexShrink: 0, background: '#1a1a2e',
+              flexShrink: 0, background: 'var(--tft-panel-alt)',
             }}>
               {champ.icon_path && (
                 /* eslint-disable-next-line @next/next/no-img-element */
@@ -760,7 +823,7 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
               )}
             </div>
             <span style={{
-              fontSize: isMobile ? '0.6rem' : '0.72rem', fontWeight: 600, color: '#ddd',
+              fontSize: isMobile ? '0.6rem' : '0.72rem', fontWeight: 600, color: 'var(--tft-text)',
               overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
             }}>
               {champ.champion_name}
@@ -776,7 +839,7 @@ function ChampionItemsTab({ items, loading }: { items: ChampionItemRec[] | null;
             justifyItems: isMobile ? 'center' : 'stretch'
           }}>
             {champ.recommended_items.length === 0 ? (
-              <span style={{ fontSize: '0.6rem', color: '#444', gridColumn: '1 / -1', textAlign: 'center' }}>—</span>
+              <span style={{ fontSize: '0.6rem', color: 'var(--tft-text-mute)', gridColumn: '1 / -1', textAlign: 'center' }}>—</span>
             ) : champ.recommended_items.map((item, idx) => (
               <ItemPill key={item.id} item={item} isBest={idx === 0} isMobile={isMobile} />
             ))}
@@ -827,7 +890,7 @@ function formatSkillDescription(desc: string) {
     { regex: /(hồi máu|hồi phục)/gi, color: '#22c55e' },
     { regex: /(giáp)/gi, color: '#eab308' },
     { regex: /(kháng phép)/gi, color: '#06b6d4' },
-    { regex: /(lá chắn|khiên)/gi, color: '#fbbf24' },
+    { regex: /(lá chắn|khiên)/gi, color: 'var(--tft-gold)' },
     { regex: /(tốc độ đánh|tốc đánh)/gi, color: '#fb923c' },
     { regex: /(năng lượng)/gi, color: '#60a5fa' },
     { regex: /(máu)/gi, color: '#ef4444' },
@@ -856,7 +919,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
       ...(position === 'top' 
         ? { bottom: '100%', left: '50%', transform: 'translate(-50%, -10px)' }
         : { top: '100%', left: '50%', transform: 'translate(-50%, 10px)' }),
-      background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+      background: 'var(--tft-panel-alt)', border: '1px solid #333', borderRadius: 8,
       padding: '10px 12px', minWidth: 260, maxWidth: 320, zIndex: 100,
       boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
       pointerEvents: 'none',
@@ -868,11 +931,11 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
           {champ.icon_path ? (
             <img loading="lazy" src={champ.icon_path} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : (
-            <div style={{ width: '100%', height: '100%', background: '#222' }} />
+            <div style={{ width: '100%', height: '100%', background: 'var(--tft-line)' }} />
           )}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{champ.name}</div>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--tft-text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{champ.name}</div>
           <div style={{ fontSize: '0.6rem', color: borderColor, fontWeight: 600 }}>{champ.cost} Vàng</div>
         </div>
       </div>
@@ -883,7 +946,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
           {champ.traits.map((t: any, i: number) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
               {t.image && <img loading="lazy" src={t.image} alt="" style={{ width: 14, height: 14 }} />}
-              <span style={{ fontSize: '0.6rem', color: '#ccc' }}>{t.name}</span>
+              <span style={{ fontSize: '0.6rem', color: 'var(--tft-text-dim)' }}>{t.name}</span>
             </div>
           ))}
         </div>
@@ -897,7 +960,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
               <img loading="lazy" src={champ.skill.icon_path} alt="" style={{ width: 24, height: 24, borderRadius: 4, border: '1px solid #444' }} />
             )}
             <div>
-              <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#f0b90b' }}>{champ.skill.name}</div>
+              <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--tft-gold)' }}>{champ.skill.name}</div>
               {(champ.skill.mana_start !== undefined && champ.skill.mana_max !== undefined) && (
                 <div style={{ fontSize: '0.55rem', color: '#66abff' }}>
                   Năng lượng: {champ.skill.mana_start} / {champ.skill.mana_max}
@@ -906,7 +969,7 @@ function ChampTooltip({ champ, position = 'top' }: { champ: any, position?: 'top
             </div>
           </div>
           {champ.skill.description && (
-            <div style={{ fontSize: '0.6rem', color: '#aaa', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: formatSkillDescription(champ.skill.description) }} />
+            <div style={{ fontSize: '0.6rem', color: 'var(--tft-text-dim)', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: formatSkillDescription(champ.skill.description) }} />
           )}
         </div>
       )}
@@ -926,13 +989,13 @@ function HexCell({ slot, hexW, hexH, ri = 0 }: { slot: CompBoardSlot | null; hex
         <div style={{
           width: hexW, height: hexH,
           clipPath: HEX_CLIP,
-          background: 'linear-gradient(160deg, rgba(50,50,90,0.6), rgba(20,20,45,0.8))',
+          background: 'linear-gradient(160deg, var(--tft-gold-dim), var(--tft-line))',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
           <div style={{
             width: innerW, height: innerH,
             clipPath: HEX_CLIP,
-            background: 'linear-gradient(160deg, rgba(10,10,25,0.95), rgba(5,5,18,0.98))',
+            background: 'linear-gradient(160deg, var(--tft-panel-alt), var(--tft-panel))',
           }} />
         </div>
         <div style={{ height: 18 }} />
@@ -1036,7 +1099,7 @@ function HexCell({ slot, hexW, hexH, ri = 0 }: { slot: CompBoardSlot | null; hex
         }}>
           {slot.is_three_star && (
             <span style={{
-              fontSize: 16, color: '#fbbf24', lineHeight: 1,
+              fontSize: 16, color: 'var(--tft-gold)', lineHeight: 1,
               textShadow: '0 0 8px rgba(251,191,36,1), 0 0 16px rgba(251,191,36,0.6), 0 1px 3px rgba(0,0,0,1)',
             }}>★★★</span>
           )}
@@ -1066,7 +1129,7 @@ function HexCell({ slot, hexW, hexH, ri = 0 }: { slot: CompBoardSlot | null; hex
                 borderRadius: 4,
                 border: '1.5px solid rgba(255,255,255,0.4)',
                 overflow: 'hidden',
-                background: '#0a0a14',
+                background: 'var(--tft-bg)',
                 flexShrink: 0,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 4px rgba(255,255,255,0.1)',
               }}>
@@ -1139,7 +1202,7 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
           {slot.is_three_star && (
             <span style={{
               position: 'absolute', top: 2, left: 0, right: 0,
-              textAlign: 'center', fontSize: size > 45 ? 10 : 8, color: '#fbbf24', lineHeight: 1,
+              textAlign: 'center', fontSize: size > 45 ? 10 : 8, color: 'var(--tft-gold)', lineHeight: 1,
               textShadow: '0 0 6px rgba(251,191,36,1)',
             }}>★★★</span>
           )}
@@ -1162,7 +1225,7 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
                     boxShadow: '0 1px 4px rgba(0,0,0,0.9)',
                     flexShrink: 0,
                   }} />
-                : <div key={i} style={{ width: itemSize, height: itemSize, borderRadius: 3, background: '#1a1a1a', flexShrink: 0 }} />
+                : <div key={i} style={{ width: itemSize, height: itemSize, borderRadius: 3, background: 'var(--tft-panel)', flexShrink: 0 }} />
             ))}
           </div>
         )}
@@ -1170,7 +1233,7 @@ function ChampionSlot({ slot, size = 52, itemSize = 18 }: { slot: CompBoardSlot,
 
       {/* Champion name */}
       <div style={{
-        fontSize: size > 45 ? '0.55rem' : '0.45rem', fontWeight: 600, color: '#888',
+        fontSize: size > 45 ? '0.55rem' : '0.45rem', fontWeight: 600, color: 'var(--tft-text-mute)',
         textAlign: 'center', maxWidth: size + 4,
         overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
         marginTop: size > 45 ? 14 : 8,
@@ -1372,21 +1435,21 @@ function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
       {showTip && (
         <div style={{
           position: 'absolute', bottom: '110%', left: '50%', transform: 'translateX(-50%)',
-          background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+          background: 'var(--tft-panel-alt)', border: '1px solid #333', borderRadius: 8,
           padding: '10px 12px', minWidth: 240, zIndex: 100,
           boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
           pointerEvents: 'none',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
             {trait.image && <img loading="lazy" src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8' }}>{trait.name}</span>
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--tft-text)' }}>{trait.name}</span>
             <span style={{ fontSize: '0.65rem', color: styleColor, marginLeft: 'auto', fontWeight: 600 }}>
               Bậc {trait.current_style} ({trait.count})
             </span>
           </div>
           
           {parsedTrait.desc && (
-            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
+            <div style={{ fontSize: '0.65rem', color: 'var(--tft-text-dim)', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
           )}
 
           {trait.milestones && trait.milestones.length > 0 && (
@@ -1397,11 +1460,11 @@ function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
                 const isMilestoneActive = trait.count >= reqUnit;
                 return (
                   <div key={i} style={{ display: 'flex', gap: 6, opacity: isMilestoneActive ? 1 : 0.4 }}>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isMilestoneActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isMilestoneActive ? styleColor : 'var(--tft-text-mute)', whiteSpace: 'nowrap' }}>
                       ({reqUnit})
                     </span>
                     {effect && (
-                      <span style={{ fontSize: '0.65rem', color: isMilestoneActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
+                      <span style={{ fontSize: '0.65rem', color: isMilestoneActive ? '#eee' : 'var(--tft-text-dim)', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
                     )}
                   </div>
                 );
@@ -1411,10 +1474,10 @@ function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
 
           {trait.champions && trait.champions.length > 0 && (
             <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid #333' }}>
-              <div style={{ fontSize: '0.55rem', color: '#888', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 0.5 }}>Tướng</div>
+              <div style={{ fontSize: '0.55rem', color: 'var(--tft-text-mute)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 0.5 }}>Tướng</div>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                 {trait.champions.map((c: any) => {
-                  const borderColor = COST_BORDER[c.cost] || '#666';
+                  const borderColor = COST_BORDER[c.cost] || 'var(--tft-text-mute)';
                   const inComp = compChampIds.has(c.id);
                   return (
                     <div key={c.id} style={{ 
@@ -1424,7 +1487,7 @@ function TraitIcon({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
                       {c.icon_path ? (
                         <img loading="lazy" src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       ) : (
-                        <div style={{ width: '100%', height: '100%', background: '#222', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ width: '100%', height: '100%', background: 'var(--tft-line)', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {c.name.substring(0, 2)}
                         </div>
                       )}
@@ -1514,21 +1577,21 @@ function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
       {showTip && (
         <div style={{
           position: 'absolute', bottom: '110%', left: '0',
-          background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+          background: 'var(--tft-panel-alt)', border: '1px solid #333', borderRadius: 8,
           padding: '10px 12px', minWidth: 240, zIndex: 100,
           boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
           pointerEvents: 'none',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
             {trait.image && <img loading="lazy" src={trait.image} alt="" style={{ width: 18, height: 18 }} />}
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8' }}>{trait.name}</span>
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--tft-text)' }}>{trait.name}</span>
             <span style={{ fontSize: '0.65rem', color: styleColor, marginLeft: 'auto', fontWeight: 600 }}>
               Bậc {trait.current_style} ({trait.count})
             </span>
           </div>
 
           {parsedTrait.desc && (
-            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
+            <div style={{ fontSize: '0.65rem', color: 'var(--tft-text-dim)', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
           )}
 
           {trait.milestones && trait.milestones.length > 0 && (
@@ -1539,11 +1602,11 @@ function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
                 const isMilestoneActive = trait.count >= reqUnit;
                 return (
                   <div key={i} style={{ display: 'flex', gap: 6, opacity: isMilestoneActive ? 1 : 0.4 }}>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isMilestoneActive ? styleColor : '#888', whiteSpace: 'nowrap' }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: isMilestoneActive ? styleColor : 'var(--tft-text-mute)', whiteSpace: 'nowrap' }}>
                       ({reqUnit})
                     </span>
                     {effect && (
-                      <span style={{ fontSize: '0.65rem', color: isMilestoneActive ? '#eee' : '#aaa', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
+                      <span style={{ fontSize: '0.65rem', color: isMilestoneActive ? '#eee' : 'var(--tft-text-dim)', lineHeight: 1.3 }} dangerouslySetInnerHTML={{ __html: effect }} />
                     )}
                   </div>
                 );
@@ -1553,10 +1616,10 @@ function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
 
           {trait.champions && trait.champions.length > 0 && (
             <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid #333' }}>
-              <div style={{ fontSize: '0.55rem', color: '#888', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 0.5 }}>Tướng</div>
+              <div style={{ fontSize: '0.55rem', color: 'var(--tft-text-mute)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: 0.5 }}>Tướng</div>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                 {trait.champions.map((c: any) => {
-                  const borderColor = COST_BORDER[c.cost] || '#666';
+                  const borderColor = COST_BORDER[c.cost] || 'var(--tft-text-mute)';
                   const inComp = compChampIds.has(c.id);
                   return (
                     <div key={c.id} style={{ 
@@ -1566,7 +1629,7 @@ function TraitCard({ trait, comp }: { trait: CompActiveTrait; comp: ApiComp }) {
                       {c.icon_path ? (
                         <img loading="lazy" src={c.icon_path} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       ) : (
-                        <div style={{ width: '100%', height: '100%', background: '#222', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ width: '100%', height: '100%', background: 'var(--tft-line)', fontSize: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           {c.name.substring(0, 2)}
                         </div>
                       )}

@@ -204,7 +204,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className={`${geist.variable} font-sans antialiased bg-[#1a1a1a] text-gray-200 min-h-screen flex flex-col`}
+        className={`${geist.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <Navbar />
         <PageBanner />

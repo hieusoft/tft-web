@@ -4,29 +4,31 @@ import Link from "next/link";
 import { useState, useMemo, useRef, useCallback } from "react";
 import type { ApiAugment } from "@/lib/api-client";
 
-const RANK_COLOR: Record<string, string> = {
-  S: "rgb(255, 126, 131)",
-  A: "rgb(255, 191, 127)",
-  B: "rgb(255, 223, 128)",
-  C: "rgb(254, 255, 127)",
-  D: "rgb(200, 200, 200)",
-};
+import { TIER_HEX } from "@/lib/constants";
+import { TFT, TFT_FONT, tftBevel } from "@/lib/tft-theme";
+import TierBadge from "@/components/tft/TierBadge";
 
 const RANK_ORDER: Record<string, number> = { S: 0, A: 1, B: 2, C: 3, D: 4 };
 
+/** Augment tier (Bạc / Vàng / Huyền Thoại) — màu accent kiểu in-game. */
 const TIER_META: Record<number, { label: string; color: string }> = {
-  1: { label: "Bạc", color: "#9ca3af" },
-  2: { label: "Vàng", color: "#eab308" },
-  3: { label: "Huyền Thoại", color: "#a855f7" },
+  1: { label: "Bạc", color: "#c0c8cc" }, // silver
+  2: { label: "Vàng", color: "#c8aa6e" }, // gold (TFT.gold)
+  3: { label: "Huyền Thoại", color: "#c084fc" }, // prismatic
 };
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   Main list page
+   ───────────────────────────────────────────────────────────────────────────── */
 export default function AugmentsClient({ augments }: { augments: ApiAugment[] }) {
   const [search, setSearch] = useState("");
   const [rankFilter, setRankFilter] = useState<"All" | "S" | "A" | "B" | "C" | "D">("All");
+  const [tierFilter, setTierFilter] = useState<"All" | 1 | 2 | 3>("All");
 
   const filtered = useMemo(() => {
     let list = [...augments];
     if (rankFilter !== "All") list = list.filter((a) => a.rank === rankFilter);
+    if (tierFilter !== "All") list = list.filter((a) => a.tier === tierFilter);
     if (search.trim())
       list = list.filter((a) => a.name.toLowerCase().includes(search.toLowerCase()));
     list.sort((a, b) => {
@@ -35,82 +37,209 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
       return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
     });
     return list;
-  }, [augments, rankFilter, search]);
+  }, [augments, rankFilter, tierFilter, search]);
 
   const groups = useMemo(() => {
     return (["S", "A", "B", "C", "D"] as const)
-      .map((rank) => ({ rank, color: RANK_COLOR[rank], items: filtered.filter((a) => a.rank === rank) }))
+      .map((rank) => ({ rank, items: filtered.filter((a) => a.rank === rank) }))
       .filter((g) => g.items.length > 0);
   }, [filtered]);
 
   return (
-    <div style={{ background: "#111111", minHeight: "100vh" }}>
+    <div className="tft-page" style={{ fontFamily: TFT_FONT.body }}>
       <style>{`
         @keyframes shimmer {
           0%   { background-position: -200% 0; }
           100% { background-position:  200% 0; }
         }
         .aug-skeleton {
-          background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+          background: linear-gradient(90deg, ${TFT.panelSoft} 25%, ${TFT.panelAlt} 50%, ${TFT.panelSoft} 75%);
           background-size: 200% 100%;
           animation: shimmer 1.2s infinite;
         }
-        .aug-img { opacity: 0; transition: opacity 0.18s ease; }
-        .aug-img.loaded { opacity: 1; }
       `}</style>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "20px 16px" }}>
+
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "28px 18px" }}>
+        {/* Header */}
+        <div style={{ marginBottom: 20 }}>
+          <h1
+            className="tft-heading"
+            style={{
+              fontSize: 30,
+              fontWeight: 700,
+              color: TFT.goldBright,
+              margin: "0 0 6px",
+              textShadow: "0 2px 6px rgba(0,0,0,0.6)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Bảng Phân Hạng Lõi Công Nghệ
+          </h1>
+          <p style={{ fontSize: 12, color: TFT.textMute, margin: 0, letterSpacing: "0.04em" }}>
+            Tất cả Lõi (Augment) phân loại theo bậc Bạc / Vàng / Huyền Thoại và tier meta.
+          </p>
+        </div>
 
         {/* Controls */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
-          <div style={{ display: "flex", gap: 3, background: "#181818", border: "1px solid #222", borderRadius: 7, padding: 3 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            marginBottom: 20,
+            flexWrap: "wrap",
+          }}
+        >
+          {/* Rank filter */}
+          <div
+            style={{
+              display: "flex",
+              gap: 3,
+              background: TFT.panel,
+              border: `1px solid ${TFT.line}`,
+              padding: 3,
+            }}
+          >
             {(["All", "S", "A", "B", "C", "D"] as const).map((r) => {
               const active = rankFilter === r;
-              const color = r === "All" ? "#6b7280" : RANK_COLOR[r];
+              const color = r === "All" ? TFT.gold : TIER_HEX[r];
               return (
-                <button key={r} suppressHydrationWarning onClick={() => setRankFilter(r)}
+                <button
+                  key={r}
+                  suppressHydrationWarning
+                  onClick={() => setRankFilter(r)}
+                  className="tft-heading"
                   style={{
-                    height: 26, minWidth: r === "All" ? 52 : 32, padding: "0 8px",
-                    borderRadius: 5, fontSize: 11, fontWeight: active ? 700 : 500,
-                    border: "none", cursor: "pointer", transition: "all 0.15s",
-                    background: active ? color + "22" : "transparent",
-                    color: active ? color : "#6b7280",
-                    outline: active ? `1px solid ${color}44` : "none",
-                  }}>
-                  {r}
+                    height: 28,
+                    minWidth: r === "All" ? 56 : 32,
+                    padding: "0 10px",
+                    fontSize: 12,
+                    fontWeight: active ? 800 : 600,
+                    border: active ? `1px solid ${color}` : "1px solid transparent",
+                    cursor: "pointer",
+                    transition: "all 0.15s",
+                    background: active ? `${color}22` : "transparent",
+                    color: active ? color : TFT.textDim,
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  {r === "All" ? "Tất Cả" : r}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Tier filter */}
+          <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+            <span
+              style={{
+                fontSize: 10,
+                color: TFT.textMute,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              Cấp
+            </span>
+            {(["All", 1, 2, 3] as const).map((t) => {
+              const active = tierFilter === t;
+              const meta = t !== "All" ? TIER_META[t] : null;
+              const color = meta?.color ?? TFT.gold;
+              const label = t === "All" ? "Tất Cả" : meta?.label ?? "";
+              return (
+                <button
+                  key={String(t)}
+                  suppressHydrationWarning
+                  onClick={() => setTierFilter(t)}
+                  style={{
+                    height: 28,
+                    padding: "0 11px",
+                    fontSize: 11,
+                    fontWeight: active ? 800 : 600,
+                    border: active ? `1px solid ${color}` : `1px solid ${TFT.line}`,
+                    cursor: "pointer",
+                    transition: "all 0.15s",
+                    background: active ? `${color}22` : TFT.panel,
+                    color: active ? color : TFT.textDim,
+                    whiteSpace: "nowrap",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {label}
                 </button>
               );
             })}
           </div>
 
           <div style={{ position: "relative", marginLeft: "auto" }}>
-            <input type="text" value={search} suppressHydrationWarning
+            <input
+              type="text"
+              value={search}
+              suppressHydrationWarning
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Tìm lõi..."
+              placeholder="Tìm Lõi..."
               style={{
-                height: 32, width: 200, borderRadius: 6,
-                background: "#1e1e1e", border: "1px solid #2a2a2a",
-                paddingLeft: 12, paddingRight: 32,
-                fontSize: 12, color: "#d1d5db", outline: "none",
+                height: 32,
+                width: 240,
+                background: TFT.panel,
+                border: `1px solid ${TFT.line}`,
+                paddingLeft: 12,
+                paddingRight: 32,
+                fontSize: 12,
+                color: TFT.text,
+                outline: "none",
+                fontFamily: TFT_FONT.body,
               }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = TFT.goldDim)}
+              onBlur={(e) => (e.currentTarget.style.borderColor = TFT.line)}
             />
-            <svg style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", width: 14, height: 14, color: "#6b7280", pointerEvents: "none" }}
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg
+              style={{
+                position: "absolute",
+                right: 10,
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: 14,
+                height: 14,
+                color: TFT.textMute,
+                pointerEvents: "none",
+              }}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
             </svg>
           </div>
 
-          <span style={{ fontSize: 11, color: "#4b5563" }}>{filtered.length} augments</span>
+          <span
+            style={{
+              fontSize: 11,
+              color: TFT.textMute,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              fontWeight: 700,
+            }}
+          >
+            {filtered.length} lõi
+          </span>
         </div>
 
         {/* Rank Groups */}
         {groups.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "64px 0", color: "#4b5563", fontSize: 14 }}>
+          <div style={{ textAlign: "center", padding: "64px 0", color: TFT.textMute, fontSize: 14 }}>
             Không tìm thấy lõi nào
           </div>
         ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {groups.map(({ rank, color, items }) => (
-              <RankRow key={rank} rank={rank} color={color} items={items} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {groups.map(({ rank, items }) => (
+              <RankRow key={rank} rank={rank} items={items} />
             ))}
           </div>
         )}
@@ -119,53 +248,90 @@ export default function AugmentsClient({ augments }: { augments: ApiAugment[] })
   );
 }
 
-function RankRow({ rank, color, items }: { rank: string; color: string; items: ApiAugment[] }) {
+/* ─────────────────────────────────────────────────────────────────────────────
+   Rank section row — left rail with tier badge + grid of augments
+   ───────────────────────────────────────────────────────────────────────────── */
+function RankRow({ rank, items }: { rank: string; items: ApiAugment[] }) {
+  const color = TIER_HEX[rank] ?? TFT.gold;
   return (
-    <div style={{
-      display: "flex", alignItems: "stretch",
-      background: "#181818", border: "1px solid #1e1e1e",
-      borderRadius: 10, overflow: "hidden", marginBottom: 6,
-    }}>
-      <div style={{
-        width: 48, flexShrink: 0,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        background: color, borderRight: `2px solid ${color}`,
-      }}>
-        <span style={{ fontSize: 20, fontWeight: 900, color: "#000", letterSpacing: "-0.02em" }}>
-          {rank}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "stretch",
+        background: TFT.panel,
+        border: `1px solid ${TFT.line}`,
+        borderLeft: `3px solid ${color}`,
+      }}
+    >
+      <div
+        style={{
+          width: 64,
+          flexShrink: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 6,
+          background: `linear-gradient(180deg, ${color}15 0%, transparent 100%)`,
+          borderRight: `1px solid ${TFT.line}`,
+        }}
+      >
+        <TierBadge tier={rank} size={36} />
+        <span
+          style={{
+            fontSize: 9,
+            color: TFT.textMute,
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.12em",
+          }}
+        >
+          {items.length}
         </span>
       </div>
-      <div style={{ flex: 1, padding: "10px 12px", display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
+      <div
+        style={{
+          flex: 1,
+          padding: "14px 14px 10px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 10,
+          alignContent: "flex-start",
+        }}
+      >
         {items.map((aug) => (
-          <AugmentIcon key={aug.id} aug={aug} rankColor={color} />
+          <AugmentIcon key={aug.id} aug={aug} />
         ))}
       </div>
     </div>
   );
 }
 
-function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string }) {
+/* ─────────────────────────────────────────────────────────────────────────────
+   Single augment icon + tooltip on hover
+   ───────────────────────────────────────────────────────────────────────────── */
+function AugmentIcon({ aug }: { aug: ApiAugment }) {
   const [imgErr, setImgErr] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [showTip, setShowTip] = useState(false);
   const [tipPos, setTipPos] = useState({ top: 0, left: 0 });
   const ref = useRef<HTMLDivElement>(null);
   const tierMeta = TIER_META[aug.tier ?? 0];
+  const tierColor = tierMeta?.color ?? TFT.goldDim;
 
-  // Fix: ảnh cached không fire onLoad → kiểm tra img.complete ngay khi mount
+  // Cached images don't fire onLoad — check on mount
   const handleImgRef = useCallback((el: HTMLImageElement | null) => {
-    if (el && el.complete && el.naturalWidth > 0) {
-      setLoaded(true);
-    }
+    if (el && el.complete && el.naturalWidth > 0) setLoaded(true);
   }, []);
 
-  // Tính position ngay khi hover — không dùng useEffect để tránh infinite loop
   const handleMouseEnter = () => {
-    if (!ref.current) { setShowTip(true); return; }
+    if (!ref.current) {
+      setShowTip(true);
+      return;
+    }
     const rect = ref.current.getBoundingClientRect();
-    const TIP_W = 240;
-    // Ước lượng chiều cao tooltip (không cần đo DOM)
-    const TIP_H = aug.description ? 120 : 70;
+    const TIP_W = 260;
+    const TIP_H = aug.description ? 130 : 72;
     const above = rect.top - TIP_H - 8 >= 0;
     let left = rect.left + rect.width / 2 - TIP_W / 2;
     const top = above ? rect.top - TIP_H - 8 : rect.bottom + 8;
@@ -176,124 +342,197 @@ function AugmentIcon({ aug, rankColor }: { aug: ApiAugment; rankColor: string })
   };
 
   return (
-    <Link href={`/augments/${aug.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+    <Link
+      href={`/augments/${aug.slug}`}
+      style={{ textDecoration: "none", color: "inherit", display: "block" }}
+    >
       <div
         ref={ref}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setShowTip(false)}
-        style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, width: 60, cursor: "pointer" }}
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 5,
+          width: 64,
+          cursor: "pointer",
+        }}
       >
-      {/* Icon box */}
-      <div style={{
-        width: 52, height: 52, borderRadius: 8, overflow: "hidden",
-        background: "#111", position: "relative",
-        border: `1px solid ${tierMeta?.color ?? "#333"}50`,
-        flexShrink: 0,
-        transition: "transform 0.12s, box-shadow 0.12s",
-        boxShadow: showTip ? `0 0 12px ${rankColor}55` : "none",
-        transform: showTip ? "scale(1.08)" : "scale(1)",
-      }}>
-        {/* Shimmer skeleton — hiện khi đang load */}
-        {!loaded && !imgErr && aug.image && (
-          <div className="aug-skeleton" style={{ position: "absolute", inset: 0, borderRadius: 8 }} />
-        )}
+        {/* Icon box with TFT bevel */}
+        <div
+          style={{
+            width: 52,
+            height: 52,
+            position: "relative",
+            background: "#000",
+            flexShrink: 0,
+            transition: "transform 0.12s",
+            transform: showTip ? "scale(1.1)" : "scale(1)",
+            boxShadow: tftBevel(tierColor, showTip),
+          }}
+        >
+          {!loaded && !imgErr && aug.image && (
+            <div className="aug-skeleton" style={{ position: "absolute", inset: 0 }} />
+          )}
 
-        {aug.image && !imgErr ? (
-          // ⚡ Native <img> + loading="lazy" + decoding="async"
-          // next/image không phù hợp cho 300+ icon nhỏ 52px — gây nhiều network round-trips
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            ref={handleImgRef}
-            src={aug.image}
-            alt={aug.name}
-            loading="lazy"
-            decoding="async"
-            width={52}
-            height={52}
-            onLoad={() => setLoaded(true)}
-            onError={() => { setImgErr(true); setLoaded(true); }}
-            style={{
-              width: "100%", height: "100%",
-              objectFit: "contain", padding: 2,
-              opacity: loaded ? 1 : 0,
-              transition: "opacity 0.18s ease",
-            }}
-          />
-        ) : (
-          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>✨</div>
-        )}
-
-        {tierMeta && (
-          <div style={{
-            position: "absolute", bottom: 2, right: 2,
-            width: 8, height: 8, borderRadius: "50%",
-            background: tierMeta.color, boxShadow: `0 0 4px ${tierMeta.color}`,
-          }} />
-        )}
-      </div>
-
-      {/* Name */}
-      <span style={{
-        fontSize: 9, color: "#6b7280", textAlign: "center",
-        width: "100%", lineHeight: 1.3,
-        overflow: "hidden", display: "-webkit-box",
-        WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
-      }}>
-        {aug.name}
-      </span>
-
-      {/* Tooltip — render chỉ khi hover */}
-      {showTip && (
-        <div style={{
-          position: "fixed",
-          top: tipPos.top,
-          left: tipPos.left,
-          width: 240, zIndex: 9999,
-          background: "#1a1a1a", border: "1px solid #333",
-          borderRadius: 10, padding: "12px 14px",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-          pointerEvents: "none",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <div style={{ width: 32, height: 32, borderRadius: 6, overflow: "hidden", flexShrink: 0, background: "#111" }}>
-              {aug.image && !imgErr ? (
-                // Ảnh tooltip: đã cached sẵn từ icon — không cần lazy
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={aug.image}
-                  alt={aug.name}
-                  decoding="async"
-                  width={32}
-                  height={32}
-                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                />
-              ) : <span style={{ fontSize: 16 }}>✨</span>}
+          {aug.image && !imgErr ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              ref={handleImgRef}
+              src={aug.image}
+              alt={aug.name}
+              loading="lazy"
+              decoding="async"
+              width={52}
+              height={52}
+              onLoad={() => setLoaded(true)}
+              onError={() => {
+                setImgErr(true);
+                setLoaded(true);
+              }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                imageRendering: "pixelated",
+                opacity: loaded ? 1 : 0,
+                transition: "opacity 0.18s ease",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 22,
+                color: TFT.textMute,
+              }}
+            >
+              ?
             </div>
-            <div>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "#f3f4f6", lineHeight: 1.3 }}>{aug.name}</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 5, marginTop: 2 }}>
-                {aug.rank && (
-                  <span style={{ width: 18, height: 18, borderRadius: 4, background: rankColor, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 800, color: "#fff" }}>
-                    {aug.rank}
-                  </span>
-                )}
-                {tierMeta && (
-                  <span style={{ fontSize: 9, color: tierMeta.color, fontWeight: 600 }}>{tierMeta.label}</span>
-                )}
-              </div>
-            </div>
-          </div>
-          {aug.description && (
-            <p style={{ fontSize: 11, color: "#9ca3af", lineHeight: 1.55, margin: 0 }}>
-              {aug.description
-                .replace(/TFT_Augment_Template_Blank/g, "")
-                .replace(/tft10_headliner_default/g, "")
-                .replace(/ĐTCL Vegas Open, 2023/g, "")
-                .trim()}
-            </p>
           )}
         </div>
-      )}
+
+        {/* Name */}
+        <span
+          style={{
+            fontSize: 9,
+            color: TFT.textDim,
+            textAlign: "center",
+            width: "100%",
+            lineHeight: 1.3,
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            fontWeight: 600,
+            letterSpacing: "0.02em",
+          }}
+        >
+          {aug.name}
+        </span>
+
+        {/* Tooltip */}
+        {showTip && (
+          <div
+            style={{
+              position: "fixed",
+              top: tipPos.top,
+              left: tipPos.left,
+              width: 260,
+              zIndex: 9999,
+              background: `linear-gradient(180deg, ${TFT.panelAlt} 0%, ${TFT.panelSoft} 100%)`,
+              border: `1px solid ${TFT.goldDim}`,
+              padding: "12px 14px",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.85)",
+              pointerEvents: "none",
+              fontFamily: TFT_FONT.body,
+              color: TFT.text,
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+              <div
+                style={{
+                  width: 36,
+                  height: 36,
+                  flexShrink: 0,
+                  background: "#000",
+                  position: "relative",
+                  boxShadow: tftBevel(tierColor, false),
+                }}
+              >
+                {aug.image && !imgErr && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={aug.image}
+                    alt={aug.name}
+                    decoding="async"
+                    width={36}
+                    height={36}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                )}
+              </div>
+              <div style={{ minWidth: 0 }}>
+                <div
+                  className="tft-heading"
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: TFT.goldBright,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {aug.name}
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    marginTop: 4,
+                  }}
+                >
+                  {aug.rank && <TierBadge tier={aug.rank} size={18} />}
+                  {tierMeta && (
+                    <span
+                      style={{
+                        fontSize: 9,
+                        color: tierMeta.color,
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.1em",
+                      }}
+                    >
+                      {tierMeta.label}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+            {aug.description && (
+              <p
+                style={{
+                  fontSize: 11,
+                  color: TFT.textDim,
+                  lineHeight: 1.55,
+                  margin: 0,
+                }}
+              >
+                {aug.description
+                  .replace(/TFT_Augment_Template_Blank/g, "")
+                  .replace(/tft10_headliner_default/g, "")
+                  .replace(/ĐTCL Vegas Open, 2023/g, "")
+                  .trim()}
+              </p>
+            )}
+          </div>
+        )}
       </div>
     </Link>
   );

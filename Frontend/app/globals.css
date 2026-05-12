@@ -17,6 +17,37 @@
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
+
+  /* ---- TFT in-game palette (slate + bronze + hextech blue) ---- */
+  --tft-bg: #070a0e;
+  --tft-panel: #0f1418;
+  --tft-panel-alt: #131920;
+  --tft-line: #1e2933;
+  --tft-line-soft: #16202a;
+  --tft-gold: #c8aa6e;
+  --tft-gold-bright: #f0e6d2;
+  --tft-gold-dim: #785a28;
+  --tft-gold-deep: #463714;
+  --tft-blue: #0596aa;
+  --tft-blue-bright: #0ac8b9;
+  --tft-text: #e9e2cf;
+  --tft-text-dim: #a09b8c;
+  --tft-text-mute: #5b5a48;
+
+  --font-tft-heading: var(--font-geist), "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+}
+
+/* Page-level wrapper applies TFT theme background + body font.
+   Add class="tft-page" to the root <div> of any TFT-skinned page. */
+.tft-page {
+  background: radial-gradient(ellipse at top, #101820 0%, var(--tft-bg) 60%);
+  color: var(--tft-text);
+  min-height: 100vh;
+}
+
+.tft-heading {
+  font-family: var(--font-tft-heading);
+  letter-spacing: 0.02em;
 }
 
 @theme inline {
@@ -39,8 +70,8 @@ html {
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--tft-bg);
+  color: var(--tft-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -51,28 +82,28 @@ body {
 }
 
 /* ================================================
-   Scrollbar — MetaTFT style
+   Scrollbar — TFT style
    ================================================ */
 ::-webkit-scrollbar {
   width: 6px;
   height: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #111;
+  background: var(--tft-panel);
 }
 ::-webkit-scrollbar-thumb {
-  background: #3a3a3a;
+  background: var(--tft-line);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #4a4a4a;
+  background: var(--tft-gold-dim);
 }
 
 /* ================================================
    Selection
    ================================================ */
 ::selection {
-  background: rgba(240, 185, 11, 0.25);
+  background: rgba(200, 170, 110, 0.25);
   color: #fff;
 }
 
@@ -80,7 +111,7 @@ body {
    Focus Visible — Accessibility
    ================================================ */
 *:focus-visible {
-  outline: 2px solid var(--accent-yellow);
+  outline: 2px solid var(--tft-gold);
   outline-offset: 2px;
   border-radius: 3px;
 }

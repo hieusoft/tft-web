@@ -71,17 +71,17 @@ function getActualTraitStyle(count: number, trait?: ApiTrait): number {
 }
 
 function getTraitStyle(style: number) {
-  if (style === 0) return { bg: "#111", color: "#6b7280" };
-  if (style >= 4) return { bg: "linear-gradient(135deg, #a855f7, #06b6d4)", color: "#fff" };
-  if (style === 3) return { bg: "linear-gradient(135deg, #fbbf24, #d97706)", color: "#fff" };
+  if (style === 0) return { bg: "var(--tft-panel)", color: "var(--tft-text-mute)" };
+  if (style >= 4) return { bg: "linear-gradient(135deg, #0ac8b9, #0596aa)", color: "#fff" };
+  if (style === 3) return { bg: "linear-gradient(135deg, #c8aa6e, #785a28)", color: "#fff" };
   if (style === 2) return { bg: "linear-gradient(135deg, #9ca3af, #6b7280)", color: "#fff" };
   return { bg: "linear-gradient(135deg, #b45309, #78350f)", color: "#fff" };
 }
 
 function getTraitStyleColor(style: number) {
-  if (style === 0) return "#6b7280";
-  if (style >= 4) return "#06b6d4";
-  if (style === 3) return "#fbbf24";
+  if (style === 0) return "var(--tft-text-mute)";
+  if (style >= 4) return "var(--tft-blue-bright)";
+  if (style === 3) return "var(--tft-gold)";
   if (style === 2) return "#9ca3af";
   return "#b45309";
 }
@@ -159,8 +159,8 @@ function ActiveTraitRow({ t, style, compChampIds }: { t: any; style: any; compCh
         onMouseLeave={() => setShowTip(false)}
         onClick={() => setShowTip(!showTip)}
         style={{ 
-          display: "flex", alignItems: "center", gap: 12, backgroundColor: "#222232", 
-          padding: "8px 12px", borderRadius: 8, opacity: t.styleId === 0 ? 0.6 : 1,
+          display: "flex", alignItems: "center", gap: 12, background: "var(--tft-panel-alt)", 
+          padding: "7px 10px", borderRadius: 0, border: "1px solid var(--tft-line)", opacity: t.styleId === 0 ? 0.5 : 1,
           cursor: 'pointer'
         }}
       >
@@ -168,29 +168,29 @@ function ActiveTraitRow({ t, style, compChampIds }: { t: any; style: any; compCh
           {t.image && <img src={t.image} alt={t.name} style={{ width: 14, height: 14, filter: t.styleId === 0 ? 'grayscale(100%) opacity(0.5)' : 'drop-shadow(0 1px 1px black)' }} />}
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: t.styleId === 0 ? "#888" : "#fff" }}>{t.name}</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: t.styleId === 0 ? "var(--tft-text-mute)" : "var(--tft-text)" }}>{t.name}</div>
         </div>
-        <div style={{ fontSize: 16, fontWeight: 900, color: t.styleId === 0 ? "#888" : "#f0b90b" }}>{t.count}</div>
+        <div style={{ fontSize: 16, fontWeight: 900, color: t.styleId === 0 ? "var(--tft-text-mute)" : "var(--tft-gold)" }}>{t.count}</div>
       </div>
 
       {showTip && t.traitData && (
         <div style={{
           position: 'absolute', top: '0', left: '105%',
-          background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+          background: 'var(--tft-panel)', border: '1px solid var(--tft-gold-dim)', borderRadius: 0,
           padding: '10px 12px', width: 280, zIndex: 100,
-          boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.85)',
           pointerEvents: 'none',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
             {t.image && <img loading="lazy" src={t.image} alt="" style={{ width: 18, height: 18 }} />}
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8' }}>{t.name}</span>
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--tft-gold-bright)' }}>{t.name}</span>
             <span style={{ fontSize: '0.65rem', color: styleColor, marginLeft: 'auto', fontWeight: 600 }}>
               Bậc {t.styleId} ({t.count})
             </span>
           </div>
           
           {parsedTrait.desc && (
-            <div style={{ fontSize: '0.65rem', color: '#aaa', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
+            <div style={{ fontSize: '0.65rem', color: 'var(--tft-text-dim)', lineHeight: 1.4, marginBottom: 6 }} dangerouslySetInnerHTML={{ __html: parsedTrait.desc }} />
           )}
 
           {t.traitData.milestones && t.traitData.milestones.length > 0 && (
@@ -214,8 +214,8 @@ function ActiveTraitRow({ t, style, compChampIds }: { t: any; style: any; compCh
           )}
 
           {t.traitData.champions && t.traitData.champions.length > 0 && (
-            <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid #333' }}>
-              <div style={{ fontSize: '0.55rem', color: '#888', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Tướng</div>
+            <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--tft-line)' }}>
+              <div style={{ fontSize: '0.55rem', color: 'var(--tft-text-mute)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Tướng</div>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                 {t.traitData.champions.map((c: any) => {
                   const cBorderColor = COST_BORDER[c.cost] || '#666';
@@ -333,9 +333,9 @@ function ChampTooltip({ champ, position = 'top', traitImages, rect }: { champ: a
   const borderColor = COST_BORDER[champ.cost] ?? '#6b7280';
   
   const style: React.CSSProperties = {
-    background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+    background: 'var(--tft-panel)', border: '1px solid var(--tft-gold-dim)', borderRadius: 0,
     padding: '10px 12px', minWidth: 260, maxWidth: 320, zIndex: 100000,
-    boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
+    boxShadow: '0 8px 32px rgba(0,0,0,0.85)',
     pointerEvents: 'none',
     display: 'flex', flexDirection: 'column', gap: 6,
   };
@@ -374,7 +374,7 @@ function ChampTooltip({ champ, position = 'top', traitImages, rect }: { champ: a
           )}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e8e8e8', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{champ.name}</div>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--tft-gold-bright)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{champ.name}</div>
           <div style={{ fontSize: '0.6rem', color: borderColor, fontWeight: 600 }}>{champ.cost} Vàng</div>
         </div>
       </div>
@@ -386,7 +386,7 @@ function ChampTooltip({ champ, position = 'top', traitImages, rect }: { champ: a
             return (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                 {tImg && <img loading="lazy" src={tImg} alt="" style={{ width: 14, height: 14 }} />}
-                <span style={{ fontSize: '0.6rem', color: '#ccc' }}>{t.name}</span>
+                <span style={{ fontSize: '0.6rem', color: 'var(--tft-text-dim)' }}>{t.name}</span>
               </div>
             );
           })}
@@ -394,22 +394,22 @@ function ChampTooltip({ champ, position = 'top', traitImages, rect }: { champ: a
       )}
       
       {champ.skill && (
-        <div style={{ marginTop: 4, paddingTop: 6, borderTop: '1px solid #333' }}>
+        <div style={{ marginTop: 4, paddingTop: 6, borderTop: '1px solid var(--tft-line)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
             {champ.skill.icon_path && (
               <img loading="lazy" src={champ.skill.icon_path} alt="" style={{ width: 24, height: 24, borderRadius: 4, border: '1px solid #444' }} />
             )}
             <div>
-              <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#f0b90b' }}>{champ.skill.name}</div>
+              <div style={{ fontSize: '0.65rem', fontWeight: 700, color: 'var(--tft-gold)' }}>{champ.skill.name}</div>
               {(champ.skill.mana_start !== undefined && champ.skill.mana_max !== undefined) && (
-                <div style={{ fontSize: '0.55rem', color: '#66abff' }}>
+                <div style={{ fontSize: '0.55rem', color: 'var(--tft-blue-bright)' }}>
                   Năng lượng: {champ.skill.mana_start} / {champ.skill.mana_max}
                 </div>
               )}
             </div>
           </div>
           {champ.skill.description && (
-            <div style={{ fontSize: '0.6rem', color: '#aaa', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: formatSkillDescription(champ.skill.description) }} />
+            <div style={{ fontSize: '0.6rem', color: 'var(--tft-text-dim)', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: formatSkillDescription(champ.skill.description) }} />
           )}
         </div>
       )}
@@ -439,10 +439,10 @@ function PoolChampItem({ champ, onDragStart, traitImages }: { champ: any; onDrag
         onDragStart={(e) => { setShowTip(false); onDragStart(e, champ); }}
         style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, cursor: "grab" }}
       >
-        <div style={{ width: 50, height: 50, borderRadius: 8, overflow: "hidden", border: `2px solid ${COST_BORDER[champ.cost] || '#6b7280'}`, position: "relative" }}>
+        <div style={{ width: 50, height: 50, borderRadius: 0, overflow: "hidden", border: `2px solid ${COST_BORDER[champ.cost] || '#6b7280'}`, position: "relative" }}>
           {champ.icon_path && <Image src={champ.icon_path} alt={champ.name} fill style={{ objectFit: 'cover' }} unoptimized draggable={false} />}
         </div>
-        <div style={{ fontSize: 10, fontWeight: 700, color: "#e8e8e8", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "100%" }}>{champ.name}</div>
+        <div style={{ fontSize: 10, fontWeight: 700, color: "var(--tft-text-dim)", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", width: "100%" }}>{champ.name}</div>
       </div>
     </div>
   );
@@ -486,9 +486,9 @@ function ItemTooltip({ item, position = 'top', rect }: { item: any, position?: '
   const iImg = item.image || item.icon_path;
   
   const style: React.CSSProperties = {
-    background: '#1a1a2e', border: '1px solid #333', borderRadius: 8,
+    background: 'var(--tft-panel)', border: '1px solid var(--tft-gold-dim)', borderRadius: 0,
     padding: '10px 12px', width: 220, zIndex: 100000,
-    boxShadow: '0 4px 16px rgba(0,0,0,0.6)',
+    boxShadow: '0 8px 32px rgba(0,0,0,0.85)',
     pointerEvents: 'none',
     display: 'flex', flexDirection: 'column', gap: 8,
   };
@@ -522,11 +522,11 @@ function ItemTooltip({ item, position = 'top', rect }: { item: any, position?: '
         <div style={{ width: 28, height: 28, borderRadius: 4, overflow: 'hidden', border: '1px solid #555', flexShrink: 0 }}>
           {iImg && <img loading="lazy" src={iImg} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
         </div>
-        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f0b90b' }}>{item.name}</div>
+        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--tft-gold)' }}>{item.name}</div>
       </div>
       
       {item.description && (
-        <div style={{ fontSize: '0.65rem', color: '#ccc', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: item.description }} />
+        <div style={{ fontSize: '0.65rem', color: 'var(--tft-text-dim)', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: item.description }} />
       )}
     </div>
   );
@@ -554,7 +554,7 @@ function PoolItemWrapper({ item, onDragStartItemPool }: { item: any, onDragStart
         draggable onDragStart={(e) => { setShowTip(false); onDragStartItemPool(e, item); }}
         style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, cursor: "grab" }}
       >
-        <div style={{ width: 44, height: 44, borderRadius: 6, overflow: "hidden", border: "1px solid #3a3d45", position: "relative" }}>
+        <div style={{ width: 44, height: 44, borderRadius: 0, overflow: "hidden", border: "1px solid var(--tft-line)", position: "relative" }}>
           {iImg && <Image src={iImg} alt={item.name} fill style={{ objectFit: 'cover' }} unoptimized draggable={false} />}
         </div>
       </div>
@@ -578,7 +578,7 @@ function BoardItemWrapper({ itm, iIdx, ri, ci, onDragStart, onContextMenu }: { i
         draggable
         onDragStart={(e) => { setShowTip(false); onDragStart(e, ri, ci, iIdx); }}
         onContextMenu={(e) => { setShowTip(false); onContextMenu(e, ri, ci, iIdx); }}
-        style={{ width: 20, height: 20, borderRadius: 2, border: '1px solid #eab308', overflow: 'hidden', position: 'relative', pointerEvents: 'auto', cursor: 'grab', boxShadow: '0 1px 3px rgba(0,0,0,0.8)' }}
+        style={{ width: 20, height: 20, borderRadius: 0, border: '1px solid var(--tft-gold)', overflow: 'hidden', position: 'relative', pointerEvents: 'auto', cursor: 'grab', boxShadow: '0 1px 3px rgba(0,0,0,0.8)' }}
       >
         <Image src={itm.image || itm.icon_path || ''} alt={itm.name} fill style={{ objectFit: 'cover' }} unoptimized draggable={false} />
       </div>
@@ -867,7 +867,7 @@ export default function TeamBuilderClient({
   return (
     <div 
       suppressHydrationWarning
-      style={{ backgroundColor: "#0d0d14", minHeight: "100vh", padding: "24px 16px", color: "#e8e8e8", fontFamily: "system-ui, sans-serif" }}
+      style={{ background: "var(--tft-bg)", minHeight: "100vh", padding: "24px 24px", color: "var(--tft-text)", fontFamily: "var(--font-geist), system-ui, sans-serif" }}
       onDragOver={onDragOver}
       onDrop={onDropTrash}
     >
@@ -875,14 +875,15 @@ export default function TeamBuilderClient({
         
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
-            <h1 style={{ fontSize: 24, fontWeight: 900, color: "#fff", margin: "0 0 4px 0" }}>Tự Tạo Đội Hình</h1>
-            <p style={{ color: "#aaa", fontSize: 14 }}>Kéo thả tướng và trang bị vào bàn cờ</p>
+            <h1 style={{ fontSize: 22, fontWeight: 800, color: "var(--tft-gold-bright)", margin: "0 0 4px 0", textTransform: "uppercase", letterSpacing: "0.1em" }}>Tự Tạo Đội Hình</h1>
+            <p style={{ color: "var(--tft-text-dim)", fontSize: 13 }}>Kéo thả tướng và trang bị vào bàn cờ</p>
           </div>
           <button 
             onClick={() => setBoard(Array.from({ length: B_ROWS }, () => Array(B_COLS).fill(null)))}
             style={{ 
-              padding: "8px 16px", backgroundColor: "#ef4444", color: "#fff", border: "none", 
-              borderRadius: 6, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 6
+              padding: "8px 16px", background: "rgba(248,113,113,0.12)", color: "#f87171", border: "1px solid #f87171", 
+              borderRadius: 0, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 6,
+              textTransform: "uppercase", letterSpacing: "0.08em", fontSize: 12
             }}
           >
             Xóa Bàn Cờ
@@ -967,7 +968,8 @@ export default function TeamBuilderClient({
           }
 
           /* ── Hex Wrapper z-index ── */
-          .hex-wrapper:hover { z-index: 999 !important; }
+          .hex-wrapper { transition: transform 0.15s ease; }
+          .hex-wrapper:hover { z-index: 999 !important; transform: translateY(-2px); }
 
           /* ── Panel on mobile: fixed bottom sheet ── */
           @media (max-width: 767px) {
@@ -1016,10 +1018,10 @@ export default function TeamBuilderClient({
               display: flex;
               align-items: center;
               gap: 6px;
-              background: rgba(255,255,255,0.05);
-              border-radius: 20px;
+              background: var(--tft-panel-alt);
+              border-radius: 0;
               padding: 4px 10px 4px 6px;
-              border: 1px solid rgba(255,255,255,0.1);
+              border: 1px solid var(--tft-line);
             }
             .builder-panel-handle {
               display: flex !important;
@@ -1038,14 +1040,29 @@ export default function TeamBuilderClient({
               padding: 6px 0;
             }
           }
+
+          /* ── Button hover transitions ── */
+          .builder-col--panel button { transition: all 0.15s ease; }
+          .builder-col--panel button:hover:not(:disabled) {
+            filter: brightness(1.2);
+          }
+          .builder-col--panel input:focus,
+          .builder-col--panel select:focus {
+            border-color: var(--tft-gold) !important;
+          }
+          /* Custom scrollbar for pool list */
+          .builder-col--panel > div:last-child::-webkit-scrollbar { width: 6px; }
+          .builder-col--panel > div:last-child::-webkit-scrollbar-track { background: var(--tft-bg); }
+          .builder-col--panel > div:last-child::-webkit-scrollbar-thumb { background: var(--tft-gold-dim); }
+          .builder-col--panel > div:last-child::-webkit-scrollbar-thumb:hover { background: var(--tft-gold); }
         `}</style>
         <div className="builder-grid">
           
           {/* COLUMN 1: TRAITS */}
-          <div className="builder-col--traits" style={{ backgroundColor: "#181824", borderRadius: 12, padding: 20, border: "1px solid #2a2a3c", minHeight: 400 }}>
-            <h2 style={{ fontSize: 16, fontWeight: 800, color: "#fff", margin: "0 0 16px 0", textTransform: "uppercase", letterSpacing: "0.05em" }}>Tộc Hệ Kích Hoạt</h2>
+          <div className="builder-col--traits" style={{ background: "var(--tft-panel)", borderRadius: 0, padding: 20, border: "1px solid var(--tft-line)", minHeight: 400 }}>
+            <h2 style={{ fontSize: 13, fontWeight: 700, color: "var(--tft-gold)", margin: "0 0 12px 0", textTransform: "uppercase", letterSpacing: "0.14em", paddingBottom: 8, borderBottom: "1px solid var(--tft-gold-dim)" }}>Tộc Hệ Kích Hoạt</h2>
             {activeTraits.length === 0 ? (
-              <p style={{ color: "#666", fontSize: 13 }}>Chưa có tướng nào.</p>
+              <p style={{ color: "var(--tft-text-mute)", fontSize: 13 }}>Chưa có tướng nào.</p>
             ) : (
               <div className="traits-list" style={{ display: "flex", gap: 12 }}>
                 {activeTraits.map(t => {
@@ -1061,7 +1078,7 @@ export default function TeamBuilderClient({
             className="builder-board-col"
             ref={boardWrapRef}
             style={{ 
-              backgroundColor: "#181824", borderRadius: 12, padding: "32px 16px", border: "1px solid #2a2a3c",
+              background: "var(--tft-panel)", borderRadius: 0, padding: "32px 16px", border: "1px solid var(--tft-line)",
               display: "flex", justifyContent: "center", alignItems: "flex-start", position: "relative",
             }}
             onDragOver={onDragOver}
@@ -1108,10 +1125,10 @@ export default function TeamBuilderClient({
                       {/* Empty Background */}
                       <div style={{
                         position: "absolute", inset: 0, clipPath: HEX_CLIP,
-                        background: 'linear-gradient(160deg, rgba(50,50,90,0.4), rgba(20,20,45,0.6))',
+                        background: 'linear-gradient(160deg, var(--tft-gold-dim), var(--tft-line))',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                       }}>
-                        <div style={{ position: "absolute", inset: 3, clipPath: HEX_CLIP, background: 'linear-gradient(160deg, rgba(20,20,35,0.95), rgba(15,15,25,0.98))' }} />
+                        <div style={{ position: "absolute", inset: 3, clipPath: HEX_CLIP, background: 'linear-gradient(160deg, var(--tft-panel-alt), var(--tft-panel))' }} />
                       </div>
 
                       {/* Champ in Hex */}
@@ -1147,25 +1164,25 @@ export default function TeamBuilderClient({
           </div>
 
           {/* COLUMN 3: TABS (CHAMPIONS / ITEMS) */}
-          <div className={`builder-col--panel${panelCollapsed ? ' collapsed' : ''}`} style={{ backgroundColor: "#181824", borderRadius: 12, padding: 20, border: "1px solid #2a2a3c", display: "flex", flexDirection: "column", height: "80vh" }}>
+          <div className={`builder-col--panel${panelCollapsed ? ' collapsed' : ''}`} style={{ background: "var(--tft-panel)", borderRadius: 0, padding: 20, border: "1px solid var(--tft-line)", display: "flex", flexDirection: "column", height: "80vh" }}>
             {/* Mobile drag handle */}
             <div 
               onClick={() => setPanelCollapsed(c => !c)}
               style={{ display: 'none', justifyContent: 'center', paddingBottom: 12, cursor: 'pointer' }}
               className="builder-panel-handle"
             >
-              <div style={{ width: 40, height: 4, borderRadius: 2, background: '#444' }} />
+              <div style={{ width: 40, height: 2, borderRadius: 0, background: "var(--tft-gold-dim)" }} />
             </div>
             
             {/* Tabs Header */}
-            <div style={{ display: "flex", borderBottom: "1px solid #2a2a3c", marginBottom: 16 }}>
+            <div style={{ display: "flex", borderBottom: "1px solid var(--tft-line)", marginBottom: 16 }}>
               <button 
                 onClick={() => setActiveTab("champions")}
-                style={{ flex: 1, padding: "12px 0", background: "none", border: "none", borderBottom: activeTab === "champions" ? "2px solid #f0b90b" : "2px solid transparent", color: activeTab === "champions" ? "#f0b90b" : "#9ca3af", fontWeight: 700, cursor: "pointer" }}
+                style={{ flex: 1, padding: "12px 0", background: "none", border: "none", borderBottom: activeTab === "champions" ? "2px solid var(--tft-gold)" : "2px solid transparent", color: activeTab === "champions" ? "var(--tft-gold)" : "var(--tft-text-mute)", fontWeight: 700, cursor: "pointer", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}
               >Tướng</button>
               <button 
                 onClick={() => setActiveTab("items")}
-                style={{ flex: 1, padding: "12px 0", background: "none", border: "none", borderBottom: activeTab === "items" ? "2px solid #f0b90b" : "2px solid transparent", color: activeTab === "items" ? "#f0b90b" : "#9ca3af", fontWeight: 700, cursor: "pointer" }}
+                style={{ flex: 1, padding: "12px 0", background: "none", border: "none", borderBottom: activeTab === "items" ? "2px solid var(--tft-gold)" : "2px solid transparent", color: activeTab === "items" ? "var(--tft-gold)" : "var(--tft-text-mute)", fontWeight: 700, cursor: "pointer", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}
               >Trang Bị</button>
             </div>
 
@@ -1175,16 +1192,16 @@ export default function TeamBuilderClient({
               placeholder={activeTab === "champions" ? "Tìm tướng..." : "Tìm trang bị..."} 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ padding: "10px 16px", borderRadius: 8, backgroundColor: "#222232", border: "1px solid #3a3a4c", color: "#fff", outline: "none", width: "100%", marginBottom: 16 }}
+              style={{ padding: "10px 16px", borderRadius: 0, background: "var(--tft-bg)", border: "1px solid var(--tft-line)", color: "var(--tft-text)", outline: "none", width: "100%", marginBottom: 16 }}
             />
 
             {/* Cost & Trait Filters (Only for Champions) */}
             {activeTab === "champions" && (
               <>
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
-                  <button onClick={() => setCostFilter(null)} style={{ flex: 1, padding: "6px", borderRadius: 6, border: "1px solid", backgroundColor: costFilter === null ? "#3b82f640" : "#222232", borderColor: costFilter === null ? "#3b82f6" : "#3a3a4c", color: costFilter === null ? "#60a5fa" : "#aaa", cursor: "pointer", fontSize: 11, fontWeight: 700 }}>Tất cả</button>
+                  <button onClick={() => setCostFilter(null)} style={{ flex: 1, padding: "6px", borderRadius: 0, border: "1px solid", background: costFilter === null ? "rgba(200,170,110,0.15)" : "transparent", borderColor: costFilter === null ? "var(--tft-gold)" : "var(--tft-line)", color: costFilter === null ? "var(--tft-gold)" : "var(--tft-text-mute)", cursor: "pointer", fontSize: 11, fontWeight: 700 }}>Tất cả</button>
                   {[1, 2, 3, 4, 5].map(cost => (
-                    <button key={cost} onClick={() => setCostFilter(cost)} style={{ flex: 1, padding: "6px", borderRadius: 6, border: "1px solid", backgroundColor: costFilter === cost ? `${COST_BORDER[cost]}40` : "#222232", borderColor: costFilter === cost ? COST_BORDER[cost] : "#3a3a4c", color: costFilter === cost ? COST_BORDER[cost] : "#aaa", cursor: "pointer", fontSize: 11, fontWeight: 700 }}>{cost}</button>
+                    <button key={cost} onClick={() => setCostFilter(cost)} style={{ flex: 1, padding: "6px", borderRadius: 0, border: "1px solid", background: costFilter === cost ? `${COST_BORDER[cost]}40` : "transparent", borderColor: costFilter === cost ? COST_BORDER[cost] : "var(--tft-line)", color: costFilter === cost ? COST_BORDER[cost] : "var(--tft-text-mute)", cursor: "pointer", fontSize: 11, fontWeight: 700 }}>{cost}</button>
                   ))}
                 </div>
                 
@@ -1192,7 +1209,7 @@ export default function TeamBuilderClient({
                   <select 
                     value={traitFilter} 
                     onChange={(e) => setTraitFilter(e.target.value)}
-                    style={{ flex: 1, width: "100%", padding: "8px 12px", borderRadius: 6, backgroundColor: "#222232", border: "1px solid #3a3a4c", color: "#fff", outline: "none", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                    style={{ flex: 1, width: "100%", padding: "8px 12px", borderRadius: 0, background: "var(--tft-bg)", border: "1px solid var(--tft-line)", color: "var(--tft-text)", outline: "none", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
                   >
                     <option value="">Tất cả Tộc / Hệ</option>
                     {uniqueTraitsForFilter.map(t => (
@@ -1206,7 +1223,7 @@ export default function TeamBuilderClient({
                         setCostFilter(null);
                         setTraitFilter("");
                       }}
-                      style={{ padding: "0 12px", borderRadius: 6, backgroundColor: "#ef444420", border: "1px solid #ef4444", color: "#ef4444", cursor: "pointer", fontSize: 12, fontWeight: 700 }}
+                      style={{ padding: "0 12px", borderRadius: 0, background: "rgba(248,113,113,0.1)", border: "1px solid #f87171", color: "#f87171", cursor: "pointer", fontSize: 12, fontWeight: 700 }}
                     >
                       Reset
                     </button>
@@ -1221,7 +1238,7 @@ export default function TeamBuilderClient({
                 <select 
                   value={itemCategoryFilter} 
                   onChange={(e) => setItemCategoryFilter(e.target.value)}
-                  style={{ flex: 1, width: "100%", padding: "8px 12px", borderRadius: 6, backgroundColor: "#222232", border: "1px solid #3a3a4c", color: "#fff", outline: "none", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                  style={{ flex: 1, width: "100%", padding: "8px 12px", borderRadius: 0, background: "var(--tft-bg)", border: "1px solid var(--tft-line)", color: "var(--tft-text)", outline: "none", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
                 >
                   <option value="">Tất cả Phân Loại</option>
                   {itemCategories.sort().map(cat => (
@@ -1234,7 +1251,7 @@ export default function TeamBuilderClient({
                       setSearchTerm("");
                       setItemCategoryFilter("");
                     }}
-                    style={{ padding: "0 12px", borderRadius: 6, backgroundColor: "#ef444420", border: "1px solid #ef4444", color: "#ef4444", cursor: "pointer", fontSize: 12, fontWeight: 700 }}
+                    style={{ padding: "0 12px", borderRadius: 0, background: "rgba(248,113,113,0.1)", border: "1px solid #f87171", color: "#f87171", cursor: "pointer", fontSize: 12, fontWeight: 700 }}
                   >
                     Reset
                   </button>

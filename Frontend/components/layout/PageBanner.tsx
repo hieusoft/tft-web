@@ -146,6 +146,26 @@ const BANNER_MAP: Record<string, BannerConfig> = {
     breadcrumb: [{ label: "Trang Chủ", href: "/" }, { label: "Thống Kê" }],
   },
 
+  "/team-builder": {
+    title: "Tự Tạo Đội Hình",
+    subtitle: "Kéo thả tướng và trang bị vào bàn cờ để xây dựng đội hình của riêng bạn.",
+    accentHex: "#feb939",
+    splashUrl:
+      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_0.jpg",
+    iconUrl: `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/champion/Lux.png`,
+    iconAlt: "Lux",
+    stats: [
+      { label: "Tướng Có Sẵn", value: "60" },
+      { label: "Trang Bị", value: "58" },
+      { label: "Patch", value: SITE_CONFIG.patch, highlight: true },
+    ],
+    breadcrumb: [
+      { label: "Trang Chủ", href: "/" },
+      { label: "Công Cụ", href: "/team-builder" },
+      { label: "Tự Tạo Đội Hình" },
+    ],
+  },
+
   "/players": {
     title: "Bảng Xếp Hạng Người Chơi",
     subtitle: "Thứ hạng và lịch sử trận đấu của các người chơi hàng đầu.",
@@ -230,26 +250,62 @@ export default function PageBanner() {
 
         {/* Breadcrumb — pinned to bottom-left */}
         <nav
-          className="absolute bottom-0 left-0 right-0 flex items-center gap-1.5 px-5 py-3 text-[11px]"
+          aria-label="Breadcrumb"
+          className="absolute bottom-0 left-0 right-0 flex items-center gap-2 px-5 py-3"
+          style={{
+            fontSize: 12,
+            fontFamily: "var(--font-geist), system-ui, sans-serif",
+            background: "linear-gradient(to top, rgba(7,10,14,0.85) 0%, transparent 100%)",
+            letterSpacing: "0.04em",
+          }}
         >
-          {config.breadcrumb.map((crumb, i) => (
-            <span key={i} className="flex items-center gap-1.5">
-              {i > 0 && (
-                <svg className="h-2.5 w-2.5 text-gray-500" fill="none" viewBox="0 0 6 10">
-                  <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              )}
-              {crumb.href ? (
-                <Link href={crumb.href} className="text-gray-400 transition-colors hover:text-white">
-                  {crumb.label}
-                </Link>
-              ) : (
-                <span className="font-semibold" style={{ color: accent }}>
-                  {crumb.label}
-                </span>
-              )}
-            </span>
-          ))}
+          {config.breadcrumb.map((crumb, i) => {
+            const isLast = i === config.breadcrumb.length - 1;
+            return (
+              <span key={i} className="flex items-center gap-2">
+                {i > 0 && (
+                  <svg
+                    className="h-3 w-3"
+                    fill="none"
+                    viewBox="0 0 6 10"
+                    style={{ color: "var(--tft-gold-dim)" }}
+                  >
+                    <path
+                      d="M1 1l4 4-4 4"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+                {crumb.href && !isLast ? (
+                  <Link
+                    href={crumb.href}
+                    style={{
+                      color: "var(--tft-text-mute)",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                      transition: "color 0.15s ease",
+                    }}
+                    className="hover:!text-[var(--tft-gold)]"
+                  >
+                    {crumb.label}
+                  </Link>
+                ) : (
+                  <span
+                    style={{
+                      color: "var(--tft-gold-bright)",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {crumb.label}
+                  </span>
+                )}
+              </span>
+            );
+          })}
         </nav>
       </div>
     </div>
