@@ -3652,7 +3652,7 @@
                 "is_three_star": false,
                 "items": [],
                 "position": {
-                    "hex": 27,
+                    "hex": 25,
                     "row": 3
                 }
             },
@@ -3674,7 +3674,7 @@
                 "is_three_star": false,
                 "items": [],
                 "position": {
-                    "hex": 4,
+                    "hex": 5,
                     "row": 0
                 }
             },

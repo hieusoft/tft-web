@@ -22,39 +22,96 @@ const RANK_COLORS: Record<string, string> = {
   C: "#6b7280",
 };
 
-// --- HELPER FUNCTIONS ---
-const formatSkillDescription = (desc: string) => {
-  if (!desc) return null;
-
-  // Highlight labels (Passive, Active, etc.)
-  let html = desc.replace(/([A-ZÀ-ỸĐ][^:\.\n]{1,45}):/g, (match, p1) => {
-    const lower = p1.toLowerCase().trim();
-    if (lower === 'nội tại') {
-      return `<br/><span style="color: #eab308; font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">${match}</span>`;
-    }
-    if (lower === 'kích hoạt' || lower === 'chủ động' || lower === 'bị động') {
-      return `<br/><br/><span style="color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">${match}</span>`;
-    }
-    return `<br/><span style="color: #e8e8e8; font-weight: 700;">${match}</span>`;
-  });
-  
-  // Clean up extra line breaks and unparsed @ variables
-  html = html.replace(/^(<br\/>)+/, '').replace(/^(<br>)+/, '');
-  html = html.replace(/\s*@[a-zA-Z0-9_]+@\s*/g, ' ');
-  
-  // Highlight numeric values
-  html = html.replace(/(\d+(?:\.\d+)?%?(?:\/\d+(?:\.\d+)?%?)+)/g, '<span style="color:rgb(255, 42, 0); font-weight: 800; letter-spacing: 0.5px;">$1</span>');
-  
-  // Remove empty parentheses
-  html = html.replace(/\s*\(\s*\)/g, '');
-
-  return (
-    <div 
-      style={{ fontSize: 14, color: "#a1a1aa", lineHeight: 1.8 }} 
-      dangerouslySetInnerHTML={{ __html: html }} 
-    />
-  );
+const RANK_BG: Record<string, string> = {
+  S: "rgba(239,68,68,0.15)",
+  A: "rgba(249,115,22,0.15)",
+  B: "rgba(16,185,129,0.15)",
+  C: "rgba(107,114,128,0.15)",
 };
+
+function placementToTier(avg: number): string {
+  if (avg <= 3.5) return "S";
+  if (avg <= 4.0) return "A";
+  if (avg <= 4.5) return "B";
+  return "C";
+}
+
+function TierBadge({ avg }: { avg: number }) {
+  const tier = placementToTier(avg);
+  return (
+    <span style={{
+      display: 'inline-block',
+      padding: '2px 7px', borderRadius: 4,
+      fontSize: 12, fontWeight: 800,
+      color: RANK_COLORS[tier],
+      background: RANK_BG[tier],
+      border: `1px solid ${RANK_COLORS[tier]}44`,
+      minWidth: 24, textAlign: 'center',
+    }}>{tier}</span>
+  );
+}
+
+// --- HELPER FUNCTIONS ---
+function formatSkillDescription(desc: string): string {
+  if (!desc) return '';
+
+  // 0. Pre-clean raw data
+  let formatted = desc;
+  // Convert literal \n strings to actual newlines then to <br/>
+  formatted = formatted.replace(/\\n/g, '\n');
+  // Remove @variable@ template tokens
+  formatted = formatted.replace(/@[a-zA-Z0-9_]+@/g, '');
+  // Remove empty parentheses
+  formatted = formatted.replace(/\s*\(\s*\)/g, '');
+  // Collapse extra whitespace
+  formatted = formatted.replace(/[ \t]+/g, ' ').trim();
+
+  // 1. Convert real newlines to <br/>
+  formatted = formatted.replace(/\n/g, '<br/>');
+
+  // 2. Placeholder numbers (no trailing space inside placeholder)
+  formatted = formatted.replace(/(\d+(?:\.\d+)?%?(?:\/\d+(?:\.\d+)?%?)*)/g, '[[NUM:$1]]');
+
+  // 3. Remove duplicate [[NUM:x]] [[NUM:x]] patterns that appear side by side
+  formatted = formatted.replace(/(\[\[NUM:[^\]]+\]\])\s+\1/g, '$1');
+
+  // 4. Sentence breaks (after . ! ? followed by uppercase)
+  formatted = formatted.replace(/([.!?])\s+(?=\p{Lu})/gu, '$1<br/><br/>');
+
+  // 5. Key-value pairs (Vietnamese stat labels) → gold label + new line
+  formatted = formatted.replace(/(?:Sát Thương|Giảm|Hồi|Tốc|Thời|Sát thương|Năng lượng|Máu|Tỉ Lệ|Số)(?:\s+[\p{L}\s.]+?)?:/gu,
+    match => `<br/><span style="color: #f0b90b; font-weight: 600;">${match}</span>`);
+
+  // Fix triple+ line breaks
+  formatted = formatted.replace(/(<br\/>\s*){3,}/g, '<br/><br/>');
+
+  // 6. Keyword coloring
+  const terms = [
+    { regex: /(sát thương vật lý)/gi, color: '#f97316' },
+    { regex: /(sát thương phép thuật|sát thương phép)/gi, color: '#3b82f6' },
+    { regex: /(sát thương chuẩn)/gi, color: '#e2e8f0' },
+    { regex: /(hồi máu|hồi phục)/gi, color: '#22c55e' },
+    { regex: /(giáp)/gi, color: '#eab308' },
+    { regex: /(kháng phép)/gi, color: '#06b6d4' },
+    { regex: /(lá chắn|khiên)/gi, color: '#fbbf24' },
+    { regex: /(tốc độ đánh|tốc đánh)/gi, color: '#fb923c' },
+    { regex: /(năng lượng)/gi, color: '#60a5fa' },
+    { regex: /(máu)/gi, color: '#ef4444' },
+    { regex: /(sức mạnh phép thuật|smpt)/gi, color: '#8b5cf6' },
+    { regex: /(làm choáng|hất tung|hoảng sợ)/gi, color: '#a8a29e' },
+  ];
+  terms.forEach(({ regex, color }) => {
+    formatted = formatted.replace(regex, `<span style="color: ${color}; font-weight: 600;">$1</span>`);
+  });
+
+  // 7. Restore numbers with white bold styling
+  formatted = formatted.replace(/\[\[NUM:(.*?)\]\]/g, '<span style="color: #fff; font-weight: 700;">$1</span>');
+
+  // Remove leading breaks
+  formatted = formatted.replace(/^(<br\/>\s*)+/, '');
+
+  return formatted;
+}
 
 // --- MAIN COMPONENT ---
 export default function ChampionDetailClient({ 
@@ -212,9 +269,10 @@ export default function ChampionDetailClient({
                     </div>
                   </div>
                   
-                  <div style={{ backgroundColor: "#18181c", padding: "16px", borderRadius: 8, border: "1px solid #2a2a2e", boxShadow: "inset 0 2px 10px rgba(0,0,0,0.2)" }}>
-                    {formatSkillDescription(champion.skill.description)}
-                  </div>
+                  <div
+                    style={{ backgroundColor: "#18181c", padding: "16px", borderRadius: 8, border: "1px solid #2a2a2e", boxShadow: "inset 0 2px 10px rgba(0,0,0,0.2)", fontSize: 13, color: "#aaa", lineHeight: 1.7 }}
+                    dangerouslySetInnerHTML={{ __html: formatSkillDescription(champion.skill.description) }}
+                  />
                 </div>
               )}
 
@@ -261,6 +319,7 @@ export default function ChampionDetailClient({
             <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
               <div style={{ display: "flex", fontSize: 11, color: "#666", textTransform: "uppercase", fontWeight: 800, paddingBottom: 8, borderBottom: "1px solid #2a2a2e", letterSpacing: "0.05em" }}>
                 <div style={{ flex: 1 }}>Combo</div>
+                <div style={{ width: 44, textAlign: "center" }}>Tier</div>
                 <div style={{ width: 60, textAlign: "center" }}>Hạng TB</div>
                 <div style={{ width: 60, textAlign: "right" }}>Win Rate</div>
               </div>
@@ -273,6 +332,9 @@ export default function ChampionDetailClient({
                         <Image src={itm.image} alt={itm.name} fill style={{ objectFit: "cover" }} unoptimized />
                       </div>
                     ))}
+                  </div>
+                  <div style={{ width: 44, textAlign: "center" }}>
+                    <TierBadge avg={build.avg_placement} />
                   </div>
                   <div style={{ width: 60, textAlign: "center", fontSize: 15, fontWeight: 800, color: "#10b981" }}>
                     {build.avg_placement}
@@ -295,6 +357,7 @@ export default function ChampionDetailClient({
             <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
               <div style={{ display: "flex", fontSize: 11, color: "#666", textTransform: "uppercase", fontWeight: 800, paddingBottom: 8, borderBottom: "1px solid #2a2a2e", letterSpacing: "0.05em" }}>
                 <div style={{ flex: 1 }}>Trang Bị</div>
+                <div style={{ width: 44, textAlign: "center" }}>Tier</div>
                 <div style={{ width: 60, textAlign: "center" }}>Hạng TB</div>
                 <div style={{ width: 60, textAlign: "right" }}>Tần Suất</div>
               </div>
@@ -308,6 +371,9 @@ export default function ChampionDetailClient({
                     <span style={{ fontSize: 14, fontWeight: 700, color: "#e8e8e8", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 90 }}>
                       {b_item.item.name}
                     </span>
+                  </div>
+                  <div style={{ width: 44, textAlign: "center" }}>
+                    <TierBadge avg={b_item.avg_placement} />
                   </div>
                   <div style={{ width: 60, textAlign: "center", fontSize: 15, fontWeight: 800, color: b_item.avg_placement < 4.5 ? "#10b981" : "#fbbf24" }}>
                     {b_item.avg_placement}
@@ -356,6 +422,7 @@ export default function ChampionDetailClient({
                 <thead style={{ backgroundColor: "#1c1c21", borderBottom: "1px solid #2a2a2e" }}>
                   <tr>
                     <th style={{ padding: "16px 24px", textAlign: "left", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Combo Trang Bị</th>
+                    <th style={{ padding: "16px 24px", textAlign: "center", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Tier</th>
                     <th style={{ padding: "16px 24px", textAlign: "center", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Hạng TB</th>
                     <th style={{ padding: "16px 24px", textAlign: "right", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Tỷ Lệ Thắng</th>
                   </tr>
@@ -369,6 +436,9 @@ export default function ChampionDetailClient({
                             <Image src={itm.image} alt={itm.name} fill style={{ objectFit: "cover" }} unoptimized />
                           </div>
                         ))}
+                      </td>
+                      <td style={{ padding: "16px 24px", textAlign: "center" }}>
+                        <TierBadge avg={build.avg_placement} />
                       </td>
                       <td style={{ padding: "16px 24px", textAlign: "center", fontSize: 16, fontWeight: 800, color: "#fff" }}>
                         {build.avg_placement}
@@ -387,6 +457,7 @@ export default function ChampionDetailClient({
                 <thead style={{ backgroundColor: "#1c1c21", borderBottom: "1px solid #2a2a2e" }}>
                   <tr>
                     <th style={{ padding: "16px 24px", textAlign: "left", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Trang Bị</th>
+                    <th style={{ padding: "16px 24px", textAlign: "center", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Tier</th>
                     <th style={{ padding: "16px 24px", textAlign: "center", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Hạng TB</th>
                     <th style={{ padding: "16px 24px", textAlign: "right", fontSize: 12, color: "#666", fontWeight: 800, textTransform: "uppercase" }}>Tần Suất</th>
                   </tr>
@@ -399,6 +470,9 @@ export default function ChampionDetailClient({
                           <Image src={b_item.item.image} alt={b_item.item.name} fill style={{ objectFit: "cover" }} unoptimized />
                         </div>
                         <span style={{ fontSize: 15, fontWeight: 700, color: "#e8e8e8" }}>{b_item.item.name}</span>
+                      </td>
+                      <td style={{ padding: "16px 24px", textAlign: "center" }}>
+                        <TierBadge avg={b_item.avg_placement} />
                       </td>
                       <td style={{ padding: "16px 24px", textAlign: "center", fontSize: 16, fontWeight: 800, color: "#fff" }}>
                         {b_item.avg_placement}

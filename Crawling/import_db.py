@@ -22,8 +22,8 @@ def slugify(text):
 # Đường dẫn thư mục chứa file JSON
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Tải biến môi trường từ .env của Backend-new
-env_path = os.path.join(DATA_DIR, '..', 'Backend-new', '.env')
+# Tải biến môi trường từ .env của thư mục hiện tại (Crawling)
+env_path = os.path.join(DATA_DIR, '.env')
 load_dotenv(env_path)
 
 # Lấy thông tin kết nối từ .env

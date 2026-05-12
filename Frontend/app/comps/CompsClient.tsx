@@ -246,19 +246,50 @@ function buildGrid(slots: CompBoardSlot[]) {
   const grid: (CompBoardSlot | null)[][] = Array.from({ length: B_ROWS }, () =>
     Array.from({ length: B_COLS }, () => null)
   );
-  const hasPos = slots.some(s => s.hex != null && s.row != null);
-  if (hasPos) {
-    for (const slot of slots) {
-      if (!slot.champion || slot.hex == null || slot.row == null) continue;
-      const r = slot.row, c = slot.hex - slot.row * B_COLS;
-      if (r >= 0 && r < B_ROWS && c >= 0 && c < B_COLS) grid[r][c] = slot;
+  
+  const placedIndices = new Set<number>();
+
+  // 1. Ưu tiên xếp các tướng có tọa độ hợp lệ và không bị trùng
+  for (let i = 0; i < slots.length; i++) {
+    const slot = slots[i];
+    if (slot.champion && slot.row != null && slot.hex != null) {
+      const r = slot.row;
+      const c = slot.hex - slot.row * B_COLS;
+      if (r >= 0 && r < B_ROWS && c >= 0 && c < B_COLS) {
+        if (!grid[r][c]) {
+          grid[r][c] = slot;
+          placedIndices.add(i);
+        }
+      }
     }
-  } else {
-    let idx = 0;
-    for (let r = 0; r < B_ROWS && idx < slots.length; r++)
-      for (let c = 0; c < B_COLS && idx < slots.length; c++)
-        if (slots[idx]?.champion) { grid[r][c] = slots[idx]; idx++; }
   }
+
+  // 2. Xếp các tướng còn lại (thiếu tọa độ hoặc bị trùng vị trí) vào các ô trống
+  let currR = 0;
+  let currC = 0;
+  for (let i = 0; i < slots.length; i++) {
+    if (placedIndices.has(i)) continue;
+    const slot = slots[i];
+    if (!slot.champion) continue;
+
+    while (currR < B_ROWS) {
+      if (!grid[currR][currC]) {
+        grid[currR][currC] = slot;
+        currC++;
+        if (currC >= B_COLS) {
+          currC = 0;
+          currR++;
+        }
+        break;
+      }
+      currC++;
+      if (currC >= B_COLS) {
+        currC = 0;
+        currR++;
+      }
+    }
+  }
+  
   return grid;
 }
 
