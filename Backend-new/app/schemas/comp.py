@@ -80,6 +80,9 @@ class CompBase(BaseModel):
     tier: str = Field(..., description="Tier đánh giá: S | A | B | C | D")
     playstyle: Optional[str] = Field(None, max_length=100, description="Cách chơi, e.g. 'Fast 8', 'Reroll 3'")
     avg_placement: Optional[str] = Field(None, description="Hạng trung bình")
+    pick_rate: Optional[float] = None
+    win_rate: Optional[float] = None
+    top4_rate: Optional[float] = None
 
     # JSONB fields — client gửi object Python thuần
     final_board: Optional[Any] = Field(None, description="Board cuối game (JSONB)")
@@ -133,6 +136,9 @@ class CompUpdate(BaseModel):
     tier: Optional[str] = None
     playstyle: Optional[str] = Field(None, max_length=100)
     avg_placement: Optional[str] = None
+    pick_rate: Optional[float] = None
+    win_rate: Optional[float] = None
+    top4_rate: Optional[float] = None
     final_board: Optional[Any] = None
     early_boards: Optional[Any] = None
     carousel_priority: Optional[List[str]] = None
@@ -179,6 +185,9 @@ class CompDetailResponse(BaseModel):
     tier: str
     playstyle: Optional[str] = None
     avg_placement: Optional[str] = None
+    pick_rate: Optional[float] = None
+    win_rate: Optional[float] = None
+    top4_rate: Optional[float] = None
 
     # Enriched fields
     final_board: Optional[List[BoardSlotEnriched]] = None

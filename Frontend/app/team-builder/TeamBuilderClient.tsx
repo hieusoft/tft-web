@@ -246,19 +246,29 @@ function ActiveTraitRow({ t, style, compChampIds }: { t: any; style: any; compCh
 
 function formatSkillDescription(desc: string) {
   if (!desc) return '';
-  let formatted = desc.replace(/\s*\(\s*\)/g, '');
-  
+
+  // 0. Pre-clean raw data
+  let formatted = desc;
+  formatted = formatted.replace(/\\n/g, '\n'); // literal \n → real newline
+  formatted = formatted.replace(/@[a-zA-Z0-9_]+@/g, ''); // remove @variable@ tokens
+  formatted = formatted.replace(/\s*\(\s*\)/g, ''); // remove empty parens
+  formatted = formatted.replace(/[ \t]+/g, ' ').trim();
+  formatted = formatted.replace(/\n/g, '<br/>'); // real newlines → <br/>
+
   // 1. Numbers placeholder (handle numbers, fractions, percentages)
-  formatted = formatted.replace(/(\d+(?:\.\d+)?(?:%\s*)?(?:\/\d+(?:\.\d+)?(?:%\s*)?)*)/g, '[[NUM:$1]]');
+  formatted = formatted.replace(/(\d+(?:\.\d+)?%?(?:\/\d+(?:\.\d+)?%?)*)/g, '[[NUM:$1]]');
+
+  // 1b. Remove duplicate adjacent [[NUM:x]] [[NUM:x]]
+  formatted = formatted.replace(/(\[\[NUM:[^\]]+\]\])\s+\1/g, '$1');
   
   // 2. Sentences (break lines after a period/exclamation/question mark followed by space and an uppercase letter)
-  formatted = formatted.replace(/([\.!?])\s+(?=\p{Lu})/gu, '$1<br/><br/>');
+  formatted = formatted.replace(/([.!?])\s+(?=\p{Lu})/gu, '$1<br/><br/>');
   
   // 3. Key-Value pairs (e.g. "Sát Thương Chém: 140/210/315")
-  formatted = formatted.replace(/(?:Sát Thương|Giảm|Hồi|Tốc|Thời|Sát thương|Năng lượng|Máu)(?:\s+[\p{L}\s\.]+?)?:/gu, match => `<br/><span style="color: #f0b90b; font-weight: 600;">${match}</span>`);
+  formatted = formatted.replace(/(?:Sát Thương|Giảm|Hồi|Tốc|Thời|Sát thương|Năng lượng|Máu|Tỉ Lệ|Số)(?:\s+[\p{L}\s.]+?)?:/gu, match => `<br/><span style="color: #f0b90b; font-weight: 600;">${match}</span>`);
 
   // Fix consecutive line breaks if the key-value matched immediately after a sentence
-  formatted = formatted.replace(/(<br\/>\s*){3,}/g, '<br/><br/>');
+  formatted = formatted.replace(/(<br\/>\ *){3,}/g, '<br/><br/>');
 
   // 4. Terms
   const terms = [
@@ -283,7 +293,7 @@ function formatSkillDescription(desc: string) {
   formatted = formatted.replace(/\[\[NUM:(.*?)\]\]/g, '<span style="color: #fff; font-weight: 700;">$1</span>');
 
   // Remove leading breaks
-  formatted = formatted.replace(/^(<br\/>\s*)+/, '');
+  formatted = formatted.replace(/^(<br\/>\ *)+/, '');
 
   return formatted;
 }

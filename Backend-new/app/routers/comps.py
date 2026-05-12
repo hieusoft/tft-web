@@ -20,8 +20,8 @@ from app.schemas.comp import CompBulkResponse, CompCreate, CompResponse, CompUpd
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-COMPS_CACHE_KEY = "comps:all:v3"
-COMP_CACHE_KEY_PREFIX = "comps:v3:"
+COMPS_CACHE_KEY = "comps:all:v4"
+COMP_CACHE_KEY_PREFIX = "comps:v4:"
 CACHE_TTL = 3600
 
 _MAPS_CACHE: Optional[dict] = None
@@ -264,6 +264,9 @@ def _enrich_comp(comp: Comp, maps: dict) -> dict:
         "tier": comp.tier,
         "playstyle": comp.playstyle,
         "avg_placement": comp.avg_placement,
+        "pick_rate": comp.pick_rate,
+        "win_rate": comp.win_rate,
+        "top4_rate": comp.top4_rate,
         "final_board": enriched_board,
         "carousel_priority": enriched_carousel,
         "recommended_augments": enriched_augments,

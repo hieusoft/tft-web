@@ -29,14 +29,14 @@ HEX_POSITION_MAP = {
 # Fill của polygon có dạng url(#mask-TFT17_Akali-405007) -> chứa champion ID thật
 _JS_GET_CHAMPION_HEX = r"""
 () => {
-    const result = {};  // { "TFT17_Akali": 2, ... }
+    const result = [];  // Array of { champ: string, hex: number }
     document.querySelectorAll('polygon[id^="Hex_"]').forEach(poly => {
         const fill = poly.getAttribute('fill') || '';
         // fill = "url(#mask-TFT17_Akali-405007)" hoac "url(#mask-TFTxx_Champ-id)"
         const m = fill.match(/url\(#mask-(TFT[\w]+)-/i);
         if (m) {
             const hexNum = parseInt(poly.id.replace('Hex_', ''));
-            result[m[1]] = hexNum;
+            result.push({ champ: m[1], hex: hexNum });
         }
     });
     return result;
@@ -161,7 +161,23 @@ _JS_EXTRACT_DETAILS = r"""
     let uniqueAugs = [...new Set(augImgs.map(img => img.alt).filter(Boolean))];
     augments = uniqueAugs;
 
-    return { playstyle, carousel, raw_leveling, early, augments };
+    // --- Lấy tọa độ bàn cờ (Hex positions) ---
+    let hexPositions = [];
+    // Tìm khung chứa bản đồ (thường là svg hoặc div chứa các Hex_...)
+    let boardContainer = detailNode.querySelector('.FullBoard, [class*="Board"], svg');
+    if (!boardContainer) boardContainer = detailNode; // Fallback
+
+    boardContainer.querySelectorAll('polygon[id^="Hex_"]').forEach(poly => {
+        const fill = poly.getAttribute('fill') || '';
+        // match mask-TFT17_Akali... hoac tương tự
+        const m = fill.match(/url\(#mask-([\w]+)-/i);
+        if (m) {
+            const hexNum = parseInt(poly.id.replace('Hex_', ''));
+            hexPositions.push({ champ: m[1], hex: hexNum });
+        }
+    });
+
+    return { playstyle, carousel, raw_leveling, early, augments, hexPositions };
 }
 """
 
@@ -230,11 +246,11 @@ def scrape_live_metatft_vi():
                     row_loc.evaluate("el => el.scrollIntoView({block: 'center', behavior: 'instant'})")
                     page.wait_for_timeout(300) 
                     row_loc.evaluate("el => el.click()")
-                    page.wait_for_timeout(1200)  # Chờ full board SVG render
+                    page.wait_for_timeout(1500)  # Tăng thời gian chờ bản đồ render
                     
-                    # Đọc champion→hex từ SVG full board NGAY SAU KHI EXPAND
-                    # fill="url(#mask-TFT17_Akali-...)" chứa champion ID thật
-                    champ_hex_map = page.evaluate(_JS_GET_CHAMPION_HEX) 
+                    details_data = row_loc.evaluate(_JS_EXTRACT_DETAILS)
+                    champ_hex_list = details_data.get('hexPositions', [])
+                    remaining_hexes = champ_hex_list.copy() # List of {champ, hex}
                     
                     try:
                         box = row_loc.evaluate("""el => {
@@ -253,8 +269,6 @@ def scrape_live_metatft_vi():
                     except:
                         pass
                     
-                    details_data = row_loc.evaluate(_JS_EXTRACT_DETAILS)
-                    
                     row_loc.evaluate("el => el.click()")
                     page.mouse.move(0, 0)
                     page.wait_for_timeout(300)
@@ -272,16 +286,23 @@ def scrape_live_metatft_vi():
                         champ_id = champ_map.get(u_name, u_name)
                         
                         # Tìm hex index: dùng TFT slug (match với fill URL trong SVG)
-                        # tft_slug_map["Akali"] = "TFT17_Akali"
                         tft_slug = tft_slug_map.get(u_name, '')
-                        hex_idx = champ_hex_map.get(tft_slug) if tft_slug else None
+                        hex_idx = None
+                        
+                        if tft_slug:
+                            for idx, h_item in enumerate(remaining_hexes):
+                                if h_item['champ'] == tft_slug:
+                                    hex_idx = h_item['hex']
+                                    remaining_hexes.pop(idx) # Lấy ra rồi thì xóa để con sau không bị trùng
+                                    break
                         
                         # Fallback: thử tìm bằng các biến thể khác của slug
                         if hex_idx is None and u_name:
-                            # Thử tìm trong champ_hex_map với key chứa tên
-                            for svgkey, hidx in champ_hex_map.items():
-                                if u_name.lower().replace(' ', '').replace("'", '') in svgkey.lower():
-                                    hex_idx = hidx
+                            name_clean = u_name.lower().replace(' ', '').replace("'", '')
+                            for idx, h_item in enumerate(remaining_hexes):
+                                if name_clean in h_item['champ'].lower():
+                                    hex_idx = h_item['hex']
+                                    remaining_hexes.pop(idx)
                                     break
                         
                         row = HEX_POSITION_MAP.get(hex_idx)  # int (0-3) hoặc None
