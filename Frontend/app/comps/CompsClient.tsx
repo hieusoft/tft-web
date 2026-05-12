@@ -28,10 +28,11 @@ interface ChampionItemRec {
 const TIERS = ["Tất Cả", "S", "A", "B", "C"];
 
 const TIER_CONFIG: Record<string, { bg: string; glow: string; text: string; borderColor: string }> = {
-  S: { bg: "rgb(255, 126, 131)", glow: "0 0 12px rgba(255,126,131,0.4)", text: "#000", borderColor: "rgb(255, 126, 131)" },
-  A: { bg: "rgb(255, 191, 127)", glow: "0 0 12px rgba(255,191,127,0.4)", text: "#000", borderColor: "rgb(255, 191, 127)" },
-  B: { bg: "rgb(255, 223, 128)", glow: "0 0 12px rgba(255,223,128,0.3)", text: "#000", borderColor: "rgb(255, 223, 128)" },
-  C: { bg: "rgb(254, 255, 127)", glow: "0 0 12px rgba(254,255,127,0.3)", text: "#000", borderColor: "rgb(254, 255, 127)" },
+  S: { bg: "#ef4444", glow: "0 0 12px rgba(239,68,68,0.4)",  text: "#fff", borderColor: "#ef4444" },
+  A: { bg: "#f97316", glow: "0 0 12px rgba(249,115,22,0.4)", text: "#fff", borderColor: "#f97316" },
+  B: { bg: "#f0b90b", glow: "0 0 12px rgba(240,185,11,0.4)", text: "#000", borderColor: "#f0b90b" },
+  C: { bg: "#10b981", glow: "0 0 12px rgba(16,185,129,0.4)", text: "#fff", borderColor: "#10b981" },
+  D: { bg: "#6b7280", glow: "0 0 12px rgba(107,114,128,0.4)", text: "#fff", borderColor: "#6b7280" },
 };
 
 const COST_BORDER: Record<number, string> = {
@@ -259,10 +260,10 @@ function CompStat({ label, value, highlight = false }: { label: string; value: s
 
 
 // ── Hex Board Constants ───────────────────────────────────────────────────────
-const B_COLS = 7, B_ROWS = 4, B_HW = 112, B_HH = 130, B_GAP = 4;
-const B_STEP = Math.round(B_HH * 0.75);
-const B_NAT_W = B_COLS * (B_HW + B_GAP) - B_GAP + Math.round(B_HW / 2) + B_GAP; // ≈868
-const B_NAT_H = (B_ROWS - 1) * B_STEP + B_HH + 12; // ≈448
+const B_COLS = 7, B_ROWS = 4, B_HW = 96, B_HH = 110, B_GAP = 8;
+const B_STEP = Math.round(B_HH * 0.75) + 4;
+const B_NAT_W = B_COLS * (B_HW + B_GAP) - B_GAP + Math.round(B_HW / 2) + B_GAP;
+const B_NAT_H = (B_ROWS - 1) * B_STEP + B_HH + 12;
 
 function buildGrid(slots: CompBoardSlot[]) {
   const grid: (CompBoardSlot | null)[][] = Array.from({ length: B_ROWS }, () =>
