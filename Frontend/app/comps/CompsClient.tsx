@@ -259,10 +259,10 @@ function CompStat({ label, value, highlight = false }: { label: string; value: s
 
 
 // ── Hex Board Constants ───────────────────────────────────────────────────────
-const B_COLS = 7, B_ROWS = 4, B_HW = 112, B_HH = 130, B_GAP = 4;
-const B_STEP = Math.round(B_HH * 0.75);
-const B_NAT_W = B_COLS * (B_HW + B_GAP) - B_GAP + Math.round(B_HW / 2) + B_GAP; // ≈868
-const B_NAT_H = (B_ROWS - 1) * B_STEP + B_HH + 12; // ≈448
+const B_COLS = 7, B_ROWS = 4, B_HW = 96, B_HH = 110, B_GAP = 8;
+const B_STEP = Math.round(B_HH * 0.75) + 4;
+const B_NAT_W = B_COLS * (B_HW + B_GAP) - B_GAP + Math.round(B_HW / 2) + B_GAP;
+const B_NAT_H = (B_ROWS - 1) * B_STEP + B_HH + 12;
 
 function buildGrid(slots: CompBoardSlot[]) {
   const grid: (CompBoardSlot | null)[][] = Array.from({ length: B_ROWS }, () =>

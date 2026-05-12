@@ -225,6 +225,22 @@ export default function ChampionsClient({
                     background: 'linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%)'
                   }} />
 
+                  {/* Tier Badge — Top Left */}
+                  {champ.rank && (
+                    <div style={{
+                      position: 'absolute', top: 8, left: 8, zIndex: 2,
+                      minWidth: 24, height: 24, padding: '0 6px',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      borderRadius: 5,
+                      backgroundColor: RANK_COLORS[champ.rank] ?? '#6b7280',
+                      color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: '0.04em',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.6)',
+                      textShadow: '0 1px 2px rgba(0,0,0,0.7)',
+                    }}>
+                      {champ.rank}
+                    </div>
+                  )}
+
                   {/* Traits Bottom-Left Aligned */}
                   <div style={{
                     position: 'absolute', bottom: 8, left: 12,
@@ -247,6 +263,17 @@ export default function ChampionsClient({
                         </div>
                       );
                     })}
+                  </div>
+
+                  {/* Stats Bottom-Right Aligned */}
+                  <div style={{
+                    position: 'absolute', bottom: 8, right: 12,
+                    display: 'flex', flexDirection: 'column', gap: 4, zIndex: 2,
+                    alignItems: 'flex-end',
+                  }}>
+                    <ChampStat label="TB" value={formatChampPlacement(champ.avg_placement)} color="#e8e8e8" />
+                    <ChampStat label="Win" value={formatChampPercent(champ.win_rate)} color="#f0b90b" />
+                    <ChampStat label="Pick" value={formatChampPercent(champ.pick_rate)} color="#60a5fa" />
                   </div>
                 </div>
 
@@ -278,4 +305,36 @@ export default function ChampionsClient({
       </div>
     </div>
   );
-}
+}
+
+function parseNumeric(value: number | string | null | undefined): number | null {
+  if (value == null) return null;
+  if (typeof value === "number") return isNaN(value) ? null : value;
+  const parsed = parseFloat(String(value).replace(/[^0-9.\-]+/g, ""));
+  return isNaN(parsed) ? null : parsed;
+}
+
+function formatChampPlacement(value: number | string | null | undefined) {
+  const n = parseNumeric(value);
+  return n != null ? n.toFixed(2) : "—";
+}
+
+function formatChampPercent(value: number | string | null | undefined) {
+  const n = parseNumeric(value);
+  return n != null ? `${n.toFixed(1)}%` : "—";
+}
+
+function ChampStat({ label, value, color }: { label: string; value: string; color: string }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'baseline', gap: 4,
+      padding: '2px 6px', borderRadius: 4,
+      background: 'rgba(0,0,0,0.55)',
+      backdropFilter: 'blur(2px)',
+      textShadow: '0 1px 2px rgba(0,0,0,0.9)',
+    }}>
+      <span style={{ fontSize: 9, fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{label}</span>
+      <span style={{ fontSize: 11, fontWeight: 800, color, fontVariantNumeric: 'tabular-nums' }}>{value}</span>
+    </div>
+  );
+}
