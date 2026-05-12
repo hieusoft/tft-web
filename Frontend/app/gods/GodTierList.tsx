@@ -1,85 +1,241 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import GodDetailModal from './GodDetailModal';
-import type { ApiGodListItem } from '@/lib/api-client';
+import { useState, useMemo } from "react";
+import GodDetailModal from "./GodDetailModal";
+import type { ApiGodListItem } from "@/lib/api-client";
 
-const RANK_COLORS: Record<string, string> = {
-  S: "bg-[#ef4444] text-white", 
-  A: "bg-[#f97316] text-white",
-  B: "bg-[#f0b90b] text-black", 
-  C: "bg-[#10b981] text-white", 
-  D: "bg-[#6b7280] text-white", 
-};
+import { TIER_HEX } from "@/lib/constants";
+import { TFT, TFT_FONT, tftBevel } from "@/lib/tft-theme";
+import TierBadge from "@/components/tft/TierBadge";
 
-const GodCard = ({ god, onClick }: { god: ApiGodListItem; onClick: (slug: string) => void }) => {
+const TIERS = ["S", "A", "B", "C", "D"] as const;
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Single God avatar — square TFT bevel (matches item/champion style)
+   ───────────────────────────────────────────────────────────────────────────── */
+function GodCard({
+  god,
+  onClick,
+}: {
+  god: ApiGodListItem;
+  onClick: (slug: string) => void;
+}) {
+  const [hover, setHover] = useState(false);
+  const tierColor = TIER_HEX[god.rank] ?? TFT.gold;
+
   return (
-    <div 
-      className="flex flex-col items-center justify-start w-[80px] cursor-pointer group"
+    <div
       onClick={() => onClick(god.slug ?? String(god.id))}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 6,
+        width: 78,
+        cursor: "pointer",
+      }}
     >
-      <div className="relative mb-2 transition-transform duration-200 group-hover:-translate-y-1">
-        <img loading="lazy" 
-          src={god.image} 
-          alt={god.name} 
-          className="w-14 h-14 rounded-full object-cover border-2 border-transparent group-hover:border-yellow-400 shadow-md"
+      <div
+        style={{
+          width: 60,
+          height: 60,
+          position: "relative",
+          background: "#000",
+          flexShrink: 0,
+          transition: "transform 0.15s",
+          transform: hover ? "translateY(-2px) scale(1.05)" : "translateY(0) scale(1)",
+          boxShadow: tftBevel(hover ? TFT.gold : tierColor, hover),
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          loading="lazy"
+          src={god.image}
+          alt={god.name}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            imageRendering: "pixelated",
+          }}
         />
       </div>
-      <span className="text-white text-xs font-semibold text-center leading-tight whitespace-nowrap">
+      <span
+        className="tft-heading"
+        style={{
+          fontSize: 11,
+          color: hover ? TFT.goldBright : TFT.text,
+          fontWeight: 700,
+          textAlign: "center",
+          lineHeight: 1.2,
+          letterSpacing: "0.02em",
+          whiteSpace: "nowrap",
+          maxWidth: "100%",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
         {god.name}
       </span>
-      <span className="text-gray-400 text-[10px] text-center leading-tight mt-0.5 whitespace-nowrap">
+      <span
+        style={{
+          fontSize: 9,
+          color: TFT.textMute,
+          textAlign: "center",
+          letterSpacing: "0.06em",
+          textTransform: "uppercase",
+          fontWeight: 600,
+        }}
+      >
         {god.trait}
       </span>
     </div>
   );
-};
+}
 
-export default function GodTierList({ initialGods }: { initialGods: ApiGodListItem[] }) {
+/* ─────────────────────────────────────────────────────────────────────────────
+   Tier row — left rail with TierBadge + grid of gods
+   ───────────────────────────────────────────────────────────────────────────── */
+function TierRow({
+  tier,
+  gods,
+  onSelect,
+}: {
+  tier: string;
+  gods: ApiGodListItem[];
+  onSelect: (slug: string) => void;
+}) {
+  const color = TIER_HEX[tier] ?? TFT.gold;
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "stretch",
+        background: TFT.panel,
+        border: `1px solid ${TFT.line}`,
+        borderLeft: `3px solid ${color}`,
+        minHeight: 110,
+      }}
+    >
+      <div
+        style={{
+          width: 72,
+          flexShrink: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 6,
+          background: `linear-gradient(180deg, ${color}15 0%, transparent 100%)`,
+          borderRight: `1px solid ${TFT.line}`,
+        }}
+      >
+        <TierBadge tier={tier} size={40} />
+        <span
+          style={{
+            fontSize: 9,
+            color: TFT.textMute,
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.12em",
+          }}
+        >
+          {gods.length}
+        </span>
+      </div>
+      <div
+        style={{
+          flex: 1,
+          padding: "16px 18px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "16px 22px",
+          alignContent: "flex-start",
+          alignItems: "flex-start",
+        }}
+      >
+        {gods.length > 0 ? (
+          gods.map((god) => <GodCard key={god.id} god={god} onClick={onSelect} />)
+        ) : (
+          <span
+            style={{
+              fontSize: 12,
+              color: TFT.textMute,
+              fontStyle: "italic",
+              alignSelf: "center",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Chưa có dữ liệu
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Main
+   ───────────────────────────────────────────────────────────────────────────── */
+export default function GodTierList({
+  initialGods,
+}: {
+  initialGods: ApiGodListItem[];
+}) {
   const [selectedGodSlug, setSelectedGodSlug] = useState<string | null>(null);
 
-  const tiers = ['S', 'A', 'B', 'C', 'D'];
-  const groupedData = tiers.map(tier => ({
-    tier,
-    color: RANK_COLORS[tier] || "bg-gray-500 text-white",
-    gods: initialGods.filter(god => god.rank === tier)
-  }));
+  const grouped = useMemo(
+    () =>
+      TIERS.map((tier) => ({
+        tier,
+        gods: initialGods.filter((g) => g.rank === tier),
+      })),
+    [initialGods]
+  );
 
   return (
-    <div className="bg-[#121212] min-h-screen p-4 md:p-8 font-sans">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-6 border-b border-gray-800 pb-4">
-          <h1 className="text-2xl font-bold text-white mb-2">Danh Sách Tầng Thần Thoại</h1>
-          <p className="text-gray-400 text-sm">
-            Các Thần cung cấp những Ân huệ độc đáo và các đề nghị theo giai đoạn. Nhấp vào một vị thần để xem ân huệ và các đề nghị của họ.
+    <div className="tft-page" style={{ fontFamily: TFT_FONT.body }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto", padding: "28px 18px" }}>
+        {/* Header */}
+        <div
+          style={{
+            marginBottom: 22,
+            paddingBottom: 14,
+            borderBottom: `1px solid ${TFT.line}`,
+          }}
+        >
+          <h1
+            className="tft-heading"
+            style={{
+              fontSize: 30,
+              fontWeight: 700,
+              color: TFT.goldBright,
+              margin: "0 0 6px",
+              textShadow: "0 2px 6px rgba(0,0,0,0.6)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Bảng Phân Hạng Thần Thoại
+          </h1>
+          <p style={{ fontSize: 12, color: TFT.textMute, margin: 0, letterSpacing: "0.04em", lineHeight: 1.6 }}>
+            Các Thần cung cấp Ân Huệ độc đáo cùng phần thưởng theo từng giai đoạn. Nhấp vào một vị thần để xem chi tiết.
           </p>
         </div>
 
-        <div className="flex flex-col gap-[2px]">
-          {groupedData.map((row) => (
-            <div key={row.tier} className="flex min-h-[100px] bg-[#1e1e20] rounded-sm overflow-hidden">
-              <div className={`w-20 flex-shrink-0 flex items-center justify-center font-black text-2xl ${row.color}`}>
-                {row.tier}
-              </div>
-
-              <div className="flex-1 p-4 flex flex-wrap gap-x-6 gap-y-4 items-center bg-[#252527]">
-                {row.gods.length > 0 ? (
-                  row.gods.map(god => (
-                    <GodCard key={god.id} god={god} onClick={setSelectedGodSlug} />
-                  ))
-                ) : (
-                  <span className="text-gray-600 italic text-sm">Chưa có dữ liệu</span>
-                )}
-              </div>
-            </div>
+        {/* Tier list */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {grouped.map(({ tier, gods }) => (
+            <TierRow key={tier} tier={tier} gods={gods} onSelect={setSelectedGodSlug} />
           ))}
         </div>
       </div>
 
       {selectedGodSlug && (
-        <GodDetailModal 
-          godSlug={selectedGodSlug} 
-          onClose={() => setSelectedGodSlug(null)} 
+        <GodDetailModal
+          godSlug={selectedGodSlug}
+          onClose={() => setSelectedGodSlug(null)}
         />
       )}
     </div>
