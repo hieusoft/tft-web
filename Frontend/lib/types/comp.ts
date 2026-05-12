@@ -66,9 +66,9 @@ export interface ApiComp {
   tier: string;                         // "S" | "A" | "B" | "C"
   playstyle: string | null;
   avg_placement: number | null;
-  pick_rate: number | null;
-  win_rate: number | null;
-  top4_rate: number | null;
+  pick_rate: number | string | null;
+  win_rate: number | string | null;
+  top4_rate: number | string | null;
   final_board: CompBoardSlot[] | null;
   carousel_priority: CompItem[];
   recommended_augments: CompAugment[];

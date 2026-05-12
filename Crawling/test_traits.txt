@@ -1,1 +1,0 @@
-['Chiêm Tinh - Cự Xà', 'Chiêm Tinh - Heo Rừng', 'Chiêm Tinh - Ngọn Núi', 'Chiêm Tinh - Đền Thờ', 'Chiêm Tinh - Nữ Thợ Săn', 'Chiêm Tinh - Huy Chương']

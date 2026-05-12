@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Float, Text
-from sqlalchemy.dialects.postgresql import JSONB, ARRAY
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.dialects.postgresql import JSONB
 from app.core.database import Base
 
 
@@ -12,9 +12,11 @@ class Comp(Base):
     tier: str = Column(String(2), nullable=False)         
     playstyle: str = Column(String(100), nullable=True)
     avg_placement: str = Column(String(50), nullable=True)
-    pick_rate: float = Column(Float, nullable=True)
-    win_rate: float = Column(Float, nullable=True)
-    top4_rate: float = Column(Float, nullable=True)
+    pick_rate: str = Column(String(50), nullable=True)
+    win_rate: str = Column(String(50), nullable=True)
+    top4_rate: str = Column(String(50), nullable=True)
     final_board: dict = Column(JSONB, nullable=True)
-    carousel_priority: list = Column(ARRAY(Text), nullable=True, default=list)
-    recommended_augments: list = Column(ARRAY(Text), nullable=True, default=list)
+    early_boards: dict = Column(JSONB, nullable=True)
+    leveling_guide: dict = Column(JSONB, nullable=True)
+    carousel_priority: list = Column(JSONB, nullable=True, default=list)
+    recommended_augments: list = Column(JSONB, nullable=True, default=list)
