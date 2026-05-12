@@ -63,7 +63,7 @@ export interface ApiComp {
   id: number;
   slug?: string;
   name: string;
-  tier: string;                         // "S" | "A" | "B" | "C"
+  tier: string;                         
   playstyle: string | null;
   avg_placement: number | null;
   pick_rate: number | string | null;

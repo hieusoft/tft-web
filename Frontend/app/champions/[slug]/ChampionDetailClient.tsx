@@ -18,15 +18,17 @@ const COST_COLORS: Record<number, string> = {
 const RANK_COLORS: Record<string, string> = {
   S: "#ef4444",
   A: "#f97316",
-  B: "#10b981",
-  C: "#6b7280",
+  B: "#f0b90b",
+  C: "#10b981",
+  D: "#6b7280",
 };
 
 const RANK_BG: Record<string, string> = {
   S: "rgba(239,68,68,0.15)",
   A: "rgba(249,115,22,0.15)",
-  B: "rgba(16,185,129,0.15)",
-  C: "rgba(107,114,128,0.15)",
+  B: "rgba(240,185,11,0.15)",
+  C: "rgba(16,185,129,0.15)",
+  D: "rgba(107,114,128,0.15)",
 };
 
 function placementToTier(avg: number): string {

@@ -28,10 +28,11 @@ interface ChampionItemRec {
 const TIERS = ["Tất Cả", "S", "A", "B", "C"];
 
 const TIER_CONFIG: Record<string, { bg: string; glow: string; text: string; borderColor: string }> = {
-  S: { bg: "rgb(255, 126, 131)", glow: "0 0 12px rgba(255,126,131,0.4)", text: "#000", borderColor: "rgb(255, 126, 131)" },
-  A: { bg: "rgb(255, 191, 127)", glow: "0 0 12px rgba(255,191,127,0.4)", text: "#000", borderColor: "rgb(255, 191, 127)" },
-  B: { bg: "rgb(255, 223, 128)", glow: "0 0 12px rgba(255,223,128,0.3)", text: "#000", borderColor: "rgb(255, 223, 128)" },
-  C: { bg: "rgb(254, 255, 127)", glow: "0 0 12px rgba(254,255,127,0.3)", text: "#000", borderColor: "rgb(254, 255, 127)" },
+  S: { bg: "#ef4444", glow: "0 0 12px rgba(239,68,68,0.4)",  text: "#fff", borderColor: "#ef4444" },
+  A: { bg: "#f97316", glow: "0 0 12px rgba(249,115,22,0.4)", text: "#fff", borderColor: "#f97316" },
+  B: { bg: "#f0b90b", glow: "0 0 12px rgba(240,185,11,0.4)", text: "#000", borderColor: "#f0b90b" },
+  C: { bg: "#10b981", glow: "0 0 12px rgba(16,185,129,0.4)", text: "#fff", borderColor: "#10b981" },
+  D: { bg: "#6b7280", glow: "0 0 12px rgba(107,114,128,0.4)", text: "#fff", borderColor: "#6b7280" },
 };
 
 const COST_BORDER: Record<number, string> = {

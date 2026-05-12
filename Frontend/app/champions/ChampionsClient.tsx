@@ -30,8 +30,9 @@ const COST_BG_COLORS: Record<number, string> = {
 const RANK_COLORS: Record<string, string> = {
   S: "#ef4444",
   A: "#f97316",
-  B: "#10b981",
-  C: "#6b7280",
+  B: "#f0b90b",
+  C: "#10b981",
+  D: "#6b7280",
 };
 
 type SortDirection = "asc" | "desc";

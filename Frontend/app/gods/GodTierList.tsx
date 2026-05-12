@@ -5,11 +5,11 @@ import GodDetailModal from './GodDetailModal';
 import type { ApiGodListItem } from '@/lib/api-client';
 
 const RANK_COLORS: Record<string, string> = {
-  S: "bg-[#f59e8b] text-[#5c2b29]", 
-  A: "bg-[#f7b973] text-[#5c3716]",
-  B: "bg-[#fcd34d] text-[#5c4b16]", 
-  C: "bg-[#a3e635] text-[#2c4714]", 
-  D: "bg-[#4ade80] text-[#144723]", 
+  S: "bg-[#ef4444] text-white", 
+  A: "bg-[#f97316] text-white",
+  B: "bg-[#f0b90b] text-black", 
+  C: "bg-[#10b981] text-white", 
+  D: "bg-[#6b7280] text-white", 
 };
 
 const GodCard = ({ god, onClick }: { god: ApiGodListItem; onClick: (slug: string) => void }) => {
