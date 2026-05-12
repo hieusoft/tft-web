@@ -145,7 +145,7 @@
 @media (min-width: 768px) {
   .comp-table-header {
     display: grid;
-    grid-template-columns: 56px 200px 1fr 180px 90px 40px;
+    grid-template-columns: 56px 200px 1fr 180px 210px 40px;
     gap: 8px;
     align-items: center;
     padding: 0 12px;
@@ -162,7 +162,7 @@
 }
 
 .comp-col--stat {
-  text-align: right;
+  text-align: left;
 }
 
 .comp-col--expand {
@@ -209,7 +209,7 @@
 
 @media (min-width: 768px) {
   .comp-row__main {
-    grid-template-columns: 56px 200px 1fr 180px 90px 40px;
+    grid-template-columns: 56px 200px 1fr 180px 210px 40px;
   }
 }
 
@@ -414,11 +414,39 @@
   }
 }
 
-.comp-avg-place {
-  font-size: 0.875rem;
+.comp-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  align-items: center;
+}
+
+.comp-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.comp-stat__label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.comp-stat__value {
+  font-size: 0.78rem;
   font-weight: 700;
-  color: #e8e8e8;
+  line-height: 1.15;
+  color: #d6d6d6;
   font-variant-numeric: tabular-nums;
+}
+
+.comp-stat__value--highlight {
+  color: #e8e8e8;
 }
 
 /* ── Expand Icon ────────────────────────────────────────────── */
@@ -1278,11 +1306,11 @@
   /* Table header — show on iPad */
   .comp-table-header {
     display: grid !important;
-    grid-template-columns: 56px 180px 1fr 150px 70px 40px;
+    grid-template-columns: 56px 180px 1fr 150px 180px 40px;
   }
 
   .comp-row__main {
-    grid-template-columns: 56px 180px 1fr 150px 70px 40px !important;
+    grid-template-columns: 56px 180px 1fr 150px 180px 40px !important;
   }
 
   /* Champs + traits + stat visible on iPad */

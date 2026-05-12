@@ -111,7 +111,7 @@ export default function CompsClient({ initialComps }: { initialComps: ApiComp[] 
         <div className="comp-col comp-col--name">Đội Hình</div>
         <div className="comp-col comp-col--champs">Tướng</div>
         <div className="comp-col comp-col--traits">Tộc / Hệ</div>
-        <div className="comp-col comp-col--stat">T. Bình</div>
+        <div className="comp-col comp-col--stat">Thông Số</div>
         <div className="comp-col comp-col--expand" />
       </div>
 
@@ -202,9 +202,12 @@ function CompRow({
         </div>
 
         <div className="comp-col comp-col--stat">
-          <span className="comp-avg-place">
-            {comp.avg_placement != null ? Number(comp.avg_placement).toFixed(2) : "—"}
-          </span>
+          <div className="comp-stats">
+            <CompStat label="TB" value={formatPlacement(comp.avg_placement)} highlight />
+            <CompStat label="Pick" value={formatPercent(comp.pick_rate)} />
+            <CompStat label="Win" value={formatPercent(comp.win_rate)} />
+            <CompStat label="Top 4" value={formatPercent(comp.top4_rate)} />
+          </div>
         </div>
 
         <div className="comp-col comp-col--expand">
@@ -231,6 +234,25 @@ function CompRow({
       {isExpanded && (
         <CompDetail comp={comp} sortedTraits={sortedTraits} />
       )}
+    </div>
+  );
+}
+
+function formatPlacement(value: number | string | null | undefined) {
+  return value != null ? Number(value).toFixed(2) : "—";
+}
+
+function formatPercent(value: number | string | null | undefined) {
+  return value != null ? `${Number(value).toFixed(1)}%` : "—";
+}
+
+function CompStat({ label, value, highlight = false }: { label: string; value: string; highlight?: boolean }) {
+  return (
+    <div className="comp-stat">
+      <span className="comp-stat__label">{label}</span>
+      <span className={highlight ? "comp-stat__value comp-stat__value--highlight" : "comp-stat__value"}>
+        {value}
+      </span>
     </div>
   );
 }
